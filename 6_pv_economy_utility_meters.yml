@@ -1,0 +1,145 @@
+# UTILITY METERS
+# In separate file. If you keep the utility meters in configuration.yaml, all lines needs to be indented two spaces.
+
+## Huawei Solar PEES - PV Economy Utility Meters
+### PV Economy - Result without PV
+hourly_pv_economy_result_wo_pv:
+  source: sensor.pv_economy_result_wo_pv
+  name: "Hourly PV Economy - Result wo PV"
+  cycle: hourly
+daily_pv_economy_result_wo_pv:
+  source: sensor.pv_economy_result_wo_pv
+  name: "Daily PV Economy - Result wo PV"
+  cycle: daily
+monthly_pv_economy_result_wo_pv:
+  source: sensor.pv_economy_result_wo_pv
+  name: "Monthly PV Economy - Result wo PV"
+  cycle: monthly
+quarterly_pv_economy_result_wo_pv:
+  source: sensor.pv_economy_result_wo_pv
+  name: "Quarterly PV Economy - Result wo PV"
+  cycle: quarterly
+yearly_pv_economy_result_wo_pv:
+  source: sensor.pv_economy_result_wo_pv
+  name: "Yearly PV Economy - Result wo PV"
+  cycle: yearly
+### PV Economy - Result with PV
+hourly_pv_economy_result_w_pv:
+  source: sensor.pv_economy_result_w_pv
+  name: "Hourly PV Economy - Result w PV"
+  cycle: hourly
+  net_consumption: true
+daily_pv_economy_result_w_pv:
+  source: sensor.pv_economy_result_w_pv
+  name: "Daily PV Economy - Result w PV"
+  cycle: daily
+  net_consumption: true
+monthly_pv_economy_result_w_pv:
+  source: sensor.pv_economy_result_w_pv
+  name: "Monthly PV Economy - Result w PV"
+  cycle: monthly
+  net_consumption: true
+quarterly_pv_economy_result_w_pv:
+  source: sensor.pv_economy_result_w_pv
+  name: "Quarterly PV Economy - Result w PV"
+  cycle: quarterly
+  net_consumption: true
+yearly_pv_economy_result_w_pv:
+  source: sensor.pv_economy_result_w_pv
+  name: "Yearly PV Economy - Result w PV"
+  cycle: yearly
+  net_consumption: true
+### PV Economy - Expenses
+hourly_pv_economy_expenses_w_pv:
+  source: sensor.pv_economy_expenses_w_pv
+  name: "Hourly PV Economy - Expenses w PV"
+  cycle: hourly
+daily_pv_economy_expenses_w_pv:
+  source: sensor.pv_economy_expenses_w_pv
+  name: "Daily PV Economy - Expenses w PV"
+  cycle: daily
+monthly_pv_economy_expenses_w_pv:
+  source: sensor.pv_economy_expenses_w_pv
+  name: "Monthly PV Economy - Expenses w PV"
+  cycle: monthly
+quarterly_pv_economy_expenses_w_pv:
+  source: sensor.pv_economy_expenses_w_pv
+  name: "Quarterly PV Economy - Expenses w PV"
+  cycle: quarterly
+yearly_pv_economy_expenses_w_pv:
+  source: sensor.pv_economy_expenses_w_pv
+  name: "Yearly PV Economy - Expenses w PV"
+  cycle: yearly
+### PV Economy - Income
+hourly_pv_economy_income_w_pv:
+  source: sensor.pv_economy_income_w_pv
+  name: "Hourly PV Economy - Income w PV"
+  cycle: hourly
+daily_pv_economy_income_w_pv:
+  source: sensor.pv_economy_income_w_pv
+  name: "Daily PV Economy - Income w PV"
+  cycle: daily
+monthly_pv_economy_income_w_pv:
+  source: sensor.pv_economy_income_w_pv
+  name: "Monthly PV Economy - Income w PV"
+  cycle: monthly
+quarterly_pv_economy_income_w_pv:
+  source: sensor.pv_economy_income_w_pv
+  name: "Quarterly PV Economy - Income w PV"
+  cycle: quarterly
+yearly_pv_economy_income_w_pv:
+  source: sensor.pv_economy_income_w_pv
+  name: "Yearly PV Economy - Income w PV"
+  cycle: yearly
+### PV Economy - Net Return on Investment PV
+hourly_pv_economy_nri_pv:
+  source: sensor.pv_economy_nri_pv
+  name: "Hourly PV Economy - NRI PV"
+  cycle: hourly
+  net_consumption: true
+daily_pv_economy_nri_pv:
+  source: sensor.pv_economy_nri_pv
+  name: "Daily PV Economy - NRI PV"
+  cycle: daily
+  net_consumption: true
+monthly_pv_economy_nri_pv:
+  source: sensor.pv_economy_nri_pv
+  name: "Monthly PV Economy - NRI PV"
+  cycle: monthly
+  net_consumption: true
+quarterly_pv_economy_nri_pv:
+  source: sensor.pv_economy_nri_pv
+  name: "Quarterly PV Economy - NRI PV"
+  cycle: quarterly
+  net_consumption: true
+yearly_pv_economy_nri_pv:
+  source: sensor.pv_economy_nri_pv
+  name: "Yearly PV Economy - NRI PV"
+  cycle: yearly
+  net_consumption: true
+### PV Economy - Net Return on Investment Battery
+hourly_pv_economy_nri_battery:
+  source: sensor.pv_economy_nri_battery
+  name: "Hourly PV Economy - NRI Battery"
+  cycle: hourly
+  net_consumption: true
+daily_pv_economy_nri_battery:
+  source: sensor.pv_economy_nri_battery
+  name: "Daily PV Economy - NRI Battery"
+  cycle: daily
+  net_consumption: true
+monthly_pv_economy_nri_battery:
+  source: sensor.pv_economy_nri_battery
+  name: "Monthly PV Economy - NRI Battery"
+  cycle: monthly
+  net_consumption: true
+quarterly_pv_economy_nri_battery:
+  source: sensor.pv_economy_nri_battery
+  name: "Quarterly PV Economy - NRI Battery"
+  cycle: quarterly
+  net_consumption: true
+yearly_pv_economy_nri_battery:
+  source: sensor.pv_economy_nri_battery
+  name: "Yearly PV Economy - NRI Battery"
+  cycle: yearly
+  net_consumption: true

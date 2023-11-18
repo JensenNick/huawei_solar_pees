@@ -1,0 +1,121 @@
+# TEMPLATE SENSORS
+template:
+  - sensor:
+    ## Huawei Solar PEES - Power Sensors
+    - name: "Power Inverter #1 Input"
+      unique_id: power_inverter_1_input
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ states('sensor.inverter_input_power_1') | float(0) }}
+    - name: "Power Inverter #2 Input"
+      unique_id: power_inverter_2_input
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ states('sensor.inverter_input_power_2') | float(0) }}
+    - name: "Power Inverter Input Total"
+      unique_id: power_inverter_input_total
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ states('sensor.inverter_input_power_1') | float(0) +
+        states('sensor.inverter_input_power_2') | float(0) }}
+    - name: "Power Export"
+      unique_id: power_export
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ (
+        states('sensor.power_meter_active_power_1') | float(0)
+        , 0 ) | max }}
+    - name: "Power Import"
+      unique_id: power_import
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ (
+        states('sensor.power_meter_active_power_1') | float(0)
+        , 0 ) | min | abs }}
+    - name: "Power Battery Charge"
+      unique_id: power_battery_charge
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ (
+        states('sensor.battery_charge_discharge_power_1') | float(0)
+        , 0 ) | max }}
+    - name: "Power Battery Discharge"
+      unique_id: power_battery_discharge
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ (
+        states('sensor.battery_charge_discharge_power_1') | float(0)
+        , 0 ) | min | abs }}
+    - name: "Power House Load"
+      unique_id: power_house_load
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ (
+        states('sensor.inverter_input_power_1') | float(0) +
+        states('sensor.inverter_input_power_2') | float(0) -
+        states('sensor.power_meter_active_power_1') | float(0) -
+        states('sensor.battery_charge_discharge_power_1') | float(0)
+        , 0 ) | max }}
+    - name: "Power House Load Yield"
+      unique_id: power_house_load_yield
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {% if states('sensor.power_house_load') | float(0) >
+        ( states('sensor.inverter_input_power_1') | float(0) +
+        states('sensor.inverter_input_power_2') | float(0) ) %}
+          {{ states('sensor.inverter_input_power_1') | float(0) +
+          states('sensor.inverter_input_power_2') | float(0) }}
+        {% else %}
+          {{ states('sensor.power_house_load') | float(0) }}
+        {% endif %}
+    - name: "Power Battery Charge Yield"
+      unique_id: power_battery_charge_yield
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ ( 
+        states('sensor.inverter_input_power_1') | float(0) +
+        states('sensor.inverter_input_power_2') | float(0) -
+        states('sensor.power_house_load_yield') | float(0) -
+        states('sensor.power_export') | float(0)
+        , 0 ) | max }}
+    - name: "Power Battery Charge Grid"
+      unique_id: power_battery_charge_grid
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ ( 
+        states('sensor.power_battery_charge') | float(0) -
+        states('sensor.power_battery_charge_yield') | float(0)
+        , 0 ) | max }}
+    - name: "Power House Load Grid"
+      unique_id: power_house_load_grid
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ ( 
+        states('sensor.power_house_load') | float(0) -
+        states('sensor.power_house_load_yield') | float(0) -
+        states('sensor.power_battery_discharge') | float(0)
+        , 0 ) | max }}

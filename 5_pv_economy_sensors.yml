@@ -1,0 +1,51 @@
+# TEMPLATE SENSORS
+template:
+  - sensor:
+## Huawei Solar PEES - PV Economy
+    - name: "PV Economy - Result wo PV"
+      unique_id: pv_economy_result_wo_pv
+      unit_of_measurement: DKK
+      device_class: monetary
+      state: >-
+        {{ states('sensor.house_load_cost_2') | float | round(5) }}
+    - name: "PV Economy - Result w PV"
+      unique_id: pv_economy_result_w_pv
+      unit_of_measurement: DKK
+      device_class: monetary
+      state: >-
+        {{ ( 
+        states('sensor.import_cost_2') | float -
+        states('sensor.export_income_2') | float 
+        ) | round(5) }}
+    - name: "PV Economy - Expenses w PV"
+      unique_id: pv_economy_expenses_w_pv
+      unit_of_measurement: DKK
+      device_class: monetary
+      state: >-
+        {{ ( states('sensor.import_cost_2') | float ) | round(5) }}
+    - name: "PV Economy - Income w PV"
+      unique_id: pv_economy_income_w_pv
+      unit_of_measurement: DKK
+      device_class: monetary
+      state: >-
+        {{ states('sensor.export_income_2') | float | round(5) }}
+    - name: "PV Economy - NRI PV"
+      unique_id: pv_economy_nri_pv
+      unit_of_measurement: DKK
+      device_class: monetary
+      state: >-
+        {{ ( 
+        states('sensor.house_load_cost_2') | float -
+        states('sensor.import_cost_2') | float +
+        states('sensor.export_income_2') | float 
+        ) | round(5) }}
+    - name: "PV Economy - NRI Battery"
+      unique_id: pv_economy_nri_battery
+      unit_of_measurement: DKK
+      device_class: monetary
+      state: >-
+        {{ (
+        states('sensor.battery_discharge_saving_2') | float -
+        states('sensor.battery_charge_yield_sale_2') | float -
+        states('sensor.battery_charge_grid_cost_2') | float
+        ) | round(5) }}

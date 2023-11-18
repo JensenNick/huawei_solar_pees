@@ -1,0 +1,249 @@
+# TEMPLATE TRIGGER SENSORS
+template:
+  ## Huawei Solar PEES - Economy Sensors
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_battery_charge_grid
+    sensor:
+      - name: "Battery Charge Grid - Cost"
+        unique_id: battery_charge_grid_cost
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set meter = states('sensor.energy_battery_charge_grid') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_battery_charge_grid') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_battery_charge_yield
+    sensor:
+      - name: "Battery Charge Yield - Sale"
+        unique_id: battery_charge_yield_sale
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service_salg') | float(0) %}
+          {% set meter = states('sensor.energy_battery_charge_yield') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if last is defined %}
+              {% set lastlast = states('sensor.energy_yield_total', 'last') | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set last = states('sensor.energy_yield_total') | float %}
+            {% if last > 0 %}
+              {{ states('sensor.energy_yield_total', 'last') | float }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_battery_discharge
+    sensor:
+      - name: "Battery Discharge - Saving"
+        unique_id: battery_discharge_saving
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set meter = states('sensor.energy_battery_discharge') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_battery_discharge') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_export
+    sensor:
+      - name: "Export - Income"
+        unique_id: export_income
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service_salg') | float(0) %}
+          {% set meter = states('sensor.energy_export') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_export') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_import
+    sensor:
+      - name: "Import - Cost"
+        unique_id: import_cost
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set meter = states('sensor.energy_import') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_import') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_house_load
+    sensor:
+      - name: "House Load - Cost"
+        unique_id: house_load_cost
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set meter = states('sensor.energy_house_load') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_house_load') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_house_load_grid
+    sensor:
+      - name: "House Load Grid - Cost"
+        unique_id: house_load_grid_cost
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set meter = states('sensor.energy_house_load_grid') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_house_load_grid') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_house_load_yield
+    sensor:
+      - name: "House Load Yield - Saving"
+        unique_id: house_load_yield_saving
+        device_class: monetary
+        unit_of_measurement: DKK
+        state: >
+          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set meter = states('sensor.energy_house_load_yield') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_house_load_yield') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
