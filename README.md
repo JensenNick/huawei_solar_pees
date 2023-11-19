@@ -124,7 +124,7 @@ template:
         {{ has_value('sensor.energy_yield_1') and 
         has_value('sensor.energy_yield_2') }}
 ```
-In order to avoid errors outside the operating hours, the energy sensor has been provided with an "if" command.
+In order to avoid errors in the utility meter readings when the inverters go unavailable, the energy sensor has been provided with an availibility sensor.
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
