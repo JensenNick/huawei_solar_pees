@@ -6,10 +6,10 @@
 # Import this file to the "packages-folder".
 # Ad the following lines to your configuration.yaml file (remove the hashtag "#"
 # and the 1 indentation).
-# <
+# 
 # homeassistant:
 #   packages: !include_dir_named packages
-# >
+# 
 # Make sure the naming of your input sensors are correct.
 # - sensor.inverter_input_power_1 (from the Huawei Solar integration)
 # - sensor.inverter_input_power_2 (from the Huawei Solar integration)
