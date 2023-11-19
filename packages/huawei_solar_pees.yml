@@ -10,7 +10,7 @@
 # homeassistant:
 #   packages: !include_dir_named packages
 #
-# Make sure the naming of your input sensors are corect.
+# Make sure the naming of your input sensors are correct.
 # - sensor.inverter_input_power_1 (from the Huawei Solar integration)
 # - sensor.inverter_input_power_2 (from the Huawei Solar integration)
 # - sensor.power_meter_active_power_1 (from the Huawei Solar integration)
