@@ -46,6 +46,9 @@ The diagram below, shows the definitions used for the power- and energy-flows be
 ## 3. Installation
 Generally, it may take a little while before sensors register any activity / change and therefore initially will have the status "Unavailable" or "Unknown" - so don't panic, be patient for the values to show.
 
+#### Alternative installation
+As an alternative to this instruction and steps in this document, the sensors are also available as a package (a single file) in the package folder. Link to the package file [huawei_solar_pees](packages/huawei_solar_pees.yml) This package does not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. The package file includes a short instruction.
+
 ### 3.1.	Power Sensors
 First of all, you have to create the following template sensors to track the power flows. Copy the custom sensors from the file "1_power_sensors.yaml" to "template: > sensor:" in your configuration.yaml file.
 
