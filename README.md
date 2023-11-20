@@ -398,27 +398,6 @@ type: grid
 cards:
   - type: entities
     entities:
-      - entity: sensor.solcast_pv_forecast_forecast_today
-        type: custom:multiple-entity-row
-        icon: mdi:solar-power-variant-outline
-        name: Forcast Today
-        state_header: Total
-        secondary_info: null
-        format: precision2
-        entities:
-          - entity: sensor.solcast_pv_forecast_forecast_next_hour
-            name: Next hour
-            format: precision2
-          - entity: sensor.solcast_pv_forecast_forecast_remaining_today
-            name: Remaining
-            format: precision2
-      - entity: sensor.solcast_pv_forecast_forecast_tomorrow
-        type: custom:multiple-entity-row
-        name: Forecast Tomorrow
-        state_header: []
-        format: precision2
-  - type: entities
-    entities:
       - entity: sensor.energy_yield_total
         type: custom:multiple-entity-row
         icon: mdi:solar-power-variant-outline
@@ -476,30 +455,39 @@ cards:
     state_color: true
   - type: entities
     entities:
-      - entity: sensor.daily_pv_economy_result_w_pv
+      - entity: sensor.pv_economy_result_w_pv
         type: custom:multiple-entity-row
         name: Economy w PV
         secondary_info: false
         state_header: Cost w PV
         format: precision2
         entities:
-          - entity: sensor.daily_import_cost
+          - entity: sensor.import_cost_2
             name: Import
             format: precision2
-          - entity: sensor.daily_export_income
+          - entity: sensor.export_income_2
             name: Export
             format: precision2
-      - entity: sensor.daily_pv_economy_result_wo_pv
+      - entity: sensor.pv_economy_result_wo_pv
         type: custom:multiple-entity-row
-        name: Economy wo PV
-        state_header: Cost wo PV
+        name: Economy w PV
+        secondary_info: false
+        state_header: Cost w PV
         format: precision2
-      - entity: sensor.daily_pv_economy_nri_pv
+        entities:
+          - entity: sensor.energy_house_load
+            name: Consumption
+            format: precision2
+      - entity: sensor.pv_economy_nri_pv
         type: custom:multiple-entity-row
         name: Net Return
         secondary_info: false
-        state_header: Besparelse
+        state_header: NRI Total
         format: precision2
+        entities:
+          - entity: sensor.pv_economy_nri_battery
+            name: NRI Battery
+            format: precision2
     state_color: true
   - type: entities
     entities:
