@@ -22,7 +22,7 @@ The provided custom sensors are based on a Huawei setup with 2 inverters and a b
    3.3. Energy sensors<br>
    3.4. Alternative - Create the energy sensors with "Helpers"<br>
    3.5. Electricity tariffs and sales price<br>
-   3.6. Economy figures](#36-economy-figures)<br>
+   3.6. Economy figures<br>
    3.7. PV Economy<br>
    3.8. Utility Meters - Optional<br>
 1. Sensors for the Energy Dashboard
