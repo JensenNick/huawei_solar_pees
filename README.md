@@ -55,7 +55,7 @@ Generally, it may take a little while before sensors register any activity / cha
 
 #### Alternative installation
 
-As an alternative to this instruction and steps in this document, the sensors are also available as a package (a single file) in the package folder - both for a setup with two inverters as this readme describes and for a setup with one inverter. Link to the package file [huawei_solar_pees](packages/huawei_solar_pees.yaml) This package does not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. The package file includes a short instruction.
+As an alternative to this instruction and steps in this document, the sensors are also available as a package (a single file) in the package folder - both for a setup with two inverters as this readme describes and for a setup with one inverter. Link to the package file for a one inverter setup [huawei_solar_pees_one_inverter](packages/huawei_solar_pees_one_inverter.yaml) Link to the package file for a two inverter setup [huawei_solar_pees](packages/huawei_solar_pees.yaml) This package does not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. The package file includes a short instruction.
 
 ### 3.1. Power Sensors
 
