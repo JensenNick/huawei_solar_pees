@@ -17,14 +17,14 @@ The provided custom sensors are based on a Huawei setup with 2 inverters and a b
 1. [Before You Start](#1-before-you-start)
 2. [Flow and Definitions](#2-flow-and-definitions)
 3. [Installation](#3-installation)<br>
-   3.1 [3.1. Power Sensors](#31-power-sensors)<br>
-   3.2 [3.2. Add power sensors to the Dashboard](#32-add-power-sensors-to-the-dashboard)<br>
-   3.3 [3.3. Energy sensors](#33-energy-sensors)<br>
-   3.4 [3.4. Alternative - Create the energy sensors with "Helpers"](#34-alternative---create-the-energy-sensors-with-helpers)<br>
-   3.5 [3.5. Electricity tariffs and sales price](#35-electricity-tariffs-and-sales-price)<br>
-   3.6 [3.6. Economy figures](#36-economy-figures)<br>
-   3.7 [3.7. PV Economy](#37-pv-economy)<br>
-   3.8 [3.8. Utility Meters - Optional](#38-utility-meters---optional)<br>
+   3.1 [Power Sensors](#31-power-sensors)<br>
+   3.2 [Add power sensors to the Dashboard](#32-add-power-sensors-to-the-dashboard)<br>
+   3.3 [Energy sensors](#33-energy-sensors)<br>
+   3.4 [Alternative - Create the energy sensors with "Helpers"](#34-alternative---create-the-energy-sensors-with-helpers)<br>
+   3.5 [Electricity tariffs and sales price](#35-electricity-tariffs-and-sales-price)<br>
+   3.6 [Economy figures](#36-economy-figures)<br>
+   3.7 [PV Economy](#37-pv-economy)<br>
+   3.8 [Utility Meters - Optional](#38-utility-meters---optional)<br>
 4. [Sensors for the Energy Dashboard](#4-sensors-for-the-energy-dashboard)
 5. [Views and cards](#5-views-and-cards)
 6. [Known "bugs"](#6-known-bugs)
