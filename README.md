@@ -66,7 +66,7 @@ template:
   - sensor:
 ```
 
-Link to the power sensors [1_power_sensors.yml](1_power_sensors.yaml)
+Link to the power sensors [1_power_sensors.yaml](1_power_sensors.yaml)
 
 | Name                                                               | Description                                                                                                                                                                                                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -102,7 +102,7 @@ Continue here if you wish to use the custom platform sensors provided. Copy the 
 sensor:
 ```
 
-Link to the energy sensors [2_energy_sensors.yml](2_energy_sensors.yaml)
+Link to the energy sensors [2_energy_sensors.yaml](2_energy_sensors.yaml)
 
 | Name                                                                  | Description                                                                                                                                                                          |
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -240,7 +240,7 @@ Copy the triggered sensors from the file "3_economy_sensors.yaml" to "template:"
 template:
 ```
 
-Link to the economy sensors [3_economy_sensors.yml](3_economy_sensors.yaml)
+Link to the economy sensors [3_economy_sensors.yaml](3_economy_sensors.yaml)
 
 | Name                                                               | Description                                                                                                                                 |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -265,7 +265,7 @@ utility_meter: !include utility_meters.yaml
 
 Copy the utility meters from the file "4_utility_metres.yaml" to your utility_meters.yaml file. Note that these utility meters do not reset. Keep them separated.
 
-Link to the utility metres [4_utility_meters.yml](4_utility_meters.yaml)
+Link to the utility metres [4_utility_meters.yaml](4_utility_meters.yaml)
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
@@ -278,11 +278,11 @@ template:
   - sensor:
 ```
 
-Link to the PV Economy sensors [5_pv_economy_sensors.yml](5_pv_economy_sensors.yaml)
+Link to the PV Economy sensors [5_pv_economy_sensors.yaml](5_pv_economy_sensors.yaml)
 
 To be able to follow these figures regularly I have created so, you can copy the utility meters provided in the "6_pv_economy_utility_meters.yaml" file to your "utility_meters.yaml" or "configuration.yaml" file (depending on where you keep your utility meters).
 
-Link to the PV Economy utility meters [6_pv_economy_utility_meters.yml](6_pv_economy_utility_meters.yaml)
+Link to the PV Economy utility meters [6_pv_economy_utility_meters.yaml](6_pv_economy_utility_meters.yaml)
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
@@ -290,7 +290,7 @@ Link to the PV Economy utility meters [6_pv_economy_utility_meters.yml](6_pv_eco
 
 As a final input, I have included a set of hourly, daily, monthly, quarterly and yearly utility meters for all of the energy and cost sensors. Copy the sensors you wish to have from the "7_utility_meters_optional.yaml" file to your "utility_meters.yaml" / "configuration.yaml" file (depending on where you keep your utility meters).
 
-Link to the optional utility metres [7_utility_meters_optional.yml](7_utility_meters_optional.yaml)
+Link to the optional utility metres [7_utility_meters_optional.yaml](7_utility_meters_optional.yaml)
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
