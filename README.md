@@ -10,7 +10,7 @@ This project will provide you with a set of custom sensors to be used in Home As
 
 This README includes an explanation of the provided custom sensors and a guide on how to set them up in Home Assistant.
 
-The provided custom sensors are based on a Huawei setup with 2 inverters and a battery. This is reflected throughout the guide and the provided sensors but can be converted to your specific setup, although this guide does not cover how to do this.
+The provided custom sensors are based on a Huawei setup with 2 inverters and a battery. This is reflected throughout this readme. The custom sensors are now also available as a package and there is a package for a setup with one inverter as well as a setup with two inverters. See more about this in chapter 3. Installation.
 
 ## Table of Content
 
@@ -55,7 +55,7 @@ Generally, it may take a little while before sensors register any activity / cha
 
 #### Alternative installation
 
-As an alternative to this instruction and steps in this document, the sensors are also available as a package (a single file) in the package folder. Link to the package file [huawei_solar_pees](packages/huawei_solar_pees.yml) This package does not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. The package file includes a short instruction.
+As an alternative to this instruction and steps in this document, the sensors are also available as a package (a single file) in the package folder - both for a setup with two inverters as this readme describes and for a setup with one inverter. Link to the package file [huawei_solar_pees](packages/huawei_solar_pees.yaml) This package does not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. The package file includes a short instruction.
 
 ### 3.1. Power Sensors
 
@@ -66,7 +66,7 @@ template:
   - sensor:
 ```
 
-Link to the power sensors [1_power_sensors.yml](1_power_sensors.yml)
+Link to the power sensors [1_power_sensors.yml](1_power_sensors.yaml)
 
 | Name                                                               | Description                                                                                                                                                                                                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -102,7 +102,7 @@ Continue here if you wish to use the custom platform sensors provided. Copy the 
 sensor:
 ```
 
-Link to the energy sensors [2_energy_sensors.yml](2_energy_sensors.yml)
+Link to the energy sensors [2_energy_sensors.yml](2_energy_sensors.yaml)
 
 | Name                                                                  | Description                                                                                                                                                                          |
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -240,7 +240,7 @@ Copy the triggered sensors from the file "3_economy_sensors.yaml" to "template:"
 template:
 ```
 
-Link to the economy sensors [3_economy_sensors.yml](3_economy_sensors.yml)
+Link to the economy sensors [3_economy_sensors.yml](3_economy_sensors.yaml)
 
 | Name                                                               | Description                                                                                                                                 |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -265,7 +265,7 @@ utility_meter: !include utility_meters.yaml
 
 Copy the utility meters from the file "4_utility_metres.yaml" to your utility_meters.yaml file. Note that these utility meters do not reset. Keep them separated.
 
-Link to the utility metres [4_utility_meters.yml](4_utility_meters.yml)
+Link to the utility metres [4_utility_meters.yml](4_utility_meters.yaml)
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
@@ -278,11 +278,11 @@ template:
   - sensor:
 ```
 
-Link to the PV Economy sensors [5_pv_economy_sensors.yml](5_pv_economy_sensors.yml)
+Link to the PV Economy sensors [5_pv_economy_sensors.yml](5_pv_economy_sensors.yaml)
 
 To be able to follow these figures regularly I have created so, you can copy the utility meters provided in the "6_pv_economy_utility_meters.yaml" file to your "utility_meters.yaml" or "configuration.yaml" file (depending on where you keep your utility meters).
 
-Link to the PV Economy utility meters [6_pv_economy_utility_meters.yml](6_pv_economy_utility_meters.yml)
+Link to the PV Economy utility meters [6_pv_economy_utility_meters.yml](6_pv_economy_utility_meters.yaml)
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
@@ -290,7 +290,7 @@ Link to the PV Economy utility meters [6_pv_economy_utility_meters.yml](6_pv_eco
 
 As a final input, I have included a set of hourly, daily, monthly, quarterly and yearly utility meters for all of the energy and cost sensors. Copy the sensors you wish to have from the "7_utility_meters_optional.yaml" file to your "utility_meters.yaml" / "configuration.yaml" file (depending on where you keep your utility meters).
 
-Link to the optional utility metres [7_utility_meters_optional.yml](7_utility_meters_optional.yml)
+Link to the optional utility metres [7_utility_meters_optional.yml](7_utility_meters_optional.yaml)
 
 > :bulb: **Restart Home Assistant and refresh Your browser!**
 
