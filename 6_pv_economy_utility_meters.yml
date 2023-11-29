@@ -1,5 +1,5 @@
 # UTILITY METERS
-# In separate file. If you keep the utility meters in configuration.yaml, all lines needs to be indented two spaces.
+# In separate file. If you keep the utility meters in configuration.yaml, all lines need to be indented two spaces.
 
 ## Huawei Solar PEES - PV Economy Utility Meters
 ### PV Economy - Result without PV
