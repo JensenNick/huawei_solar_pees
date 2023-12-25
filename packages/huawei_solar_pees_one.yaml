@@ -25,7 +25,6 @@
 sensor:
   ## ----------------------------------
   ## Huawei Solar PEES - Energy Sensors
-  ## ----------------------------------
   - platform: integration
     source: sensor.power_battery_charge
     name: 'Energy Battery Charge'
@@ -113,7 +112,6 @@ template:
   - sensor:
       ## ---------------------------------
       ## Huawei Solar PEES - Power Sensors
-      ## ---------------------------------
       - name: 'Power Inverter Input'
         unique_id: power_inverter_input
         unit_of_measurement: W
@@ -214,7 +212,6 @@ template:
           , 0 ) | max }}
       ## ----------------------------------
       ## Huawei Solar PEES - Energy Sensors
-      ## ----------------------------------
       - name: 'Energy Yield Total'
         unique_id: energy_yield_total
         unit_of_measurement: kWh
@@ -226,7 +223,6 @@ template:
           {{ has_value('sensor.energy_yield') }}
       ## ------------------------------
       ## Huawei Solar PEES - PV Economy
-      ## ------------------------------
       - name: 'PV Economy - Result wo PV'
         unique_id: pv_economy_result_wo_pv
         unit_of_measurement: DKK
@@ -296,7 +292,6 @@ template:
   # ------------------------
   ## -----------------------------------
   ## Huawei Solar PEES - Economy Sensors
-  ## -----------------------------------
   - trigger:
       - platform: state
         entity_id:
@@ -549,7 +544,6 @@ template:
 utility_meter:
   ## ----------------------------------
   ## Huawei Solar PEES - Utility Meters
-  ## ----------------------------------
   battery_charge_grid_cost_2:
     source: sensor.battery_charge_grid_cost
     name: 'Battery Charge Grid (Cost)'
@@ -592,7 +586,6 @@ utility_meter:
     delta_values: true
   ## ---------------------------------------------
   ## Huawei Solar PEES - PV Economy Utility Meters
-  ## ---------------------------------------------
   ### PV Economy - Result without PV
   hourly_pv_economy_result_wo_pv:
     source: sensor.pv_economy_result_wo_pv
@@ -736,7 +729,6 @@ utility_meter:
     net_consumption: true
   ## -------------------------------------------
   ## Huawei Solar PEES - Optional Utility Meters
-  ## -------------------------------------------
   ### Battery Charge
   #### Energy
   hourly_battery_charge_energy:
