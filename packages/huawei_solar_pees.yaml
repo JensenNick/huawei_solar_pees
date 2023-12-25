@@ -11,10 +11,10 @@
 #   packages: !include_dir_named packages
 #
 # Make sure the naming of your input sensors is correct.
-# - sensor.inverter_input_power_1 (from the Huawei Solar integration)
+# - sensor.inverter_input_power (from the Huawei Solar integration)
 # - sensor.inverter_input_power_2 (from the Huawei Solar integration)
-# - sensor.power_meter_active_power_1 (from the Huawei Solar integration)
-# - sensor.battery_charge_discharge_power_1 (from the Huawei Solar integration)
+# - sensor.power_meter_active_power (from the Huawei Solar integration)
+# - sensor.battery_charge_discharge_power (from the Huawei Solar integration)
 # - sensor.energi_data_service (price pr. kWh you pay for purchase)
 # - sensor.energi_data_service_salg (price pr. kWh you receive for sale)
 #
@@ -100,7 +100,7 @@ sensor:
     unit_time: h
     method: left
   - platform: integration
-    source: sensor.inverter_input_power_1
+    source: sensor.inverter_input_power
     name: 'Energy Yield #1'
     unique_id: energy_yield_1
     round: 6
@@ -129,7 +129,7 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ states('sensor.inverter_input_power_1') | float(0) }}
+          {{ states('sensor.inverter_input_power') | float(0) }}
       - name: 'Power Inverter #2 Input'
         unique_id: power_inverter_2_input
         unit_of_measurement: W
@@ -143,7 +143,7 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ states('sensor.inverter_input_power_1') | float(0) +
+          {{ states('sensor.inverter_input_power') | float(0) +
           states('sensor.inverter_input_power_2') | float(0) }}
       - name: 'Power Export'
         unique_id: power_export
@@ -152,7 +152,7 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.power_meter_active_power_1') | float(0)
+          states('sensor.power_meter_active_power') | float(0)
           , 0 ) | max }}
       - name: 'Power Import'
         unique_id: power_import
@@ -161,7 +161,7 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.power_meter_active_power_1') | float(0)
+          states('sensor.power_meter_active_power') | float(0)
           , 0 ) | min | abs }}
       - name: 'Power Battery Charge'
         unique_id: power_battery_charge
@@ -170,7 +170,7 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.battery_charge_discharge_power_1') | float(0)
+          states('sensor.battery_charge_discharge_power') | float(0)
           , 0 ) | max }}
       - name: 'Power Battery Discharge'
         unique_id: power_battery_discharge
@@ -179,7 +179,7 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.battery_charge_discharge_power_1') | float(0)
+          states('sensor.battery_charge_discharge_power') | float(0)
           , 0 ) | min | abs }}
       - name: 'Power House Load'
         unique_id: power_house_load
@@ -188,10 +188,10 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.inverter_input_power_1') | float(0) +
+          states('sensor.inverter_input_power') | float(0) +
           states('sensor.inverter_input_power_2') | float(0) -
-          states('sensor.power_meter_active_power_1') | float(0) -
-          states('sensor.battery_charge_discharge_power_1') | float(0)
+          states('sensor.power_meter_active_power') | float(0) -
+          states('sensor.battery_charge_discharge_power') | float(0)
           , 0 ) | max }}
       - name: 'Power House Load Yield'
         unique_id: power_house_load_yield
@@ -200,9 +200,9 @@ template:
         state_class: measurement
         state: >
           {% if states('sensor.power_house_load') | float(0) >
-          ( states('sensor.inverter_input_power_1') | float(0) +
+          ( states('sensor.inverter_input_power') | float(0) +
           states('sensor.inverter_input_power_2') | float(0) ) %}
-            {{ states('sensor.inverter_input_power_1') | float(0) +
+            {{ states('sensor.inverter_input_power') | float(0) +
             states('sensor.inverter_input_power_2') | float(0) }}
           {% else %}
             {{ states('sensor.power_house_load') | float(0) }}
@@ -214,7 +214,7 @@ template:
         state_class: measurement
         state: >
           {{ ( 
-          states('sensor.inverter_input_power_1') | float(0) +
+          states('sensor.inverter_input_power') | float(0) +
           states('sensor.inverter_input_power_2') | float(0) -
           states('sensor.power_house_load_yield') | float(0) -
           states('sensor.power_export') | float(0)
