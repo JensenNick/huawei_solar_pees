@@ -57,7 +57,7 @@ Generally, it may take a little while before sensors register any activity / cha
 
 #### Alternative installation
 
-As an alternative to this instruction and steps in this readme, the sensors are now also available as a package (a single file) in the package folder. There are two packege files - one package file for the setup with two inverters (as this readme describes) and one package file for a setup with one inverter. Link to the package file for a two inverter setup [huawei_solar_pees](packages/huawei_solar_pees.yaml). Link to the package file for a one inverter setup [huawei_solar_pees_one_inverter](packages/huawei_solar_pees_one_inverter.yaml). These package files do not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. Both package files includes a short instruction.
+As an alternative to this instruction and steps in this readme, the sensors are now also available as a package (a single file) in the package folder. There are two packege files - one package file for the setup with two inverters (as this readme describes) and one package file for a setup with one inverter. Link to the package file for a two inverter setup [huawei_solar_pees_two](packages/huawei_solar_pees_two.yaml). Link to the package file for a one inverter setup [huawei_solar_pees_one](packages/huawei_solar_pees_one.yaml). These package files do not include the sensor "Tariff Export" in chapter 3.5 and the sensor "Energi Data Service - Negativ" in chapter 4. These sensors are not needed for the provided custom sensors to work. Both package files includes a short instruction.
 
 ### 3.1. Power Sensors
 
@@ -341,8 +341,8 @@ cards:
       - type: entities
         entities:
           - entity: sensor.power_inverter_input_total
-          - entity: sensor.power_meter_active_power_1
-          - entity: sensor.battery_charge_discharge_power_1
+          - entity: sensor.power_meter_active_power
+          - entity: sensor.battery_charge_discharge_power
         title: Power
       - type: entities
         entities:
@@ -352,7 +352,7 @@ cards:
         title: '- Yield'
       - type: entities
         entities:
-          - entity: sensor.power_meter_active_power_1
+          - entity: sensor.power_meter_active_power
           - entity: sensor.power_export
           - entity: sensor.power_import
         title: '- Import / Export'
