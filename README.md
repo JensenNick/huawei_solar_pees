@@ -51,6 +51,8 @@ The diagram below shows the definitions used for the power- and energy-flows bet
 
 ## 3. Installation
 
+> :bulb: **As of 25th of December 2023 only the packages will be kept up to date!!! I will update / transform this guide to a short installations instruction and add a the description to the wiki.**
+
 Generally, it may take a little while before sensors register any activity / change and therefore initially will have the status "Unavailable" or "Unknown" - so don't panic, be patient for the values to show.
 
 #### Alternative installation
