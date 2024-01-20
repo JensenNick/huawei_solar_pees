@@ -40,7 +40,7 @@ Please note that the *"Huawei Solar PEES package"* is not an integration, it is 
 
 The diagram below shows the definitions used for the power- and energyflows between the Solar PV, House, Battery, and Grid. These definitions are used in the naming convention of the custom sensors included in the *"Huawei Solar PEES package"*. The diagram is pretty straightforward but take a moment to study it to get acquainted with the definitions used.
 
-![Definitions and Flows](pictures/definitions.jpg)
+
 
 ## 3. Installation
 The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package", for easy copy/paste "installation". You can read more about packages in the HomeAssistant documentation about [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
