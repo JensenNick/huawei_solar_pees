@@ -46,7 +46,7 @@ The diagram below shows the definitions used for the power- and energy flows bet
 The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package", for easy copy/paste "installation". You can read more about packages in the HomeAssistant documentation about [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
 
 ### 3.1 Package "Installation"
-The "install" is very straight forward and each step is described in the bulleted list below. Just for the overview - the proces includes configuring your configuration.yaml file, creating af directory/folder for the *"Huawei Solar PEES package"* and copy/paste this package file into the directory/folder you have created. The package file also includes a short instruction.
+The "install" is very straight forward and each step is described in the bulleted list below. Just for the overview - the proces includes configuring your configuration.yaml file, creating af directory/folder for the *"Huawei Solar PEES package file"* and copy/paste the package file into the directory/folder you have created. The package file also includes a short instruction.
 
 * Open Studio Code Server (your code editor) and ad the following two lines to your `configuration.yaml` file.
 ```yaml
