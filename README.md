@@ -97,7 +97,7 @@ The default custom sensor do not take the inverter efficiency into account which
 
 Therefore and as an alternative I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (triple phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs provided by Huawei in the data sheet.
 
-Please refer to the [Wiki Pages]([https://github.com/JensenNick/huawei_solar_pees/wiki](https://github.com/JensenNick/huawei_solar_pees/wiki/1.-Power-Sensors#efficiency-corrected-inverter-power-sensors) for an easy copy/paste of this efficiency corrected sensor. The Wiki Pages includes an overview and a short description of the parameters used in the Efficiency Corrected Inverter Power Input Sensor.
+Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/1.-Power-Sensors#efficiency-corrected-inverter-power-sensors) for an easy copy/paste of this efficiency corrected sensor. The Wiki Pages includes an overview and a short description of the parameters used in the Efficiency Corrected Inverter Power Input Sensor.
 
 #### Tariffs
 If you have several tariffs and/or it/they change from time to time, you might find it benificial to have a calculation of the settings you use. I have a sensor which was created for my *"Huawei Solar EFLR package"* but you might find it usefull in this case also. Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#tariff-on-export-and-sale) where you will find an input redy to copy/paste.
