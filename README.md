@@ -72,7 +72,7 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
  ```
 If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, just set the state of `sensor.inverter_input_power_2 to be 0 (zero). 
 
-Change the `state:` of the sensor `sensor.inverter_input_power_2` from this...
+Change the `state:` of the sensor `sensor.inverter_input_power_2` from:
 ```yaml
       - name: "Power Inverter #2 Input"
         unique_id: power_inverter_2_input
