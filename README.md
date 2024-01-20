@@ -62,7 +62,7 @@ In order for the custon sensors to work properly you need to make sure that the 
 #### Power Sensors
 The three types of input sensors from the *"Huawei Solar integration"* are `inverter_input_power`, `power_meter_active_power` and `battery_charge_discharge_power`. The naming use in the package file is corresponding to the default naming used in the *"Huawei Solar integration"* - so if you just stick with that you do not need to edit anything.
  
-In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) you will find the following text lines (as not part of the code) which allows for an easy global edit if you need to edit the names of your power sensors.
+In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) you will find the following text lines (not part of the code) which allows for an easy global edit if you need to edit the names of your power sensors.
 
 ```yaml
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
