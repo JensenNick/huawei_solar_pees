@@ -59,18 +59,38 @@ homeassistant:
 ### 3.2 Input Sensors and Settings
 In order for the custon sensors to work properly you need to make sure that the naming of your input sensors is correct. As mentioned the custom sensor relly on three types of power sensors from the *"Huawei Solar integration by wlcrs"* and two electricity price sensors from the *"Energi Data Service integration by MTrab"*.
 
- #### Power Sensors
- The three types of input sensors from the *"Huawei Solar integration"* are `inverter_input_power`, `power_meter_active_power` and `battery_charge_discharge_power`. The naming use in the package file is corresponding to the default naming used in the *"Huawei Solar integration"* - so if you just stick with that you do not need to edit anything.
+#### Power Sensors
+The three types of input sensors from the *"Huawei Solar integration"* are `inverter_input_power`, `power_meter_active_power` and `battery_charge_discharge_power`. The naming use in the package file is corresponding to the default naming used in the *"Huawei Solar integration"* - so if you just stick with that you do not need to edit anything.
  
- In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) you will find the following lines which allows for an easy global edit if you need to edit the names of your power sensors.
+In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) you will find the following lines which allows for an easy global edit if you need to edit the names of your power sensors.
 
- ```yaml
+```yaml
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
- If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, just set the state of this sensor to be 0 (zero).
+If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, just set the state of `sensor.inverter_input_power_2 to be 0 (zero). 
+
+Change:
+```yaml
+      - name: "Power Inverter #2 Input"
+        unique_id: power_inverter_2_input
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ states('sensor.inverter_input_power_2') | float(0) }}
+```
+To:
+```yaml
+      - name: "Power Inverter #2 Input"
+        unique_id: power_inverter_2_input
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: 0
+```
 
 #### Electricity Price Sensors
 You need to provide two electricity price sensors as input - one providing the price you pay pr. kWh for import/consumption and one providing the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add them as an entity with the integration.
