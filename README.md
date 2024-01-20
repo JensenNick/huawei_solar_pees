@@ -75,7 +75,7 @@ In order for the custon sensors to work properly you need to make sure that the 
 #### Electricity Price Sensors
 You need to provide two electricity price sensors as input - one providing the price you pay pr. kWh for import/consumption and one providing the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add them as an entity with the integration.
 
-As with the sensors above you will find the following lines in the package file/[huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) for an easy global edit.
+As with the sensors above you will find the following lines in the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) for an easy global edit.
 
 ```yaml
 # - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
