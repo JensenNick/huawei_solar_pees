@@ -70,19 +70,8 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, just set the state of `sensor.inverter_input_power_2 to be 0 (zero). Change the `state:` of the sensor `sensor.inverter_input_power_2`, 
+If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, I recomend just to set the `state:` to be 0 (zero). 
 
-From:
-```yaml
-      - name: "Power Inverter #2 Input"
-        unique_id: power_inverter_2_input
-        unit_of_measurement: W
-        device_class: power
-        state_class: measurement
-        state: >
-          {{ states('sensor.inverter_input_power_2') | float(0) }}
-```
-To:
 ```yaml
       - name: "Power Inverter #2 Input"
         unique_id: power_inverter_2_input
