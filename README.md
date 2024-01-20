@@ -8,7 +8,7 @@
 
 This project will provide you with a set of custom sensors to be used in HomeAssistant also refered to as the *"Huawei Solar PEES package"*. These custom sensors will calculate all the power and energy flows of your Huawei FusionSolar PV installation with Battery. On top of this the provided sensors will calculate expenses with and without solar PV and the Net Return of  Investment (NRI) - this will give you a fairly exact idea about the profitability of your investment in several aspects.
 
-This README guides you through a simple setup process. For an overview and a more detailed description of the sensors included in this *"Huawei Solar PEES package"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced HomeAssistant user may find this guide banal - but this is to include all users, also the ones just starting out.
+This README guides you through a simple setup process. For an overview and a more detailed description of the sensors included in the *"Huawei Solar PEES package"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced HomeAssistant user may find this guide banal - but this is to include all users, also the ones just starting out.
 
 The provided custom sensors are based on a setup with two inverters and one battery. This is reflected throughout this README and the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The custom sensors are available as a package for an easy "installation". See more about this in chapter 3. Installation.
 
