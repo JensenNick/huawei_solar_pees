@@ -104,7 +104,7 @@ Last but not least you may need to correct the currency to your local currency. 
 #### Efficiency Corrected Inverter Power Input Sensor
 The default custom sensor do not take the inverter efficiency into account which may result in a too high yield and other inaccuracies (house load is calculated on basis of the yield). The *"Huawei Solar integration"* does provide the `sensor.input_power_with_efficiency_loss` which takes the inverter efficiency into account. I have not tested this sensor, but my assessment is that it may cause inaccuracies and/or errors due to the step-by-step adjustment of the efficiency.
 
-Therefore and as an alternative I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (triple phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs provided by Huawei in the data sheet.
+Therefore and as an alternative I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (triple phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei.
 
 Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/1.-Power-Sensors#efficiency-corrected-inverter-power-sensors) for an easy copy/paste of this efficiency corrected sensor. The Wiki Pages includes an overview and a short description of the parameters used in the Efficiency Corrected Inverter Power Input Sensor.
 
