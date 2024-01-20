@@ -38,7 +38,7 @@ Please note that the *"Huawei Solar PEES package"* is not an integration, it is 
 
 ## 2. Flow and Definitions
 
-The diagram below shows the definitions used for the power- and energyflows between the Solar PV, House, Battery, and Grid. These definitions are used in the naming convention of the custom sensors included in the *"Huawei Solar PEES package"*. The diagram is pretty straightforward but take a moment to study it to get acquainted with the definitions used.
+The diagram below shows the definitions used for the power- and energy flows between the Solar PV, House, Battery, and Grid. These definitions are used in the naming convention of the custom sensors included in the *"Huawei Solar PEES package"*. The diagram is pretty straightforward but take a moment to study it to get acquainted with the definitions used.
 
 ![Definitions and Flows](pictures/flows_definitions.jpg)
 
@@ -81,7 +81,7 @@ As with the sensors above you will find the following lines in the package file 
 # - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
 # - 'sensor.energi_data_service_sale' (price pr. kWh you receive for sale/export)
 ```
-If you use the *"Energi Data Service integration by MTrab"*, please refer to the [Wiki Pages]([https://github.com/JensenNick/huawei_solar_pees/wiki](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#energi-data-service-integration) for help with setting up the two electricity price sensors.
+If you use the *"Energi Data Service integration by MTrab"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#energi-data-service-integration) for help with setting up the two electricity price sensors.
 
 #### Currency
 Last but not least you may need to correct the currency to your local currency. The currency used in the provided custom sensors is DKK (Danish Krone) and this is the price pr. kWh.
