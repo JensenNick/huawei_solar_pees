@@ -60,7 +60,7 @@ homeassistant:
 In order for the custon sensors to work properly you need to make sure that the naming of your input sensors is correct. As mentioned the custom sensor relly on three types of power sensors from the *"Huawei Solar integration by wlcrs"* and two electricity price sensors from the *"Energi Data Service integration by MTrab"*.
 
 #### Power Sensors
-The three types of input sensors from the *"Huawei Solar integration"* are `inverter_input_power`, `power_meter_active_power` and `battery_charge_discharge_power`. The naming use in the package file is corresponding to the default naming used in the *"Huawei Solar integration"* - so if you just stick with that you do not need to edit anything.
+The three types of input sensors from the *"Huawei Solar integration"* are `inverter_input_power`, `power_meter_active_power` and `battery_charge_discharge_power`. The naming used in the package file is corresponding to the default naming used in the *"Huawei Solar integration"* - so if you just stick with that you do not need to edit anything.
  
 In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) you will find the following text lines (not part of the code) which allows for an easy global edit if you need to edit the names of your power sensors.
 
