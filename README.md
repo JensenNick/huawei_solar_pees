@@ -70,7 +70,7 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, I recomend just to set the `state:` to be 0 (zero). 
+If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, I recomend just to set the `state:` to 0 (zero). 
 
 ```yaml
       - name: "Power Inverter #2 Input"
@@ -98,7 +98,7 @@ Last but not least you may need to correct the currency to your local currency. 
 #### Restart
 > :exclamation: **Thats it! Restart HomeAssistant and refresh your browser!**
 
-> :bulb: Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show.
+> :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show.*
 
 ### 3.3 Optional
 #### Efficiency Corrected Inverter Power Input Sensor
