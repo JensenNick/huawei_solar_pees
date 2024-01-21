@@ -70,16 +70,15 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup, you can use the above method to delete all occurencies of the sensor `sensor.inverter_input_power_2` or, for a less troublesome edit when/if the package file may be revised, I recomend just to set the `state:` to 0 (zero). 
+If you have a single inverter setup I recomend that you set the state of the `sensor.inverter_input_power_2` to be 0 (zero) and that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
 
-```yaml
-      - name: "Power Inverter #2 Input"
-        unique_id: power_inverter_2_input
-        unit_of_measurement: W
-        device_class: power
-        state_class: measurement
-        state: 0
-```
+Follow these steps to set the state of `sensor.inverter_input_power_2`.
+* Go to (1) *"Developer tools"* > (2) *"STATES"*.
+* In (3) *"Entity"* enter *"sensor.inverter_input_power_2"* and hit *"Enter"*. 
+* In (4) *"State"* enter *"0"* (zero).
+* Click on (5) *"SET STATE"*
+
+![Set State](pictures/set_state.jpg)
 
 #### Electricity Price Sensors
 You need to provide two electricity price sensors as input - one providing the price you pay pr. kWh for import/consumption and one providing the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add them as an entity with the integration.
