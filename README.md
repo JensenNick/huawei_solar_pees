@@ -66,15 +66,15 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 
 ```yaml
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
-# - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
+# - 'sensor.power_inverter_2_input' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup I recomend that you set the state of the `sensor.inverter_input_power_2` to be 0 (zero) and that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
+If you have a single inverter setup I recomend that you set the state of the `sensor.power_inverter_2_input` to be 0 (zero) and that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
 
-Follow these steps to set the state of `sensor.inverter_input_power_2` in the GUI.
+Follow these steps to set the state of `sensor.power_inverter_2_input` in the GUI.
 * Go to (1) *"Developer tools"* > (2) *"STATES"*.
-* In (3) *"Entity"* enter *"sensor.inverter_input_power_2"* and hit *"Enter"*. 
+* In (3) *"Entity"* enter *"sensor.power_inverter_2_input"* and hit *"Enter"*. 
 * In (4) *"State"* enter *"0"* (zero).
 * Click on (5) *"SET STATE"*
 
