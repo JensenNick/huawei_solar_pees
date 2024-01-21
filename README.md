@@ -78,6 +78,8 @@ Follow these steps to set the state of `sensor.power_inverter_2_input` in the GU
 * In (4) *"State"* enter *"0"* (zero).
 * Click on (5) *"SET STATE"*
 
+![Set State](pictures/set_state.jpg)
+
 #### Electricity Price Sensors
 You need to provide two electricity price sensors as input - one providing the price you pay pr. kWh for import/consumption and one providing the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add them as an entity with the integration.
 
