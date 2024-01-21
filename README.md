@@ -72,7 +72,7 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
  ```
 If you have a single inverter setup I recomend that you set the state of the `sensor.power_inverter_2_input` to be 0 (zero) and that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
 
-Follow these steps to set the state of `sensor.power_inverter_2_input` in the GUI.
+Follow these steps to set the state of `sensor.power_inverter_2_input` to 0 (zero) in the GUI.
 * Go to (1) *"Developer tools"* > (2) *"STATES"*.
 * In (3) *"Entity"* enter *"sensor.power_inverter_2_input"* and find the power sensor. 
 * In (4) *"State"* enter *"0"* (zero).
