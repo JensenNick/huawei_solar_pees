@@ -74,7 +74,7 @@ If you have a single inverter setup I recomend that you set the state of the `se
 
 Follow these steps to set the state of `sensor.power_inverter_2_input` in the GUI.
 * Go to (1) *"Developer tools"* > (2) *"STATES"*.
-* In (3) *"Entity"* enter *"sensor.power_inverter_2_input"* and hit *"Enter"*. 
+* In (3) *"Entity"* enter *"sensor.power_inverter_2_input"* and find the power sensor. 
 * In (4) *"State"* enter *"0"* (zero).
 * Click on (5) *"SET STATE"*
 
