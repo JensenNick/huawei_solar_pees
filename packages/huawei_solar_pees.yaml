@@ -307,7 +307,7 @@ template:
           {{ states('sensor.energy_yield_1') | float(0) + 
           states('sensor.energy_yield_2') | float(0) }}
         availability: >
-          {{ has_value('sensor.energy_yield_1') and 
+          {{ has_value('sensor.energy_yield_1') or 
           has_value('sensor.energy_yield_2') }}
       ## ------------------------------
       ## Huawei Solar PEES - PV Economy
@@ -329,7 +329,7 @@ template:
           states('sensor.export_income_2') | float
           ) | round(5) }}
         availability: >
-          {{ has_value('sensor.import_cost_2') and
+          {{ has_value('sensor.import_cost_2') or
           has_value('sensor.export_income_2') }}
       - name: "PV Economy - Expenses w PV"
         unique_id: pv_economy_expenses_w_pv
@@ -358,8 +358,8 @@ template:
           states('sensor.export_income_2') | float(0)
           ) | round(5) }}
         availability: >
-          {{ has_value('sensor.house_load_cost_2') and
-          has_value('sensor.import_cost_2') and
+          {{ has_value('sensor.house_load_cost_2') or
+          has_value('sensor.import_cost_2') or
           has_value('sensor.export_income_2') }}
       - name: "PV Economy - NRI Battery"
         unique_id: pv_economy_nri_battery
@@ -373,9 +373,9 @@ template:
           states('sensor.battery_charge_grid_cost_2') | float(0)
           ) | round(5) }}
         availability: >
-          {{ has_value('sensor.battery_discharge_grid_sale_2') and
-          has_value('sensor.battery_discharge_house_saving_2') and
-          has_value('sensor.battery_charge_yield_sale_2') and
+          {{ has_value('sensor.battery_discharge_grid_sale_2') or
+          has_value('sensor.battery_discharge_house_saving_2') or
+          has_value('sensor.battery_charge_yield_sale_2') or
           has_value('sensor.battery_charge_grid_cost_2') }}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
