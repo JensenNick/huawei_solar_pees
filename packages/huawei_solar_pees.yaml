@@ -326,7 +326,7 @@ template:
         state: >
           {{ ( 
           states('sensor.import_cost_2') | float(0) -
-          states('sensor.export_income_2') | float
+          states('sensor.export_income_2') | float(0)
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.import_cost_2') or
@@ -999,7 +999,7 @@ utility_meter:
     source: sensor.battery_charge_yield_sale_2
     name: "Yearly Battery Charge Yield (Sale)"
     cycle: yearly
-    ### Battery Discharge
+  ### Battery Discharge
   #### Energy
   hourly_battery_discharge_energy:
     source: sensor.energy_battery_discharge
@@ -1021,7 +1021,7 @@ utility_meter:
     source: sensor.energy_battery_discharge
     name: "Yearly Battery Discharge (Energy)"
     cycle: yearly
-    ### Battery Discharge Grid
+  ### Battery Discharge Grid
   #### Energy
   hourly_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid
@@ -1365,7 +1365,7 @@ utility_meter:
     source: sensor.export_yield_sale_2
     name: "Yearly Export Yield (Sale)"
     cycle: yearly
-    ### Yield Total
+  ### Yield Total
   #### Energy
   hourly_yield_total_energy:
     source: sensor.energy_yield_total
