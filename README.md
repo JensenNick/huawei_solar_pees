@@ -6,9 +6,9 @@
 
 ## Project Description
 
-This project will provide you with a set of custom sensors to be used in HomeAssistant also refered to as the *"Huawei Solar PEES package"*. These custom sensors will calculate all the power and energy flows of your Huawei FusionSolar PV installation with Battery. On top of this the provided sensors will calculate expenses with and without solar PV and the Net Return of  Investment (NRI) - this will give you a fairly exact idea about the profitability of your investment in several aspects.
+This project will provide you with a set of custom sensors to be used in Home Assistant also refered to as the *"Huawei Solar PEES package"*. These custom sensors will calculate all the power and energy flows of your Huawei FusionSolar PV installation with Battery. On top of this the provided sensors will calculate expenses with and without solar PV and the Net Return of  Investment (NRI) - this will give you a fairly exact idea about the profitability of your investment in several aspects.
 
-This README guides you through a simple setup process. For an overview and a more detailed description of the sensors included in the *"Huawei Solar PEES package"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced HomeAssistant user may find this guide banal - but this is to include all users, also the ones just starting out.
+This README guides you through a simple setup process. For an overview and a more detailed description of the sensors included in the *"Huawei Solar PEES package"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced Home Assistant user may find this guide banal - but this is to include all users, also the ones just starting out.
 
 The provided custom sensors are based on a setup with two inverters and one battery. This is reflected throughout this README and the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The custom sensors are available as a package for an easy "installation". See more about this in chapter 3. Installation.
 
@@ -25,12 +25,12 @@ The provided custom sensors are based on a setup with two inverters and one batt
 
 ## 1. Before You Start
 
-The custom sensors in the *"Huawei Solar PEES package"* are all based on only three types of power sensors provided by the *"Huawei Solar integration by wlcrs"* - this makes the sensors robust and the margin for error is minimized. You also need a sensor to provide you with current electrical prices. I use the *"Energi Data Service integration by MTrab"*. These two custom integrations needs to be installed in HomeAssistant before you start. Both of the integrations can be installed via HACS.
+The custom sensors in the *"Huawei Solar PEES package"* are all based on only three types of power sensors provided by the *"Huawei Solar integration by wlcrs"* - this makes the sensors robust and the margin for error is minimized. You also need a sensor to provide you with current electrical prices. I use the *"Energi Data Service integration by MTrab"*. These two custom integrations needs to be installed in Home Assistant before you start. Both of the integrations can be installed via HACS.
 
 - **Huawei Solar** integration by wlcrs <https://github.com/wlcrs/huawei_solar>
 - **Energi Data Service** integration by MTrab (or similar integration to fetch the current electricity price incl. VAT and tariffs) <https://github.com/MTrab/energidataservice>
 
-You also need an editor in HomeAssistant to be able to edit your configurations.yaml file. I use Studio Code Server (Visual Studio Code) as an Add-on in HomeAssistant.
+You also need an editor in Home Assistant to be able to edit your configurations.yaml file. I use Studio Code Server (Visual Studio Code) as an Add-on in Home Assistant.
 
 Please note that the *"Huawei Solar PEES package"* is not an integration, it is a set of custom sensors I share. Please also note the number of custom sensors provided.
 
@@ -43,14 +43,14 @@ The diagram below shows the definitions used for the power- and energy flows bet
 ![Definitions and Flows](pictures/flows_definitions.jpg)
 
 ## 3. Installation
-The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package", for easy copy/paste "installation". You can read more about packages in the HomeAssistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
+The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package", for easy copy/paste "installation". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
 
 ### 3.1 Package "Installation"
 The "install" is very straight forward and each step is described in the bulleted list below. Just for the overview - the proces includes configuring your configuration.yaml file, creating af directory/folder for the *"Huawei Solar PEES package file"* and copy/paste the package file into the directory/folder you have created. The package file also includes a short instruction.
 
 * Open Studio Code Server (your code editor) and ad the following two lines to your `configuration.yaml` file.
 ```yaml
-homeassistant:
+home assistant:
   packages: !include_dir_named packages
 ```
 * Create a directory/folder named `packages` in the `CONFIG` directory/folder (the main directory/folder).
@@ -70,7 +70,7 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup I recomend that you set the state of the `sensor.power_inverter_2_input` to be 0 (zero) and that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
+If you have a single inverter setup it is necesarry to set the state of the `sensor.power_inverter_2_input` to be 0 (zero) and I recomend that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
 
 Follow these steps to set the state of `sensor.power_inverter_2_input` to 0 (zero) in the GUI.
 * Go to (1) *"Developer tools"* > (2) *"STATES"*.
@@ -95,7 +95,9 @@ If you use the *"Energi Data Service integration by MTrab"*, please refer to the
 Last but not least you may need to correct the currency to your local currency. The currency used in the provided custom sensors is DKK (Danish Krone) and this is the price pr. kWh.
 
 #### Restart
-> :exclamation: **Thats it! Restart HomeAssistant and refresh your browser!**
+> :exclamation: **That's it! Restart Home Assistant and refresh  your browser! Log in to Home Assistant again!** 
+
+Since the *"Huawei Solar PEES package"* includes platform sensors, Restart Home Assistant means "Restart Home Assistant" (not "Quick Reload"). Refresh browser is done with your browser refresh botton or by pressing F5 on Windows and Cmd+Shift+R on Mac.
 
 > :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show.*
 
@@ -116,7 +118,7 @@ None at the moment.
 ## 5. Thanks to
 **A huge thanks to;**
 
-- **wlcrs** for providing the *"Huawei Solar integration"*. This integration is essential for anyone who wishes to integrate their Huawei Solar PV in HomeAssistant.
+- **wlcrs** for providing the *"Huawei Solar integration"*. This integration is essential for anyone who wishes to integrate their Huawei Solar PV in Home Assistant.
 
 - **MTrab** for providing the *"Energi Data Service integration"*. This integration is essential for all of us trying to keep up with the electricity prices and the complex and ever-changing tariffs in DK.
 
