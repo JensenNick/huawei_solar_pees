@@ -34,7 +34,7 @@ You also need an editor in HomeAssistant to be able to edit your configurations.
 
 Please note that the *"Huawei Solar PEES package"* is not an integration, it is a set of custom sensors I share. Please also note the number of custom sensors provided.
 
-> :exclamation: **It is always good practise to create a full backup before you start!**
+> :exclamation: **It is good practise always to create a full backup before you start!**
 
 ## 2. Flow and Definitions
 
