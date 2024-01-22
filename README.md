@@ -97,7 +97,7 @@ Last but not least you may need to correct the currency to your local currency. 
 #### Restart
 > :exclamation: **That's it! Restart Home Assistant and refresh  your browser! Log in to Home Assistant again!** 
 
-Since the *"Huawei Solar PEES package"* includes platform sensors, Restart Home Assistant means "Restart Home Assistant" (not "Quick Reload"). Refresh browser is done with your browser refresh botton or by pressing F5 on Windows / Cmd+Shift+R on Mac.
+Since the *"Huawei Solar PEES package"* includes platform sensors, Restart Home Assistant means "Restart Home Assistant" (not "Quick Reload"). Refresh browser is done with your browser refresh button or by pressing F5 on Windows / Cmd+Shift+R on Mac.
 
 > :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show.*
 
