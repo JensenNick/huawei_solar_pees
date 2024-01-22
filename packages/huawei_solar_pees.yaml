@@ -282,8 +282,8 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.power_battery_discharge') | float (0) -
-          states('sensor.power_battery_discharge_grid') | float (0)
+          states('sensor.power_battery_discharge') | float(0) -
+          states('sensor.power_battery_discharge_grid') | float(0)
           , 0 ) | max }}
       - name: "Power House Load Grid"
         unique_id: power_house_load_grid
@@ -304,8 +304,8 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float + 
-          states('sensor.energy_yield_2') | float }}
+          {{ states('sensor.energy_yield_1') | float(0) + 
+          states('sensor.energy_yield_2') | float(0) }}
         availability: >
           {{ has_value('sensor.energy_yield_1') and 
           has_value('sensor.energy_yield_2') }}
@@ -316,7 +316,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {{ states('sensor.house_load_cost_2') | float | round(5) }}
+          {{ states('sensor.house_load_cost_2') | float(0) | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost_2') }}
       - name: "PV Economy - Result w PV"
@@ -325,7 +325,7 @@ template:
         device_class: monetary
         state: >
           {{ ( 
-          states('sensor.import_cost_2') | float -
+          states('sensor.import_cost_2') | float(0) -
           states('sensor.export_income_2') | float
           ) | round(5) }}
         availability: >
@@ -336,7 +336,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {{ states('sensor.import_cost_2') | float | round(5) }}
+          {{ states('sensor.import_cost_2') | float(0) | round(5) }}
         availability: >
           {{ has_value('sensor.import_cost_2') }}
       - name: "PV Economy - Income w PV"
@@ -344,7 +344,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {{ states('sensor.export_income_2') | float | round(5) }}
+          {{ states('sensor.export_income_2') | float(0) | round(5) }}
         availability: >
           {{ has_value('sensor.export_income_2') }}
       - name: "PV Economy - NRI PV"
@@ -353,9 +353,9 @@ template:
         device_class: monetary
         state: >
           {{ ( 
-          states('sensor.house_load_cost_2') | float -
-          states('sensor.import_cost_2') | float +
-          states('sensor.export_income_2') | float
+          states('sensor.house_load_cost_2') | float(0) -
+          states('sensor.import_cost_2') | float(0) +
+          states('sensor.export_income_2') | float(0)
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost_2') and
@@ -367,10 +367,10 @@ template:
         device_class: monetary
         state: >
           {{ (
-          states('sensor.battery_discharge_grid_sale_2') | float +
-          states('sensor.battery_discharge_house_saving_2') | float -
-          states('sensor.battery_charge_yield_sale_2') | float -
-          states('sensor.battery_charge_grid_cost_2') | float
+          states('sensor.battery_discharge_grid_sale_2') | float(0) +
+          states('sensor.battery_discharge_house_saving_2') | float(0) -
+          states('sensor.battery_charge_yield_sale_2') | float(0) -
+          states('sensor.battery_charge_grid_cost_2') | float(0)
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.battery_discharge_grid_sale_2') and
@@ -438,9 +438,9 @@ template:
             {% else %}
               {% set lastlast = 0 %}
             {% endif %}
-            {% set last = states('sensor.energy_yield_total') | float %}
+            {% set last = states('sensor.energy_yield_total') | float(0) %}
             {% if last > 0 %}
-              {{ states('sensor.energy_yield_total', 'last') | float }}
+              {{ states('sensor.energy_yield_total', 'last') | float(0) }}
             {% endif %}
   - trigger:
       - platform: state
