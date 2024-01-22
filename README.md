@@ -1,5 +1,14 @@
 <a href='https://ko-fi.com/U7U1R0IQA' target='_blank'><img height='36' align='right' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Nick a Coffee at ko-fi.com' /></a>
 
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="business" value="T7VEXRFET4G9W" />
+<input type="hidden" name="amount" value="5" />
+<input type="hidden" name="no_recurring" value="1" />
+<input type="hidden" name="currency_code" value="EUR" />
+<input type="image" src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" align='right' />
+<img alt="" border="0" src="https://www.paypal.com/en_DK/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
 # Huawei Solar - PEES
 
 **Power, Energy and Economy Sensors**<br>
