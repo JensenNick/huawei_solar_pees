@@ -438,9 +438,9 @@ template:
             {% else %}
               {% set lastlast = 0 %}
             {% endif %}
-            {% set last = states('sensor.energy_yield_total') | float %}
+            {% set last = states('sensor.energy_yield_total') | float(0) %}
             {% if last > 0 %}
-              {{ states('sensor.energy_yield_total', 'last') | float }}
+              {{ states('sensor.energy_yield_total', 'last') | float(0) }}
             {% endif %}
   - trigger:
       - platform: state
