@@ -1,6 +1,8 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
+# https://github.com/JensenNick/huawei_solar_pees
+#
 # This is a complete package file with the sensors included in Huawei Solar PEES.
 # Create a root folder named "packages".
 # Import this file to the "packages-folder".
