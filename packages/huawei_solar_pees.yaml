@@ -317,6 +317,7 @@ template:
         unique_id: pv_economy_result_wo_pv
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {{ states('sensor.house_load_cost_2') | float(0) | round(5) }}
         availability: >
@@ -325,6 +326,7 @@ template:
         unique_id: pv_economy_result_w_pv
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {{ ( 
           states('sensor.import_cost_2') | float(0) -
@@ -337,6 +339,7 @@ template:
         unique_id: pv_economy_expenses_w_pv
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total_increasing
         state: >
           {{ states('sensor.import_cost_2') | float(0) | round(5) }}
         availability: >
@@ -345,6 +348,7 @@ template:
         unique_id: pv_economy_income_w_pv
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total_increasing
         state: >
           {{ states('sensor.export_income_2') | float(0) | round(5) }}
         availability: >
@@ -353,6 +357,7 @@ template:
         unique_id: pv_economy_nri_pv
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {{ ( 
           states('sensor.house_load_cost_2') | float(0) -
@@ -367,6 +372,7 @@ template:
         unique_id: pv_economy_nri_battery
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {{ (
           states('sensor.battery_discharge_grid_sale_2') | float(0) +
@@ -391,8 +397,8 @@ template:
     sensor:
       - name: "Battery Charge Grid - Cost"
         unique_id: battery_charge_grid_cost
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_grid') | float(0) %}
@@ -422,8 +428,8 @@ template:
     sensor:
       - name: "Battery Charge Yield - Sale"
         unique_id: battery_charge_yield_sale
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service_sale') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_yield') | float(0) %}
@@ -451,8 +457,8 @@ template:
     sensor:
       - name: "Battery Discharge House - Saving"
         unique_id: battery_discharge_house_saving
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_house') | float(0) %}
@@ -482,8 +488,8 @@ template:
     sensor:
       - name: "Battery Discharge Grid - Sale"
         unique_id: battery_discharge_grid_sale
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service_sale') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_grid') | float(0) %}
@@ -513,8 +519,8 @@ template:
     sensor:
       - name: "Export - Income"
         unique_id: export_income
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service_sale') | float(0) %}
           {% set meter = states('sensor.energy_export') | float(0) %}
@@ -544,8 +550,8 @@ template:
     sensor:
       - name: "Import - Cost"
         unique_id: import_cost
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service') | float(0) %}
           {% set meter = states('sensor.energy_import') | float(0) %}
@@ -575,8 +581,8 @@ template:
     sensor:
       - name: "House Load - Cost"
         unique_id: house_load_cost
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service') | float(0) %}
           {% set meter = states('sensor.energy_house_load') | float(0) %}
@@ -606,8 +612,8 @@ template:
     sensor:
       - name: "House Load Grid - Cost"
         unique_id: house_load_grid_cost
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service') | float(0) %}
           {% set meter = states('sensor.energy_house_load_grid') | float(0) %}
@@ -637,8 +643,8 @@ template:
     sensor:
       - name: "House Load Yield - Saving"
         unique_id: house_load_yield_saving
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service') | float(0) %}
           {% set meter = states('sensor.energy_house_load_yield') | float(0) %}
@@ -668,8 +674,8 @@ template:
     sensor:
       - name: "Export Yield - Sale"
         unique_id: export_yield_sale
-        device_class: monetary
         unit_of_measurement: DKK
+        device_class: monetary
         state: >
           {% set price = states('sensor.energi_data_service_sale') | float(0) %}
           {% set meter = states('sensor.energy_export_yield') | float(0) %}
@@ -696,8 +702,8 @@ template:
 # UTILITY METERS
 # --------------
 utility_meter:
-  ## ----------------------------------
-  ## Huawei Solar PEES - Utility Meters
+  ## -------------------------------------------
+  ## Huawei Solar PEES - Utility Meters wo Cycle
   battery_charge_grid_cost_2:
     source: sensor.battery_charge_grid_cost
     name: "Battery Charge Grid (Cost)"
@@ -744,7 +750,7 @@ utility_meter:
     unique_id: house_load_yield_saving_2
     delta_values: true
   export_yield_sale_2:
-    source: sensor.energy_export_yield
+    source: sensor.energy_export_yield_sale
     name: "Export Yield (Sale)"
     unique_id: export_yield_sale_2
     delta_values: true
