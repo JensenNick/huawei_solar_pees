@@ -8,7 +8,7 @@
 
 This project will provide you with a set of custom sensors to be used in Home Assistant also refered to as the *"Huawei Solar PEES package"*. These custom sensors will calculate all the power and energy flows of your Huawei FusionSolar PV installation with Battery. On top of this the provided sensors will calculate expenses with and without solar PV and the Net Return of  Investment (NRI) - this will give you a fairly exact idea about the profitability of your investment in several aspects.
 
-This README guides you through a simple setup process. For an overview and a more detailed description of the sensors included in the *"Huawei Solar PEES package"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced Home Assistant user may find this guide banal - but this is to include all users, also the ones just starting out.
+This README guides you through a simple setup process. For an overview and a more detailed description of the sensors included in the *"Huawei Solar PEES package"*, please refer to the [*Wiki Pages*](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced Home Assistant user may find this guide banal - but this is to include all users, also the ones just starting out.
 
 The provided custom sensors are based on a setup with two inverters and one battery. This is reflected throughout this README and the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The custom sensors are available as a package for an easy "installation". See more about this in chapter 3. Installation.
 
@@ -42,7 +42,7 @@ The diagram below shows the definitions used for the power- and energy flows bet
 
 ![Definitions and Flows](pictures/flows_definitions.jpg)
 
-> :bulb: In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the *"Huawei Solar PEES package"*.   
+> :bulb: **In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the *"Huawei Solar PEES package"**.   
 
 ## 3. Installation
 The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package", for easy copy/paste "installation". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
@@ -72,13 +72,13 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup it is necesarry to set the state of the `sensor.power_inverter_2_input` to be 0 (zero) and I recomend that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
+If you have a single inverter setup it is necesarry to set the state of `sensor.power_inverter_2_input` and `sensor.energy_yield_2` equal to 0 (zero) and I recomend that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
 
-Follow these steps to set the state of `sensor.power_inverter_2_input` to 0 (zero) in the GUI.
-* Go to (1) *"Developer tools"* > (2) *"STATES"*.
-* In (3) *"Entity"* enter *"sensor.power_inverter_2_input"* and find the power sensor. 
-* In (4) *"State"* enter *"0"* (zero).
-* Click on (5) *"SET STATE"*
+Follow these steps to set the state of `sensor.power_inverter_2_input` and `sensor.energy_yield_2` to 0 (zero) in the GUI.
+* Go to (1) **"Developer tools"** > (2) **"STATES"**.
+* In (3) **"Entity"** enter `sensor.power_inverter_2_input` / `sensor.energy_yield_2` and find the power/energy sensor. 
+* In (4) **"State"** enter **"0"** (zero).
+* Click on (5) **"SET STATE"**
 
 ![Set State](pictures/set_state.jpg)
 
