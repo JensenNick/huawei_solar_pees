@@ -72,11 +72,12 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
-If you have a single inverter setup it is necesarry to set the state of `sensor.power_inverter_2_input` and `sensor.energy_yield_2` equal to 0 (zero) and I recomend that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
+#### Solar PV with a Single Inverter Setup
+If your solar PV is whith a single inverter setup it is necesarry to set the state of `sensor.power_inverter_2_input` and `sensor.energy_yield_2` equal to 0 (zero) and I recomend that you do this in the GUI. This way you can keep the  [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) package file unaltered, which will be a huge benefit if/when the package file may be revised.
 
 Follow these steps to set the state of `sensor.power_inverter_2_input` and `sensor.energy_yield_2` to 0 (zero) in the GUI.
 * Go to (1) **"Developer tools"** > (2) **"STATES"**.
-* In (3) **"Entity"** enter `sensor.power_inverter_2_input` / `sensor.energy_yield_2` and find the power/energy sensor. 
+* In (3) **"Entity"** enter `sensor.power_inverter_2_input` or `sensor.energy_yield_2` and find the power/energy sensor you want to set to 0. 
 * In (4) **"State"** enter **"0"** (zero).
 * Click on (5) **"SET STATE"**
 
