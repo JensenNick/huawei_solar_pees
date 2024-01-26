@@ -306,8 +306,8 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float(0) + 
-          states('sensor.energy_yield_2') | float(0) }}
+          {{ states('sensor.energy_yield_1') | float + 
+          states('sensor.energy_yield_2') | float }}
         availability: >
           {{ has_value('sensor.energy_yield_1') and 
           has_value('sensor.energy_yield_2') }}
