@@ -306,10 +306,10 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float + 
+          {{ states('sensor.energy_yield_1') | float +
           states('sensor.energy_yield_2') | float }}
         availability: >
-          {{ has_value('sensor.energy_yield_1') and 
+          {{ has_value('sensor.energy_yield_1') and
           has_value('sensor.energy_yield_2') }}
       ## ------------------------------
       ## Huawei Solar PEES - PV Economy
@@ -319,7 +319,7 @@ template:
         device_class: monetary
         state_class: total
         state: >
-          {{ states('sensor.house_load_cost_2') | float(0) | round(5) }}
+          {{ states('sensor.house_load_cost_2') | float | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost_2') }}
       - name: "PV Economy - Result w PV"
@@ -329,8 +329,8 @@ template:
         state_class: total
         state: >
           {{ ( 
-          states('sensor.import_cost_2') | float(0) -
-          states('sensor.export_income_2') | float(0)
+          states('sensor.import_cost_2') | float -
+          states('sensor.export_income_2') | float
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.import_cost_2') or
@@ -341,7 +341,7 @@ template:
         device_class: monetary
         state_class: total_increasing
         state: >
-          {{ states('sensor.import_cost_2') | float(0) | round(5) }}
+          {{ states('sensor.import_cost_2') | float | round(5) }}
         availability: >
           {{ has_value('sensor.import_cost_2') }}
       - name: "PV Economy - Income w PV"
@@ -350,7 +350,7 @@ template:
         device_class: monetary
         state_class: total_increasing
         state: >
-          {{ states('sensor.export_income_2') | float(0) | round(5) }}
+          {{ states('sensor.export_income_2') | float | round(5) }}
         availability: >
           {{ has_value('sensor.export_income_2') }}
       - name: "PV Economy - NRI PV"
@@ -360,9 +360,9 @@ template:
         state_class: total
         state: >
           {{ ( 
-          states('sensor.house_load_cost_2') | float(0) -
-          states('sensor.import_cost_2') | float(0) +
-          states('sensor.export_income_2') | float(0)
+          states('sensor.house_load_cost_2') | float -
+          states('sensor.import_cost_2') | float +
+          states('sensor.export_income_2') | float
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost_2') or
@@ -375,10 +375,10 @@ template:
         state_class: total
         state: >
           {{ (
-          states('sensor.battery_discharge_grid_sale_2') | float(0) +
-          states('sensor.battery_discharge_house_saving_2') | float(0) -
-          states('sensor.battery_charge_yield_sale_2') | float(0) -
-          states('sensor.battery_charge_grid_cost_2') | float(0)
+          states('sensor.battery_discharge_grid_sale_2') | float +
+          states('sensor.battery_discharge_house_saving_2') | float -
+          states('sensor.battery_charge_yield_sale_2') | float -
+          states('sensor.battery_charge_grid_cost_2') | float
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.battery_discharge_grid_sale_2') or
