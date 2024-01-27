@@ -750,7 +750,7 @@ utility_meter:
     unique_id: house_load_yield_saving_2
     delta_values: true
   export_yield_sale_2:
-    source: sensor.energy_export_yield_sale
+    source: sensor.export_yield_sale
     name: "Export Yield (Sale)"
     unique_id: export_yield_sale_2
     delta_values: true
