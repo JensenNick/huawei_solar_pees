@@ -339,7 +339,7 @@ template:
         unique_id: pv_economy_expenses_w_pv
         unit_of_measurement: DKK
         device_class: monetary
-        state_class: total_increasing
+        state_class: total
         state: >
           {{ states('sensor.import_cost_2') | float | round(5) }}
         availability: >
@@ -348,7 +348,7 @@ template:
         unique_id: pv_economy_income_w_pv
         unit_of_measurement: DKK
         device_class: monetary
-        state_class: total_increasing
+        state_class: total
         state: >
           {{ states('sensor.export_income_2') | float | round(5) }}
         availability: >
