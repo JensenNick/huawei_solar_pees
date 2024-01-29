@@ -319,9 +319,7 @@ template:
         device_class: monetary
         state_class: total
         state: >
-          {{ states('sensor.house_load_cost_2') | float | round(5) }}
-        availability: >
-          {{ has_value('sensor.house_load_cost_2') }}
+          {{ states('sensor.house_load_cost_2') | float(0) | round(5) }}
       - name: "PV Economy - Result w PV"
         unique_id: pv_economy_result_w_pv
         unit_of_measurement: DKK
@@ -329,30 +327,23 @@ template:
         state_class: total
         state: >
           {{ ( 
-          states('sensor.import_cost_2') | float -
-          states('sensor.export_income_2') | float
+          states('sensor.import_cost_2') | float(0) -
+          states('sensor.export_income_2') | float(0)
           ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.import_cost_2') or
-          has_value('sensor.export_income_2') }}
       - name: "PV Economy - Expenses w PV"
         unique_id: pv_economy_expenses_w_pv
         unit_of_measurement: DKK
         device_class: monetary
         state_class: total
         state: >
-          {{ states('sensor.import_cost_2') | float | round(5) }}
-        availability: >
-          {{ has_value('sensor.import_cost_2') }}
+          {{ states('sensor.import_cost_2') | float(0) | round(5) }}
       - name: "PV Economy - Income w PV"
         unique_id: pv_economy_income_w_pv
         unit_of_measurement: DKK
         device_class: monetary
         state_class: total
         state: >
-          {{ states('sensor.export_income_2') | float | round(5) }}
-        availability: >
-          {{ has_value('sensor.export_income_2') }}
+          {{ states('sensor.export_income_2') | float(0) | round(5) }}
       - name: "PV Economy - NRI PV"
         unique_id: pv_economy_nri_pv
         unit_of_measurement: DKK
@@ -360,14 +351,10 @@ template:
         state_class: total
         state: >
           {{ ( 
-          states('sensor.house_load_cost_2') | float -
-          states('sensor.import_cost_2') | float +
-          states('sensor.export_income_2') | float
+          states('sensor.house_load_cost_2') | float(0) -
+          states('sensor.import_cost_2') | float(0) +
+          states('sensor.export_income_2') | float(0)
           ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.house_load_cost_2') or
-          has_value('sensor.import_cost_2') or
-          has_value('sensor.export_income_2') }}
       - name: "PV Economy - NRI Battery"
         unique_id: pv_economy_nri_battery
         unit_of_measurement: DKK
@@ -375,16 +362,11 @@ template:
         state_class: total
         state: >
           {{ (
-          states('sensor.battery_discharge_grid_sale_2') | float +
-          states('sensor.battery_discharge_house_saving_2') | float -
-          states('sensor.battery_charge_yield_sale_2') | float -
-          states('sensor.battery_charge_grid_cost_2') | float
+          states('sensor.battery_discharge_grid_sale_2') | float(0) +
+          states('sensor.battery_discharge_house_saving_2') | float(0) -
+          states('sensor.battery_charge_yield_sale_2') | float(0) -
+          states('sensor.battery_charge_grid_cost_2') | float(0)
           ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.battery_discharge_grid_sale_2') or
-          has_value('sensor.battery_discharge_house_saving_2') or
-          has_value('sensor.battery_charge_yield_sale_2') or
-          has_value('sensor.battery_charge_grid_cost_2') }}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
@@ -706,54 +688,64 @@ utility_meter:
   ## Huawei Solar PEES - Utility Meters wo Cycle
   battery_charge_grid_cost_2:
     source: sensor.battery_charge_grid_cost
-    name: "Battery Charge Grid (Cost)"
+    name: "Battery Charge Grid - Cost 2"
     unique_id: battery_charge_grid_cost_2
     delta_values: true
+    periodically_resetting: false
   battery_charge_yield_sale_2:
     source: sensor.battery_charge_yield_sale
-    name: "Battery Charge Yield (Sale)"
+    name: "Battery Charge Yield - Sale 2"
     unique_id: battery_charge_yield_sale_2
     delta_values: true
+    periodically_resetting: false
   battery_discharge_house_saving_2:
     source: sensor.battery_discharge_house_saving
-    name: "Battery Discharge House (Saving)"
+    name: "Battery Discharge House - Saving 2"
     unique_id: battery_discharge_house_saving_2
     delta_values: true
+    periodically_resetting: false
   battery_discharge_grid_sale_2:
     source: sensor.battery_discharge_grid_sale
-    name: "Battery Discharge Grid (Sale)"
+    name: "Battery Discharge Grid - Sale 2"
     unique_id: battery_discharge_grid_sale_2
     delta_values: true
+    periodically_resetting: false
   export_income_2:
     source: sensor.export_income
-    name: "Export (Income)"
+    name: "Export - Income 2"
     unique_id: export_income_2
     delta_values: true
+    periodically_resetting: false
   import_cost_2:
     source: sensor.import_cost
-    name: "Import (Cost)"
+    name: "Import - Cost 2"
     unique_id: import_cost_2
     delta_values: true
+    periodically_resetting: false
   house_load_cost_2:
     source: sensor.house_load_cost
-    name: "House Load (Cost)"
+    name: "House Load - Cost 2"
     unique_id: house_load_cost_2
     delta_values: true
+    periodically_resetting: false
   house_load_grid_cost_2:
     source: sensor.house_load_grid_cost
-    name: "House Load Grid (Cost)"
+    name: "House Load Grid - Cost 2"
     unique_id: house_load_grid_cost_2
     delta_values: true
+    periodically_resetting: false
   house_load_yield_saving_2:
     source: sensor.house_load_yield_saving
-    name: "House Load Yield (Saving)"
+    name: "House Load Yield - Saving 2"
     unique_id: house_load_yield_saving_2
     delta_values: true
+    periodically_resetting: false
   export_yield_sale_2:
     source: sensor.export_yield_sale
-    name: "Export Yield (Sale)"
+    name: "Export Yield - Sale 2"
     unique_id: export_yield_sale_2
     delta_values: true
+    periodically_resetting: false
   ## ---------------------------------------------
   ## Huawei Solar PEES - PV Economy Utility Meters
   ### PV Economy - Result without PV
@@ -903,539 +895,539 @@ utility_meter:
   #### Energy
   hourly_battery_charge_energy:
     source: sensor.energy_battery_charge
-    name: "Hourly Battery Charge (Energy)"
+    name: "Hourly Battery Charge - Energy"
     cycle: hourly
   daily_battery_charge_energy:
     source: sensor.energy_battery_charge
-    name: "Daily Battery Charge (Energy)"
+    name: "Daily Battery Charge - Energy"
     cycle: daily
   monthly_battery_charge_energy:
     source: sensor.energy_battery_charge
-    name: "Monthly Battery Charge (Energy)"
+    name: "Monthly Battery Charge - Energy"
     cycle: monthly
   quarterly_battery_charge_energy:
     source: sensor.energy_battery_charge
-    name: "Quarterly Battery Charge (Energy)"
+    name: "Quarterly Battery Charge - Energy"
     cycle: quarterly
   yearly_battery_charge_energy:
     source: sensor.energy_battery_charge
-    name: "Yearly Battery Charge (Energy)"
+    name: "Yearly Battery Charge - Energy"
     cycle: yearly
   ### Battery Charge Grid
   #### Energy
   hourly_battery_charge_grid_energy:
     source: sensor.energy_battery_charge_grid
-    name: "Hourly Battery Charge Grid (Energy)"
+    name: "Hourly Battery Charge Grid - Energy"
     cycle: hourly
   daily_battery_charge_grid_energy:
     source: sensor.energy_battery_charge_grid
-    name: "Daily Battery Charge Grid (Energy)"
+    name: "Daily Battery Charge Grid - Energy"
     cycle: daily
   monthly_battery_charge_grid_energy:
     source: sensor.energy_battery_charge_grid
-    name: "Monthly Battery Charge Grid (Energy)"
+    name: "Monthly Battery Charge Grid - Energy"
     cycle: monthly
   quarterly_battery_charge_grid_energy:
     source: sensor.energy_battery_charge_grid
-    name: "Quarterly Battery Charge Grid (Energy)"
+    name: "Quarterly Battery Charge Grid - Energy"
     cycle: quarterly
   yearly_battery_charge_grid_energy:
     source: sensor.energy_battery_charge_grid
-    name: "Yearly Battery Charge Grid (Energy)"
+    name: "Yearly Battery Charge Grid - Energy"
     cycle: yearly
   #### Cost
   hourly_battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost_2
-    name: "Hourly Battery Charge Grid (Cost)"
+    name: "Hourly Battery Charge Grid - Cost 2"
     cycle: hourly
   daily_battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost_2
-    name: "Daily Battery Charge Grid (Cost)"
+    name: "Daily Battery Charge Grid - Cost 2"
     cycle: daily
   monthly_battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost_2
-    name: "Monthly Battery Charge Grid (Cost)"
+    name: "Monthly Battery Charge Grid - Cost 2"
     cycle: monthly
   quarterly_battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost_2
-    name: "Quarterly Battery Charge Grid (Cost)"
+    name: "Quarterly Battery Charge Grid - Cost 2"
     cycle: quarterly
   yearly_battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost_2
-    name: "Yearly Battery Charge Grid (Cost)"
+    name: "Yearly Battery Charge Grid - Cost 2"
     cycle: yearly
   ### Battery Charge Yield
   #### Energy
   hourly_battery_charge_yield_energy:
     source: sensor.energy_battery_charge_yield
-    name: "Hourly Battery Charge Yield (Energy)"
+    name: "Hourly Battery Charge Yield - Energy"
     cycle: hourly
   daily_battery_charge_yield_energy:
     source: sensor.energy_battery_charge_yield
-    name: "Daily Battery Charge Yield (Energy)"
+    name: "Daily Battery Charge Yield - Energy"
     cycle: daily
   monthly_battery_charge_yield_energy:
     source: sensor.energy_battery_charge_yield
-    name: "Monthly Battery Charge Yield (Energy)"
+    name: "Monthly Battery Charge Yield - Energy"
     cycle: monthly
   quarterly_battery_charge_yield_energy:
     source: sensor.energy_battery_charge_yield
-    name: "Quarterly Battery Charge Yield (Energy)"
+    name: "Quarterly Battery Charge Yield - Energy"
     cycle: quarterly
   yearly_battery_charge_yield_energy:
     source: sensor.energy_battery_charge_yield
-    name: "Yearly Battery Charge Yield (Energy)"
+    name: "Yearly Battery Charge Yield - Energy"
     cycle: yearly
   #### Sale
   hourly_battery_charge_yield_sale:
     source: sensor.battery_charge_yield_sale_2
-    name: "Hourly Battery Charge Yield (Sale)"
+    name: "Hourly Battery Charge Yield - Sale 2"
     cycle: hourly
   daily_battery_charge_yield_sale:
     source: sensor.battery_charge_yield_sale_2
-    name: "Daily Battery Charge Yield (Sale)"
+    name: "Daily Battery Charge Yield - Sale 2"
     cycle: daily
   monthly_battery_charge_yield_sale:
     source: sensor.battery_charge_yield_sale_2
-    name: "Monthly Battery Charge Yield (Sale)"
+    name: "Monthly Battery Charge Yield - Sale 2"
     cycle: monthly
   quarterly_battery_charge_yield_sale:
     source: sensor.battery_charge_yield_sale_2
-    name: "Quarterly Battery Charge Yield (Sale)"
+    name: "Quarterly Battery Charge Yield - Sale 2"
     cycle: quarterly
   yearly_battery_charge_yield_sale:
     source: sensor.battery_charge_yield_sale_2
-    name: "Yearly Battery Charge Yield (Sale)"
+    name: "Yearly Battery Charge Yield - Sale 2"
     cycle: yearly
   ### Battery Discharge
   #### Energy
   hourly_battery_discharge_energy:
     source: sensor.energy_battery_discharge
-    name: "Hourly Battery Discharge (Energy)"
+    name: "Hourly Battery Discharge - Energy"
     cycle: hourly
   daily_battery_discharge_energy:
     source: sensor.energy_battery_discharge
-    name: "Daily Battery Discharge (Energy)"
+    name: "Daily Battery Discharge - Energy"
     cycle: daily
   monthly_battery_discharge_energy:
     source: sensor.energy_battery_discharge
-    name: "Monthly Battery Discharge (Energy)"
+    name: "Monthly Battery Discharge - Energy"
     cycle: monthly
   quarterly_battery_discharge_energy:
     source: sensor.energy_battery_discharge
-    name: "Quarterly Battery Discharge (Energy)"
+    name: "Quarterly Battery Discharge - Energy"
     cycle: quarterly
   yearly_battery_discharge_energy:
     source: sensor.energy_battery_discharge
-    name: "Yearly Battery Discharge (Energy)"
+    name: "Yearly Battery Discharge - Energy"
     cycle: yearly
   ### Battery Discharge Grid
   #### Energy
   hourly_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid
-    name: "Hourly Battery Discharge Grid (Energy)"
+    name: "Hourly Battery Discharge Grid - Energy"
     cycle: hourly
   daily_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid
-    name: "Daily Battery Discharge Grid (Energy)"
+    name: "Daily Battery Discharge Grid - Energy"
     cycle: daily
   monthly_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid
-    name: "Monthly Battery Discharge Grid (Energy)"
+    name: "Monthly Battery Discharge Grid - Energy"
     cycle: monthly
   quarterly_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid
-    name: "Quarterly Battery Discharge Grid (Energy)"
+    name: "Quarterly Battery Discharge Grid - Energy"
     cycle: quarterly
   yearly_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid
-    name: "Yearly Battery Discharge Grid (Energy)"
+    name: "Yearly Battery Discharge Grid - Energy"
     cycle: yearly
   #### Sale
   hourly_battery_discharge_grid_sale:
     source: sensor.battery_discharge_grid_sale_2
-    name: "Hourly Battery Discharge Grid (Sale)"
+    name: "Hourly Battery Discharge Grid - Sale 2"
     cycle: hourly
   daily_battery_discharge_grid_sale:
     source: sensor.battery_discharge_grid_sale_2
-    name: "Daily Battery Discharge Grid (Sale)"
+    name: "Daily Battery Discharge Grid - Sale 2"
     cycle: daily
   monthly_battery_discharge_grid_sale:
     source: sensor.battery_discharge_grid_sale_2
-    name: "Monthly Battery Discharge Grid (Sale)"
+    name: "Monthly Battery Discharge Grid - Sale 2"
     cycle: monthly
   quarterly_battery_discharge_grid_sale:
     source: sensor.battery_discharge_grid_sale_2
-    name: "Quarterly Battery Discharge Grid (Sale)"
+    name: "Quarterly Battery Discharge Grid - Sale 2"
     cycle: quarterly
   yearly_battery_discharge_grid_sale:
     source: sensor.battery_discharge_grid_sale_2
-    name: "Yearly Battery Discharge Grid (Sale)"
+    name: "Yearly Battery Discharge Grid - Sale 2"
     cycle: yearly
   ### Battery Discharge House
   #### Energy
   hourly_battery_discharge_house_energy:
     source: sensor.energy_battery_discharge_house
-    name: "Hourly Battery Discharge House (Energy)"
+    name: "Hourly Battery Discharge House - Energy"
     cycle: hourly
   daily_battery_discharge_house_energy:
     source: sensor.energy_battery_discharge_house
-    name: "Daily Battery Discharge House (Energy)"
+    name: "Daily Battery Discharge House - Energy"
     cycle: daily
   monthly_battery_discharge_house_energy:
     source: sensor.energy_battery_discharge_house
-    name: "Monthly Battery Discharge House (Energy)"
+    name: "Monthly Battery Discharge House - Energy"
     cycle: monthly
   quarterly_battery_discharge_house_energy:
     source: sensor.energy_battery_discharge_house
-    name: "Quarterly Battery Discharge House (Energy)"
+    name: "Quarterly Battery Discharge House - Energy"
     cycle: quarterly
   yearly_battery_discharge_house_energy:
     source: sensor.energy_battery_discharge_house
-    name: "Yearly Battery Discharge House (Energy)"
+    name: "Yearly Battery Discharge House - Energy"
     cycle: yearly
   #### Saving
   hourly_battery_discharge_house_saving:
     source: sensor.battery_discharge_house_saving_2
-    name: "Hourly Battery Discharge House (Saving)"
+    name: "Hourly Battery Discharge House - Saving 2"
     cycle: hourly
   daily_battery_discharge_house_saving:
     source: sensor.battery_discharge_house_saving_2
-    name: "Daily Battery Discharge House (Saving)"
+    name: "Daily Battery Discharge House - Saving 2"
     cycle: daily
   monthly_battery_discharge_house_saving:
     source: sensor.battery_discharge_house_saving_2
-    name: "Monthly Battery Discharge House (Saving)"
+    name: "Monthly Battery Discharge House - Saving 2"
     cycle: monthly
   quarterly_battery_discharge_house_saving:
     source: sensor.battery_discharge_house_saving_2
-    name: "Quarterly Battery Discharge House (Saving)"
+    name: "Quarterly Battery Discharge House - Saving 2"
     cycle: quarterly
   yearly_battery_discharge_house_saving:
     source: sensor.battery_discharge_house_saving_2
-    name: "Yearly Battery Discharge House (Saving)"
+    name: "Yearly Battery Discharge House - Saving 2"
     cycle: yearly
   ### Export
   #### Energy
   hourly_energy_export:
     source: sensor.energy_export
-    name: "Hourly Export (Energy)"
+    name: "Hourly Export - Energy"
     cycle: hourly
   daily_energy_export:
     source: sensor.energy_export
-    name: "Daily Export (Energy)"
+    name: "Daily Export - Energy"
     cycle: daily
   monthly_energy_export:
     source: sensor.energy_export
-    name: "Monthly Export (Energy)"
+    name: "Monthly Export - Energy"
     cycle: monthly
   quarterly_energy_export:
     source: sensor.energy_export
-    name: "Quarterly Export (Energy)"
+    name: "Quarterly Export - Energy"
     cycle: quarterly
   yearly_energy_export:
     source: sensor.energy_export
-    name: "Yearly Export (Energy)"
+    name: "Yearly Export - Energy"
     cycle: yearly
   #### Income
   hourly_export_income:
     source: sensor.export_income_2
-    name: "Hourly Export (Income)"
+    name: "Hourly Export - Income 2"
     cycle: hourly
   daily_export_income:
     source: sensor.export_income_2
-    name: "Daily Export (Income)"
+    name: "Daily Export - Income 2"
     cycle: daily
   monthly_export_income:
     source: sensor.export_income_2
-    name: "Monthly Export (Income)"
+    name: "Monthly Export - Income 2"
     cycle: monthly
   quarterly_export_income:
     source: sensor.export_income_2
-    name: "Quarterly Export (Income)"
+    name: "Quarterly Export - Income 2"
     cycle: quarterly
   yearly_export_income:
     source: sensor.export_income_2
-    name: "Yearly Export (Income)"
+    name: "Yearly Export - Income 2"
     cycle: yearly
   ### House Load
   #### Energy
   hourly_house_load_energy:
     source: sensor.energy_house_load
-    name: "Hourly House Load (Energy)"
+    name: "Hourly House Load - Energy"
     cycle: hourly
   daily_house_load_energy:
     source: sensor.energy_house_load
-    name: "Daily House Load (Energy)"
+    name: "Daily House Load - Energy"
     cycle: daily
   monthly_house_load_energy:
     source: sensor.energy_house_load
-    name: "Monthly House Load (Energy)"
+    name: "Monthly House Load - Energy"
     cycle: monthly
   quarterly_house_load_energy:
     source: sensor.energy_house_load
-    name: "Quarterly House Load (Energy)"
+    name: "Quarterly House Load - Energy"
     cycle: quarterly
   yearly_house_load_energy:
     source: sensor.energy_house_load
-    name: "Yearly House Load (Energy)"
+    name: "Yearly House Load - Energy"
     cycle: yearly
   #### Cost
   hourly_house_load_cost:
     source: sensor.house_load_cost_2
-    name: "Hourly House Load (Cost)"
+    name: "Hourly House Load - Cost 2"
     cycle: hourly
   daily_house_load_cost:
     source: sensor.house_load_cost_2
-    name: "Daily House Load (Cost)"
+    name: "Daily House Load - Cost 2"
     cycle: daily
   monthly_house_load_cost:
     source: sensor.house_load_cost_2
-    name: "Monthly House Load (Cost)"
+    name: "Monthly House Load - Cost 2"
     cycle: monthly
   quarterly_house_load_cost:
     source: sensor.house_load_cost_2
-    name: "Quarterly House Load (Cost)"
+    name: "Quarterly House Load - Cost 2"
     cycle: quarterly
   yearly_house_load_cost:
     source: sensor.house_load_cost_2
-    name: "Yearly House Load (Cost)"
+    name: "Yearly House Load - Cost 2"
     cycle: yearly
   ### House Load Grid
   #### Energy
   hourly_house_load_grid_energy:
     source: sensor.energy_house_load_grid
-    name: "Hourly House Load Grid (Energy)"
+    name: "Hourly House Load Grid - Energy"
     cycle: hourly
   daily_house_load_grid_energy:
     source: sensor.energy_house_load_grid
-    name: "Daily House Load Grid (Energy)"
+    name: "Daily House Load Grid - Energy"
     cycle: daily
   monthly_house_load_grid_energy:
     source: sensor.energy_house_load_grid
-    name: "Monthly House Load Grid (Energy)"
+    name: "Monthly House Load Grid - Energy"
     cycle: monthly
   quarterly_house_load_grid_energy:
     source: sensor.energy_house_load_grid
-    name: "Quarterly House Load Grid (Energy)"
+    name: "Quarterly House Load Grid - Energy"
     cycle: quarterly
   yearly_house_load_grid_energy:
     source: sensor.energy_house_load_grid
-    name: "Yearly House Load Grid (Energy)"
+    name: "Yearly House Load Grid - Energy"
     cycle: yearly
   #### Cost
   hourly_house_load_grid_cost:
     source: sensor.house_load_grid_cost_2
-    name: "Hourly House Load Grid (Cost)"
+    name: "Hourly House Load Grid - Cost 2"
     cycle: hourly
   daily_house_load_grid_cost:
     source: sensor.house_load_grid_cost_2
-    name: "Daily House Load Grid (Cost)"
+    name: "Daily House Load Grid - Cost 2"
     cycle: daily
   monthly_house_load_grid_cost:
     source: sensor.house_load_grid_cost_2
-    name: "Monthly House Load Grid (Cost)"
+    name: "Monthly House Load Grid - Cost 2"
     cycle: monthly
   quarterly_house_load_grid_cost:
     source: sensor.house_load_grid_cost_2
-    name: "Quarterly House Load Grid (Cost)"
+    name: "Quarterly House Load Grid - Cost 2"
     cycle: quarterly
   yearly_house_load_grid_cost:
     source: sensor.house_load_grid_cost_2
-    name: "Yearly House Load Grid (Cost)"
+    name: "Yearly House Load Grid - Cost 2"
     cycle: yearly
   ### House Load Yield
   #### Energy
   hourly_house_load_yield_energy:
     source: sensor.energy_house_load_yield
-    name: "Hourly House Load Yield (Energy)"
+    name: "Hourly House Load Yield - Energy"
     cycle: hourly
   daily_house_load_yield_energy:
     source: sensor.energy_house_load_yield
-    name: "Daily House Load Yield (Energy)"
+    name: "Daily House Load Yield - Energy"
     cycle: daily
   monthly_house_load_yield_energy:
     source: sensor.energy_house_load_yield
-    name: "Monthly House Load Yield (Energy)"
+    name: "Monthly House Load Yield - Energy"
     cycle: monthly
   quarterly_house_load_yield_energy:
     source: sensor.energy_house_load_yield
-    name: "Quarterly House Load Yield (Energy)"
+    name: "Quarterly House Load Yield - Energy"
     cycle: quarterly
   yearly_house_load_yield_energy:
     source: sensor.energy_house_load_yield
-    name: "Yearly House Load Yield (Energy)"
+    name: "Yearly House Load Yield - Energy"
     cycle: yearly
   #### Saving
   hourly_house_load_yield_saving:
     source: sensor.house_load_yield_saving_2
-    name: "Hourly House Load Yield (Saving)"
+    name: "Hourly House Load Yield - Saving 2"
     cycle: hourly
   daily_house_load_yield_saving:
     source: sensor.house_load_yield_saving_2
-    name: "Daily House Load Yield (Saving)"
+    name: "Daily House Load Yield - Saving 2"
     cycle: daily
   monthly_house_load_yield_saving:
     source: sensor.house_load_yield_saving_2
-    name: "Monthly House Load Yield (Saving)"
+    name: "Monthly House Load Yield - Saving 2"
     cycle: monthly
   quarterly_house_load_yield_saving:
     source: sensor.house_load_yield_saving_2
-    name: "Quarterly House Load Yield (Saving)"
+    name: "Quarterly House Load Yield - Saving 2"
     cycle: quarterly
   yearly_house_load_yield_saving:
     source: sensor.house_load_yield_saving_2
-    name: "Yearly House Load Yield (Saving)"
+    name: "Yearly House Load Yield - Saving 2"
     cycle: yearly
   ### Import
   #### Energy
   hourly_import_energy:
     source: sensor.energy_import
-    name: "Hourly Import (Energy)"
+    name: "Hourly Import - Energy"
     cycle: hourly
   daily_import_energy:
     source: sensor.energy_import
-    name: "Daily Import (Energy)"
+    name: "Daily Import - Energy"
     cycle: daily
   monthly_import_energy:
     source: sensor.energy_import
-    name: "Monthly Import (Energy)"
+    name: "Monthly Import - Energy"
     cycle: monthly
   quarterly_import_energy:
     source: sensor.energy_import
-    name: "Quarterly Import (Energy)"
+    name: "Quarterly Import - Energy"
     cycle: quarterly
   yearly_import_energy:
     source: sensor.energy_import
-    name: "Yearly Import (Energy)"
+    name: "Yearly Import - Energy"
     cycle: yearly
   #### Cost
   hourly_import_cost:
     source: sensor.import_cost_2
-    name: "Hourly Import (Cost)"
+    name: "Hourly Import - Cost 2"
     cycle: hourly
   daily_import_cost:
     source: sensor.import_cost_2
-    name: "Daily Import (Cost)"
+    name: "Daily Import - Cost 2"
     cycle: daily
   monthly_import_cost:
     source: sensor.import_cost_2
-    name: "Monthly Import (Cost)"
+    name: "Monthly Import - Cost 2"
     cycle: monthly
   quarterly_import_cost:
     source: sensor.import_cost_2
-    name: "Quarterly Import (Cost)"
+    name: "Quarterly Import - Cost 2"
     cycle: quarterly
   yearly_import_cost:
     source: sensor.import_cost_2
-    name: "Yearly Import (Cost)"
+    name: "Yearly Import - Cost 2"
     cycle: yearly
   ### Export Yield
   #### Energy
   hourly_export_yield_energy:
     source: sensor.energy_export_yield
-    name: "Hourly Export Yield (Energy)"
+    name: "Hourly Export Yield - Energy"
     cycle: hourly
   daily_export_yield_energy:
     source: sensor.energy_export_yield
-    name: "Daily Export Yield (Energy)"
+    name: "Daily Export Yield - Energy"
     cycle: daily
   monthly_export_yield_energy:
     source: sensor.energy_export_yield
-    name: "Monthly Export Yield (Energy)"
+    name: "Monthly Export Yield - Energy"
     cycle: monthly
   quarterly_export_yield_energy:
     source: sensor.energy_export_yield
-    name: "Quarterly Export Yield (Energy)"
+    name: "Quarterly Export Yield - Energy"
     cycle: quarterly
   yearly_export_yield_energy:
     source: sensor.energy_export_yield
-    name: "Yearly Export Yield (Energy)"
+    name: "Yearly Export Yield - Energy"
     cycle: yearly
   #### Sale
   hourly_export_yield_sale:
     source: sensor.export_yield_sale_2
-    name: "Hourly Export Yield (Sale)"
+    name: "Hourly Export Yield - Sale 2"
     cycle: hourly
   daily_export_yield_sale:
     source: sensor.export_yield_sale_2
-    name: "Daily Export Yield (Sale)"
+    name: "Daily Export Yield - Sale 2"
     cycle: daily
   monthly_export_yield_sale:
     source: sensor.export_yield_sale_2
-    name: "Monthly Export Yield (Sale)"
+    name: "Monthly Export Yield - Sale 2"
     cycle: monthly
   quarterly_export_yield_sale:
     source: sensor.export_yield_sale_2
-    name: "Quarterly Export Yield (Sale)"
+    name: "Quarterly Export Yield - Sale 2"
     cycle: quarterly
   yearly_export_yield_sale:
     source: sensor.export_yield_sale_2
-    name: "Yearly Export Yield (Sale)"
+    name: "Yearly Export Yield - Sale 2"
     cycle: yearly
   ### Yield Total
   #### Energy
   hourly_yield_total_energy:
     source: sensor.energy_yield_total
-    name: "Hourly Yield Total (Energy)"
+    name: "Hourly Yield Total - Energy"
     cycle: hourly
   daily_yield_total_energy:
     source: sensor.energy_yield_total
-    name: "Daily Yield Total (Energy)"
+    name: "Daily Yield Total - Energy"
     cycle: daily
   monthly_yield_total_energy:
     source: sensor.energy_yield_total
-    name: "Monthly Yield Total (Energy)"
+    name: "Monthly Yield Total - Energy"
     cycle: monthly
   quarterly_yield_total_energy:
     source: sensor.energy_yield_total
-    name: "Quarterly Yield Total (Energy)"
+    name: "Quarterly Yield Total - Energy"
     cycle: quarterly
   yearly_yield_total_energy:
     source: sensor.energy_yield_total
-    name: "Yearly Yield Total (Energy)"
+    name: "Yearly Yield Total - Energy"
     cycle: yearly
   ### Yield #1
   #### Energy
   hourly_yield_1_energy:
     source: sensor.energy_yield_1
-    name: "Hourly Yield 1 (Energy)"
+    name: "Hourly Yield 1 - Energy"
     cycle: hourly
   daily_yield_1_energy:
     source: sensor.energy_yield_1
-    name: "Daily Yield 1 (Energy)"
+    name: "Daily Yield 1 - Energy"
     cycle: daily
   monthly_yield_1_energy:
     source: sensor.energy_yield_1
-    name: "Monthly Yield 1 (Energy)"
+    name: "Monthly Yield 1 - Energy"
     cycle: monthly
   quarterly_yield_1_energy:
     source: sensor.energy_yield_1
-    name: "Quarterly Yield 1 (Energy)"
+    name: "Quarterly Yield 1 - Energy"
     cycle: quarterly
   yearly_yield_1_energy:
     source: sensor.energy_yield_1
-    name: "Yearly Yield 1 (Energy)"
+    name: "Yearly Yield 1 - Energy"
     cycle: yearly
   ### Yield #2
   #### Energy
   hourly_yield_2_energy:
     source: sensor.energy_yield_2
-    name: "Hourly Yield 2 (Energy)"
+    name: "Hourly Yield 2 - Energy"
     cycle: hourly
   daily_yield_2_energy:
     source: sensor.energy_yield_2
-    name: "Daily Yield 2 (Energy)"
+    name: "Daily Yield 2 - Energy"
     cycle: daily
   monthly_yield_2_energy:
     source: sensor.energy_yield_2
-    name: "Monthly Yield 2 (Energy)"
+    name: "Monthly Yield 2 - Energy"
     cycle: monthly
   quarterly_yield_2_energy:
     source: sensor.energy_yield_2
-    name: "Quarterly Yield 2 (Energy)"
+    name: "Quarterly Yield 2 - Energy"
     cycle: quarterly
   yearly_yield_2_energy:
     source: sensor.energy_yield_2
-    name: "Yearly Yield 2 (Energy)"
+    name: "Yearly Yield 2 - Energy"
     cycle: yearly
