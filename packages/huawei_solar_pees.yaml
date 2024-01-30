@@ -702,8 +702,66 @@ template:
 # UTILITY METERS
 # --------------
 utility_meter:
-  ## -------------------------------------------
-  ## Huawei Solar PEES - Utility Meters wo Cycle
+  ## -----------------------------------------
+  ## Huawei Solar PEES - Energy Utility Meters
+  energy_battery_charge_um:
+    source: sensor.energy_battery_charge
+    name: "Energy Battery Charge UM"
+    unique_id: energy_battery_charge_um
+  energy_battery_charge_grid_um:
+    source: sensor.energy_battery_charge_grid
+    name: "Energy Battery Charge Grid UM"
+    unique_id: energy_battery_charge_grid_um
+  energy_battery_charge_yield_um:
+    source: sensor.energy_battery_charge_yield
+    name: "Energy Battery Charge Yield UM"
+    unique_id: energy_battery_charge_yield_um
+  energy_battery_discharge_um:
+    source: sensor.energy_battery_discharge
+    name: "Energy Battery Discharge UM"
+    unique_id: energy_battery_discharge_um
+  energy_battery_discharge_grid_um:
+    source: sensor.energy_battery_discharge_grid
+    name: "Energy Battery Discharge Grid UM"
+    unique_id: energy_battery_discharge_grid_um
+  energy_battery_discharge_house_um:
+    source: sensor.energy_battery_discharge_house
+    name: "Energy Battery Discharge House UM"
+    unique_id: energy_battery_discharge_house_um
+  energy_import_um:
+    source: sensor.energy_import
+    name: "Energy Import UM"
+    unique_id: energy_import_um
+  energy_export_um:
+    source: sensor.energy_export
+    name: "Energy Export UM"
+    unique_id: energy_export_um
+  energy_house_load_um:
+    source: sensor.energy_house_load
+    name: "Energy House Load UM"
+    unique_id: energy_house_load_um
+  energy_house_load_grid_um:
+    source: sensor.energy_house_load_grid
+    name: "Energy House Load Grid UM"
+    unique_id: energy_house_load_grid_um
+  energy_house_load_yield_um:
+    source: sensor.energy_house_load_yield
+    name: "Energy House Load Yield UM"
+    unique_id: energy_house_load_yield_um
+  energy_yield_1_um:
+    source: sensor.energy_yield_1
+    name: "Energy Yield #1 UM"
+    unique_id: energy_yield_1_um
+  energy_yield_2_um:
+    source: sensor.energy_yield_2
+    name: "Energy Yield #2 UM"
+    unique_id: energy_yield_2_um
+  energy_export_yield_um:
+    source: sensor.energy_yield
+    name: "Energy Export Yield UM"
+    unique_id: energy_export_yield_um
+  ## ------------------------------------------
+  ## Huawei Solar PEES - Economy Utility Meters
   battery_charge_grid_cost_2:
     source: sensor.battery_charge_grid_cost
     name: "Battery Charge Grid - Cost 2"
