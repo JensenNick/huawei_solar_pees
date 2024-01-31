@@ -102,7 +102,7 @@ Last but not least you may need to correct the currency to your local currency. 
 
 Since the *"Huawei Solar PEES package"* includes platform sensors, Restart Home Assistant means "Restart Home Assistant" (not "Quick Reload"). Refresh browser is done with your browser refresh button or by pressing F5 on Windows / Cmd+Shift+R on Mac.
 
-> :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show. You can force your battery to charge and discharge to grid and house, just for a moment for all the values to start to generate.*
+> :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show. You may need to force your battery to charge and discharge to house and grid, just for a moment so all values start to generate.*
 
 ### 3.3 Optional
 #### Efficiency Corrected Inverter Power Input Sensor
