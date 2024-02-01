@@ -18,7 +18,7 @@ A crucial error in the attribute for the sensor `battery_charge_yield_sale` has 
 The device_class on the PV sensors has been removed, in order to allow state_ class: total_increasing. Forum posts from the Developers suggest not to use device_class for this type of sensors.
 
 **Dashboards**<br>
-Codes for input to the dashboards have ben updated so they match the new naming convention.
+Codes for input to the dashboards have been updated so they match the new naming convention.
 
 **Info**<br>
 Version number, domain name and code owner has been added to the `huawei_solar_pees.yaml` package file
