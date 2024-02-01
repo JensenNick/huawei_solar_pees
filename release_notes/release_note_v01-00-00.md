@@ -12,7 +12,7 @@ I could have gone with a new suffix some of the utility meters, but that would h
 There are other bonus effects to this as well, 1) utility meters are easier to reset and calibrate without the need for a deep dive into your database 2) you can now easily identify the origin of the sensor and 3) easy filtering based on the new suffix.
 
 **Error in code**<br>
-A crucial error in the attribute for the sensor `battery_charge_yield_sale` has been corrected (new sensor name `battery_charge_yield_sale_tt`),
+A crucial error in the attribute for the sensor `battery_charge_yield_sale` has been corrected (new sensor name is `battery_charge_yield_sale_tt`),
 
 **PV template sensors**<br>
 The device_class on the PV sensors has been removed, in order to allow state_ class: total_increasing. Forum posts from the Developers suggest not to use device_class for this type of sensors.
