@@ -403,7 +403,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -434,7 +434,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -465,7 +465,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -496,7 +496,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -527,7 +527,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -558,7 +558,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -589,7 +589,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -620,7 +620,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -651,7 +651,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
@@ -682,7 +682,7 @@ template:
           {% else %}
             {% set delta = 0 %}
           {% endif %}
-          {{ price * delta }}
+            {{ price * delta }}
         attributes:
           last: >
             {% if this.attributes.last is defined %}
