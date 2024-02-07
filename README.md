@@ -124,7 +124,7 @@ If you have several tariffs and/or it/they change from time to time, you might f
 ## 4. Known "bugs"
 
 * **Feb 2024:** Some `economy sensors` are dependent of a very specific input and may therefore not start up until all inputs have a value. This may result in a later initial start up of these sensors, resulting in not 100% conformity of all economy sensors.<br>
-**Solution:** It is therefore recommended to manually set `energy sensors` that do not show an initial value (within 5 minutes or so) to 0 (zero). The energy sensors are easily identified by the suffix `_ps`. Reset the energy sensors that has the value `unknown` / `unavailable` as described for the sensor `sensor.energy_yield_2_ts` - in the section [Solar PV with a Single Inverter Setup](solar-pv-with-a-single-inverter-setup). Use the suffix `_ps` to do a search in "Filter entities". Wait to restart until you have a numeric value in all sensors. These are the three economy sensors to keep an eye on.<br>
+**Solution:** It is therefore recommended to manually set `energy sensors` that do not show an initial value (within 5 minutes or so) to 0 (zero). The energy sensors are easily identified by the suffix `_ps`. Reset the energy sensors that has the value `unknown` / `unavailable` as described for the sensor `sensor.energy_yield_2_ts` - in the above section "Solar PV with a Single Inverter Setup". Use the suffix `_ps` to do a search in "Filter entities". Wait to restart until you have a numeric value in all sensors. These are the three economy sensors to keep an eye on.<br>
   - `sensor.economy_result_w_pv_ts`
   - `sensor.economy_nri_pv_ts`
   - `sensor.economy_nri_battery_ts`
