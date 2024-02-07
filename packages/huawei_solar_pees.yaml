@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v1.0.1-alpha
+# version: v1.0.1-alpha-002
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -309,10 +309,9 @@ template:
         state_class: total_increasing
         state: >
           {{ states('sensor.energy_yield_1') | float +
-          states('sensor.energy_yield_2') | float }}
+          states('sensor.energy_yield_2') | float(0) }}
         availability: >
-          {{ has_value('sensor.energy_yield_1') and
-          has_value('sensor.energy_yield_2') }}
+          {{ has_value('sensor.energy_yield_1') }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
@@ -321,8 +320,6 @@ template:
         state_class: total_increasing
         state: >
           {{ states('sensor.house_load_cost') | float | round(5) }}
-        availability: >
-          {{ has_value('sensor.house_load_cost') }}
       - name: "Economy - Result w PV (ts)"
         unique_id: economy_result_w_pv_ts
         unit_of_measurement: DKK
@@ -332,25 +329,18 @@ template:
           states('sensor.import_cost') | float -
           states('sensor.export_income') | float
           ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.import_cost') and
-          has_value('sensor.export_income') }}
       - name: "Economy - Expenses w PV (ts)"
         unique_id: economy_expenses_w_pv_ts
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
           {{ states('sensor.import_cost') | float | round(5) }}
-        availability: >
-          {{ has_value('sensor.import_cost') }}
       - name: "Economy - Income w PV (ts)"
         unique_id: economy_income_w_pv_ts
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
           {{ states('sensor.export_income') | float | round(5) }}
-        availability: >
-          {{ has_value('sensor.export_income') }}
       - name: "Economy - NRI PV (ts)"
         unique_id: economy_nri_pv_ts
         unit_of_measurement: DKK
@@ -361,10 +351,6 @@ template:
           states('sensor.import_cost') | float +
           states('sensor.export_income') | float
           ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.house_load_cost') and
-          has_value('sensor.import_cost') and
-          has_value('sensor.export_income') }}
       - name: "Economy - NRI Battery (ts)"
         unique_id: economy_nri_battery_ts
         unit_of_measurement: DKK
@@ -376,11 +362,6 @@ template:
           states('sensor.battery_charge_yield_sale') | float -
           states('sensor.battery_charge_grid_cost') | float
           ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.battery_discharge_grid_sale') and
-          has_value('sensor.battery_discharge_house_saving') and
-          has_value('sensor.battery_charge_yield_sale') and
-          has_value('sensor.battery_charge_grid_cost') }}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
@@ -417,6 +398,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_battery_charge_grid_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -448,6 +431,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_battery_charge_yield_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -479,6 +464,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_battery_discharge_house_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -510,6 +497,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_battery_discharge_grid_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -541,6 +530,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_export_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -572,6 +563,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_import_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -603,6 +596,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_house_load_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -634,6 +629,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_house_load_grid_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -665,6 +662,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_house_load_yield_ps') }}
   - trigger:
       - platform: state
         entity_id:
@@ -696,6 +695,8 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+        availability: >
+          {{ has_value('sensor.energy_export_yield_ps') }}
 # --------------
 # UTILITY METERS
 # --------------
