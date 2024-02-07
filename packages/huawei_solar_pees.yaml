@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v1.0.1-alpha
+# version: v1.0.1-alpha-001
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -328,13 +328,21 @@ template:
         unit_of_measurement: DKK
         state_class: total
         state: >
-          {{ ( 
-          states('sensor.import_cost') | float -
-          states('sensor.export_income') | float
-          ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.import_cost') and
-          has_value('sensor.export_income') }}
+          {% if this.attributes.last is defined %}
+            {{ ( 
+            states('sensor.import_cost') | float -
+            states('sensor.export_income') | float
+            ) | round(5) }}
+          {% else %}
+            {{ lastlast }}
+          {% endif %}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
       - name: "Economy - Expenses w PV (ts)"
         unique_id: economy_expenses_w_pv_ts
         unit_of_measurement: DKK
@@ -356,31 +364,44 @@ template:
         unit_of_measurement: DKK
         state_class: total
         state: >
-          {{ ( 
-          states('sensor.house_load_cost') | float -
-          states('sensor.import_cost') | float +
-          states('sensor.export_income') | float
-          ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.house_load_cost') and
-          has_value('sensor.import_cost') and
-          has_value('sensor.export_income') }}
+          {% if this.attributes.last is defined %}
+            {{ ( 
+            states('sensor.house_load_cost') | float -
+            states('sensor.import_cost') | float +
+            states('sensor.export_income') | float
+            ) | round(5) }}
+          {% else %}
+            {{ lastlast }}
+          {% endif %}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
       - name: "Economy - NRI Battery (ts)"
         unique_id: economy_nri_battery_ts
         unit_of_measurement: DKK
         state_class: total
         state: >
-          {{ (
-          states('sensor.battery_discharge_grid_sale') | float +
-          states('sensor.battery_discharge_house_saving') | float -
-          states('sensor.battery_charge_yield_sale') | float -
-          states('sensor.battery_charge_grid_cost') | float
-          ) | round(5) }}
-        availability: >
-          {{ has_value('sensor.battery_discharge_grid_sale') and
-          has_value('sensor.battery_discharge_house_saving') and
-          has_value('sensor.battery_charge_yield_sale') and
-          has_value('sensor.battery_charge_grid_cost') }}
+          {% if this.attributes.last is defined %}
+            {{ (
+            states('sensor.battery_discharge_grid_sale') | float +
+            states('sensor.battery_discharge_house_saving') | float -
+            states('sensor.battery_charge_yield_sale') | float -
+            states('sensor.battery_charge_grid_cost') | float
+            ) | round(5) }}
+          {% else %}
+            {{ lastlast }}
+          {% endif %}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
