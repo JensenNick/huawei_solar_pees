@@ -90,7 +90,7 @@ Follow these steps to set the state of `sensor.energy_yield_2_ts` to 0 (zero) in
 #### Electricity Price Sensors
 You need to provide two electricity price sensors as input - one which provides the price you pay pr. kWh for import/consumption and one which provides the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add them as entities in the integration.
 
-As with the sensors above you will find the following lines in the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) for an easy global edit if you use another input sensor.
+As with the sensors above you will find the following lines in the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) for an easy global edit or search/replace if you use another input sensor.
 
 ```yaml
 # - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
