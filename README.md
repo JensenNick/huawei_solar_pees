@@ -28,7 +28,7 @@ The provided custom sensors are based on a setup with two inverters and one batt
 The custom sensors in the *"Huawei Solar PEES package"* are all based on only three types of power sensors provided by the *"Huawei Solar integration by wlcrs"* - this makes the sensors robust and the margin for error is minimized. You also need sensors to provide you with current electrical prices. I use the *"Energi Data Service integration by MTrab"*. These two custom integrations needs to be installed in Home Assistant before you start. Both of the integrations can be installed via HACS.
 
 - **Huawei Solar** integration by wlcrs <https://github.com/wlcrs/huawei_solar>
-- **Energi Data Service** integration by MTrab (or similar integration to fetch the current electricity price incl. VAT and tariffs) <https://github.com/MTrab/energidataservice>
+- **Energi Data Service** integration by MTrab (or similar integration e.g. Nordpool, to fetch the current electricity price incl. VAT and tariffs) <https://github.com/MTrab/energidataservice>
 
 You also need an editor in Home Assistant to be able to edit your configuration.yaml file. I use Studio Code Server (Visual Studio Code) as an Add-on in Home Assistant.
 
@@ -90,7 +90,7 @@ Follow these steps to set the state of `sensor.energy_yield_2_ts` to 0 (zero) in
 #### Electricity Price Sensors
 You need to provide two electricity price sensors as input - one which provides the price you pay pr. kWh for import/consumption and one which provides the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add them as entities in the integration.
 
-As with the sensors above you will find the following lines in the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) for an easy global edit or search/replace if you use another input sensor.
+As with the sensors above you will find the following lines in the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) for an easy global edit or search/replace if you use another input sensor like e.g. Nordpool.
 
 ```yaml
 # - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
