@@ -42,7 +42,7 @@ The diagram below shows the definitions used for the power- and energy flows bet
 
 ![Definitions and Flows](pictures/flows_definitions.jpg)
 
-> :bulb: ***In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the *"Huawei Solar PEES package".*** 
+> :bulb: ***In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the "Huawei Solar PEES package".*** 
 
 ## 3. Installation
 The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
