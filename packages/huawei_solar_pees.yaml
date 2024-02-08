@@ -300,19 +300,6 @@ template:
           states('sensor.power_house_load_yield') | float(0) -
           states('sensor.power_battery_discharge_house') | float(0)
           , 0 ) | max }}
-      ## ----------------------------------
-      ## Huawei Solar PEES - Energy Sensors
-      - name: "Energy Yield Total (ts)"
-        unique_id: energy_yield_total_ts
-        unit_of_measurement: kWh
-        device_class: energy
-        state_class: total_increasing
-        state: >
-          {{ states('sensor.energy_yield_1') | float +
-          states('sensor.energy_yield_2') | float }}
-        availability: >
-          {{ has_value('sensor.energy_yield_1') and
-          has_value('sensor.energy_yield_2') }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
@@ -323,26 +310,6 @@ template:
           {{ states('sensor.house_load_cost') | float | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost') }}
-      - name: "Economy - Result w PV (ts)"
-        unique_id: economy_result_w_pv_ts
-        unit_of_measurement: DKK
-        state_class: total
-        state: >
-          {% if this.attributes.last is defined %}
-            {{ ( 
-            states('sensor.import_cost') | float -
-            states('sensor.export_income') | float
-            ) | round(5) }}
-          {% else %}
-            {{ lastlast }}
-          {% endif %}
-        attributes:
-          last: >
-            {% if this.attributes.last is defined %}
-              {% set lastlast = this.attributes.last | float(0) %}
-            {% else %}
-              {% set lastlast = 0 %}
-            {% endif %}
       - name: "Economy - Expenses w PV (ts)"
         unique_id: economy_expenses_w_pv_ts
         unit_of_measurement: DKK
@@ -359,16 +326,53 @@ template:
           {{ states('sensor.export_income') | float | round(5) }}
         availability: >
           {{ has_value('sensor.export_income') }}
-      - name: "Economy - NRI PV (ts)"
-        unique_id: economy_nri_pv_ts
+  # ------------------------
+  # TEMPLATE TRIGGER SENSORS
+  # ------------------------
+  ## ----------------------------------
+  ## Huawei Solar PEES - Energy Sensors
+    - trigger:
+      - platform: state
+        entity_id:
+          - sensor.energy_yield_1
+          - sensor.energy_yield_2
+    sensor:
+      - name: "Energy Yield Total (tt)"
+        unique_id: energy_yield_total_tt
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {% if this.attributes.last is defined %}
+            {{ states('sensor.energy_yield_1') | float(0) +
+            states('sensor.energy_yield_2') | float(0) }}
+          {% else %}
+            {{ lastlast }}
+          {% endif %}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+  ## -----------------------------------
+  ## Huawei Solar PEES - Economy Sensors
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.import_cost
+          - sensor.export_income
+    sensor:
+      - name: "Economy - Result w PV (tt)"
+        unique_id: economy_result_w_pv_tt
         unit_of_measurement: DKK
         state_class: total
         state: >
           {% if this.attributes.last is defined %}
             {{ ( 
-            states('sensor.house_load_cost') | float -
-            states('sensor.import_cost') | float +
-            states('sensor.export_income') | float
+            states('sensor.import_cost') | float(0) -
+            states('sensor.export_income') | float(0)
             ) | round(5) }}
           {% else %}
             {{ lastlast }}
@@ -380,17 +384,53 @@ template:
             {% else %}
               {% set lastlast = 0 %}
             {% endif %}
-      - name: "Economy - NRI Battery (ts)"
-        unique_id: economy_nri_battery_ts
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.house_load_cost
+          - sensor.import_cost
+          - sensor.export_income
+    sensor:
+      - name: "Economy - NRI PV (tt)"
+        unique_id: economy_nri_pv_tt
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {% if this.attributes.last is defined %}
+            {{ ( 
+            states('sensor.house_load_cost') | float(0) -
+            states('sensor.import_cost') | float(0) +
+            states('sensor.export_income') | float(0)
+            ) | round(5) }}
+          {% else %}
+            {{ lastlast }}
+          {% endif %}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+  - trigger:
+      - platform: state
+        entity_id:
+          - sensor.battery_discharge_grid_sale
+          - sensor.battery_discharge_house_saving
+          - sensor.battery_charge_yield_sale
+          - sensor.battery_charge_grid_cost
+    sensor:
+      - name: "Economy - NRI Battery (tt)"
+        unique_id: economy_nri_battery_tt
         unit_of_measurement: DKK
         state_class: total
         state: >
           {% if this.attributes.last is defined %}
             {{ (
-            states('sensor.battery_discharge_grid_sale') | float +
-            states('sensor.battery_discharge_house_saving') | float -
-            states('sensor.battery_charge_yield_sale') | float -
-            states('sensor.battery_charge_grid_cost') | float
+            states('sensor.battery_discharge_grid_sale') | float(0) +
+            states('sensor.battery_discharge_house_saving') | float(0) -
+            states('sensor.battery_charge_yield_sale') | float(0) -
+            states('sensor.battery_charge_grid_cost') | float(0)
             ) | round(5) }}
           {% else %}
             {{ lastlast }}
@@ -402,11 +442,8 @@ template:
             {% else %}
               {% set lastlast = 0 %}
             {% endif %}
-  # ------------------------
-  # TEMPLATE TRIGGER SENSORS
-  # ------------------------
-  ## -----------------------------------
-  ## Huawei Solar PEES - Economy Sensors
+  ## -----------------------------------------
+  ## Huawei Solar PEES - Economy Delta Sensors
   - trigger:
       - platform: state
         entity_id:
@@ -780,7 +817,7 @@ utility_meter:
     name: "Energy Yield #2"
     unique_id: energy_yield_2
   energy_yield_total:
-    source: sensor.energy_yield_total_ts
+    source: sensor.energy_yield_total_tt
     name: "Energy Yield Total"
     unique_id: energy_yield_total
   ## ------------------------------------------
@@ -864,32 +901,32 @@ utility_meter:
     cycle: yearly
   ### Economy - Result with PV
   economy_result_w_pv:
-    source: sensor.economy_result_w_pv_ts
+    source: sensor.economy_result_w_pv_tt
     name: "Economy - Result w PV"
     unique_id: economy_result_w_pv
     net_consumption: true
   hourly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv_ts
+    source: sensor.economy_result_w_pv_tt
     name: "Hourly Economy - Result w PV"
     cycle: hourly
     net_consumption: true
   daily_economy_result_w_pv:
-    source: sensor.economy_result_w_pv_ts
+    source: sensor.economy_result_w_pv_tt
     name: "Daily Economy - Result w PV"
     cycle: daily
     net_consumption: true
   monthly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv_ts
+    source: sensor.economy_result_w_pv_tt
     name: "Monthly Economy - Result w PV"
     cycle: monthly
     net_consumption: true
   quarterly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv_ts
+    source: sensor.economy_result_w_pv_tt
     name: "Quarterly Economy - Result w PV"
     cycle: quarterly
     net_consumption: true
   yearly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv_ts
+    source: sensor.economy_result_w_pv_tt
     name: "Yearly Economy - Result w PV"
     cycle: yearly
     net_consumption: true
@@ -945,63 +982,63 @@ utility_meter:
     cycle: yearly
   ### Economy - Net Return on Investment PV
   economy_nri_pv:
-    source: sensor.economy_nri_pv_ts
+    source: sensor.economy_nri_pv_tt
     name: "Economy - NRI PV"
     unique_id: economy_nri_pv
     net_consumption: true
   hourly_economy_nri_pv:
-    source: sensor.economy_nri_pv_ts
+    source: sensor.economy_nri_pv_tt
     name: "Hourly Economy - NRI PV"
     cycle: hourly
     net_consumption: true
   daily_economy_nri_pv:
-    source: sensor.economy_nri_pv_ts
+    source: sensor.economy_nri_pv_tt
     name: "Daily Economy - NRI PV"
     cycle: daily
     net_consumption: true
   monthly_economy_nri_pv:
-    source: sensor.economy_nri_pv_ts
+    source: sensor.economy_nri_pv_tt
     name: "Monthly Economy - NRI PV"
     cycle: monthly
     net_consumption: true
   quarterly_economy_nri_pv:
-    source: sensor.economy_nri_pv_ts
+    source: sensor.economy_nri_pv_tt
     name: "Quarterly Economy - NRI PV"
     cycle: quarterly
     net_consumption: true
   yearly_economy_nri_pv:
-    source: sensor.economy_nri_pv_ts
+    source: sensor.economy_nri_pv_tt
     name: "Yearly Economy - NRI PV"
     cycle: yearly
     net_consumption: true
   ### Economy - Net Return on Investment Battery
-  economy_nri_battery:
-    source: sensor.economy_nri_battery_ts
+  economy_nri_battert:
+    source: sensor.economy_nri_battery_tt
     name: "Economy - NRI Battery"
     unique_id: economy_nri_battery
     net_consumption: true
-  hourly_economy_nri_battery:
-    source: sensor.economy_nri_battery_ts
+  hourly_economy_nri_battert:
+    source: sensor.economy_nri_battery_tt
     name: "Hourly Economy - NRI Battery"
     cycle: hourly
     net_consumption: true
-  daily_economy_nri_battery:
-    source: sensor.economy_nri_battery_ts
+  daily_economy_nri_battert:
+    source: sensor.economy_nri_battery_tt
     name: "Daily Economy - NRI Battery"
     cycle: daily
     net_consumption: true
-  monthly_economy_nri_battery:
-    source: sensor.economy_nri_battery_ts
+  monthly_economy_nri_battert:
+    source: sensor.economy_nri_battery_tt
     name: "Monthly Economy - NRI Battery"
     cycle: monthly
     net_consumption: true
-  quarterly_economy_nri_battery:
-    source: sensor.economy_nri_battery_ts
+  quarterly_economy_nri_battert:
+    source: sensor.economy_nri_battery_tt
     name: "Quarterly Economy - NRI Battery"
     cycle: quarterly
     net_consumption: true
-  yearly_economy_nri_battery:
-    source: sensor.economy_nri_battery_ts
+  yearly_economy_nri_battert:
+    source: sensor.economy_nri_battery_tt
     name: "Yearly Economy - NRI Battery"
     cycle: yearly
     net_consumption: true
@@ -1484,23 +1521,23 @@ utility_meter:
   ### Yield Total
   #### Energy
   hourly_yield_total_energy:
-    source: sensor.energy_yield_total_ts
+    source: sensor.energy_yield_total_tt
     name: "Hourly Yield Total - Energy"
     cycle: hourly
   daily_yield_total_energy:
-    source: sensor.energy_yield_total_ts
+    source: sensor.energy_yield_total_tt
     name: "Daily Yield Total - Energy"
     cycle: daily
   monthly_yield_total_energy:
-    source: sensor.energy_yield_total_ts
+    source: sensor.energy_yield_total_tt
     name: "Monthly Yield Total - Energy"
     cycle: monthly
   quarterly_yield_total_energy:
-    source: sensor.energy_yield_total_ts
+    source: sensor.energy_yield_total_tt
     name: "Quarterly Yield Total - Energy"
     cycle: quarterly
   yearly_yield_total_energy:
-    source: sensor.energy_yield_total_ts
+    source: sensor.energy_yield_total_tt
     name: "Yearly Yield Total - Energy"
     cycle: yearly
   ### Yield #1
