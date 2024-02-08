@@ -34,7 +34,7 @@ You also need an editor in Home Assistant to be able to edit your configuration.
 
 Please note that the *"Huawei Solar PEES package"* is not an integration, it is a set of custom sensors I share. Please also note the number of custom sensors provided.
 
-> :exclamation: **It is good practise always to create a full backup before you start!**
+> :exclamation: **It is good practise always to create a full backup before you start** :exclamation:
 
 ## 2. Flow and Definitions
 
@@ -42,7 +42,7 @@ The diagram below shows the definitions used for the power- and energy flows bet
 
 ![Definitions and Flows](pictures/flows_definitions.jpg)
 
-> :bulb: **In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the *"Huawei Solar PEES package"*.** 
+> :bulb: ***In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the *"Huawei Solar PEES package".*** 
 
 ## 3. Installation
 The custom sensors included in the *"Huawei Solar PEES package"* are available for download as a single file, a "package". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
@@ -58,7 +58,7 @@ home assistant:
 * Create a directory/folder named `packages` in the `CONFIG` directory/folder (the main directory/folder).
 * Copy the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) into your `packages` directory/folder.
 
-> :bulb: That is it. That is all the "installation" you need to do. Next you will have too setup your sensors.
+> :bulb: *That is it. That is all the "installation" you need to do. Next you will have too setup your sensors.*
 
 If you wish, you may alternatively download package file including the latest Release Note and supplemental documents like this README from the [Releases Page](https://github.com/JensenNick/huawei_solar_pees/releases), where you will also find previous releases.
 
@@ -102,13 +102,13 @@ If you use the *"Energi Data Service integration by MTrab"*, please refer to the
 Finally you may need to correct the currency to your local currency. The currency used in the provided custom sensors is DKK (Danish Krone) and this is the price pr. kWh.
 
 #### Restart
-> :exclamation: **That's it! Restart Home Assistant and refresh your browser! Log in to Home Assistant again!** 
+> :exclamation: **That's it! Restart Home Assistant and refresh your browser! Log in to Home Assistant again** :exclamation:
 
 Since the *"Huawei Solar PEES package"* includes platform sensors, "Restart Home Assistant" litrally means "Restart Home Assistant" (not "Quick Reload") and refresh browser is done with your browser refresh button or by pressing F5 on Windows / Cmd+Shift+R on Mac.
 
 > :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show.*
 
-> :exclamation: **Please note the chapter [Known "bugs"](#4-known-bugs) below**
+> :exclamation: **Please note the chapter [Known "bugs"](#4-known-bugs) below** :exclamation:
 
 ### 3.3 Optional
 #### Efficiency Corrected Inverter Power Input Sensor
