@@ -1,1 +1,251 @@
-
+# -------------------------
+# HUAWEI SOLAR PEES - Input
+# -------------------------
+# version: v1.0.0-alpha-001
+# branch: v2.0.0-alpha-004
+# domain: https://github.com/JensenNick/huawei_solar_pees
+# codeowner: Nick Jensen
+#
+# This is the optional "Huawei Solar PEES Input package" and is used to save your
+# specific solar PV settings for the efficiency corrected power input sensor. This
+# package can only be used along with the "Huawei Solar PEES package" and the code
+# for the Lovelace card. The package allow you to save your specific solar PV settings
+# between updates of the "Huawei Solar PEES package".
+#
+# You add your specific solar PV settings for the efficiency corrected input power
+# sensor in the Lovelace card. The efficiency corrected input power
+# sensor has been implemented in the "Huawei Solar PEES package" (no need to copy it 
+# from the Wiki Pages).
+#
+# You should only make changes in the Lovelace card, not in the code below. Advanced
+# users can adjust the input_numbers, min, max and step to their liking, but be aware
+# of the impact that these input numbers have. Please refer to the Wiki Pages
+#
+# You still need to edit your input sensors in the huawei_solar_pees.yaml file if your
+# input sensors do not match the ones used by default.
+#
+# -----------
+# AUTOMATIONS
+# -----------
+automation:
+  ## ------------------------------
+  ## Switch Inverter Between Phases
+  - alias: "Switch Inverter #1 to 1phase"
+    trigger:
+      platform: state
+      entity_id: input_boolean.inverter_1_1phase
+      to: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.inverter_1_3phase
+    mode: single
+  - alias: "Switch Inverter #1 to 3 Phase"
+    trigger:
+      platform: state
+      entity_id: input_boolean.inverter_1_3phase
+      to: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.inverter_1_1phase
+  - alias: "Switch Inverter #2 to 1phase"
+    trigger:
+      platform: state
+      entity_id: input_boolean.inverter_2_1phase
+      to: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase
+    mode: single
+  - alias: "Switch Inverter #2 to 3 Phase"
+    trigger:
+      platform: state
+      entity_id: input_boolean.inverter_2_3phase
+      to: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_1phase
+# -------------
+# INPUT BOOLEAN
+# -------------
+input_boolean:
+  inverter_1_1phase:
+    name: "Inverter #1 1phase"
+  inverter_1_3phase:
+    name: "Inverter #1 3phase"
+  inverter_2_1phase:
+    name: "Inverter #2 1phase"
+  inverter_2_3phase:
+    name: "Inverter #2 3phase"
+# ------------
+# INPUT NUMBER
+# ------------
+input_number:
+  ## --------------------
+  ## Inverter #1 Settings
+  inverter_1_operating_voltage_l1:
+    name: "Inverter #1 Operating Voltage L1"
+    min: 90
+    max: 560
+    step: 5
+  inverter_1_operating_voltage_m1:
+    name: "Inverter #1 Operating Voltage M1"
+    min: 140
+    max: 980
+    step: 5
+  inverter_1_overall_factor:
+    name: "Inverter #1 Overall Factor"
+    min: 98
+    max: 102
+    step: 0.2
+  ## --------------------
+  ## Inverter #2 Settings
+  inverter_2_operating_voltage_l1:
+    name: "Inverter #2 Operating Voltage L1"
+    min: 90
+    max: 560
+    step: 5
+  inverter_2_operating_voltage_m1:
+    name: "Inverter #2 Operating Voltage M1"
+    min: 140
+    max: 980
+    step: 5
+  inverter_2_overall_factor:
+    name: "Inverter #2 Overall Factor"
+    min: 98
+    max: 102
+    step: 0.2
+# ------------
+# INPUT SELECT
+# ------------
+input_select:
+  # -----------------
+  # Inverter #1 Setup
+  inverter_1_phases:
+    name: "Inverter #1 Phases"
+    options:
+      - Select
+      - 1 Phase
+      - 3 Phase
+  inverter_1_1phase_models:
+    name: "Inverter #1 1phase Models"
+    options:
+      - Select
+      - SUN2000 2 KTL-L1
+      - SUN2000 3 KTL-L1
+      - SUN2000 3.68 KTL-L1
+      - SUN2000 4 KTL-L1
+      - SUN2000 4.6 KTL-L1
+      - SUN2000 5 KTL-L1
+      - SUN2000 6 KTL-L1
+  inverter_1_3phase_models:
+    name: "Inverter #1 3phase Models"
+    options:
+      - Select
+      - SUN2000 3 KTL-M1
+      - SUN2000 4 KTL-M1
+      - SUN2000 5 KTL-M1
+      - SUN2000 6 KTL-M1
+      - SUN2000 8 KTL-M1
+      - SUN2000 10 KTL-M1
+  # -----------------
+  # Inverter #2 Setup
+  inverter_2_phases:
+    name: "Inverter #2 Phases"
+    options:
+      - Select
+      - 1 Phase
+      - 3 Phase
+  inverter_2_1phase_models:
+    name: "Inverter #2 1phase Models"
+    options:
+      - Select
+      - SUN2000 2 KTL-L1
+      - SUN2000 3 KTL-L1
+      - SUN2000 3.68 KTL-L1
+      - SUN2000 4 KTL-L1
+      - SUN2000 4.6 KTL-L1
+      - SUN2000 5 KTL-L1
+      - SUN2000 6 KTL-L1
+  inverter_2_3phase_models:
+    name: "Inverter #2 3phase Models"
+    options:
+      - Select
+      - SUN2000 3 KTL-M1
+      - SUN2000 4 KTL-M1
+      - SUN2000 5 KTL-M1
+      - SUN2000 6 KTL-M1
+      - SUN2000 8 KTL-M1
+      - SUN2000 10 KTL-M1
+# ----------
+# INPUT TEXT
+# ----------
+input_text:
+  ## ------------------
+  ## Electricity Prices
+  electricity_price_import:
+    name: "Electricity Price Import"
+  electricity_price_export:
+    name: "Electricity Price Export"
+# ----------------
+# TEMPLATE TRIGGER
+# ----------------
+template:
+  - sensor:
+      - name: "Inverter #1 Rated Power"
+        unique_id: inverter_1_rated_power
+        unit_of_measurement: W
+        state: >
+          {% if states('input_select_inverter_1_1phase_models') == 'SUN2000 2 KTL-L1' %}
+            {{ 2000 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 3 KTL-L1' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 3 KTL-M1' %}
+            {{ 3000 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 3.68 KTL-L1' %}
+            {{ 3680 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 4 KTL-L1' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 4 KTL-M1' %}
+            {{ 4000 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 4.6 KTL-L1' %}
+            {{ 4600 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 5 KTL-L1' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 5 KTL-M1' %}
+            {{ 5000 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 6 KTL-L1' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 6 KTL-M1' %}
+            {{ 6000 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 8 KTL-M1' %}
+            {{ 8000 }}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 10 KTL-M1' %}
+            {{ 10000 }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "Inverter #2 Rated Power"
+        unique_id: inverter_2_rated_power
+        unit_of_measurement: W
+        state: >
+          {% if states('input_select_inverter_2_1phase_models') == 'SUN2000 2 KTL-L1' %}
+            {{ 2000 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3 KTL-L1' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 3 KTL-M1' %}
+            {{ 3000 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3.68 KTL-L1' %}
+            {{ 3680 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4 KTL-L1' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 4 KTL-M1' %}
+            {{ 4000 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4.6 KTL-L1' %}
+            {{ 4600 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 5 KTL-L1' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 5 KTL-M1' %}
+            {{ 5000 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 6 KTL-L1' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 6 KTL-M1' %}
+            {{ 6000 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 8 KTL-M1' %}
+            {{ 8000 }}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 10 KTL-M1' %}
+            {{ 10000 }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
