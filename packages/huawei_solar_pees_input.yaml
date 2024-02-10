@@ -183,27 +183,40 @@ template:
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
         state: >
-          {% if states('input_select_inverter_1_1phase_models') == 'SUN2000 2 KTL-L1' %}
+          {% if states('input_select_inverter_1_1phase_models') == 'SUN2000 2 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' %}
             {{ 2000 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 3 KTL-L1' or
-          states('input_select_inverter_1_3phase_models') == 'SUN2000 3 KTL-M1' %}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 3 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 3 KTL-M1' and
+          states('input_boolean.inverter_1_3phase') == 'on' %}
             {{ 3000 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 3.68 KTL-L1' %}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 3.68 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' %}
             {{ 3680 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 4 KTL-L1' or
-          states('input_select_inverter_1_3phase_models') == 'SUN2000 4 KTL-M1' %}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 4 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 4 KTL-M1' and
+          states('input_boolean.inverter_1_3phase') == 'on' %}
             {{ 4000 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 4.6 KTL-L1' %}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 4.6 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' %}
             {{ 4600 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 5 KTL-L1' or
-          states('input_select_inverter_1_3phase_models') == 'SUN2000 5 KTL-M1' %}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 5 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 5 KTL-M1' and
+          states('input_boolean.inverter_1_3phase') == 'on' %}
             {{ 5000 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 6 KTL-L1' or
-          states('input_select_inverter_1_3phase_models') == 'SUN2000 6 KTL-M1' %}
+          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 6 KTL-L1' and
+          states('input_boolean.inverter_1_1phase') == 'on' or
+          states('input_select_inverter_1_3phase_models') == 'SUN2000 6 KTL-M1' and
+          states('input_boolean.inverter_1_3phase') == 'on' %}
             {{ 6000 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 8 KTL-M1' %}
+          {% elif states('input_select_inverter_1_3phase_models') == 'SUN2000 8 KTL-M1' and
+          states('input_boolean.inverter_1_3phase') == 'on' %}
             {{ 8000 }}
-          {% elif states('input_select_inverter_1_1phase_models') == 'SUN2000 10 KTL-M1' %}
+          {% elif states('input_select_inverter_1_3phase_models') == 'SUN2000 10 KTL-M1' and
+          states('input_boolean.inverter_1_3phase') == 'on' %}
             {{ 10000 }}
           {% else %}
             {{ 0 }}
@@ -212,27 +225,40 @@ template:
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
         state: >
-          {% if states('input_select_inverter_2_1phase_models') == 'SUN2000 2 KTL-L1' %}
+          {% if states('input_select_inverter_2_1phase_models') == 'SUN2000 2 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' %}
             {{ 2000 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3 KTL-L1' or
-          states('input_select_inverter_2_3phase_models') == 'SUN2000 3 KTL-M1' %}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 3 KTL-M1' and
+          states('input_boolean.inverter_2_3phase') == 'on' %}
             {{ 3000 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3.68 KTL-L1' %}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3.68 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' %}
             {{ 3680 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4 KTL-L1' or
-          states('input_select_inverter_2_3phase_models') == 'SUN2000 4 KTL-M1' %}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 4 KTL-M1' and
+          states('input_boolean.inverter_2_3phase') == 'on' %}
             {{ 4000 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4.6 KTL-L1' %}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4.6 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' %}
             {{ 4600 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 5 KTL-L1' or
-          states('input_select_inverter_2_3phase_models') == 'SUN2000 5 KTL-M1' %}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 5 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 5 KTL-M1' and
+          states('input_boolean.inverter_2_3phase') == 'on' %}
             {{ 5000 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 6 KTL-L1' or
-          states('input_select_inverter_2_3phase_models') == 'SUN2000 6 KTL-M1' %}
+          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 6 KTL-L1' and
+          states('input_boolean.inverter_2_1phase') == 'on' or
+          states('input_select_inverter_2_3phase_models') == 'SUN2000 6 KTL-M1' and
+          states('input_boolean.inverter_2_3phase') == 'on' %}
             {{ 6000 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 8 KTL-M1' %}
+          {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 8 KTL-M1' and
+          states('input_boolean.inverter_2_3phase') == 'on' %}
             {{ 8000 }}
-          {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 10 KTL-M1' %}
+          {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 10 KTL-M1' and
+          states('input_boolean.inverter_2_3phase') == 'on' %}
             {{ 10000 }}
           {% else %}
             {{ 0 }}
