@@ -1,7 +1,7 @@
 # -------------------------
 # HUAWEI SOLAR PEES - Input
 # -------------------------
-# version: v1.0.1
+# version: v1.0.0
 # branch: alpha-004
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -174,9 +174,9 @@ input_text:
     name: "Electricity Price Import"
   electricity_price_export:
     name: "Electricity Price Export"
-# ----------------
-# TEMPLATE TRIGGER
-# ----------------
+# ---------------
+# TEMPLATE SENSOR
+# ---------------
 template:
   - sensor:
       - name: "Inverter #1 Rated Power"
@@ -221,6 +221,7 @@ template:
           {% else %}
             {{ 0 }}
           {% endif %}
+  - sensor:
       - name: "Inverter #2 Rated Power"
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
