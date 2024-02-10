@@ -165,9 +165,9 @@ template:
           {% if states('input_boolean.inverter_1_1phase') == 'on' and
           states('input_boolean.inverter_1_3phase') == 'off' %}
             {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_1_rated_power') | float(0) / 100 %}
+            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_1_operating_voltage_l1') | float(0) %}
-            {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
+            {% set input_power = states('sensor.inverter_input_power') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
             {% set efficiency = ( 98.25 / (1 + 0.11 * e**(-0.18 * load_factor))) | float(0) %}
             {% if operating_voltage < 360 %}
@@ -187,7 +187,7 @@ template:
           {% elif states('input_boolean.inverter_1_1phase') == 'off' and
           states('input_boolean.inverter_1_3phase') == 'on' %}
             {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_1_rated_power') | float(0) / 100 %}
+            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_1_operating_voltage_m1') | float(0) %}
             {% set input_power = states('sensor.inverter_input_power') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
@@ -220,7 +220,7 @@ template:
           {% if states('input_boolean.inverter_2_1phase') == 'on' and
           states('input_boolean.inverter_2_3phase') == 'off' %}
             {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_2_rated_power') | float(0) / 100 %}
+            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_l1') | float(0) %}
             {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
@@ -242,9 +242,9 @@ template:
           {% elif states('input_boolean.inverter_2_1phase') == 'off' and
           states('input_boolean.inverter_2_3phase') == 'on' %}
             {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_2_rated_power') | float(0) / 100 %}
+            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_m1') | float(0) %}
-            {% set input_power = states('sensor.inverter_input_power') | float(0) %}
+            {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
             {% set efficiency = (98.5 / (1 + 0.082 * e**(-0.145 * load_factor))) | float(0) %}
             {% if operating_voltage < 600 %}
