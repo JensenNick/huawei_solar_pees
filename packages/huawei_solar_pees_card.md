@@ -44,9 +44,9 @@ cards:
   - type: entities
     entities:
       - entity: input_boolean.inverter_2_1phase
-        name: 'Inverter #1 SUN2000 # KTL-L1 (1 phase)'
+        name: 'Inverter #2 SUN2000 # KTL-L1 (1 phase)'
       - entity: input_boolean.inverter_2_3phase
-        name: 'Inverter #1 SUN2000 # KTL-M1 (3 phase)'
+        name: 'Inverter #2 SUN2000 # KTL-M1 (3 phase)'
     title: 'Inverter #2'
     show_header_toggle: false
   - type: conditional
