@@ -120,12 +120,6 @@ input_number:
 input_select:
   # -----------------
   # Inverter #1 Setup
-  inverter_1_phases:
-    name: "Inverter #1 Phases"
-    options:
-      - Select
-      - 1 Phase
-      - 3 Phase
   inverter_1_1phase_models:
     name: "Inverter #1 1phase Models"
     options:
@@ -149,12 +143,6 @@ input_select:
       - SUN2000 10 KTL-M1
   # -----------------
   # Inverter #2 Setup
-  inverter_2_phases:
-    name: "Inverter #2 Phases"
-    options:
-      - Select
-      - 1 Phase
-      - 3 Phase
   inverter_2_1phase_models:
     name: "Inverter #2 1phase Models"
     options:
