@@ -1,3 +1,4 @@
+```yaml
 {{ states('input_boolean.inverter_1_1phase') }}
 {{ states('input_boolean.inverter_1_3phase') }}
 {{ states('input_boolean.inverter_2_1phase') }}
@@ -18,3 +19,4 @@
 {{ states('sensor.inverter_2_rated_power') }}
 {{ states('input_number.inverter_1_rated_power') }}
 {{ states('input_number.inverter_1_rated_power') }}
+```
