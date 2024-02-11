@@ -24,6 +24,49 @@
 # - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
 # - 'sensor.energi_data_service_sale' (price pr. kWh you receive for sale/export)
 #
+##################################################################################################
+# REMEMBER TO INSERT YOUR IMPORT/EXPORT PRICE SENSORS HERE, IF DIFERENT FROM energi_data_service #
+##################################################################################################
+automation:
+  # IMPORT PRICE SENSOR FOR PEES
+  - id: '1707675434179'
+    alias: PEES Update Import Price Sensor
+    description: Update Import Price Sensor for PEES input_number.import_price_sensor
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.energi_data_service # Update with your import price sensor
+      - platform: homeassistant
+        event: start
+    condition: []
+    action:
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.import_price_sensor
+        data:
+          value: "{{ states('sensor.energi_data_service') }}" # Update with your import price sensor
+    mode: single
+
+  # EXPORT PRICE SENSOR FOR PEES
+  - id: '1707675434279'
+    alias: PEES Update Export Price Sensor
+    description: Update Export Price Sensor for PEES input_number.export_price_sensor
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.energi_data_service_sale  # Update with your export price sensor
+      - platform: homeassistant
+        event: start
+    condition: []
+    action:
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.export_price_sensor
+        data:
+          value: "{{ states('sensor.energi_data_service_sale') }}" # Update with your export price sensor
+    mode: single
+##################################################################################################
+#
 # The currency used in these sensors is DKK by default.
 #
 # Restart Home Assistant and refresh your browser.
@@ -32,6 +75,27 @@
 # "install" the "Huawei Solar PEES Input" file and the Lovelace card in order to 
 # be able to save your specific solar PV settings.
 #
+# ------------
+# input_number
+# ------------
+input_number:
+# IMPORT PRICE SENSOR FOR PEES set by automation PEES Update Import Price Sensor
+  import_price_sensor:
+    name: import_price_sensor
+    icon: mdi:cash-minus
+    unit_of_measurement: "DDK"
+    min: -100
+    max: 100
+    step: 0.1
+    mode: box
+# EXPORT PRICE SENSOR FOR PEES set by automation PEES Update Export Price Sensor
+  export_price_sensor:
+    name: export_price_sensor
+    icon: mdi:cash-plus
+    unit_of_measurement: "DDK"
+    min: -100
+    max: 100
+    step: 0.1
 # -------
 # SENSORS
 # -------
@@ -498,7 +562,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('input_number.import_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -529,7 +593,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('input_number.export_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -560,7 +624,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('input_number.import_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_house_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -591,7 +655,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('input_number.export_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -622,7 +686,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('input_number.export_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_export_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -653,7 +717,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('input_number.import_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_import_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -684,7 +748,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('input_number.import_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_house_load_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -715,7 +779,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('input_number.import_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_house_load_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -746,7 +810,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('input_number.import_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_house_load_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -777,7 +841,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('input_number.export_price_sensor') | float(0) %}
           {% set meter = states('sensor.energy_export_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
