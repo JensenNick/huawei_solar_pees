@@ -231,33 +231,33 @@ template:
         unit_of_measurement: W
         state: >
           {% if states('input_boolean.inverter_2_1phase') == 'on' %}
-            {% if states('input_select_inverter_2_1phase_models') == 'SUN2000 2 KTL-L1' %}
+            {% if states('input_select.inverter_2_1phase_models') == 'SUN2000 2 KTL-L1' %}
               {{ 2000 }}
-            {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3 KTL-L1' %}
+            {% elif states('input_select.inverter_2_1phase_models') == 'SUN2000 3 KTL-L1' %}
               {{ 3000 }}
-            {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 3.68 KTL-L1' %}
+            {% elif states('input_select.inverter_2_1phase_models') == 'SUN2000 3.68 KTL-L1' %}
               {{ 3680 }}
-            {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4 KTL-L1' %}
+            {% elif states('input_select.inverter_2_1phase_models') == 'SUN2000 4 KTL-L1' %}
               {{ 4000 }}
-            {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 4.6 KTL-L1' %}
+            {% elif states('input_select.inverter_2_1phase_models') == 'SUN2000 4.6 KTL-L1' %}
               {{ 4600 }}
-            {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 5 KTL-L1' %}
+            {% elif states('input_select.inverter_2_1phase_models') == 'SUN2000 5 KTL-L1' %}
               {{ 5000 }}
-            {% elif states('input_select_inverter_2_1phase_models') == 'SUN2000 6 KTL-L1' %}
+            {% elif states('input_select.inverter_2_1phase_models') == 'SUN2000 6 KTL-L1' %}
               {{ 6000 }}
             {% endif %}
           {% elif states('input_boolean.inverter_2_3phase') == 'on' %}
-            {% if states('input_select_inverter_2_3phase_models') == 'SUN2000 3 KTL-M1' %}
+            {% if states('input_select.inverter_2_3phase_models') == 'SUN2000 3 KTL-M1' %}
               {{ 3000 }}
-            {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 4 KTL-M1' %}
+            {% elif states('input_select.inverter_2_3phase_models') == 'SUN2000 4 KTL-M1' %}
               {{ 4000 }}
-            {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 5 KTL-M1' %}
+            {% elif states('input_select.inverter_2_3phase_models') == 'SUN2000 5 KTL-M1' %}
               {{ 5000 }}
-            {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 6 KTL-M1' %}
+            {% elif states('input_select.inverter_2_3phase_models') == 'SUN2000 6 KTL-M1' %}
               {{ 6000 }}
-            {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 8 KTL-M1' %}
+            {% elif states('input_select.inverter_2_3phase_models') == 'SUN2000 8 KTL-M1' %}
               {{ 8000 }}
-            {% elif states('input_select_inverter_2_3phase_models') == 'SUN2000 10 KTL-M1' %}
+            {% elif states('input_select.inverter_2_3phase_models') == 'SUN2000 10 KTL-M1' %}
               {{ 10000 }}
             {% endif %}
           {% else %}
@@ -276,33 +276,33 @@ template:
         unit_of_measurement: W
         state: >
           {% if is_state('input_boolean.inverter_2_1phase','on') %}
-            {% if is_state('input_select_inverter_2_1phase_models','SUN2000 2 KTL-L1') %}
+            {% if is_state('input_select.inverter_2_1phase_models','SUN2000 2 KTL-L1') %}
               {{ 2000 }}
-            {% elif is_state('input_select_inverter_2_1phase_models','SUN2000 3 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 3 KTL-L1') %}
               {{ 3000 }}
-            {% elif is_state('input_select_inverter_2_1phase_models','SUN2000 3.68 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 3.68 KTL-L1') %}
               {{ 3680 }}
-            {% elif is_state('input_select_inverter_2_1phase_models','SUN2000 4 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 4 KTL-L1') %}
               {{ 4000 }}
-            {% elif is_state('input_select_inverter_2_1phase_models','SUN2000 4.6 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 4.6 KTL-L1') %}
               {{ 4600 }}
-            {% elif is_state('input_select_inverter_2_1phase_models','SUN2000 5 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 5 KTL-L1') %}
               {{ 5000 }}
-            {% elif is_state('input_select_inverter_2_1phase_models','SUN2000 6 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 6 KTL-L1') %}
               {{ 6000 }}
             {% endif %}
           {% elif is_state('input_boolean.inverter_2_3phase','on') %}
-            {% if is_state('input_select_inverter_2_3phase_models','SUN2000 3 KTL-M1') %}
+            {% if is_state('input_select.inverter_2_3phase_models','SUN2000 3 KTL-M1') %}
               {{ 3000 }}
-            {% elif is_state('input_select_inverter_2_3phase_models','SUN2000 4 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 4 KTL-M1') %}
               {{ 4000 }}
-            {% elif is_state('input_select_inverter_2_3phase_models','SUN2000 5 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 5 KTL-M1') %}
               {{ 5000 }}
-            {% elif is_state('input_select_inverter_2_3phase_models','SUN2000 6 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 6 KTL-M1') %}
               {{ 6000 }}
-            {% elif is_state('input_select_inverter_2_3phase_models','SUN2000 8 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 8 KTL-M1') %}
               {{ 8000 }}
-            {% elif is_state('input_select_inverter_2_3phase_models','SUN2000 10 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 10 KTL-M1') %}
               {{ 10000 }}
             {% endif %}
           {% else %}
