@@ -180,6 +180,8 @@ input_text:
 # ---------------
 # TEMPLATE SENSOR
 # ---------------
+template:
+  - sensor:
       ## --------------------
       ## Inverter Rated Power
       - name: "Inverter #1 Rated Power"
