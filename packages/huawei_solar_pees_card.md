@@ -1,4 +1,3 @@
-```yaml
 type: vertical-stack
 cards:
   - type: entities
@@ -81,4 +80,8 @@ cards:
           name: Operating voltage (600V)
         - entity: input_number.inverter_2_overall_factor
           name: Overall factor (100%)
-```
+  - type: entities
+    entities:
+      - entity: input_text.electricity_price_import
+      - entity: input_text.electricity_price_export
+    title: Electricity Price
