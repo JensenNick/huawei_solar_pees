@@ -172,9 +172,9 @@ input_text:
   ## ------------------
   ## Electricity Prices
   electricity_price_import:
-    name: "Electricity Price Import"
+    name: "Electricity Price Import (Energi Data Service by Default)"
   electricity_price_export:
-    name: "Electricity Price Export"
+    name: "Electricity Price Export (Energi Data Service - Sale by Default)"
 # ----------------
 # TEMPLATE TRIGGER
 # ----------------
