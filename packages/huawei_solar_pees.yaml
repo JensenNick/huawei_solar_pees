@@ -21,8 +21,6 @@
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
-# - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
-# - 'sensor.energi_data_service_sale' (price pr. kWh you receive for sale/export)
 #
 # The currency used in these sensors is DKK by default.
 #
@@ -155,6 +153,28 @@ sensor:
 # ----------------
 template:
   - sensor:
+      ## ------------------
+      ## Electricity Prices
+      - name: "Electricity Price Import (ts)"
+        unique_id: electricity_price_import_ts
+        unit_of_measurement: DKK
+        state_class: measurement
+        state: >
+          {% if not is_state('input_text.electricity_price_import', '') %}
+            {{ states ( states('input_text.electricity_price_import')) | float(0)}}
+          {% else %}
+            {{ states('electricity_price_import_ts') | float(0) }}
+          {% endif %}
+      - name: "Electricity Price Export (ts)"
+        unique_id: electricity_price_export_ts
+        unit_of_measurement: DKK
+        state_class: measurement
+        state: >
+          {% if not is_state('input_text.electricity_price_export', '') %}
+            {{ states ( states('input_text.electricity_price_export')) | float(0)}}
+          {% else %}
+            {{ states('sensor.energi_data_service_salg') | float(0) }}
+          {% endif %}
       ## ---------------------------------
       ## Huawei Solar PEES - Power Sensors
       - name: "Power Inverter #1 Input"
@@ -498,7 +518,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -529,7 +549,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -560,7 +580,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_house_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -591,7 +611,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -622,7 +642,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_export_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -653,7 +673,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_import_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -684,7 +704,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -715,7 +735,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -746,7 +766,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -777,7 +797,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_export_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
