@@ -166,20 +166,24 @@ template:
         unit_of_measurement: DKK
         state_class: measurement
         state: >
-          {% if not is_state('input_text.electricity_price_import', '') %}
-            {{ states ( states('input_text.electricity_price_import')) | float(0)}}
-          {% else %}
+          {% if is_state('input_text.electricity_price_import', '') or
+          is_state('input_text.electricity_price_import', 'unavailable') or
+          is_state('input_text.electricity_price_import', 'unknown') %}
             {{ states('sensor.energi_data_service') | float(0) }}
+          {% else %}
+            {{ states ( states('input_text.electricity_price_import')) | float(0) }}
           {% endif %}
       - name: "Electricity Price Export (ts)"
         unique_id: electricity_price_export_ts
         unit_of_measurement: DKK
         state_class: measurement
         state: >
-          {% if not is_state('input_text.electricity_price_export', '') %}
-            {{ states ( states('input_text.electricity_price_export')) | float(0)}}
-          {% else %}
+          {% if is_state('input_text.electricity_price_export', '') or
+          is_state('input_text.electricity_price_export', 'unavailable') or
+          is_state('input_text.electricity_price_export', 'unknown') %}
             {{ states('sensor.energi_data_service_sale') | float(0) }}
+          {% else %}
+            {{ states ( states('input_text.electricity_price_export')) | float(0) }}
           {% endif %}
       ## ---------------------------------
       ## Huawei Solar PEES - Power Sensors
