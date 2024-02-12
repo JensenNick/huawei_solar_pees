@@ -171,8 +171,6 @@ input_select:
 input_text:
   ## ------------------
   ## Electricity Prices
-  currency:
-    name: "Currency (DKK by Default)"
   electricity_price_import:
     name: "Electricity Price Import (Energi Data Service by Default)"
   electricity_price_export:
