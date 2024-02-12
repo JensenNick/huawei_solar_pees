@@ -171,15 +171,17 @@ input_select:
 input_text:
   ## ------------------
   ## Electricity Prices
+  currency:
+    name: "Currency (DKK by Default)"
   electricity_price_import:
     name: "Electricity Price Import (Energi Data Service by Default)"
   electricity_price_export:
     name: "Electricity Price Export (Energi Data Service - Sale by Default)"
-# ----------------
-# TEMPLATE TRIGGER
-# ----------------
-template:
-  - sensor:
+# ---------------
+# TEMPLATE SENSOR
+# ---------------
+      ## --------------------
+      ## Inverter Rated Power
       - name: "Inverter #1 Rated Power"
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
@@ -217,7 +219,6 @@ template:
           {% else %}
             {{ 0 }}
           {% endif %}
-  - sensor:
       - name: "Inverter #2 Rated Power"
         unique_id: inverter_2_rated_power
         unit_of_measurement: W

@@ -85,3 +85,7 @@ cards:
       - entity: input_text.electricity_price_import
       - entity: input_text.electricity_price_export
     title: Electricity Price
+  - type: entities
+    entities:
+      - entity: input_text.currency
+    title: Currency
