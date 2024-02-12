@@ -327,6 +327,8 @@ template:
         state: >
           {% if has_value('sensor.house_load_cost') %}
             {{ states('sensor.house_load_cost') | float(0) | round(5) }}
+          {% else %}
+            {{ 0 }}
           {% endif %}
       - name: "Economy - Result w PV (ts)"
         unique_id: economy_result_w_pv_ts
@@ -338,11 +340,13 @@ template:
             states('sensor.import_cost') | float(0) -
             states('sensor.export_income') | float(0)
             ) | round(5) }}
-          {% else has_value('sensor.export_income') %}
+          {% elif has_value('sensor.export_income') %}
             {{ ( 
             states('sensor.import_cost') | float(0) -
             states('sensor.export_income') | float(0)
             ) | round(5) }}
+          {% else %}
+            {{ 0 }}
           {% endif %}
       - name: "Economy - Expenses w PV (ts)"
         unique_id: economy_expenses_w_pv_ts
@@ -351,6 +355,8 @@ template:
         state: >
           {% if has_value('sensor.import_cost') %}
             {{ states('sensor.import_cost') | float(0) | round(5) }}
+          {% else %}
+            {{ 0 }}
           {% endif %}
       - name: "Economy - Income w PV (ts)"
         unique_id: economy_income_w_pv_ts
@@ -359,6 +365,8 @@ template:
         state: >
           {% if has_value('sensor.export_income') %}
             {{ states('sensor.export_income') | float(0) | round(5) }}
+          {% else %}
+            {{ 0 }}
           {% endif %}
       - name: "Economy - NRI PV (ts)"
         unique_id: economy_nri_pv_ts
@@ -377,12 +385,14 @@ template:
             states('sensor.import_cost') | float(0) +
             states('sensor.export_income') | float(0)
             ) | round(5) }}
-          {% else has_value('sensor.export_income') %}
+          {% elif has_value('sensor.export_income') %}
             {{ ( 
             states('sensor.house_load_cost') | float(0) -
             states('sensor.import_cost') | float(0) +
             states('sensor.export_income') | float(0)
             ) | round(5) }}
+          {% else %}
+            {{ 0 }}
           {% endif %}
       - name: "Economy - NRI Battery (ts)"
         unique_id: economy_nri_battery_ts
@@ -410,13 +420,15 @@ template:
             states('sensor.battery_charge_yield_sale') | float(0) -
             states('sensor.battery_charge_grid_cost') | float(0)
             ) | round(5) }}
-          {% else has_value('sensor.battery_charge_grid_cost') %}
+          {% elif has_value('sensor.battery_charge_grid_cost') %}
             {{ (
             states('sensor.battery_discharge_grid_sale') | float(0) +
             states('sensor.battery_discharge_house_saving') | float(0) -
             states('sensor.battery_charge_yield_sale') | float(0) -
             states('sensor.battery_charge_grid_cost') | float(0)
             ) | round(5) }}
+          {% else %}
+            {{ 0 }}
           {% endif %}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
