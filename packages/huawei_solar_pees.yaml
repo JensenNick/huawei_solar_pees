@@ -22,17 +22,17 @@
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
 #
+# The "Huawei Solar PEES package" will use the electricity price sensors from the
+# "Energi Data Service integration" by MTrab as default. 
+#
 # If you wish to provide your own electricity price sensors and/or your own currency
 # and/or if you wish to use the provided efficiency corrected power input sensor,
 # I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace card.
 # This will make it possible for you to save your specific solar PV settings from 
 # between updates of the package.
 #
-# The "Huawei Solar PEES package" will use the electricity price sensors from the
-# "Energi Data Service integration" by MTrab as default. The currency used is DKK
-# by default.
-#
-# Do not make any other changes in this file (the package file). 
+# The currency used is DKK by default. If you use another currency you need to change
+# this in this file. I advice you not make any other changes to this file. 
 # 
 # Restart Home Assistant and refresh your browser.
 #
