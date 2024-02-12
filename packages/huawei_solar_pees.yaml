@@ -1,12 +1,13 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v1.0.0
-# branch: alpha-006
+# version: v1.0.1
+# branch: alpha-007
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
-# This is a complete package file with the sensors included in Huawei Solar PEES.
+# This is a complete package file with the sensors included in the "Huawei Solar
+# PEES package". For "installation" follow the steps below.
 # Create a root folder named "packages".
 # Import this file to the "packages-folder".
 # Ad the following lines to your configuration.yaml file (remove the hashtag "#"
@@ -20,12 +21,14 @@
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
-# - 'sensor.energi_data_service' (price pr. kWh you pay for purchase/import)
-# - 'sensor.energi_data_service_sale' (price pr. kWh you receive for sale/export)
 #
 # The currency used in these sensors is DKK by default.
 #
 # Restart Home Assistant and refresh your browser.
+#
+# If you wish to use the efficiency corrected power input sensor, you should also
+# "install" the "Huawei Solar PEES Input" file and the Lovelace card in order to 
+# be able to save your specific solar PV settings.
 #
 # -------
 # SENSORS
@@ -150,6 +153,28 @@ sensor:
 # ----------------
 template:
   - sensor:
+      ## ------------------
+      ## Electricity Prices
+      - name: "Electricity Price Import (ts)"
+        unique_id: electricity_price_import_ts
+        unit_of_measurement: DKK
+        state_class: measurement
+        state: >
+          {% if not is_state('input_text.electricity_price_import', '') %}
+            {{ states ( states('input_text.electricity_price_import')) | float(0)}}
+          {% else %}
+            {{ states('sensor.energi_data_service') | float(0) }}
+          {% endif %}
+      - name: "Electricity Price Export (ts)"
+        unique_id: electricity_price_export_ts
+        unit_of_measurement: DKK
+        state_class: measurement
+        state: >
+          {% if not is_state('input_text.electricity_price_export', '') %}
+            {{ states ( states('input_text.electricity_price_export')) | float(0)}}
+          {% else %}
+            {{ states('sensor.energi_data_service_sale') | float(0) }}
+          {% endif %}
       ## ---------------------------------
       ## Huawei Solar PEES - Power Sensors
       - name: "Power Inverter #1 Input"
@@ -158,14 +183,110 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ states('sensor.inverter_input_power') | float(0) }}
+          {% if is_state('input_boolean.inverter_1_1phase', 'on') and
+          is_state('input_boolean.inverter_1_3phase', 'off') %}
+            {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
+            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
+            {% set operating_voltage = states('input_number.inverter_1_operating_voltage_l1') | float(0) %}
+            {% set input_power = states('sensor.inverter_input_power') | float(0) %}
+            {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
+            {% set efficiency = ( 98.25 / (1 + 0.11 * e**(-0.18 * load_factor))) | float(0) %}
+            {% if operating_voltage < 360 %}
+              {% set voltage_factor = (
+              ( -0.01 * operating_voltage + 3.6 ) * 
+              ( -1.04 / ( 1 - 0.68 * e**( -0.07 * load_factor)))
+              ) | float(0) %}
+            {% elif operating_voltage > 360 %}
+              {% set voltage_factor = (
+              ( 0.0083 * operating_voltage + 3 ) * 
+              ( -0.5 / ( 1 - 0.89 * e**( -0.04 * load_factor)))
+              ) | float(0) %}
+            {% else %}
+              {% set voltage_factor = 0 %}
+            {% endif %}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | int }}
+          {% elif is_state('input_boolean.inverter_1_1phase', 'off') and
+          is_state('input_boolean.inverter_1_3phase', 'on') %}
+            {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
+            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
+            {% set operating_voltage = states('input_number.inverter_1_operating_voltage_m1') | float(0) %}
+            {% set input_power = states('sensor.inverter_input_power') | float(0) %}
+            {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
+            {% set efficiency = (98.5 / (1 + 0.082 * e**(-0.145 * load_factor))) | float(0) %}
+            {% if operating_voltage < 600 %}
+              {% set voltage_factor = (
+              ( -0.0077 * operating_voltage + 4.6154 ) * 
+              ( -0.705 / ( 1 - 0.56 * e**( -0.05 * load_factor)))
+              ) | float(0) %}
+            {% elif operating_voltage > 600 %}
+            {% set voltage_factor = (
+              ( 0.004 * operating_voltage - 2.4 ) * 
+              ( -0.587 / ( 1 - 0.845 * e**( -0.05 * load_factor)))
+              ) | float(0) %}
+            {% else %}
+              {% set voltage_factor = 0 %}
+            {% endif %}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
+          {% elif has_value('sensor.inverter_input_power') %}
+            {{ states('sensor.inverter_input_power') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
       - name: "Power Inverter #2 Input"
         unique_id: power_inverter_2_input
         unit_of_measurement: W
         device_class: power
         state_class: measurement
         state: >
-          {{ states('sensor.inverter_input_power_2') | float(0) }}
+          {% if is_state('input_boolean.inverter_2_1phase', 'on') and
+          if_state('input_boolean.inverter_2_3phase', 'off') %}
+            {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
+            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
+            {% set operating_voltage = states('input_number.inverter_2_operating_voltage_l1') | float(0) %}
+            {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
+            {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
+            {% set efficiency = ( 98.25 / (1 + 0.11 * e**(-0.18 * load_factor))) | float(0) %}
+            {% if operating_voltage < 360 %}
+              {% set voltage_factor = (
+              ( -0.01 * operating_voltage + 3.6 ) * 
+              ( -1.04 / ( 1 - 0.68 * e**( -0.07 * load_factor)))
+              ) | float(0) %}
+            {% elif operating_voltage > 360 %}
+              {% set voltage_factor = (
+              ( 0.0083 * operating_voltage + 3 ) * 
+              ( -0.5 / ( 1 - 0.89 * e**( -0.04 * load_factor)))
+              ) | float(0) %}
+            {% else %}
+              {% set voltage_factor = 0 %}
+            {% endif %}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | int }}
+          {% elif is_state('input_boolean.inverter_2_1phase', 'off') and
+          is_state('input_boolean.inverter_2_3phase', 'on') %}
+            {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
+            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
+            {% set operating_voltage = states('input_number.inverter_2_operating_voltage_m1') | float(0) %}
+            {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
+            {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
+            {% set efficiency = (98.5 / (1 + 0.082 * e**(-0.145 * load_factor))) | float(0) %}
+            {% if operating_voltage < 600 %}
+              {% set voltage_factor = (
+              ( -0.0077 * operating_voltage + 4.6154 ) * 
+              ( -0.705 / ( 1 - 0.56 * e**( -0.05 * load_factor)))
+              ) | float(0) %}
+            {% elif operating_voltage > 600 %}
+            {% set voltage_factor = (
+              ( 0.004 * operating_voltage - 2.4 ) * 
+              ( -0.587 / ( 1 - 0.845 * e**( -0.05 * load_factor)))
+              ) | float(0) %}
+            {% else %}
+              {% set voltage_factor = 0 %}
+            {% endif %}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
+          {% elif has_value('sensor.inverter_input_power') %}
+            {{ states('sensor.inverter_input_power_2') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
       - name: "Power Inverter Input Total"
         unique_id: power_inverter_input_total
         unit_of_measurement: W
@@ -445,7 +566,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -476,7 +597,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -507,7 +628,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_house_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -538,7 +659,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -569,7 +690,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_export_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -600,7 +721,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_import_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -631,7 +752,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -662,7 +783,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -693,7 +814,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service') | float(0) %}
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
@@ -724,7 +845,7 @@ template:
         unit_of_measurement: DKK
         device_class: monetary
         state: >
-          {% set price = states('sensor.energi_data_service_sale') | float(0) %}
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_export_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
