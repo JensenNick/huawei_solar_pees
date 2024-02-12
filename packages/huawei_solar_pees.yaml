@@ -32,7 +32,7 @@
 # "Energi Data Service integration" by MTrab as default. The currency used is DKK
 # by default.
 #
-# Do not make changes in this file (the package file). 
+# Do not make any other changes in this file (the package file). 
 # 
 # Restart Home Assistant and refresh your browser.
 #
@@ -163,7 +163,7 @@ template:
       ## Electricity Prices
       - name: "Electricity Price Import (ts)"
         unique_id: electricity_price_import_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: measurement
         state: >
           {% if not is_state('input_text.electricity_price_import', '') %}
@@ -173,7 +173,7 @@ template:
           {% endif %}
       - name: "Electricity Price Export (ts)"
         unique_id: electricity_price_export_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: measurement
         state: >
           {% if not is_state('input_text.electricity_price_export', '') %}
@@ -449,7 +449,7 @@ template:
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
         unique_id: economy_result_wo_pv_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: total_increasing
         state: >
           {% if has_value('sensor.house_load_cost') %}
@@ -459,7 +459,7 @@ template:
           {% endif %}
       - name: "Economy - Result w PV (ts)"
         unique_id: economy_result_w_pv_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: total
         state: >
           {% if has_value('sensor.import_cost') %}
@@ -477,7 +477,7 @@ template:
           {% endif %}
       - name: "Economy - Expenses w PV (ts)"
         unique_id: economy_expenses_w_pv_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: total_increasing
         state: >
           {% if has_value('sensor.import_cost') %}
@@ -487,7 +487,7 @@ template:
           {% endif %}
       - name: "Economy - Income w PV (ts)"
         unique_id: economy_income_w_pv_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: total_increasing
         state: >
           {% if has_value('sensor.export_income') %}
@@ -497,7 +497,7 @@ template:
           {% endif %}
       - name: "Economy - NRI PV (ts)"
         unique_id: economy_nri_pv_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: total
         state: >
           {% if has_value('sensor.house_load_cost') %}
@@ -523,7 +523,7 @@ template:
           {% endif %}
       - name: "Economy - NRI Battery (ts)"
         unique_id: economy_nri_battery_ts
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         state_class: total
         state: >
           {% if has_value('sensor.battery_discharge_grid_sale') %}
@@ -569,7 +569,7 @@ template:
     sensor:
       - name: "Battery Charge Grid - Cost (tt)"
         unique_id: battery_charge_grid_cost_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
@@ -600,7 +600,7 @@ template:
     sensor:
       - name: "Battery Charge Yield - Sale (tt)"
         unique_id: battery_charge_yield_sale_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
@@ -631,7 +631,7 @@ template:
     sensor:
       - name: "Battery Discharge House - Saving (tt)"
         unique_id: battery_discharge_house_saving_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
@@ -662,7 +662,7 @@ template:
     sensor:
       - name: "Battery Discharge Grid - Sale (tt)"
         unique_id: battery_discharge_grid_sale_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
@@ -693,7 +693,7 @@ template:
     sensor:
       - name: "Export - Income (tt)"
         unique_id: export_income_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
@@ -724,7 +724,7 @@ template:
     sensor:
       - name: "Import - Cost (tt)"
         unique_id: import_cost_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
@@ -755,7 +755,7 @@ template:
     sensor:
       - name: "House Load - Cost (tt)"
         unique_id: house_load_cost_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
@@ -786,7 +786,7 @@ template:
     sensor:
       - name: "House Load Grid - Cost (tt)"
         unique_id: house_load_grid_cost_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
@@ -817,7 +817,7 @@ template:
     sensor:
       - name: "House Load Yield - Saving (tt)"
         unique_id: house_load_yield_saving_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
@@ -848,7 +848,7 @@ template:
     sensor:
       - name: "Export Yield - Sale (tt)"
         unique_id: export_yield_sale_tt
-        unit_of_measurement: "{{ states('sensor.currency_ts') }}"
+        unit_of_measurement: DKK
         device_class: monetary
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
