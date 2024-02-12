@@ -159,16 +159,6 @@ sensor:
 # ----------------
 template:
   - sensor:
-      ## --------
-      ## Currency
-      - name: "Currency (ts)"
-        unique_id: currency_ts
-        state: >
-          {% if not is_state('input_text.currency', '') %}
-            {{ states ( states('input_text.currency')) }}
-          {% else %}
-            {{ DKK }}
-          {% endif %}
       ## ------------------
       ## Electricity Prices
       - name: "Electricity Price Import (ts)"
