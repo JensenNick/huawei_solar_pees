@@ -237,10 +237,8 @@ template:
               {% set voltage_factor = 0 %}
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
-          {% elif has_value('sensor.inverter_input_power') %}
-            {{ states('sensor.inverter_input_power') | float(0) }}
           {% else %}
-            {{ 0 }}
+            {{ states('sensor.inverter_input_power') | float(0) }}
           {% endif %}
       - name: "Power Inverter #2 Input"
         unique_id: power_inverter_2_input
@@ -292,10 +290,8 @@ template:
               {% set voltage_factor = 0 %}
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
-          {% elif has_value('sensor.inverter_input_power_2') %}
-            {{ states('sensor.inverter_input_power_2') | float(0) }}
           {% else %}
-            {{ 0 }}
+            {{ states('sensor.inverter_input_power_2') | float(0) }}
           {% endif %}
       - name: "Power Inverter Input Total"
         unique_id: power_inverter_input_total
