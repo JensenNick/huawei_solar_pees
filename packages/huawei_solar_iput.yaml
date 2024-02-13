@@ -212,7 +212,7 @@ input_text:
   battery_efficiency_start_value_charge:
     name: "Battery Efficiency Start Value Charge (in kW)"
   battery_efficiency_start_value_discharge:
-    name: "Battery Efficiency Start Value Charge (in kW)"
+    name: "Battery Efficiency Start Value Discharge (in kW)"
 # ---------------
 # TEMPLATE SENSOR
 # ---------------
