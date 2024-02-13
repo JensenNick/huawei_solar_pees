@@ -27,12 +27,12 @@
 #
 # If you wish to provide your own electricity price sensors and/or your own currency
 # and/or if you wish to use the provided efficiency corrected power input sensor,
-# I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace card.
-# This will make it possible for you to save your specific solar PV settings from 
-# between updates of the package.
+# I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace Input
+# card. This will make it possible for you to save your specific solar PV settings 
+# from between updates of the package.
 #
 # The currency used is DKK by default. If you use another currency you need to change
-# this in this file. I advice you not make any other changes to this file. 
+# this in this file. I advice you not make any other changes. 
 # 
 # Restart Home Assistant and refresh your browser.
 #
@@ -166,9 +166,9 @@ template:
         unit_of_measurement: DKK
         state_class: measurement
         state: >
-          {% if is_state('input_text.electricity_price_import', '') or
-          is_state('input_text.electricity_price_import', 'unavailable') or
-          is_state('input_text.electricity_price_import', 'unknown') %}
+          {% if is_state('input_text.electricity_price_import','') or
+          is_state('input_text.electricity_price_import','unavailable') or
+          is_state('input_text.electricity_price_import','unknown') %}
             {{ states('sensor.energi_data_service') | float(0) }}
           {% else %}
             {{ states ( states('input_text.electricity_price_import')) | float(0) }}
@@ -178,9 +178,9 @@ template:
         unit_of_measurement: DKK
         state_class: measurement
         state: >
-          {% if is_state('input_text.electricity_price_export', '') or
-          is_state('input_text.electricity_price_export', 'unavailable') or
-          is_state('input_text.electricity_price_export', 'unknown') %}
+          {% if is_state('input_text.electricity_price_export','') or
+          is_state('input_text.electricity_price_export','unavailable') or
+          is_state('input_text.electricity_price_export','unknown') %}
             {{ states('sensor.energi_data_service_sale') | float(0) }}
           {% else %}
             {{ states ( states('input_text.electricity_price_export')) | float(0) }}
@@ -193,8 +193,8 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {% if is_state('input_boolean.inverter_1_1phase', 'on') and
-          is_state('input_boolean.inverter_1_3phase', 'off') %}
+          {% if is_state('input_boolean.inverter_1_1phase','on') and
+          is_state('input_boolean.inverter_1_3phase','off') %}
             {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
             {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_1_operating_voltage_l1') | float(0) %}
@@ -215,8 +215,8 @@ template:
               {% set voltage_factor = 0 %}
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | int }}
-          {% elif is_state('input_boolean.inverter_1_3phase', 'on') and
-          is_state('input_boolean.inverter_1_1phase', 'off') %}
+          {% elif is_state('input_boolean.inverter_1_3phase','on') and
+          is_state('input_boolean.inverter_1_1phase','off') %}
             {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
             {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_1_operating_voltage_m1') | float(0) %}
@@ -246,8 +246,8 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {% if is_state('input_boolean.inverter_2_1phase', 'on') and
-          is_state('input_boolean.inverter_2_3phase', 'off') %}
+          {% if is_state('input_boolean.inverter_2_1phase','on') and
+          is_state('input_boolean.inverter_2_3phase','off') %}
             {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
             {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_l1') | float(0) %}
@@ -268,8 +268,8 @@ template:
               {% set voltage_factor = 0 %}
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | int }}
-          {% elif is_state('input_boolean.inverter_2_3phase', 'on') and
-          is_state('input_boolean.inverter_2_1phase', 'off') %}
+          {% elif is_state('input_boolean.inverter_2_3phase','on') and
+          is_state('input_boolean.inverter_2_1phase','off') %}
             {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
             {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_m1') | float(0) %}
@@ -430,19 +430,32 @@ template:
           , 0 ) | max }}
       ## ----------------------------------
       ## Huawei Solar PEES - Energy Sensors
+      - name: "Energy Yield #1 (ts)"
+        unique_id: energy_yield_1_ts
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {{ states('sensor.energy_yield_1') | float(0) }}
+        availability: >
+          {{ has_value('sensor.energy_yield_1') }}
+      - name: "Energy Yield #2 (ts)"
+        unique_id: energy_yield_2_ts
+        unit_of_measurement: kWh
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {{ states('sensor.energy_yield_2') | float(0) }}
+        availability: >
+          {{ has_value('sensor.energy_yield_2') }}
       - name: "Energy Yield Total (ts)"
         unique_id: energy_yield_total_ts
         unit_of_measurement: kWh
         device_class: energy
         state_class: total_increasing
         state: >
-          {% if has_value('sensor.energy_yield_1') %}
-            {{ states('sensor.energy_yield_1') | float(0) +
-            states('sensor.energy_yield_2') | float(0) }}
-          {% else has_value('sensor.energy_yield_2') %}
-            {{ states('sensor.energy_yield_1') | float(0) +
-            states('sensor.energy_yield_2') | float(0) }}
-          {% endif %}
+          {{ states('sensor.energy_yield_1') | float(0) +
+          states('sensor.energy_yield_2') | float(0) }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
@@ -450,99 +463,87 @@ template:
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
-          {% if has_value('sensor.house_load_cost') %}
-            {{ states('sensor.house_load_cost') | float(0) | round(5) }}
-          {% endif %}
-      - name: "Economy - Result w PV (ts)"
-        unique_id: economy_result_w_pv_ts
-        unit_of_measurement: DKK
-        state_class: total
-        state: >
-          {% if has_value('sensor.import_cost') %}
-            {{ ( 
-            states('sensor.import_cost') | float(0) -
-            states('sensor.export_income') | float(0)
-            ) | round(5) }}
-          {% else has_value('sensor.export_income') %}
-            {{ ( 
-            states('sensor.import_cost') | float(0) -
-            states('sensor.export_income') | float(0)
-            ) | round(5) }}
-          {% endif %}
+          {{ states('sensor.house_load_cost') | float | round(5) }}
+        availability: >
+          {{ has_value('sensor.house_load_cost') }}
       - name: "Economy - Expenses w PV (ts)"
         unique_id: economy_expenses_w_pv_ts
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
-          {% if has_value('sensor.import_cost') %}
-            {{ states('sensor.import_cost') | float(0) | round(5) }}
-          {% endif %}
+          {{ states('sensor.import_cost') | float | round(5) }}
+        availability: >
+          {{ has_value('sensor.import_cost') }}
       - name: "Economy - Income w PV (ts)"
         unique_id: economy_income_w_pv_ts
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
-          {% if has_value('sensor.export_income') %}
-            {{ states('sensor.export_income') | float(0) | round(5) }}
-          {% endif %}
+          {{ states('sensor.export_income') | float | round(5) }}
+        availability: >
+          {{ has_value('sensor.export_income') }}
+      - name: "Economy - Result w PV (ts)"
+        unique_id: economy_result_w_pv_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ (
+          states('sensor.economy_expenses_w_pv_ts') | float(0) -
+          states('sensor.economy_income_w_pv_ts') | float(0) 
+          ) | round(5) }}
       - name: "Economy - NRI PV (ts)"
         unique_id: economy_nri_pv_ts
         unit_of_measurement: DKK
         state_class: total
         state: >
-          {% if has_value('sensor.house_load_cost') %}
-            {{ ( 
-            states('sensor.house_load_cost') | float(0) -
-            states('sensor.import_cost') | float(0) +
-            states('sensor.export_income') | float(0)
-            ) | round(5) }}
-          {% elif has_value('sensor.import_cost') %}
-            {{ ( 
-            states('sensor.house_load_cost') | float(0) -
-            states('sensor.import_cost') | float(0) +
-            states('sensor.export_income') | float(0)
-            ) | round(5) }}
-          {% else has_value('sensor.export_income') %}
-            {{ ( 
-            states('sensor.house_load_cost') | float(0) -
-            states('sensor.import_cost') | float(0) +
-            states('sensor.export_income') | float(0)
-            ) | round(5) }}
-          {% endif %}
+          {{ (
+          states('sensor.economy_result_wo_pv_ts') |float(0) -
+          states('sensor.economy_expenses_w_pv_ts') | float(0) +
+          states('sensor.economy_income_w_pv_ts') | float(0) 
+          ) | round(5) }}
+      - name: "Battery Discharge Grid - Sale (ts)"
+        unique_id: battery_discharge_grid_sale_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.battery_discharge_grid_sale') | float(0) }}
+        availability: >
+          {{ has_value('sensor.battery_discharge_grid_sale') }}
+      - name: "Battery Discharge House - Saving (ts)"
+        unique_id: battery_discharge_house_saving_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.battery_discharge_house_saving') | float(0) }}
+        availability: >
+          {{ has_value('sensor.battery_discharge_house_saving') }}
+      - name: "Battery Charge Yield - Sale (ts)"
+        unique_id: battery_charge_yield_sale_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.battery_charge_yield_sale') | float(0) }}
+        availability: >
+          {{ has_value('sensor.battery_charge_yield_sale') }}
+      - name: "Battery Charge Grid - Cost (ts)"
+        unique_id: battery_charge_grid_cost_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.battery_charge_grid_cost') | float(0) }}
+        availability: >
+          {{ has_value('sensor.battery_charge_grid_cost') }}
       - name: "Economy - NRI Battery (ts)"
         unique_id: economy_nri_battery_ts
         unit_of_measurement: DKK
         state_class: total
         state: >
-          {% if has_value('sensor.battery_discharge_grid_sale') %}
-            {{ (
-            states('sensor.battery_discharge_grid_sale') | float(0) +
-            states('sensor.battery_discharge_house_saving') | float(0) -
-            states('sensor.battery_charge_yield_sale') | float(0) -
-            states('sensor.battery_charge_grid_cost') | float(0)
-            ) | round(5) }}
-          {% elif has_value('sensor.battery_discharge_house_saving') %}
-            {{ (
-            states('sensor.battery_discharge_grid_sale') | float(0) +
-            states('sensor.battery_discharge_house_saving') | float(0) -
-            states('sensor.battery_charge_yield_sale') | float(0) -
-            states('sensor.battery_charge_grid_cost') | float(0)
-            ) | round(5) }}
-          {% elif has_value('sensor.battery_charge_yield_sale') %}
-            {{ (
-            states('sensor.battery_discharge_grid_sale') | float(0) +
-            states('sensor.battery_discharge_house_saving') | float(0) -
-            states('sensor.battery_charge_yield_sale') | float(0) -
-            states('sensor.battery_charge_grid_cost') | float(0)
-            ) | round(5) }}
-          {% else has_value('sensor.battery_charge_grid_cost') %}
-            {{ (
-            states('sensor.battery_discharge_grid_sale') | float(0) +
-            states('sensor.battery_discharge_house_saving') | float(0) -
-            states('sensor.battery_charge_yield_sale') | float(0) -
-            states('sensor.battery_charge_grid_cost') | float(0)
-            ) | round(5) }}
-          {% endif %}
+          {{ (
+          states('sensor.battery_discharge_grid_sale_ts') | float(0) +
+          states('sensor.battery_discharge_house_saving_ts') | float(0) -
+          states('sensor.battery_charge_yield_sale_ts') | float(0) -
+          states('sensor.battery_charge_grid_cost_ts') | float(0)
+          ) | round(5) }}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
