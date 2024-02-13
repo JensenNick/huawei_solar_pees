@@ -98,6 +98,41 @@ input_number:
     min: 98
     max: 102
     step: 0.2
+  battery_capacity_rated_kwh:
+    name: "Battery Capacity Rated kWh"
+    min: 5
+    max: 30
+    step: 5
+  battery_efficiency_soc_trigger:
+    name: "Battery Efficiency SOC Trigger (Recomended 50)"
+    min: 1
+    max: 100
+    step: 1
+  battery_efficiency_start_value_charge:
+    name: "Battery Efficiency Start Value Charge"
+    min: 0
+    max: 120000
+    step: 0.01
+  battery_efficiency_start_value_discharge:
+    name: "Battery Efficiency Start Value Charge"
+    min: 0
+    max: 120000
+    step: 0.01
+  panels_on_inverter_1:
+    name: "Panels on Inverter #1"
+    min: 1
+    max: 50
+    step: 1
+  panels_on_inverter_2:
+    name: "Panels on Inverter #2"
+    min: 1
+    max: 50
+    step: 1
+  panels_rated_kwp:
+    name: "Panels Rated kWp"
+    min: 100
+    max: 995
+    step: 5
   ## --------------------
   ## Inverter #2 Settings
   inverter_2_operating_voltage_l1:
