@@ -85,3 +85,16 @@ cards:
       - entity: input_text.electricity_price_import
       - entity: input_text.electricity_price_export
     title: Electricity Price
+  - type: entities
+    entities:
+      - entity: input_number.battery_rated_capacity
+      - entity: input_number.battery_efficiency_soc_trigger
+      - entity: input_number.battery_efficiency_start_value_charge
+      - entity: input_number.battery_efficiency_start_value_discharge
+    title: Battery
+  - type: entities
+    entities:
+      - entity: input_number.panels_rated_wp
+      - entity: input_number.panels_on_inverter_1
+      - entity: input_number.panels_on_inverter_2
+    title: Solar Panels
