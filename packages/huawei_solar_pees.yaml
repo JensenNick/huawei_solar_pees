@@ -249,7 +249,7 @@ template:
         state_class: measurement
         state: >
           {% if is_state('input_boolean.inverter_2_1phase', 'on') and
-          if_state('input_boolean.inverter_2_3phase', 'off') %}
+          is_state('input_boolean.inverter_2_3phase', 'off') %}
             {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
             {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_l1') | float(0) %}
@@ -292,7 +292,7 @@ template:
               {% set voltage_factor = 0 %}
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
-          {% elif has_value('sensor.inverter_input_power') %}
+          {% elif has_value('sensor.inverter_input_power_2') %}
             {{ states('sensor.inverter_input_power_2') | float(0) }}
           {% else %}
             {{ 0 }}
