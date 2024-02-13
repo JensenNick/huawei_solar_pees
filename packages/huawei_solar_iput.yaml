@@ -115,8 +115,8 @@ input_number:
     min: 98
     max: 102
     step: 0.2
-  ## -------
-  ## Battery
+  ## ------------------
+  ## Battery Efficiency
   battery_rated_capacity:
     name: "Battery Rated Capacity (in kWh)"
     min: 5
@@ -127,6 +127,18 @@ input_number:
     min: 0
     max: 100
     step: 5
+  battery_efficiency_start_value_charge:
+    name: "Battery Efficiency Start Value Charge (in kW)"
+    min: 0
+    max: 120000
+    step: 1
+    mode: box
+  battery_efficiency_start_value_discharge:
+    name: "Battery Efficiency Start Value Disharge (in kW)"
+    min: 0
+    max: 120000
+    step: 1
+    mode: box
   ## ------------
   ## Solar Panels
   panels_on_inverter_1:
@@ -134,11 +146,19 @@ input_number:
     min: 1
     max: 50
     step: 1
+    mode: box
   panels_on_inverter_2:
     name: "Panels on Inverter #2"
     min: 1
     max: 50
     step: 1
+    mode: box
+  panels_rated_wp:
+    name: "Panels Rated Wp"
+    min: 100
+    max: 999
+    step: 1
+    mode: box
 # ------------
 # INPUT SELECT
 # ------------
@@ -199,16 +219,6 @@ input_text:
     name: "Electricity Price Import (Energi Data Service by Default)"
   electricity_price_export:
     name: "Electricity Price Export (Energi Data Service - Sale by Default)"
-  ## ------------------
-  ## Battery Efficiency
-  battery_efficiency_start_value_charge:
-    name: "Battery Efficiency Start Value Charge (in kW)"
-  battery_efficiency_start_value_discharge:
-    name: "Battery Efficiency Start Value Discharge (in kW)"
-  ## ------------
-  ## Solar Panels
-  panels_rated_wp:
-    name: "Panels Rated Wp"
 # ---------------
 # TEMPLATE SENSOR
 # ---------------
