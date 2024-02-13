@@ -98,6 +98,23 @@ input_number:
     min: 98
     max: 102
     step: 0.2
+  ## --------------------
+  ## Inverter #2 Settings
+  inverter_2_operating_voltage_l1:
+    name: "Inverter #2 Operating Voltage L1"
+    min: 90
+    max: 560
+    step: 5
+  inverter_2_operating_voltage_m1:
+    name: "Inverter #2 Operating Voltage M1"
+    min: 140
+    max: 980
+    step: 5
+  inverter_2_overall_factor:
+    name: "Inverter #2 Overall Factor"
+    min: 98
+    max: 102
+    step: 0.2
   ## -------
   ## Battery
   battery_rated_capacity:
@@ -117,36 +134,11 @@ input_number:
     min: 1
     max: 50
     step: 1
-    mode: box
   panels_on_inverter_2:
     name: "Panels on Inverter #2"
     min: 1
     max: 50
     step: 1
-    mode: box
-  panels_rated_wp:
-    name: "Panels Rated Wp"
-    min: 100
-    max: 995
-    step: 1
-    mode: box
-  ## --------------------
-  ## Inverter #2 Settings
-  inverter_2_operating_voltage_l1:
-    name: "Inverter #2 Operating Voltage L1"
-    min: 90
-    max: 560
-    step: 5
-  inverter_2_operating_voltage_m1:
-    name: "Inverter #2 Operating Voltage M1"
-    min: 140
-    max: 980
-    step: 5
-  inverter_2_overall_factor:
-    name: "Inverter #2 Overall Factor"
-    min: 98
-    max: 102
-    step: 0.2
 # ------------
 # INPUT SELECT
 # ------------
@@ -213,6 +205,10 @@ input_text:
     name: "Battery Efficiency Start Value Charge (in kW)"
   battery_efficiency_start_value_discharge:
     name: "Battery Efficiency Start Value Discharge (in kW)"
+  ## ------------
+  ## Solar Panels
+  panels_rated_wp:
+    name: "Panels Rated Wp"
 # ---------------
 # TEMPLATE SENSOR
 # ---------------
