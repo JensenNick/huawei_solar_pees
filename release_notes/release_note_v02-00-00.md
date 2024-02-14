@@ -1,5 +1,7 @@
 # Huawei Solar - PEES
 
+**Power, Energy and Economy Sensors**
+
 ## Release Note / v2.0.0
 
 The *"Huawei Solar PEES package file"* has been upgraded to version 2.0.0 and with this leap comes interaction via the GUI the ability to save most of your user specific settings and the possibility to the efficiency corrected power input sensor without the need for any copy/pasting.
