@@ -46,7 +46,7 @@ The diagram below shows the definitions used for the power- and energy flows bet
 
 ![Definitions and Flows](pictures/flows_definitions.jpg)
 
-> :bulb: ***In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the "Huawei Solar PEES package".*** 
+> ***In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the "Huawei Solar PEES package".*** 
 
 ## 3. Installation
 
@@ -99,7 +99,7 @@ If you do not wish to use the default electricity price sensors from the *"Energ
 
 ![Daily Battery Economy](pictures/daily_battery_economy.jpg)
 
-> *Daily Battery Economy to track e.g. your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
+> *Daily Battery Economy: Track e.g. your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
 
 #### Currency (optional)
 
