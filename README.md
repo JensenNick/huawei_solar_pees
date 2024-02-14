@@ -10,6 +10,10 @@ This project will provide you with a set of custom sensors to be used in Home As
 
 This README guides you through a simple installation and setup process. For an overview and a more detailed description of the sensors included in the *"Huawei Solar PEES package"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The experienced Home Assistant user may find this guide banal - but this is to include all users, also the ones just starting out.
 
+![Economy Sensors](pictures/economy_sensors.jpg)
+
+> :bulb: *Economy Sencors. Track your solar PV investment, compare it to what your economy would have been without solar PV, and track the net retur of your investment.*
+
 The provided custom sensors are based on a setup with two inverters and one battery. This is reflected throughout this README and the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The custom sensors are available as a package for an easy "installation". See more about this in chapter 3. Installation.
 
 ## Table of Content
@@ -93,6 +97,10 @@ If you use the *"Energi Data Service integration by MTrab"*, please refer to the
 
 If you do not wish to use the default electricity price sensors from the *"Energi Data Service integration"*, please refer to chapter 3.3 [User Specific Input Settings (optional)](#33-user-specific-input-settings-optional).
 
+![Daily Battery Economy](pictures/daily_battery_economy.jpg)
+
+:bulb: *Daily Battery Economy to track e.g. your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
+
 #### Currency (optional)
 
 Finally you may need to correct the currency to your local currency. The currency used in the provided custom sensors is DKK (Danish Krone) and this is the price pr. kWh. This is a correction which also has to be done in the huawei_solar_pees.yaml file.
@@ -120,6 +128,8 @@ The *"Huawei Solar PEES package"* now includes the huawei_solar_input.yaml file 
 #### Efficiency Corrected Power Input Sensor
 
 The default custom power input sensors do not take the inverter efficiency into account, which may result in a too high yield and other inaccuracies (house load is calculated on basis of the yield). The *"Huawei Solar integration"* does provide the `sensor.input_power_with_efficiency_loss` which takes the inverter efficiency into account. I have not tested this sensor, but my assessment is that it may cause inaccuracies and/or errors due to the step-by-step adjustment of the efficiency.
+
+![Efficiency Corrected Power Input Sensors](pictures/efficiency_corrected_power_input_sensors.jpg)
 
 Therefore and as an option I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei.
 
