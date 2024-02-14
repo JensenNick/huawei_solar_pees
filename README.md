@@ -143,6 +143,9 @@ For those who use alternative electricity price sensors or sensor names, enter y
 #### Tariffs
 If you have several tariffs and/or it/they change from time to time, you might find it beneficial to have a calculation of the settings you use. I have a sensor which was created for my *"Huawei Solar EFLR package"* but you might find it useful in this case also. Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#tariff-on-export-and-sale) where you will find an input ready to copy/paste.
 
+#### Other Input Cards
+The input file huawei_solar_input.yaml and the code for the input card huawei_solar_input_card.md does includes other user specific settings used by other packages I provide or intend to release. Settings for those inputs will be described in the README for those "packages".
+
 ## 5. Thanks to
 **A huge thanks to;**
 
