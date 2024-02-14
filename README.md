@@ -145,7 +145,12 @@ If you have several tariffs and/or it/they change from time to time, you might f
 #### Other Input Cards
 The input file huawei_solar_input.yaml and the code for the input card huawei_solar_input_card.md does includes other user specific settings used by other packages I provide or intend to release. Settings for those inputs will be described in the README for those "packages".
 
+## 4. Known "bugs"
+
+None at the moment.
+
 ## 5. Thanks to
+
 **A huge thanks to;**
 
 * **wlcrs** for providing the *"Huawei Solar integration"*. This integration is essential for anyone who wishes to integrate their Huawei Solar PV in Home Assistant.
