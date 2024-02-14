@@ -66,7 +66,7 @@ home assistant:
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
 * **Copy/paste the package files** [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) and [huawei_solar_input.yaml](packages/huawei_solar_input.yaml) into your `packages` directory/folder.<br> The *huawei_solar_input.yaml* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below), because of dependencies between the two files included in the "package".
 
-> :bulb: *That is it! That is all the "installation" you need to do in order to be up and running with all the custom sensors included in the "Huawei Solar PEES package" - provided that you are using the default names for the input sensors.*
+> :bulb: ***That is it! That is all the "installation" you need to do** in order to be up and running with all the custom sensors included in the "Huawei Solar PEES package" - provided that you are using the default names for the input sensors.*
 
 > :exclamation: **Restart Home Assistant and refresh your browser** :exclamation:
 
@@ -99,7 +99,7 @@ If you do not wish to use the default electricity price sensors from the *"Energ
 
 ![Daily Battery Economy](pictures/daily_battery_economy.jpg)
 
-> *Daily Battery Economy: Track e.g. your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
+> *Daily Battery Economy: Track your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
 
 #### Currency (optional)
 
