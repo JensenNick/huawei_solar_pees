@@ -154,6 +154,6 @@ The input file huawei_solar_input.yaml and the code for the input card huawei_so
 
 * **KennethLavrsen** for providing the full input for the triggered template sensors used to convert the Riemann Sum into actual economical figures.
 
-* All contributors and especially **Krabbee** and **JacobsenKim**.
+* **All contributors** and especially **Krabbee** and **JacobsenKim**.
 
 **Again, Thank You to all of You!**
