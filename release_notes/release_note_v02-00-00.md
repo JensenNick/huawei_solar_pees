@@ -1,27 +1,56 @@
-## Release Note / v1.0.0
-The *"Huawei Solar PEES package file"* has now been tested on a clean install of Home Assistant - no strings to any thing in the past. This is hopefully how most of you will experience the "installation".
+# Huawei Solar - PEES
 
-**New naming convention**<br>
-This wasn't an easy decision, but for the better I believe looking forward. Template sensors lose their value temporarily while HA is rebooting / restarting, leaving a blank space in the graphs. I therefor upgraded the *"Huawei Solar PEES package"* with utility meters for all the platform and template sensors.
+## Release Note / v2.0.0
 
-I could have gone with a new suffix some of the utility meters, but that would have been inconsistent and an annoyance when these utility meters would be used in cards, energy dashboard etc. - you would have had to change the name of the source every time you use it. So, I have decided to re-name the platform sensors, template sensors and template trigger sensors respectively with the suffix as follows,
-* `_ps` for platform sensor,
-* `_ts` for template sensor and 
-* `_tt` for template trigger sensor.
+The *"Huawei Solar PEES package file"* has been upgraded to version 2.0.0 and with this leap comes interaction via the GUI the ability to save most of your user specific settings and the possibility to the efficiency corrected power input sensor without the need for any copy/pasting.
 
-There are other bonus effects to this as well, 1) utility meters are easier to reset and calibrate without the need for a deep dive into your database 2) you can now easily identify the origin of the sensor and 3) easy filtering based on the new suffix.
+### The package
 
-**Error in code**<br>
-A crucial error in the attribute for the sensor `battery_charge_yield_sale` has been corrected (new sensor name `battery_charge_yield_sale_tt`),
+The *"Huawei Solar PEES package"* now includes 3 files - 1) the `huawei_solar_pees.yaml` file that contain all the custom sensors included in the *"Huawei Solar PEES package"*, 2) the `huawei_solar_input.yaml` file that contain sensors for your user specific solar PV settings, and 3) the `huawei_solar_input_card.md` file that contains the code for the Lovelace card / GUI interface.
 
-**PV template sensors**<br>
-The device_class on the PV sensors has been removed, in order to allow state_ class: total_increasing. Forum posts from the Developers suggest not to use device_class for this type of sensors.
+> :bulb: The *"Huawei Solar PEES package"* will work "out of the box". You do not have to use/setup the user specific settings and the Lovelace card. But you have to copy both `yaml` files into you package folder/directory for the custom sensors to work.
 
-**Dashboards**<br>
-Codes for input to the dashboards have been updated so they match the new naming convention.
+### Efficiency Corrected Input Power
 
-**Info**<br>
-Version number, domain name and code owner has been added to the `huawei_solar_pees.yaml` package file
+Previusly you had to copy/paste the efficiency corrected input power sensor input the `huawei_solar_pees.yaml` file and delete the default power sensor. The efficiency corrected input power sensor is now "activated" via the two boolean switches on the Lovelace card, where you also choose the number of phases your inverter has.
 
-**Documentation**<br>
-Has not yet been updated accordingly to above changes.
+From here you  will now be presented with a drop down menu where you choose your specific inverter model.
+
+Below the drop down menu with the inverter models you wil have two sliders, one to control the operating voltage and one to control the overall factor. The README explain what these slides do / how they effect the power input.
+
+> :bulb: If you do not want the efficiency corrected sensor you just leave the two boolean switches off.
+
+### Electricity Price Sensor
+
+The Lovelace card also includes a text box, where it is now possible to add your choice of electricity price sensors. Just ad the sensor name and the calculations will be based on your specific electricity price sensor. The folowing sensors have been added.
+
+* `sensor.electricity_price_import_ts`
+* `sensor.electricity_price_export_ts`
+
+<br>
+
+> :bulb: The electricity price sensors (with sensor names according to the README) from the *"Energi Data Service integration"* are used as default sensors.
+
+### New Economy Sensors
+
+To address [issue #29](https://github.com/JensenNick/huawei_solar_pees/issues/29) with the late start up of some of the economy sensors, it has been necessary to add a few template sensors in order to set an availibility on them individualy. To my knowledge it is a bit unorthodox to create a template sensor based on a utility meter, but none the less it solves the issue. The new template sensors are,
+
+* `sensor.battery_charge_yield_sale_ts`
+* `sensor.battery_charge_grid_cost_ts`
+* `sensor.battery_discharge_grid_sale_ts`
+* `sensor.battery_discharge_house_saving_ts`
+
+### New Energy Sensoors
+
+In the same manner the same principal sollution has been used to improve setup procedure for those with a single inverter setup. Sensor `sensor.energy_yield_total_ts` will now be active without the need to manually set `sensor.energy_yield_2_ts` to 0 (zero). The new template sensors are,
+
+* `sensor.energy_yield_1_ts`
+* `sensor.energy_yield_2_ts`
+
+### Unique ID on All Utility Meters
+
+All utility meters have now been provided with a `unique_id` which alow you to edit the precision and the icon in the GUI.
+
+### Documentation
+
+The README is up to date with the latest changes. The Wiki Pages are under revision due to these changes.
