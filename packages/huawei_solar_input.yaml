@@ -224,6 +224,29 @@ input_text:
 # ---------------
 template:
   - sensor:
+      ## --------------------------------------
+      ## Electricity Price for Energy Dashboard
+      - name: "Energi Data Service - Negative"
+        unique_id: energi_data_service_negative
+        unit_of_measurement: DKK/kWh
+        state: >
+          {{ states('sensor.energi_data_service') | float(0) * (-1) }}
+      ## ----------------------------
+      ## Tariff on Electricity Export
+      - name: "Tariff Export"
+        unique_id: tariff_export
+        unit_of_measurement: DKK/kWh
+        state: >
+          {% set energinet_indfoedningstarif = 0.3 %}
+          {% set energinet_balancetarif = 0.24 %}
+          {% set konstant_indfoedningstarif = 0.5 %}
+          {% set jyskenergi_balancetarif = 2.5 %}
+            {{ (
+            energinet_indfoedningstarif + 
+            energinet_balancetarif + 
+            konstant_indfoedningstarif + 
+            jyskenergi_balancetarif 
+            ) / 100 }}
       ## --------------------
       ## Inverter Rated Power
       - name: "Inverter #1 Rated Power"
