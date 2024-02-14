@@ -133,7 +133,7 @@ Therefore and as an option I have created two custom sensors - one for the Huawe
 
 ![Efficiency Corrected Power Input Sensors](pictures/efficiency_corrected_power_input_sensors.jpg)
 
-> *Efficiency corrected input power graphs - yield from each inverter and the total power yield.
+> *Efficiency corrected input power graphs - yield from each inverter and the total power yield.*
 
 Here is a short description of how to set up and adjust your efficiency corrected power input sensor/sensors.
 
