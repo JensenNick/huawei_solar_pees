@@ -12,7 +12,7 @@ This README guides you through a simple installation and setup process. For an o
 
 ![Economy Sensors](pictures/economy_sensors.jpg)
 
-> :bulb: *Economy Sencors. Track your solar PV investment, compare it to what your economy would have been without solar PV, and track the net retur of your investment.*
+> *Economy Sensors. Track your solar PV investment, compare it to what your economy would have been without solar PV, and track the net retur of your investment.*
 
 The provided custom sensors are based on a setup with two inverters and one battery. This is reflected throughout this README and the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki). The custom sensors are available as a package for an easy "installation". See more about this in chapter 3. Installation.
 
@@ -99,7 +99,7 @@ If you do not wish to use the default electricity price sensors from the *"Energ
 
 ![Daily Battery Economy](pictures/daily_battery_economy.jpg)
 
-:bulb: *Daily Battery Economy to track e.g. your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
+> *Daily Battery Economy to track e.g. your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
 
 #### Currency (optional)
 
