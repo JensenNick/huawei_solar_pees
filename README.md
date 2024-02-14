@@ -2,7 +2,7 @@
 
 # Huawei Solar - PEES
 
-**Power, Energy and Economy Sensors**<br>
+**Power, Energy and Economy Sensors**
 
 ## Project Description
 
@@ -45,16 +45,20 @@ The diagram below shows the definitions used for the power- and energy flows bet
 > :bulb: ***In the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki) you will find an overview and a more detailed description of all sensors included in the "Huawei Solar PEES package".*** 
 
 ## 3. Installation
+
 The custom sensors included in the *"Huawei Solar PEES package"* are available for download as two files, intended to be "installed" as a "package". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
 
 ### 3.1 Package "Installation"
+
 The "installation" is very straight forward. Each step is described in the bulleted list below. So just for the overview - the process includes configuring your configuration.yaml file, creating a directory/folder for the *"Huawei Solar PEES package"* files and copy/pasting the package files into the directory/folder you have created. The package files also includes similar short instructions.
 
 * Open Studio Code Server (or your choise of code editor) and **ad the following two lines** to your `configuration.yaml` file.
+
 ```yaml
 home assistant:
   packages: !include_dir_named packages
 ```
+
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
 * **Copy/paste the package files** [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) and [huawei_solar_input.yaml](packages/huawei_solar_input.yaml) into your `packages` directory/folder.<br> The *huawei_solar_input.yaml* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below), because of dependencies between the two files included in the "package".
 
@@ -65,9 +69,11 @@ home assistant:
 If you wish, you may alternatively download package file including the latest Release Note and supplemental documents like this README from the [Releases Page](https://github.com/JensenNick/huawei_solar_pees/releases), where you will also find previous releases.
 
 ### 3.2 Input Sensors and Settings
+
 For the custom sensors to work properly you need to make sure that the naming of your input sensors is correct. As mentioned, the custom sensor rely on three types of power sensors from the *"Huawei Solar integration by wlcrs"* and two electricity price sensors from the *"Energi Data Service integration by MTrab"*.
 
 #### Power Sensors (optional)
+
 The three types of input sensors from the *"Huawei Solar integration by wlcrs"* are `inverter_input_power`/`inverter_input_power_2` (if you have two inverters), `power_meter_active_power` and `battery_charge_discharge_power`. The naming used in the package file corresponds to the default naming used in the *"Huawei Solar integration"* - I suggest you stick with thosenames so you do not need to edit anything (now and in case of new releases).
  
 In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) you will find the following text lines (# = text / not part of the code) which allows for an easy global edit if you need to edit the names of your power input sensors.
@@ -80,6 +86,7 @@ In the package file [huawei_solar_pees.yaml](packages/huawei_solar_pees.yaml) yo
  ```
 
 #### Electricity Price Sensors
+
 You need to provide two electricity price sensors as input - one which provides the price you pay pr. kWh for import/consumption and one which provides the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add/create them as entities via the integration (as per above preferably before "intalling" the *"Huawei Solar PEES package"*).
 
 If you use the *"Energi Data Service integration by MTrab"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#energi-data-service-integration) for help with setting up the two electricity price sensors.
@@ -87,9 +94,11 @@ If you use the *"Energi Data Service integration by MTrab"*, please refer to the
 If you do not wish to use the default electricity price sensors from the *"Energi Data Service integration"*, please refer to chapter 3.3 [User Specific Input Settings (optional)](#33-user-specific-input-settings-optional).
 
 #### Currency (optional)
+
 Finally you may need to correct the currency to your local currency. The currency used in the provided custom sensors is DKK (Danish Krone) and this is the price pr. kWh. This is a correction which also has to be done in the huawei_solar_pees.yaml file.
 
 #### Restart
+
 > :exclamation: **Restart Home Assistant and refresh your browser** :exclamation:
 
 Since the *"Huawei Solar PEES package"* includes platform sensors, "Restart Home Assistant" litrally means "Restart Home Assistant" (not "Quick Reload") and refresh your browser (use the browser refresh button or F5 on Windows / Cmd+Shift+R on Mac).
@@ -97,6 +106,7 @@ Since the *"Huawei Solar PEES package"* includes platform sensors, "Restart Home
 > :bulb: *Generally, it may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show.*
 
 ### 3.3 User Specific Input Settings (optional)
+
 The *"Huawei Solar PEES package"* now includes the huawei_solar_input.yaml file and as the name suggests this file contain both default but also user specific inputs. All user specific inputs are done via the GUI, you should not edit the huawei_solar_input.yaml file. The *"Huawei Solar PEES package"* includes the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file includes the code for the "Huawei Solar PEES - Input Card" to be used in Lovelace / Home Assistant Dashboard. The step by step instructions to "install" the "input card" are as follows.
 
 * **Create a new dashboard** (optional) in Home Assistant e.g. named "Solar PV".
@@ -108,6 +118,7 @@ The *"Huawei Solar PEES package"* now includes the huawei_solar_input.yaml file 
 > :bulb: *You are now set up to adjust your user specific input settings!*
 
 #### Efficiency Corrected Power Input Sensor
+
 The default custom power input sensors do not take the inverter efficiency into account, which may result in a too high yield and other inaccuracies (house load is calculated on basis of the yield). The *"Huawei Solar integration"* does provide the `sensor.input_power_with_efficiency_loss` which takes the inverter efficiency into account. I have not tested this sensor, but my assessment is that it may cause inaccuracies and/or errors due to the step-by-step adjustment of the efficiency.
 
 Therefore and as an option I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei.
@@ -133,6 +144,7 @@ To simplify the differense between the two slides without getting to technical, 
 Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/1.-Power-Sensors#efficiency-corrected-inverter-power-sensors) for more information about how the efficiency corrected power input sensors have been created, how they work and how they should be adjusted to your specific use case.
 
 #### Electricity Price Sensors
+
 By default, the *"Huawei Solar PEES package"* use electricity price sensors from the *"Energi Data Service integration"*. If you use this dnd have named the sensors according to this README / the Wiki Pages, you do not need to do anything. The "text box" can be left with `unknown`, `unavailable` or ` ` (empty).
 
 For those who use alternative electricity price sensors or sensor names, enter your sensor name in the "text box" and the calcolations made in the "HUawei Solar PEES package" will be based on those sensors. Rember to include `sensor.` in the name and do not include any type of brackets `"` or `'`.
@@ -140,9 +152,11 @@ For those who use alternative electricity price sensors or sensor names, enter y
 ![Input Card Electricity Price](pictures/input_card_electricity_price.jpg)
 
 #### Tariffs
+
 If you have several tariffs and/or it/they change from time to time, you might find it beneficial to have a calculation of the settings you use. I have a sensor which was created for my *"Huawei Solar EFLR package"* but you might find it useful in this case also. Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#tariff-on-export-and-sale) where you will find an input ready to copy/paste.
 
 #### Other Input Cards
+
 The input file huawei_solar_input.yaml and the code for the input card huawei_solar_input_card.md does includes other user specific settings used by other packages I provide or intend to release. Settings for those inputs will be described in the README for those "packages".
 
 ## 4. Known "bugs"
