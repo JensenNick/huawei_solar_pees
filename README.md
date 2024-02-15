@@ -58,7 +58,7 @@ The custom sensors included in the *"Huawei Solar PEES package"* are available f
 
 ### 3.1 Package "Installation"
 
-The "installation" is very straight forward. Each step is described in the bulleted list below. So just for the overview - the process includes configuring your configuration.yaml file, creating a directory/folder for the *"Huawei Solar PEES package"* files and copy/pasting the package files into the directory/folder you have created. The package files also includes similar short instructions.
+The "installation" is very straight forward. Each step is described in the bulleted list below. So just for the overview - the process includes configuring your configuration.yaml file, creating a directory/folder for the *"Huawei Solar PEES package"* files and copy/pasting the package files into the directory/folder you have created. The package files also include similar short instructions.
 
 * Open Studio Code Server (or your choise of code editor) and **ad the following two lines** to your `configuration.yaml` file.
 
