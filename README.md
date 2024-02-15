@@ -70,6 +70,8 @@ home assistant:
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
 * **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/*"huawei_solar_pees.yaml"*) and ["**"huawei_solar_input.yaml*"](packages/"**"huawei_solar_input.yaml*") into your `packages` directory/folder.<br> The *"**"huawei_solar_input.yaml*"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below), because of dependencies between the two files included in the "package".
 
+![Install Package](pictures/install_package.jpg)
+
 > :bulb: ***That is it! That is all the "installation" you need to do** in order to be up and running with all the custom sensors included in the "Huawei Solar PEES package" - provided that you are using the default names for the input sensors.*
 
 If you wish, you may alternatively download package file including the latest Release Note and supplemental documents like this README from the [Releases Page](https://github.com/JensenNick/huawei_solar_pees/releases), where you will also find previous releases.
@@ -167,6 +169,24 @@ You need to provide two electricity price sensors as input - one which provides 
 
 ### 4.3 Extras
 
+<<<<<<< HEAD
+#### Battery and Solar Panels
+
+The input file "**"huawei_solar_input.yaml*" and the code for the Lovelace Input Card huawei_solar_input_card.md does includes other user specific settings used by other packages either that I provide or intend to release soon. Settings for those inputs will be described in the README for those "packages". Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
+
+#### Electricity Price for Energy Dashboard
+
+First of all the the *"Huawei Solar - PEES package"* will do a much better job tracking your savings than the Energy Dashboard, so I would of course hope you will help with development of an alternative to the Energy Dashboard using the custom sensors provided in this "package".
+
+As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors neither to your solar PV production nor the energy you discharge from your battery to cover house loads. Basically you can not track those savings out of the box. What you maybe can do, is to ad either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption". But in order to track your savings you would need a negative electricity price sensor in order for the "cost" to become a saving. The *"huawei_solar_input.yaml"* file include the `sensor.energi_data_service_negative` which may be used as a price sensor for this implementation.
+
+### Tariffs
+
+If you have several tariffs and/or it/they change from time to time, you might find it beneficial to have a sensor with the calculation of the "total" tariff for sale/export. In the *"huawei_solar_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
+
+## 5. Known "bugs"
+
+=======
 #### Battery and Solar Panels
 
 The input file "**"huawei_solar_input.yaml*" and the code for the Lovelace Input Card huawei_solar_input_card.md does includes other user specific settings used by other packages either that I provide or intend to release soon. Settings for those inputs will be described in the README for those "packages". Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
@@ -181,6 +201,7 @@ If you have several tariffs and/or it/they change from time to time, you might f
 
 ## 5. Known "bugs"
 
+>>>>>>> 6d4a85d07d8d063b0c30115bd641be92020a4498
 None at the moment.
 
 ## 6. Thanks to
