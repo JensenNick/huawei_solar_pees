@@ -68,7 +68,7 @@ homeassistant:
 ```
 
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
-* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml) and [*"huawei_solar_input.yaml"*](packages/huawei_solar_input.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below), because of dependencies between the two files included in the "package".
+* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml) and [*"huawei_solar_input.yaml"*](packages/huawei_solar_input.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below).
 
 ![Install Package](pictures/install_package.jpg)
 
