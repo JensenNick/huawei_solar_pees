@@ -81,7 +81,7 @@ Since the *"Huawei Solar PEES package"* includes platform sensors, "Restart Home
 
 > :exclamation: **Restart Home Assistant and refresh your browser** :exclamation:
 
-The energy and economy sensors require "activity" in order for it to start. It may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show. If you wish to force a sensor to start you may manually set it to "0" (zero). Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/5.-Dashboards,-Views-and-Cards#force-sensor-startup) where you will find a detailed guide on how to do this.
+The energy and economy sensors require "activity" in order for them to "start". It may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show. If you wish to force a sensor to start you may manually set it to "0" (zero). Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/5.-Dashboards,-Views-and-Cards#force-sensor-startup) where you will find a detailed guide on how to do this.
 
 ### 3.2 Power Input
 
