@@ -4,6 +4,10 @@
 
 ## Release Note / v2.0.1
 
+Minor changes to Energy Yield Total (ts)
+
+## Release Note / v2.0.o
+
 The *"Huawei Solar PEES package file"* has been upgraded to version 2.0.0 and with this leap comes interaction via the GUI the ability to save most of your user specific settings and the possibility to the efficiency corrected power input sensor without the need for any copy/pasting.
 
 ### The package
