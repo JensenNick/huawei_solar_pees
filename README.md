@@ -74,7 +74,7 @@ homeassistant:
 
 > :bulb: ***That is it! That is all the "installation" you need to do** in order to be up and running with all the custom sensors included in the "Huawei Solar PEES package" - provided that you are using the default names for the input sensors.*
 
-If you wish, you may alternatively download package file including the latest Release Note and supplemental documents like this README from the [Releases Page](https://github.com/JensenNick/huawei_solar_pees/releases), where you will also find previous releases.
+If you wish, you may download package files including the latest Release Note and supplemental documents like this README from the [Releases Page](https://github.com/JensenNick/huawei_solar_pees/releases), where you will also find previous releases.
 
 #### Restart
 Since the *"Huawei Solar PEES package"* includes platform sensors, "Restart Home Assistant" litrally means "Restart Home Assistant" (not "Quick Reload") and refresh your browser (use the browser refresh button or F5 on Windows / Cmd+Shift+R on Mac).
