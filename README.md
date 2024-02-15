@@ -134,7 +134,7 @@ Therefore and as an option I have created two custom sensors - one for the Huawe
 
 Here is a short description of how to set up and adjust your efficiency corrected power input sensor/sensors.
 
-* **Toggle the on/off switch** to "on" to activate the "efficiency corrected power input sensor". Be sure to chose the toggle switch for the type (single or three phase) inverter that you have.<br>
+* **Toggle the on/off switch** to "on" to activate the "efficiency corrected power input sensor". Be sure to chose the toggle switch for the type of inverter that you have (single or three phase).<br>
 
 * In the card that appear below, **chose the model** of your inverter in the drop down menu.<br>
 
