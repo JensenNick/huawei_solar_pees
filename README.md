@@ -63,7 +63,7 @@ The "installation" is very straight forward. Each step is described in the bulle
 * Open Studio Code Server (or your choise of code editor) and **ad the following two lines** to your `configuration.yaml` file.
 
 ```yaml
-home assistant:
+homeassistant:
   packages: !include_dir_named packages
 ```
 
