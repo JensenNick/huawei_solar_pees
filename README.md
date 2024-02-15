@@ -112,7 +112,7 @@ You may need to correct the currency to your local currency. The currency used i
 
 The *"Huawei Solar PEES package"* now include the [huawei_solar_input.yaml](packages/huawei_solar_input.yaml) file, and as the name suggests, this file contain sensors to be used for user specific input.
 
-You should not edit file *"huawei_solar_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file contain the code for the *"Huawei Solar PEES - Input Card"* for Lovelace / Home Assistant Dashboards. Here is a step by step instruction on how to "install" the "input card".
+You should not edit file *"huawei_solar_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file contain the code an "input card" for Lovelace / the Home Assistant Dashboards. Here is a step by step instruction on how to set up the "input card".
 
 * **Create a new dashboard** (optional) in Home Assistant e.g. named "Solar PV".
 * **Create a new view** (optional) in the new dashboard e.g. named "Input"
@@ -126,7 +126,7 @@ You should not edit file *"huawei_solar_input.yaml"* file. All user specific inp
 
 The default custom power input sensors do not take the inverter efficiency into account, which may result in a too high yield and other inaccuracies (house load is calculated on basis of the yield). The *"Huawei Solar integration"* does provide the `sensor.input_power_with_efficiency_loss` which takes the inverter efficiency into account. I have not tested this sensor, but my assessment is that it may cause inaccuracies and/or errors due to the step-by-step adjustment of the efficiency.
 
-Therefore and as an option I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei.
+Therefore and as an option I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei. You activate the "efficiency corrected power input sensor" in the "input card".
 
 ![Efficiency Corrected Power Input Sensors](pictures/efficiency_corrected_power_input_sensors.jpg)
 
@@ -134,7 +134,7 @@ Therefore and as an option I have created two custom sensors - one for the Huawe
 
 Here is a short description of how to set up and adjust your efficiency corrected power input sensor/sensors.
 
-* **Toggle the on/off switch** to "on" for the type (single or three phase) inverter you have.<br>
+* **Toggle the on/off switch** to "on" to activate the "efficiency corrected power input sensor". Be sure to chose the toggle switch for the type (single or three phase) inverter that you have.<br>
 
 * In the card that appear below, **chose the model** of your inverter in the drop down menu.<br>
 
