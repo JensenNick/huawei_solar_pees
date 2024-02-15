@@ -457,7 +457,7 @@ template:
           {{ states('sensor.energy_yield_1_ts') | float +
           states('sensor.energy_yield_2_ts') | float(0) }}
         availability: >
-          {{ has_value('sensor.energy_yield_1') }}
+          {{ has_value('sensor.energy_yield_1_ts') }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
