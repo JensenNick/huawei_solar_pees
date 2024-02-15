@@ -68,7 +68,7 @@ home assistant:
 ```
 
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
-* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/*"huawei_solar_pees.yaml"*) and ["**"huawei_solar_input.yaml*"](packages/"**"huawei_solar_input.yaml*") into your `packages` directory/folder.<br> The *"**"huawei_solar_input.yaml*"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below), because of dependencies between the two files included in the "package".
+* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml) and [*"huawei_solar_input.yaml"*](packages/huawei_solar_input.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below), because of dependencies between the two files included in the "package".
 
 ![Install Package](pictures/install_package.jpg)
 
@@ -89,7 +89,7 @@ My advice is to use the default names for the power input sensors from the *"Hua
 
 The custom sensor in the package rely on the following power input sensors from the *"Huawei Solar integration by wlcrs"* `inverter_input_power` / `inverter_input_power_2` (if you have two inverters), `power_meter_active_power` and `battery_charge_discharge_power`. The naming used in the package file corresponds to this default naming used by the *"Huawei Solar integration"*.
  
-If you for some reason do not wish to use the default names you need to edit the package file [*"huawei_solar_pees.yaml"*](packages/*"huawei_solar_pees.yaml"*). You will find the following text lines (# = text / not part of the code) which allows for an easy global edit or search/replace.
+If you for some reason do not wish to use the default names you need to edit the package file [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml). You will find the following text lines (# = text / not part of the code) which allows for an easy global edit or search/replace.
 
 ```yaml
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
@@ -112,7 +112,7 @@ You may need to correct the currency to your local currency. The currency used i
 
 The *"Huawei Solar PEES package"* now include the [huawei_solar_input.yaml](packages/huawei_solar_input.yaml) file, and as the name suggests, this file contain sensors to be used for user specific input.
 
-You should not edit file *"huawei_solar_input.yaml*" file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file contain the code for the *"Huawei Solar PEES - Input Card"* for Lovelace / Home Assistant Dashboards. Here is a step by step instruction on how to "install" the "input card".
+You should not edit file *"huawei_solar_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file contain the code for the *"Huawei Solar PEES - Input Card"* for Lovelace / Home Assistant Dashboards. Here is a step by step instruction on how to "install" the "input card".
 
 * **Create a new dashboard** (optional) in Home Assistant e.g. named "Solar PV".
 * **Create a new view** (optional) in the new dashboard e.g. named "Input"
@@ -138,8 +138,10 @@ Here is a short description of how to set up and adjust your efficiency correcte
 
 * In the card that appear below, **chose the model** of your inverter in the drop down menu.<br>
 
-* The slider for the **"Operating voltage" is used to adjust the efficiency** of the inverter. The rated voltage of your inverter, represents the voltage at which your inverter has the highest efficiency. For the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters, the rated voltage is 600 V. For the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters the rated voltage is 360 V.<br><br>
-You can adjust the operating voltage slider within the operating range of your inverter. Any adjustmens made that deviates from the rated voltage will decrease the efficincy, but with slightly different profiles. The profiles used match the efficiency curves in the datasheet from Huawei. There is a linear interpoleration between the known values.<br><br>
+* The slider for the **"Operating voltage" is used to adjust the efficiency** of the inverter. The rated voltage of your inverter, represents the voltage at which your inverter has the highest efficiency. For the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters, the rated voltage is 600 V. For the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters the rated voltage is 360 V.<br>
+<br>
+You can adjust the operating voltage slider within the operating range of your inverter. Any adjustmens made that deviates from the rated voltage will decrease the efficincy, but with slightly different profiles. The profiles used match the efficiency curves in the datasheet from Huawei. There is a linear interpoleration between the known values.<br>
+<br>
 You can use the "History" information in the FusionSolar app to set your approximate voltage. With more than one string you will have to estimate an average. The "goal" is not to set it "correct", because there is not one "correct" value. The "goal" is to set the operating voltage to a value, which will give you the most accurate energy output.<br>
 
 * The slider for the **"Overall factor"** is a bit more straight forward. This slider will, as the name suggests, **increase or decrase the overall efficiency** of the efficiency corrected power input sensor. This is very powerfull and therefor the range of the slider is limited and the increments are small. Set to 100% the slider has no effect.
@@ -162,23 +164,21 @@ For those who use alternative electricity price sensors or sensor names, enter y
 
 You need to provide two electricity price sensors as input - one which provides the price you pay pr. kWh for import/consumption and one which provides the price pr. kWh that you receive for export/sale. The two sensors used in the *"Huawei Solar PEES package"* are from the *"Energi Data Service integration"* are `sensor.energi_data_service` and `sensor.energi_data_service_sale`. These are custom names that you can give the sensors when you add/create them as entities via the integration (as per above preferably before "intalling" the *"Huawei Solar PEES package"*).
 
-
 ![Daily Battery Economy](pictures/daily_battery_economy.jpg)
 
 > *Daily Battery Economy: Track your cost charging the battery from grid, lost revenue due to charging solar PV production and the savings you have discharging the battery.*
 
 ### 4.3 Extras
 
-<<<<<<< HEAD
 #### Battery and Solar Panels
 
-The input file "**"huawei_solar_input.yaml*" and the code for the Lovelace Input Card huawei_solar_input_card.md does includes other user specific settings used by other packages either that I provide or intend to release soon. Settings for those inputs will be described in the README for those "packages". Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
+The input file *"huawei_solar_input.yaml"* and the code for the Lovelace Input Card *"huawei_solar_input_card.md"* does includes other user specific settings used by other packages that I either provide or intend to release soon. Settings for those inputs will be described in the README for those projects. Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
 
 #### Electricity Price for Energy Dashboard
 
 First of all the the *"Huawei Solar - PEES package"* will do a much better job tracking your savings than the Energy Dashboard, so I would of course hope you will help with development of an alternative to the Energy Dashboard using the custom sensors provided in this "package".
 
-As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors neither to your solar PV production nor the energy you discharge from your battery to cover house loads. Basically you can not track those savings out of the box. What you maybe can do, is to ad either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption". But in order to track your savings you would need a negative electricity price sensor in order for the "cost" to become a saving. The *"huawei_solar_input.yaml"* file include the `sensor.energi_data_service_negative` which may be used as a price sensor for this implementation.
+As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors to calculate your savings from the consumption of energy neither directly from the solar PV installation nor from discharging your battery. The *"huawei_solar_input.yaml"* file include the `sensor.energi_data_service_negative` which can be used as a price sensor if you wish to set up either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption" to track your savings in the Energy Dashboard.
 
 ### Tariffs
 
@@ -186,22 +186,6 @@ If you have several tariffs and/or it/they change from time to time, you might f
 
 ## 5. Known "bugs"
 
-=======
-#### Battery and Solar Panels
-
-The input file "**"huawei_solar_input.yaml*" and the code for the Lovelace Input Card huawei_solar_input_card.md does includes other user specific settings used by other packages either that I provide or intend to release soon. Settings for those inputs will be described in the README for those "packages". Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
-
-#### Electricity Price for Energy Dashboard
-
-First of all the the *"Huawei Solar - PEES package"* will do a much better job tracking your savings than the Energy Dashboard, so I would of course hope you will help with development of an alternative to the Energy Dashboard using the custom sensors provided in this "package". As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors that calculate your savings from the consumption of energy either directly from the solar PV installation or from your battery.  The *"huawei_solar_input.yaml"* file include the `sensor.energi_data_service_negative` which may be used as a price sensor if you wish to set up either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption" to track your savings.
-
-### Tariffs
-
-If you have several tariffs and/or it/they change from time to time, you might find it beneficial to have a sensor with the calculation of the "total" tariff for sale/export. In the *"huawei_solar_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
-
-## 5. Known "bugs"
-
->>>>>>> 6d4a85d07d8d063b0c30115bd641be92020a4498
 None at the moment.
 
 ## 6. Thanks to
