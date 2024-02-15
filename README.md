@@ -178,7 +178,7 @@ First of all the the *"Huawei Solar - PEES package"* will do a much better job t
 
 As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors to calculate your savings from the consumption of energy neither directly from the solar PV installation nor from discharging your battery. The *"huawei_solar_input.yaml"* file include the `sensor.energi_data_service_negative` which can be used as a price sensor if you wish to set up either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption" to track your savings in the Energy Dashboard.
 
-### Tariffs
+#### Tariffs
 
 If you have several tariffs and/or they change from time to time, you might find it beneficial to have a sensor with the calculation of the tariff for sale/export. In the *"huawei_solar_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
 
