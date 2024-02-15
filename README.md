@@ -54,7 +54,7 @@ The diagram below shows the definitions used for the power- and energy flows bet
 
 ## 3. Installation
 
-The custom sensors included in the *"Huawei Solar PEES package"* are available for download as two files, intended to be "installed" as a "package". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
+The custom sensors included in the *"Huawei Solar PEES package"* are available for download as two files, intended to be "installed" as "packages". You can read more about packages in the Home Assistant documentation [Packages](<https://www.home-assistant.io/docs/configuration/packages/>).
 
 ### 3.1 Package "Installation"
 
