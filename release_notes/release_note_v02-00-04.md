@@ -10,7 +10,7 @@ Minor changes to Energy Yield Total (ts)
 
 Correcting branch and version.
 
-## Release Note / v2.0.1, v2.0.2 and v2.0.4
+## Release Note / v2.0.1 and v2.0.2
 
 Minor changes to Energy Yield Total (ts)
 
