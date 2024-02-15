@@ -180,7 +180,7 @@ As of February 2024 the Energy Dashboard in Home Assistant does not support addi
 
 ### Tariffs
 
-If you have several tariffs and/or it/they change from time to time, you might find it beneficial to have a sensor with the calculation of the "total" tariff for sale/export. In the *"huawei_solar_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
+If you have several tariffs and/or they change from time to time, you might find it beneficial to have a sensor with the calculation of the "total" tariff for sale/export. In the *"huawei_solar_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
 
 ## 5. Known "bugs"
 
