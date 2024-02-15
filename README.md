@@ -154,7 +154,7 @@ Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees
 
 ### 4.2 Electricity Price
 
-By default the *"Huawei Solar PEES package"* use two electricity price sensors from the *"Energi Data Service integration"*. If you use this dnd have named the sensors according to this README / the Wiki Pages, you do not need to do anything. The "text box" can be left with `unknown`, `unavailable` or ` ` (empty).
+By default the *"Huawei Solar PEES package"* use two electricity price sensors from the *"Energi Data Service integration"*. If you use this and have named the sensors according to this README / the Wiki Pages, you do not need to do anything. The "text box" can be left with `unknown`, `unavailable` or ` ` (empty).
 
 For those who use alternative electricity price sensors or sensor names, enter your sensor name in the "text box" and the calcolations made in the "HUawei Solar PEES package" will be based on those sensors. Rember to include `sensor.` in the name and do not include any type of brackets `"` or `'`.
 
