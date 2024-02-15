@@ -100,9 +100,9 @@ If you for some reason do not wish to use the default names you need to edit the
 
 ### 3.3 Electricity Price
 My advice is to stick with the defaul names,
-`sensor.energi_data_service` (price pr. kWh you pay for purchase/import) and `sensor.energi_data_service_sale` (price pr. kWh you receive for sale/export) used for the electricity price sensors. If you need helpt to set up the electricity price sensors in the *"Energi Data Service integration by MTrab"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#energi-data-service-integration).
+`sensor.energi_data_service` (price pr. kWh you pay for purchase/import) and `sensor.energi_data_service_sale` (price pr. kWh you receive for sale/export) used for the electricity price sensors. If you need help to set up the electricity price sensors in the *"Energi Data Service integration by MTrab"*, please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/3.-Electricity-Tariffs-and-Price#energi-data-service-integration).
 
-If you do not wish to use the default electricity price sensors from the *"Energi Data Service integration"* or if you wish to use a different sensor name, please refer to chapter 3.4 [Specific Settings (optional)](#34-specific-user-settings-optional).
+If you do not wish to use the default electricity price sensors from the *"Energi Data Service integration"* or if you wish to use a different sensor name, please refer to chapter 4.2 [Electricity Price](#42-electricity-price).
 
 ### 3.4 Currency
 
