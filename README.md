@@ -87,7 +87,7 @@ The energy and economy sensors require "activity" in order for them to "start". 
 
 My advice is to use the default names for the power input sensors from the *"Huawei Solar integration by wlcrs"*. If you for some reason do not wish to use the default names for the input sensor you need to make sure that the naming of your input sensors is correct.
 
-The custom sensor in the package rely on the following power input sensors from the *"Huawei Solar integration by wlcrs"* `inverter_input_power` / `inverter_input_power_2` (if you have two inverters), `power_meter_active_power` and `battery_charge_discharge_power`. The naming used in the package file corresponds to this default naming used by the *"Huawei Solar integration"*.
+The custom sensor in the package rely on the following power input sensors from the *"Huawei Solar integration by wlcrs"* `inverter_input_power` / `inverter_input_power_2` (if you have two inverters), `power_meter_active_power` and `battery_charge_discharge_power`. The naming used in the package file corresponds to this default names used by the *"Huawei Solar integration"*.
  
 If you for some reason do not wish to use the default names you need to edit the package file [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml). You will find the following text lines (# = text / not part of the code) which allows for an easy global edit or search/replace.
 
