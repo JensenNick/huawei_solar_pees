@@ -5,7 +5,6 @@
 ## Release Note / v2.0.5
 
 ### Issue
-
 Issue with utility meter jumping at restart and reboot fixed. This issue especially conserns the economy utility meters. The fix includes rolling back the new sensors introduced in v2.0.0.
 
 ### Sensors Removed
