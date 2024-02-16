@@ -2,7 +2,7 @@
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
 # version: v2.0.4
-# branch: main
+# branch: alpha-010
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -436,7 +436,7 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float(0) }}
+          {{ states('sensor.energy_yield_1') | float }}
         availability: >
           {{ has_value('sensor.energy_yield_1') }}
       - name: "Energy Yield #2 (ts)"
@@ -445,7 +445,7 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_2') | float(0) }}
+          {{ states('sensor.energy_yield_2') | float }}
         availability: >
           {{ has_value('sensor.energy_yield_2') }}
       - name: "Energy Yield Total (ts)"
@@ -454,10 +454,11 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1_ts') | float +
-          states('sensor.energy_yield_2_ts') | float(0) }}
+          {{ states('sensor.energy_yield_1') | float +
+          states('sensor.energy_yield_2') | float(0) }}
         availability: >
-          {{ has_value('sensor.energy_yield_1_ts') }}
+          {{ has_value('sensor.energy_yield_1') or
+          has_value('sensor.energy_yield_2') }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
@@ -490,62 +491,42 @@ template:
         state_class: total
         state: >
           {{ (
-          states('sensor.economy_expenses_w_pv_ts') | float(0) -
-          states('sensor.economy_income_w_pv_ts') | float(0) 
+          states('sensor.import_cost') | float -
+          states('sensor.export_income') | float
           ) | round(5) }}
+        availability: >
+          {{ has_value('sensor.import_cost') or
+          has_value('sensor.export_income') }}
       - name: "Economy - NRI PV (ts)"
         unique_id: economy_nri_pv_ts
         unit_of_measurement: DKK
         state_class: total
         state: >
           {{ (
-          states('sensor.economy_result_wo_pv_ts') |float(0) -
-          states('sensor.economy_expenses_w_pv_ts') | float(0) +
-          states('sensor.economy_income_w_pv_ts') | float(0) 
+          states('sensor.house_load_cost') | float -
+          states('sensor.import_cost') | float +
+          states('sensor.export_income') | float
           ) | round(5) }}
-      - name: "Battery Discharge Grid - Sale (ts)"
-        unique_id: battery_discharge_grid_sale_ts
-        unit_of_measurement: DKK
-        state_class: total
-        state: >
-          {{ states('sensor.battery_discharge_grid_sale') | float(0) }}
         availability: >
-          {{ has_value('sensor.battery_discharge_grid_sale') }}
-      - name: "Battery Discharge House - Saving (ts)"
-        unique_id: battery_discharge_house_saving_ts
-        unit_of_measurement: DKK
-        state_class: total
-        state: >
-          {{ states('sensor.battery_discharge_house_saving') | float(0) }}
-        availability: >
-          {{ has_value('sensor.battery_discharge_house_saving') }}
-      - name: "Battery Charge Yield - Sale (ts)"
-        unique_id: battery_charge_yield_sale_ts
-        unit_of_measurement: DKK
-        state_class: total
-        state: >
-          {{ states('sensor.battery_charge_yield_sale') | float(0) }}
-        availability: >
-          {{ has_value('sensor.battery_charge_yield_sale') }}
-      - name: "Battery Charge Grid - Cost (ts)"
-        unique_id: battery_charge_grid_cost_ts
-        unit_of_measurement: DKK
-        state_class: total
-        state: >
-          {{ states('sensor.battery_charge_grid_cost') | float(0) }}
-        availability: >
-          {{ has_value('sensor.battery_charge_grid_cost') }}
+          {{ has_value('sensor.house_load_cost') or
+          has_value('sensor.import_cost') or
+          has_value('sensor.export_income') }}
       - name: "Economy - NRI Battery (ts)"
         unique_id: economy_nri_battery_ts
         unit_of_measurement: DKK
         state_class: total
         state: >
           {{ (
-          states('sensor.battery_discharge_grid_sale_ts') | float(0) +
-          states('sensor.battery_discharge_house_saving_ts') | float(0) -
-          states('sensor.battery_charge_yield_sale_ts') | float(0) -
-          states('sensor.battery_charge_grid_cost_ts') | float(0)
+          states('sensor.battery_discharge_grid_sale') | float +
+          states('sensor.battery_discharge_house_saving') | float -
+          states('sensor.battery_charge_yield_sale') | float -
+          states('sensor.battery_charge_grid_cost') | float
           ) | round(5) }}
+        availability: >
+          {{ has_value('sensor.battery_discharge_grid_sale') or
+          has_value('sensor.battery_discharge_house_saving') or
+          has_value('sensor.battery_charge_yield_sale') or
+          has_value('sensor.battery_charge_grid_cost') }}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
