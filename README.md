@@ -58,6 +58,8 @@ The custom sensors included in the *"Huawei Solar PEES package"* are available f
 
 ### 3.1 Package "Installation"
 
+#### Install the package
+
 The "installation" is very straight forward. Each step is described in the bulleted list below. So just for the overview - the process includes configuring your configuration.yaml file, creating a directory/folder for the *"Huawei Solar PEES package"* files and copy/pasting the package files into the directory/folder you have created. The package files also include similar short instructions.
 
 * Open Studio Code Server (or your choise of code editor) and **ad the following two lines** to your `configuration.yaml` file.
@@ -82,6 +84,14 @@ Since the *"Huawei Solar PEES package"* includes platform sensors, "Restart Home
 > :exclamation: **Restart Home Assistant and refresh your browser** :exclamation:
 
 The energy and economy sensors require "activity" in order for them to "start". It may take a little while before sensors register any activity/change and therefore will have the status "Unavailable" or "Unknown" initially - don't panic, be patient for the values to show. If you wish to force a sensor to start you may manually set it to "0" (zero). Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/5.-Dashboards,-Views-and-Cards#force-sensor-startup) where you will find a detailed guide on how to do this.
+
+#### Power and Energy Cards
+Once the package has been installed I suggest that you at least create the "Power Sensor Card" and the "Energy Sensor Card" in order to check that everything is working as expected. Please refer to the [Wiki Pages](https://github.com/JensenNick/huawei_solar_pees/wiki/5.-Dashboards,-Views-and-Cards) where you will find a short guide and the code for these Lovelace cards.
+
+> :bulb: If you create the "Yield and Consumption Card" please note that this card requires the "Multi Entity Row integration" available in HACS and that this integration sometimes require that you redownload it after setting up your cards.
+
+#### Adjust Output
+Once the package is installed you can go to *"Developer tools" > "States"* and find your newly added sensors, click on the "i", then click on the "cogwheel" and adjust "Display precision" and "Icon" to your liking (adjusting the precision of the sensor "here", will not affect the accuracy of the result).
 
 ### 3.2 Power Input
 
