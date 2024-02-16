@@ -2,7 +2,7 @@
 
 **Power, Energy and Economy Sensors**
 
-## Release Notes / v2.0.6
+## Release Note / v2.0.6
 
 No changes made. GitHub issues / Procedure failiure.
 
