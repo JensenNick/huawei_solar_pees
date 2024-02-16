@@ -91,7 +91,7 @@ Once the package has been installed I suggest that you at least create the "Powe
 > :bulb: If you create the "Yield and Consumption Card" please note that this card requires the "Multi Entity Row integration" available in HACS and that this integration sometimes require that you redownload it after setting up your cards.
 
 #### Adjust Output
-Once the package is installed you can go to *"Developer tools" > "States"* and find your newly added sensors, click on the "i", then click on the "cogwheel" and adjust "Display precision" and "Icon" to your liking (adjusting the precision of the sensor "here", will not affect the accuracy of the result).
+In *"Developer tools" > "States"* you will find your newly added sensors, click on the "i", then click on the "cogwheel" and adjust "Display precision" and "Icon" to your liking (adjusting the precision of the sensor "here", will not affect the accuracy of the result).
 
 ### 3.2 Power Input
 
