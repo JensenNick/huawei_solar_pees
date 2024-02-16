@@ -122,12 +122,12 @@ You may need to correct the currency to your local currency. The currency used i
 
 The *"Huawei Solar PEES package"* now include the [huawei_solar_input.yaml](packages/huawei_solar_input.yaml) file, and as the name suggests, this file contain sensors to be used for user specific input.
 
-You should not edit file *"huawei_solar_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.yaml](packages/huawei_solar_input_card.yaml) file. This file contain the code an "input card" for Lovelace / the Home Assistant Dashboards. Here is a step by step instruction on how to set up the "input card".
+You should not edit file *"huawei_solar_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file contain the code an "input card" for Lovelace / the Home Assistant Dashboards. Here is a step by step instruction on how to set up the "input card".
 
 * **Create a new dashboard** (optional) in Home Assistant e.g. named "Solar PV".
 * **Create a new view** (optional) in the new dashboard e.g. named "Input"
 * **Add a new "Manual" card** in the new "Input" view.
-* **Copy/paste the code** from the [huawei_solar_input_card.yaml](packages/huawei_solar_input_card.yaml) into the "Manual" card. Make sure to delete/overwrite the predefined text `type: ''` in the "Manual" card.
+* **Copy/paste the code** from the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) into the "Manual" card. Make sure to delete/overwrite the predefined text `type: ''` in the "Manual" card.
 * **Click "Done" and refresh your browser.**
 
 > :bulb: *You are now set up and able to adjust your user specific input settings!*
@@ -180,7 +180,7 @@ You need to provide two electricity price sensors as input - one which provides 
 
 #### Battery and Solar Panels
 
-The input file *"huawei_solar_input.yaml"* and the code for the Lovelace Input Card *"huawei_solar_input_card.yaml"* does includes other user specific settings used by other packages that I either provide or intend to release soon. Settings for those inputs will be described in the README for those projects. Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
+The input file *"huawei_solar_input.yaml"* and the code for the Lovelace Input Card *"huawei_solar_input_card.md"* does includes other user specific settings used by other packages that I either provide or intend to release soon. Settings for those inputs will be described in the README for those projects. Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
 
 #### Electricity Price for Energy Dashboard
 
