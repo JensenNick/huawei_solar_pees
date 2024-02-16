@@ -206,6 +206,6 @@ None at the moment.
 
 * **KennethLavrsen** for providing the full input for the triggered template sensors used to convert the Riemann Sum into actual economical figures.
 
-* **All contributors** and especially **Krabbee** and **JacobsenKim**.
+* **All contributors** and a special thank's to **Krabbee** and **JacobsenKim**.
 
 **Again, Thank You to all of You!**
