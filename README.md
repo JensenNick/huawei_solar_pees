@@ -146,7 +146,7 @@ Here is a short description of how to set up and adjust your efficiency correcte
 
 * **Toggle the on/off switch** to "on" to activate the "efficiency corrected power input sensor". Be sure to chose the toggle switch for the type of inverter that you have (single or three phase).<br>
 
-* In the card that appear below, **chose the model** of your inverter in the drop down menu.<br>
+* In the card that appear below, **chose the model of your inverter** in the drop down menu.<br>
 
 * The slider for the **"Operating voltage" is used to adjust the efficiency** of the inverter. The rated voltage of your inverter, represents the voltage at which your inverter has the highest efficiency. For the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters, the rated voltage is 600 V. For the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters the rated voltage is 360 V.<br>
 You can use the slider to adjust the operating voltage within the operating range of your inverter. Any adjustmens made that deviates from the rated voltage will decrease the efficincy, but with slightly different profiles. The profiles used match the efficiency curves in the datasheet from Huawei. There is a linear interpoleration between the known values.<br>
