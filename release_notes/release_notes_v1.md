@@ -5,7 +5,6 @@
 ## Release Note / v1.0.0
 
 The *"Huawei Solar PEES package file"* has now been tested on a clean install of Home Assistant - no strings to any thing in the past. This is hopefully how most of you will experience the "installation".
-
 ### New naming convention
 
 This wasn't an easy decision, but for the better I believe looking forward. Template sensors lose their value temporarily while HA is rebooting / restarting, leaving a blank space in the graphs. I therefor upgraded the *"Huawei Solar PEES package"* with utility meters for all the platform and template sensors.
