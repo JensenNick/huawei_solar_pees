@@ -106,4 +106,4 @@ cards:
       - entity: input_number.panels_on_inverter_1
       - entity: input_number.panels_on_inverter_2
     title: Solar Panels
-```
+    
