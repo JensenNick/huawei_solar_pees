@@ -1,4 +1,4 @@
-# Huawei Solar - INPUT CARD
+## Huawei Solar - INPUT CARD
 version: v1.0.0<br>
 branch: main<br>
 domain: https://github.com/JensenNick/huawei_solar_pees<br>
