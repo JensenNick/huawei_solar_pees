@@ -1,5 +1,5 @@
 ## Huawei Solar - INPUT CARD
-version: v1.0.0<br>
+version: v1.0.1<br>
 branch: main<br>
 domain: https://github.com/JensenNick/huawei_solar_pees<br>
 codeowner: Nick Jensen<br>
@@ -49,6 +49,10 @@ cards:
           name: Overall factor (100%)
   - type: entities
     entities:
+      - entity: sensor.inverter_pv_1_voltage
+      - entity: sensor.inverter_pv_2_voltage
+  - type: entities
+    entities:
       - entity: input_boolean.inverter_2_1phase
         name: 'Inverter #2 SUN2000 # KTL-L1 (1 phase)'
       - entity: input_boolean.inverter_2_3phase
@@ -87,6 +91,10 @@ cards:
           name: Operating voltage (600V)
         - entity: input_number.inverter_2_overall_factor
           name: Overall factor (100%)
+  - type: entities
+    entities:
+      - entity: sensor.inverter_pv_1_voltage_2
+      - entity: sensor.inverter_pv_2_voltage_2
   - type: entities
     entities:
       - entity: input_text.electricity_price_import
