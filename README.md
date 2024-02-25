@@ -142,7 +142,7 @@ Therefore and as an option I have created two custom sensors - one for the Huawe
 
 > *Efficiency corrected input power graphs - yield from each inverter and the total power yield.*
 
-Here is a short description of how to set up and adjust your efficiency corrected power input sensor/sensors.
+Here is a short description of how to set up and adjust your efficiency corrected power input sensor.
 
 * **Toggle the on/off switch** to "on" to activate the "efficiency corrected power input sensor". Be sure to chose the toggle switch for the type of inverter that you have (single or three phase).<br>
 
