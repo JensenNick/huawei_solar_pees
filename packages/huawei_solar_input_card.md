@@ -1,4 +1,4 @@
-## Huawei Solar INPUT - Input Card for Lovelace
+## Huawei Solar INPUT CARD - Input Card for Lovelace
 version: v1.0.2<br>
 branch: main<br>
 domain: https://github.com/JensenNick/huawei_solar_pees<br>
@@ -111,14 +111,21 @@ cards:
   - type: entities
     entities:
       - entity: input_number.battery_rated_capacity
+        name: Rated Capacity (kWh)
       - entity: input_number.battery_efficiency_soc_trigger
+        name: SOC Trigger (50%)
       - entity: input_number.battery_efficiency_start_value_charge
+        name: Start Value Charge (kWh)
       - entity: input_number.battery_efficiency_start_value_discharge
-    title: Battery
+        name: Start Value Discharge (kWh)
+    title: Battery Efficiency
   - type: entities
     entities:
       - entity: input_number.panels_rated_wp
+        name: Rated Power (Wp)
       - entity: input_number.panels_on_inverter_1
+        name: Panels in inverter #1 
       - entity: input_number.panels_on_inverter_2
-    title: Solar Panels
+        name: Panels in inverter #2
+    title: Yield Statistics
 ``` 
