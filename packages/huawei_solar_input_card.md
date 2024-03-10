@@ -1,8 +1,10 @@
-## Huawei Solar - INPUT CARD
-version: v1.0.1<br>
+## Huawei Solar INPUT - Input Card for Lovelace
+version: v1.0.2<br>
 branch: main<br>
 domain: https://github.com/JensenNick/huawei_solar_pees<br>
 codeowner: Nick Jensen<br>
+
+### Input Card for the *"Huawei Solar PEES package"*
 
 ```yaml
 type: vertical-stack
@@ -100,6 +102,12 @@ cards:
       - entity: input_text.electricity_price_import
       - entity: input_text.electricity_price_export
     title: Electricity Price
+```
+### Input Card for the *"Huawei Solar STAT package"*
+
+```yaml
+type: vertical-stack
+cards:
   - type: entities
     entities:
       - entity: input_number.battery_rated_capacity
