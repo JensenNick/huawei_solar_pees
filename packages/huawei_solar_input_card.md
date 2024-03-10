@@ -122,10 +122,10 @@ cards:
   - type: entities
     entities:
       - entity: input_number.panels_rated_wp
-        name: Rated Power (Wp)
+        name: Solar Panels Power (Wp)
       - entity: input_number.panels_on_inverter_1
-        name: Panels in inverter #1 
+        name: "Panels on inverter #1"
       - entity: input_number.panels_on_inverter_2
-        name: Panels in inverter #2
+        name: "Panels on inverter #2"
     title: Yield Statistics
 ``` 
