@@ -21,22 +21,19 @@
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
-# - 'switch.battery_charge_from_grid','off'
-# - 'sensor.battery_state_of_capacity'
-# - 'number.battery_grid_charge_cutoff_soc'
-# 
+#
 # The "Huawei Solar PEES package" will use the electricity price sensors from the
-# "Energi Data Service integration" by MTrab as default. 
+# "Energi Data Service integration" by MTrab as default.
 #
 # If you wish to provide your own electricity price sensors and/or your own currency
 # and/or if you wish to use the provided efficiency corrected power input sensor,
 # I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace Input
-# card. This will make it possible for you to save your specific solar PV settings 
+# card. This will make it possible for you to save your specific solar PV settings
 # from between updates of the package.
 #
 # The currency used is DKK by default. If you use another currency you need to change
-# this in this file. I advice you not make any other changes. 
-# 
+# this in this file. I advice you not make any other changes.
+#
 # Restart Home Assistant and refresh your browser.
 #
 # -------
@@ -352,59 +349,44 @@ template:
           states('sensor.power_meter_active_power') | float(0) -
           states('sensor.battery_charge_discharge_power') | float(0)
           , 0 ) | max }}
-      - name: "Power House Load Yield"
-        unique_id: power_house_load_yield
-        unit_of_measurement: W
-        device_class: power
-        state_class: measurement
-        state: >
-          {% if states('sensor.power_house_load') | float(0) >
-          ( states('sensor.power_inverter_1_input') | float(0) +
-          states('sensor.power_inverter_2_input') | float(0) ) %}
-            {{ states('sensor.power_inverter_1_input') | float(0) +
-            states('sensor.power_inverter_2_input') | float(0) -
-            states('sensor.power_battery_charge_yield') | float(0) }}
-          {% else %}
-            {{ states('sensor.power_house_load') | float(0) -
-            states('sensor.power_battery_charge_yield') | float(0) }}
-          {% endif %}
       - name: "Power Battery Charge Yield"
         unique_id: power_battery_charge_yield
         unit_of_measurement: W
         device_class: power
         state_class: measurement
         state: >
-          {% if is_state('switch.battery_charge_from_grid','off') and
-          states('sensor.power_inverter_input_total') | float(0) >
+          {% if states('sensor.power_battery_charge') | float(0) >=
+          states('sensor.power_inverter_1_input') | float(0) +
+          states('sensor.power_inverter_2_input') | float(0) %}
+            {{ states('sensor.power_inverter_1_input') | float(0) +
+            states('sensor.power_inverter_2_input') | float(0) }}
+          {% elif states('sensor.power_inverter_1_input') | float(0) +
+          states('sensor.power_inverter_2_input') | float(0) >
           states('sensor.power_battery_charge') | float(0) %}
-            {{ (
-            states('sensor.battery_charge_discharge_power') | float(0)
-            , 0 ) | max }}
-          {% elif states('sensor.battery_state_of_capacity') | float(0) >
-          states('number.battery_grid_charge_cutoff_soc') | float(0) and
-          states('sensor.power_inverter_input_total') | float(0) >
-          states('sensor.power_battery_charge') | float(0) %}
-            {{ ( 
-            states('sensor.battery_charge_discharge_power') | float(0)
-            , 0 ) | max }}
+            {{ states('sensor.power_battery_charge') | float(0) }}
           {% else %}
-            {{ ( 
-            states('sensor.power_inverter_1_input') | float(0) +
-            states('sensor.power_inverter_2_input') | float(0) -
-            states('sensor.power_house_load_yield') | float(0) -
-            states('sensor.power_export') | float(0)
-            , 0 ) | max }}
+            {{ 0 }}
           {% endif %}
+      - name: "Power House Load Yield"
+        unique_id: power_house_load_yield
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        state: >
+          {{ ( 
+          states('sensor.power_inverter_1_input') | float(0) +
+          states('sensor.power_inverter_2_input') | float(0) -
+          states('sensor.power_battery_charge_yield') | float(0) -
+          states('sensor.power_export') | float(0)
+          , 0 ) | max }}
       - name: "Power Battery Charge Grid"
         unique_id: power_battery_charge_grid
         unit_of_measurement: W
         device_class: power
         state_class: measurement
         state: >
-          {{ ( 
-          states('sensor.power_battery_charge') | float(0) -
-          states('sensor.power_battery_charge_yield') | float(0)
-          , 0 ) | max }}
+          {{ states('sensor.power_battery_charge') | float(0) -
+          states('sensor.power_battery_charge_yield') | float(0) }}
       - name: "Power Export Yield"
         unique_id: power_export_yield
         unit_of_measurement: W
