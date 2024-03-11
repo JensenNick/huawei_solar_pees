@@ -23,17 +23,17 @@
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
 #
 # The "Huawei Solar PEES package" will use the electricity price sensors from the
-# "Energi Data Service integration" by MTrab as default. 
+# "Energi Data Service integration" by MTrab as default.
 #
 # If you wish to provide your own electricity price sensors and/or your own currency
 # and/or if you wish to use the provided efficiency corrected power input sensor,
 # I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace Input
-# card. This will make it possible for you to save your specific solar PV settings 
+# card. This will make it possible for you to save your specific solar PV settings
 # from between updates of the package.
 #
 # The currency used is DKK by default. If you use another currency you need to change
-# this in this file. I advice you not make any other changes. 
-# 
+# this in this file. I advice you not make any other changes.
+#
 # Restart Home Assistant and refresh your browser.
 #
 # -------
@@ -369,7 +369,7 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ ( 
+          {{ (
           states('sensor.power_inverter_1_input') | float(0) +
           states('sensor.power_inverter_2_input') | float(0) -
           states('sensor.power_house_load_yield') | float(0) -
@@ -381,7 +381,7 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ ( 
+          {{ (
           states('sensor.power_battery_charge') | float(0) -
           states('sensor.power_battery_charge_yield') | float(0)
           , 0 ) | max }}
@@ -423,7 +423,7 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ ( 
+          {{ (
           states('sensor.power_house_load') | float(0) -
           states('sensor.power_house_load_yield') | float(0) -
           states('sensor.power_battery_discharge_house') | float(0)
@@ -1174,6 +1174,11 @@ utility_meter:
     name: "Daily Battery Charge - Energy"
     unique_id: daily_battery_charge_energy
     cycle: daily
+  weekly_battery_charge_energy:
+    source: sensor.energy_battery_charge_ps
+    name: "Weekly Battery Charge - Energy"
+    unique_id: weekly_battery_charge_energy
+    cycle: weekly
   monthly_battery_charge_energy:
     source: sensor.energy_battery_charge_ps
     name: "Monthly Battery Charge - Energy"
@@ -1201,6 +1206,11 @@ utility_meter:
     name: "Daily Battery Charge Grid - Energy"
     unique_id: daily_battery_charge_grid_energy
     cycle: daily
+  weekly_battery_charge_grid_energy:
+    source: sensor.energy_battery_charge_grid_ps
+    name: "Weekly Battery Charge Grid - Energy"
+    unique_id: weekly_battery_charge_grid_energy
+    cycle: weekly
   monthly_battery_charge_grid_energy:
     source: sensor.energy_battery_charge_grid_ps
     name: "Monthly Battery Charge Grid - Energy"
@@ -1227,6 +1237,11 @@ utility_meter:
     name: "Daily Battery Charge Grid - Cost"
     unique_id: daily_battery_charge_grid_cost
     cycle: daily
+  weekly_battery_charge_grid_cost:
+    source: sensor.battery_charge_grid_cost
+    name: "Weekly Battery Charge Grid - Cost"
+    unique_id: weekly_battery_charge_grid_cost
+    cycle: weekly
   monthly_battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost
     name: "Monthly Battery Charge Grid - Cost"
@@ -1254,6 +1269,11 @@ utility_meter:
     name: "Daily Battery Charge Yield - Energy"
     unique_id: daily_battery_charge_yield_energy
     cycle: daily
+  weekly_battery_charge_yield_energy:
+    source: sensor.energy_battery_charge_yield_ps
+    name: "Weekly Battery Charge Yield - Energy"
+    unique_id: weekly_battery_charge_yield_energy
+    cycle: weekly
   monthly_battery_charge_yield_energy:
     source: sensor.energy_battery_charge_yield_ps
     name: "Monthly Battery Charge Yield - Energy"
@@ -1280,6 +1300,11 @@ utility_meter:
     name: "Daily Battery Charge Yield - Sale"
     unique_id: daily_battery_charge_yield_sale
     cycle: daily
+  weekly_battery_charge_yield_sale:
+    source: sensor.battery_charge_yield_sale
+    name: "Weekly Battery Charge Yield - Sale"
+    unique_id: weekly_battery_charge_yield_sale
+    cycle: weekly
   monthly_battery_charge_yield_sale:
     source: sensor.battery_charge_yield_sale
     name: "Monthly Battery Charge Yield - Sale"
@@ -1307,6 +1332,11 @@ utility_meter:
     name: "Daily Battery Discharge - Energy"
     unique_id: daily_battery_discharge_energy
     cycle: daily
+  weekly_battery_discharge_energy:
+    source: sensor.energy_battery_discharge_ps
+    name: "Weekly Battery Discharge - Energy"
+    unique_id: weekly_battery_discharge_energy
+    cycle: weekly
   monthly_battery_discharge_energy:
     source: sensor.energy_battery_discharge_ps
     name: "Monthly Battery Discharge - Energy"
@@ -1334,6 +1364,11 @@ utility_meter:
     name: "Daily Battery Discharge Grid - Energy"
     unique_id: daily_battery_discharge_grid_energy
     cycle: daily
+  weekly_battery_discharge_grid_energy:
+    source: sensor.energy_battery_discharge_grid_ps
+    name: "Weekly Battery Discharge Grid - Energy"
+    unique_id: weekly_battery_discharge_grid_energy
+    cycle: weekly
   monthly_battery_discharge_grid_energy:
     source: sensor.energy_battery_discharge_grid_ps
     name: "Monthly Battery Discharge Grid - Energy"
@@ -1360,6 +1395,11 @@ utility_meter:
     name: "Daily Battery Discharge Grid - Sale"
     unique_id: daily_battery_discharge_grid_sale
     cycle: daily
+  weekly_battery_discharge_grid_sale:
+    source: sensor.battery_discharge_grid_sale
+    name: "Weekly Battery Discharge Grid - Sale"
+    unique_id: weekly_battery_discharge_grid_sale
+    cycle: weekly
   monthly_battery_discharge_grid_sale:
     source: sensor.battery_discharge_grid_sale
     name: "Monthly Battery Discharge Grid - Sale"
@@ -1387,6 +1427,11 @@ utility_meter:
     name: "Daily Battery Discharge House - Energy"
     unique_id: daily_battery_discharge_house_energy
     cycle: daily
+  weekly_battery_discharge_house_energy:
+    source: sensor.energy_battery_discharge_house_ps
+    name: "Weekly Battery Discharge House - Energy"
+    unique_id: weekly_battery_discharge_house_energy
+    cycle: weekly
   monthly_battery_discharge_house_energy:
     source: sensor.energy_battery_discharge_house_ps
     name: "Monthly Battery Discharge House - Energy"
@@ -1413,6 +1458,11 @@ utility_meter:
     name: "Daily Battery Discharge House - Saving"
     unique_id: daily_battery_discharge_house_saving
     cycle: daily
+  weekly_battery_discharge_house_saving:
+    source: sensor.battery_discharge_house_saving
+    name: "Weekly Battery Discharge House - Saving"
+    unique_id: weekly_battery_discharge_house_saving
+    cycle: weekly
   monthly_battery_discharge_house_saving:
     source: sensor.battery_discharge_house_saving
     name: "Monthly Battery Discharge House - Saving"
@@ -1440,6 +1490,11 @@ utility_meter:
     name: "Daily Export - Energy"
     unique_id: daily_energy_export
     cycle: daily
+  weekly_energy_export:
+    source: sensor.energy_export_ps
+    name: "Weekly Export - Energy"
+    unique_id: weekly_energy_export
+    cycle: weekly
   monthly_energy_export:
     source: sensor.energy_export_ps
     name: "Monthly Export - Energy"
@@ -1466,6 +1521,11 @@ utility_meter:
     name: "Daily Export - Income"
     unique_id: daily_export_income
     cycle: daily
+  weekly_export_income:
+    source: sensor.export_income
+    name: "Weekly Export - Income"
+    unique_id: weekly_export_income
+    cycle: weekly
   monthly_export_income:
     source: sensor.export_income
     name: "Monthly Export - Income"
@@ -1493,6 +1553,11 @@ utility_meter:
     name: "Daily House Load - Energy"
     unique_id: daily_house_load_energy
     cycle: daily
+  weekly_house_load_energy:
+    source: sensor.energy_house_load_ps
+    name: "Weekly House Load - Energy"
+    unique_id: weekly_house_load_energy
+    cycle: weekly
   monthly_house_load_energy:
     source: sensor.energy_house_load_ps
     name: "Monthly House Load - Energy"
@@ -1519,6 +1584,11 @@ utility_meter:
     name: "Daily House Load - Cost"
     unique_id: daily_house_load_cost
     cycle: daily
+  weekly_house_load_cost:
+    source: sensor.house_load_cost
+    name: "Weekly House Load - Cost"
+    unique_id: weekly_house_load_cost
+    cycle: weekly
   monthly_house_load_cost:
     source: sensor.house_load_cost
     name: "Monthly House Load - Cost"
@@ -1546,6 +1616,11 @@ utility_meter:
     name: "Daily House Load Grid - Energy"
     unique_id: daily_house_load_grid_energy
     cycle: daily
+  weekly_house_load_grid_energy:
+    source: sensor.energy_house_load_grid_ps
+    name: "Weekly House Load Grid - Energy"
+    unique_id: weekly_house_load_grid_energy
+    cycle: weekly
   monthly_house_load_grid_energy:
     source: sensor.energy_house_load_grid_ps
     name: "Monthly House Load Grid - Energy"
@@ -1572,6 +1647,11 @@ utility_meter:
     name: "Daily House Load Grid - Cost"
     unique_id: daily_house_load_grid_cost
     cycle: daily
+  weekly_house_load_grid_cost:
+    source: sensor.house_load_grid_cost
+    name: "Weekly House Load Grid - Cost"
+    unique_id: weekly_house_load_grid_cost
+    cycle: weekly
   monthly_house_load_grid_cost:
     source: sensor.house_load_grid_cost
     name: "Monthly House Load Grid - Cost"
@@ -1599,6 +1679,11 @@ utility_meter:
     name: "Daily House Load Yield - Energy"
     unique_id: daily_house_load_yield_energy
     cycle: daily
+  weekly_house_load_yield_energy:
+    source: sensor.energy_house_load_yield_ps
+    name: "Weekly House Load Yield - Energy"
+    unique_id: weekly_house_load_yield_energy
+    cycle: weekly
   monthly_house_load_yield_energy:
     source: sensor.energy_house_load_yield_ps
     name: "Monthly House Load Yield - Energy"
@@ -1625,6 +1710,11 @@ utility_meter:
     name: "Daily House Load Yield - Saving"
     unique_id: daily_house_load_yield_saving
     cycle: daily
+  weekly_house_load_yield_saving:
+    source: sensor.house_load_yield_saving
+    name: "Weekly House Load Yield - Saving"
+    unique_id: weekly_house_load_yield_saving
+    cycle: weekly
   monthly_house_load_yield_saving:
     source: sensor.house_load_yield_saving
     name: "Monthly House Load Yield - Saving"
@@ -1652,6 +1742,11 @@ utility_meter:
     name: "Daily Import - Energy"
     unique_id: daily_import_energy
     cycle: daily
+  weekly_import_energy:
+    source: sensor.energy_import_ps
+    name: "Weekly Import - Energy"
+    unique_id: weekly_import_energy
+    cycle: weekly
   monthly_import_energy:
     source: sensor.energy_import_ps
     name: "Monthly Import - Energy"
@@ -1678,6 +1773,11 @@ utility_meter:
     name: "Daily Import - Cost"
     unique_id: daily_import_cost
     cycle: daily
+  weekly_import_cost:
+    source: sensor.import_cost
+    name: "Weekly Import - Cost"
+    unique_id: weekly_import_cost
+    cycle: weekly
   monthly_import_cost:
     source: sensor.import_cost
     name: "Monthly Import - Cost"
@@ -1705,6 +1805,11 @@ utility_meter:
     name: "Daily Export Yield - Energy"
     unique_id: daily_export_yield_energy
     cycle: daily
+  weekly_export_yield_energy:
+    source: sensor.energy_export_yield_ps
+    name: "Weekly Export Yield - Energy"
+    unique_id: weekly_export_yield_energy
+    cycle: weekly
   monthly_export_yield_energy:
     source: sensor.energy_export_yield_ps
     name: "Monthly Export Yield - Energy"
@@ -1731,6 +1836,11 @@ utility_meter:
     name: "Daily Export Yield - Sale"
     unique_id: daily_export_yield_sale
     cycle: daily
+  weekly_export_yield_sale:
+    source: sensor.export_yield_sale
+    name: "Weekly Export Yield - Sale"
+    unique_id: weekly_export_yield_sale
+    cycle: weekly
   monthly_export_yield_sale:
     source: sensor.export_yield_sale
     name: "Monthly Export Yield - Sale"
@@ -1758,6 +1868,11 @@ utility_meter:
     name: "Daily Yield Total - Energy"
     unique_id: daily_yield_total_energy
     cycle: daily
+  weekly_yield_total_energy:
+    source: sensor.energy_yield_total_ts
+    name: "Weekly Yield Total - Energy"
+    unique_id: weekly_yield_total_energy
+    cycle: weekly
   monthly_yield_total_energy:
     source: sensor.energy_yield_total_ts
     name: "Monthly Yield Total - Energy"
@@ -1785,6 +1900,11 @@ utility_meter:
     name: "Daily Yield 1 - Energy"
     unique_id: daily_yield_1_energy
     cycle: daily
+  weekly_yield_1_energy:
+    source: sensor.energy_yield_1_ps
+    name: "Weekly Yield 1 - Energy"
+    unique_id: weekly_yield_1_energy
+    cycle: weekly
   monthly_yield_1_energy:
     source: sensor.energy_yield_1_ps
     name: "Monthly Yield 1 - Energy"
@@ -1812,6 +1932,11 @@ utility_meter:
     name: "Daily Yield 2 - Energy"
     unique_id: daily_yield_2_energy
     cycle: daily
+  weekly_yield_2_energy:
+    source: sensor.energy_yield_2_ps
+    name: "Weekly Yield 2 - Energy"
+    unique_id: weekly_yield_2_energy
+    cycle: weekly
   monthly_yield_2_energy:
     source: sensor.energy_yield_2_ps
     name: "Monthly Yield 2 - Energy"
