@@ -2,7 +2,7 @@
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
 # version: v2.0.6
-# branch: main
+# branch: alpha-012
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -21,7 +21,10 @@
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
-#
+# - 'switch.battery_charge_from_grid','off'
+# - 'sensor.battery_state_of_capacity'
+# - 'number.battery_grid_charge_cutoff_soc'
+# 
 # The "Huawei Solar PEES package" will use the electricity price sensors from the
 # "Energi Data Service integration" by MTrab as default. 
 #
@@ -359,9 +362,11 @@ template:
           ( states('sensor.power_inverter_1_input') | float(0) +
           states('sensor.power_inverter_2_input') | float(0) ) %}
             {{ states('sensor.power_inverter_1_input') | float(0) +
-            states('sensor.power_inverter_2_input') | float(0) }}
+            states('sensor.power_inverter_2_input') | float(0) -
+            states('sensor.power_battery_charge_yield') | float(0) }}
           {% else %}
-            {{ states('sensor.power_house_load') | float(0) }}
+            {{ states('sensor.power_house_load') | float(0) -
+            states('sensor.power_battery_charge_yield') | float(0) }}
           {% endif %}
       - name: "Power Battery Charge Yield"
         unique_id: power_battery_charge_yield
@@ -369,12 +374,27 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ ( 
-          states('sensor.power_inverter_1_input') | float(0) +
-          states('sensor.power_inverter_2_input') | float(0) -
-          states('sensor.power_house_load_yield') | float(0) -
-          states('sensor.power_export') | float(0)
-          , 0 ) | max }}
+          {% if is_state('switch.battery_charge_from_grid','off') and
+          states('sensor.power_inverter_input_total') | float(0) >
+          states('sensor.power_battery_charge') | float(0) %}
+            {{ (
+            states('sensor.battery_charge_discharge_power') | float(0)
+            , 0 ) | max }}
+          {% elif states('sensor.battery_state_of_capacity') | float(0) >
+          states('number.battery_grid_charge_cutoff_soc') | float(0) and
+          states('sensor.power_inverter_input_total') | float(0) >
+          states('sensor.power_battery_charge') | float(0) %}
+            {{ ( 
+            states('sensor.battery_charge_discharge_power') | float(0)
+            , 0 ) | max }}
+          {% else %}
+            {{ ( 
+            states('sensor.power_inverter_1_input') | float(0) +
+            states('sensor.power_inverter_2_input') | float(0) -
+            states('sensor.power_house_load_yield') | float(0) -
+            states('sensor.power_export') | float(0)
+            , 0 ) | max }}
+          {% endif %}
       - name: "Power Battery Charge Grid"
         unique_id: power_battery_charge_grid
         unit_of_measurement: W
