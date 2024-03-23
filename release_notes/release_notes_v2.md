@@ -2,6 +2,10 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.0.7
+
+Support for the newly released *"Huawei Solar STAT package"*, including new weekly utility meters in the `huawei_solar_pees.yaml` file and minor changes to the "Input Card". No changes was done to the `huawei_solar_input.yaml` file.
+
 ## Release Note / v2.0.6
 
 No changes made. GitHub issues / Procedure failiure.
