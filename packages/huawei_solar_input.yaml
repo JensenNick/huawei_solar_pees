@@ -143,13 +143,13 @@ input_number:
   ## Solar Panels
   panels_on_inverter_1:
     name: "Panels on Inverter #1"
-    min: 1
+    min: 0
     max: 50
     step: 1
     mode: box
   panels_on_inverter_2:
     name: "Panels on Inverter #2"
-    min: 1
+    min: 0
     max: 50
     step: 1
     mode: box
