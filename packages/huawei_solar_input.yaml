@@ -1,7 +1,7 @@
 # ----------------------------------------
 # HUAWEI SOLAR INPUT - User Specific Input
 # ----------------------------------------
-# version: v1.0.1
+# version: v1.0.2
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -131,13 +131,13 @@ input_number:
     name: "Battery Efficiency Start Value Charge (in kW)"
     min: 0
     max: 120000
-    step: 1
+    step: 0.01
     mode: box
   battery_efficiency_start_value_discharge:
     name: "Battery Efficiency Start Value Disharge (in kW)"
     min: 0
     max: 120000
-    step: 1
+    step: 0.01
     mode: box
   ## ------------
   ## Solar Panels
