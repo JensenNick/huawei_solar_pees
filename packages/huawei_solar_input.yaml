@@ -87,16 +87,19 @@ input_number:
     name: "Inverter #1 Operating Voltage L1"
     min: 90
     max: 560
+    initial: 360
     step: 5
   inverter_1_operating_voltage_m1:
     name: "Inverter #1 Operating Voltage M1"
     min: 140
     max: 980
+    initial: 600
     step: 5
   inverter_1_overall_factor:
     name: "Inverter #1 Overall Factor"
     min: 98
     max: 102
+    initial: 100
     step: 0.2
   ## --------------------
   ## Inverter #2 Settings
@@ -104,28 +107,33 @@ input_number:
     name: "Inverter #2 Operating Voltage L1"
     min: 90
     max: 560
+    initial: 360
     step: 5
   inverter_2_operating_voltage_m1:
     name: "Inverter #2 Operating Voltage M1"
     min: 140
     max: 980
+    initial: 600
     step: 5
   inverter_2_overall_factor:
     name: "Inverter #2 Overall Factor"
     min: 98
     max: 102
+    initial: 100
     step: 0.2
   ## ------------------
   ## Battery Efficiency
   battery_rated_capacity:
     name: "Battery Rated Capacity (in kWh)"
-    min: 5
+    min: 0
     max: 30
+    initial: 15
     step: 5
   battery_efficiency_soc_trigger:
     name: "Battery Efficiency SOC Trigger (Recomended Set 50%)"
     min: 0
     max: 100
+    initial: 50
     step: 5
   battery_efficiency_start_value_charge:
     name: "Battery Efficiency Start Value Charge (in kW)"
@@ -157,6 +165,7 @@ input_number:
     name: "Panels Rated Wp"
     min: 100
     max: 999
+    initial: 415
     step: 1
     mode: box
 # ------------
