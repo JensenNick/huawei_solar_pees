@@ -1,0 +1,158 @@
+#
+# Note: To use the Huawei inverter and LUNA ESS icons, please install the 'Custom Brand Icons' using HACS
+#
+
+template:
+##########################################################
+#
+#   Detects if there is a Huawei L0, L1, M1, MB0 or iStore
+#   1PH or 3PH inverter, and publishes its model number.
+#
+  - sensor:
+    - name: "Inverter 1 - Model"
+      unique_id: inverter_1_model
+      icon: phu:huawei-solar-inverter
+      state: >-
+        {{ device_attr("sensor.inverter_input_power", "model") | regex_findall_index('(SUN\d+-\d+KTL-[L|M|MB]\d+)|(IS-HYB-\d-\[1|3]PH)', 0) | first }}
+      availability: >-
+        {{  (states('sensor.inverter_input_power') not in [ 'unknown', 'unavailable', 'none' ] ) }}
+
+  - sensor:
+    - name: "Inverter 2 - Model"
+      unique_id: inverter_2_model
+      icon: phu:huawei-solar-inverter
+      state: >-
+        {{ device_attr("sensor.inverter_input_power_2", "model") | regex_findall_index('(SUN\d+-\d+KTL-[L|M|MB]\d+)|(IS-HYB-\d-\[1|3]PH)', 0) | first }}
+      availability: >-
+        {{  (states('sensor.inverter_input_power_2') not in [ 'unknown', 'unavailable', 'none' ] ) }}
+
+
+##########################################################
+#
+#   Detects if there is a Battery attached to either inverter
+#   and publishes the total number of batteries (stacks), up to 4.
+#
+
+  - sensor:
+    - name: "Battery 1 - Model"
+      unique_id: battery_1_model
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_1_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+
+
+  - sensor:
+    - name: "Battery 2 - Model"
+      unique_id: battery_2_model
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_2_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+
+
+  - sensor:
+    - name: "Battery 3 - Model"
+      unique_id: battery_3_model
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_3_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+
+
+  - sensor:
+    - name: "Battery 4 - Model"
+      unique_id: battery_4_model
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_4_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+      
+
+##########################################################
+#
+#   Uses the 'Model' sensors above, to count the number of 
+#   battery stacks (not cells) installed in the site.
+#
+
+  - sensor:
+    - name: "Batteries - Installed"
+      unique_id: batteries_installed
+      icon: phu:solar-battery-15
+      state: >-
+        {% set battery_sensors = [
+          states('sensor.battery_1_model'),
+          states('sensor.battery_2_model'),
+          states('sensor.battery_3_model'),
+          states('sensor.battery_4_model')
+        ] %}
+        {% set installed_batteries = battery_sensors | reject('in', ['unknown', 'unavailable', 'none', 'Not Installed']) | list %}
+        {{ installed_batteries | count }}
+
+
+
+##########################################################
+#
+#  Uses the 'Diagnostic: Energy' sensor for each battery CELL
+#  to calculate the total rated capacity (size) of the batteries
+#  installed, up to 4 battery stacks (12 cells).
+#
+#  The output is divided by 1,000 to convert from Watts to kWh
+#
+#
+  - sensor:
+    - name: "Batteries - Rated Capacity"
+      unique_id: batteries_rated_capacity
+      unit_of_measurement: kWh
+      device_class: power
+      state_class: measurement      
+      icon: mdi:battery-charging-100
+      state: >-
+        {% set battery_1_energy = (states('sensor.battery_1_energy') | float if states('sensor.battery_1_energy') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_1_energy_2') | float if states('sensor.battery_1_energy_2') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_1_energy_3') | float if states('sensor.battery_1_energy_3') not in ['unknown', 'unavailable', 'none'] else 0) %}
+        {% set battery_2_energy = (states('sensor.battery_2_energy') | float if states('sensor.battery_2_energy') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_2_energy_2') | float if states('sensor.battery_2_energy_2') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_2_energy_3') | float if states('sensor.battery_2_energy_3') not in ['unknown', 'unavailable', 'none'] else 0) %}
+        {% set battery_3_energy = (states('sensor.battery_3_energy') | float if states('sensor.battery_3_energy') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_3_energy_2') | float if states('sensor.battery_3_energy_2') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_3_energy_3') | float if states('sensor.battery_3_energy_3') not in ['unknown', 'unavailable', 'none'] else 0) %}
+        {% set battery_4_energy = (states('sensor.battery_4_energy') | float if states('sensor.battery_4_energy') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_4_energy_2') | float if states('sensor.battery_4_energy_2') not in ['unknown', 'unavailable', 'none'] else 0) +
+                                  (states('sensor.battery_4_energy_3') | float if states('sensor.battery_4_energy_3') not in ['unknown', 'unavailable', 'none'] else 0) %}
+        {{ (( battery_1_energy + battery_2_energy + battery_3_energy + battery_4_energy) / 1000 ) | round(0) }}
+
+
+##########################################################
+#
+# Home Assistant Records Service.
+# excludes the follow sensors from being recorded:
+#
+
+recorder:
+  exclude:
+    entities:
+      - sensor.inverter_1_model
+      - sensor.inverter_2_model
+      - sensor.battery_1_model
+      - sensor.battery_2_model
+      - sensor.battery_3_model
+      - sensor.battery_4_model
+      - sensor.batteries_number_installed
+      - sensor.batteries_rated_capacity
