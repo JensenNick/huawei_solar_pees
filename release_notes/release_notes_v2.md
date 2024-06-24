@@ -4,8 +4,7 @@
 
 ## Release Note / v2.1.0
 
-According to the current version (version 1.4.1) of the *"Huawei Solar Integration"* by wlcrs, the naming of `sensor.battery_charge_discharge_power` has been converted to `sensor.batteries_charge_discharge_power`. 
-> ❗**Please note. There is NO BACKWORD COMPATIBILITY.** ❗
+According to the current version (version 1.4.1) of the *"Huawei Solar Integration"* by wlcrs, the naming of the input sensor `sensor.battery_charge_discharge_power` has been converted to `sensor.batteries_charge_discharge_power`. There is no changes to the names provided by the *"Huawei Solar PEES package"*.
 
 Input number for the Battery Charge Power has been added to the *"huawei_solar_input.yaml"* file.
 
