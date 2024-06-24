@@ -1,7 +1,7 @@
 # ----------------------------------------
 # HUAWEI SOLAR INPUT - User Specific Input
 # ----------------------------------------
-# version: v1.0.2
+# version: v1.0.3
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -139,6 +139,12 @@ input_number:
     max: 120000
     step: 0.01
     mode: box
+  ## Battery Charge Power
+  battery_charge_power:
+    name: "Battery Charge Power"
+    min: 0
+    max: 5
+    step: 0.01
   ## ------------
   ## Solar Panels
   panels_on_inverter_1:

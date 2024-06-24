@@ -2,6 +2,12 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.1.0
+
+According to the current version (version 1.4.1) of the *"Huawei Solar Integration"* by wlcrs, the naming of the input sensor `sensor.battery_charge_discharge_power` has been converted to `sensor.batteries_charge_discharge_power`. There is no changes to the names provided by the *"Huawei Solar PEES package"*.
+
+Input number for the Battery Charge Power has been added to the *"huawei_solar_input.yaml"* file.
+
 ## Release Note / v2.0.7
 
 Support for the newly released *"Huawei Solar STAT package"*, including new weekly utility meters in the `huawei_solar_pees.yaml` file and minor changes to the "Input Card". No changes were made to the `huawei_solar_input.yaml` file.

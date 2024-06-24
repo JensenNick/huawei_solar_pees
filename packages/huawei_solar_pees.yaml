@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v2.0.7
+# version: v2.1.0
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -20,7 +20,7 @@
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
-# - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
+# - 'sensor.batteries_charge_discharge_power' (from the Huawei Solar integration)
 #
 # The "Huawei Solar PEES package" will use the electricity price sensors from the
 # "Energi Data Service integration" by MTrab as default.
@@ -326,7 +326,7 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.battery_charge_discharge_power') | float(0)
+          states('sensor.batteries_charge_discharge_power') | float(0)
           , 0 ) | max }}
       - name: "Power Battery Discharge"
         unique_id: power_battery_discharge
@@ -335,7 +335,7 @@ template:
         state_class: measurement
         state: >
           {{ (
-          states('sensor.battery_charge_discharge_power') | float(0)
+          states('sensor.batteries_charge_discharge_power') | float(0)
           , 0 ) | min | abs }}
       - name: "Power House Load"
         unique_id: power_house_load
@@ -347,7 +347,7 @@ template:
           states('sensor.power_inverter_1_input') | float(0) +
           states('sensor.power_inverter_2_input') | float(0) -
           states('sensor.power_meter_active_power') | float(0) -
-          states('sensor.battery_charge_discharge_power') | float(0)
+          states('sensor.batteries_charge_discharge_power') | float(0)
           , 0 ) | max }}
       - name: "Power House Load Yield"
         unique_id: power_house_load_yield
