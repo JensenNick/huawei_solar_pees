@@ -436,7 +436,7 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float }}
+          {{ states('sensor.energy_yield_1') | float(0) }}
         availability: >
           {{ has_value('sensor.energy_yield_1') }}
       - name: "Energy Yield #2 (ts)"
@@ -445,7 +445,7 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_2') | float }}
+          {{ states('sensor.energy_yield_2') | float(0) }}
         availability: >
           {{ has_value('sensor.energy_yield_2') }}
       - name: "Energy Yield Total (ts)"
@@ -454,8 +454,8 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float +
-          states('sensor.energy_yield_2') | float }}
+          {{ states('sensor.energy_yield_1') | float(0) +
+          states('sensor.energy_yield_2') | float(0) }}
         availability: >
           {{ has_value('sensor.energy_yield_1') or
           has_value('sensor.energy_yield_2') }}
@@ -466,7 +466,7 @@ template:
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
-          {{ states('sensor.house_load_cost') | float | round(5) }}
+          {{ states('sensor.house_load_cost') | float(0) | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost') }}
       - name: "Economy - Expenses w PV (ts)"
@@ -474,7 +474,7 @@ template:
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
-          {{ states('sensor.import_cost') | float | round(5) }}
+          {{ states('sensor.import_cost') | float(0) | round(5) }}
         availability: >
           {{ has_value('sensor.import_cost') }}
       - name: "Economy - Income w PV (ts)"
@@ -482,7 +482,7 @@ template:
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >
-          {{ states('sensor.export_income') | float | round(5) }}
+          {{ states('sensor.export_income') | float(0) | round(5) }}
         availability: >
           {{ has_value('sensor.export_income') }}
       - name: "Economy - Result w PV (ts)"
