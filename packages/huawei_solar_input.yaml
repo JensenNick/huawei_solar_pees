@@ -1,7 +1,7 @@
 # ----------------------------------------
 # HUAWEI SOLAR INPUT - User Specific Input
 # ----------------------------------------
-# version: v1.0.3
+# version: v1.0.4
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -37,7 +37,7 @@ automation:
       entity_id: input_boolean.inverter_1_1phase
       to: "on"
     action:
-      - service: input_boolean.turn_off
+      - action: input_boolean.turn_off
         entity_id: input_boolean.inverter_1_3phase
     mode: single
   - alias: "Switch Inverter #1 to 3 Phase"
@@ -46,7 +46,7 @@ automation:
       entity_id: input_boolean.inverter_1_3phase
       to: "on"
     action:
-      - service: input_boolean.turn_off
+      - action: input_boolean.turn_off
         entity_id: input_boolean.inverter_1_1phase
   - alias: "Switch Inverter #2 to 1phase"
     trigger:
@@ -54,7 +54,7 @@ automation:
       entity_id: input_boolean.inverter_2_1phase
       to: "on"
     action:
-      - service: input_boolean.turn_off
+      - action: input_boolean.turn_off
         entity_id: input_boolean.inverter_2_3phase
     mode: single
   - alias: "Switch Inverter #2 to 3 Phase"
@@ -63,7 +63,7 @@ automation:
       entity_id: input_boolean.inverter_2_3phase
       to: "on"
     action:
-      - service: input_boolean.turn_off
+      - action: input_boolean.turn_off
         entity_id: input_boolean.inverter_2_1phase
 # -------------
 # INPUT BOOLEAN
