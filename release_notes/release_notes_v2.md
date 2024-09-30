@@ -4,7 +4,7 @@
 
 ## Release Note / v2.1.2
 
-Economy sensors with "float(0)" would cause unintende jumps for the corresponding utility meter when HA reloaded hence "float(0)" has been removed from the following sensors.
+Economy sensors with "float(0)" would cause unintended jumps for the corresponding utility meter when HA reloaded hence "float(0)" has been removed from the following sensors.
 * `sensor.economy_result_wo_pv_ts`
 * `sensor.economy_expenses_w_pv_ts`
 * `sensor.economy_income_w_pv_ts`
@@ -12,7 +12,7 @@ Economy sensors with "float(0)" would cause unintende jumps for the correspondin
 * `sensor.economy_nri_pv_ts`
 * `sensor.economy_nri_battery_ts`
   
-In the `huawei_solar_input.yaml`file "- service:" used in the 4 automations "Switch Inverter Between Phases" has been replaced with "-action:" according to revised HA documentation.
+In the `huawei_solar_input.yaml` file "- service:" used in the 4 automations "Switch Inverter Between Phases" has been replaced with "-action:" according to revised HA documentation.
 
 ## Release Note / v2.1.0 and v2.1.1
 
