@@ -4,7 +4,7 @@
 
 ## Release Note / v2.1.2
 
-Economy sensors with `float(0)` would cause unintende jumps for the corresponding utility meter when HA reloaded hence float(0) has been removed from the following sensors.
+Economy sensors with `float(0)` would cause unintende jumps for the corresponding utility meter when HA reloaded hence `float(0)` has been removed from the following sensors.
 * `sensor.economy_result_wo_pv_ts`
 * `sensor.economy_expenses_w_pv_ts`
 * `sensor.economy_income_w_pv_ts`
