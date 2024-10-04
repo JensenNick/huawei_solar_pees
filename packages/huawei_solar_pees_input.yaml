@@ -1,8 +1,8 @@
 # ----------------------------------------
 # HUAWEI SOLAR INPUT - User Specific Input
 # ----------------------------------------
-# version: v1.0.4
-# branch: main
+# version: 
+# branch: alpha-018_map0-support
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -31,52 +31,84 @@
 automation:
   ## ------------------------------
   ## Switch Inverter Between Phases
-  - alias: "Switch Inverter #1 to 1phase"
+  - alias: "Switch Inverter #1 to 1phase L1"
     trigger:
       platform: state
-      entity_id: input_boolean.inverter_1_1phase
+      entity_id: input_boolean.inverter_1_1phase_l1
       to: "on"
     action:
       - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_1_3phase
+        entity_id: input_boolean.inverter_1_3phase_m1
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_1_3phase_map0
     mode: single
-  - alias: "Switch Inverter #1 to 3 Phase"
+  - alias: "Switch Inverter #1 to 3phase M1"
     trigger:
       platform: state
-      entity_id: input_boolean.inverter_1_3phase
+      entity_id: input_boolean.inverter_1_3phase_m1
       to: "on"
     action:
       - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_1_1phase
-  - alias: "Switch Inverter #2 to 1phase"
+        entity_id: input_boolean.inverter_1_1phase_l1
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase_map0
+  - alias: "Switch Inverter #1 to 3phase MAP0"
     trigger:
       platform: state
-      entity_id: input_boolean.inverter_2_1phase
+      entity_id: input_boolean.inverter_1_3phase_map0
       to: "on"
     action:
       - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_2_3phase
+        entity_id: input_boolean.inverter_1_1phase_l1
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase_m1
+  - alias: "Switch Inverter #2 to 1phase L1"
+    trigger:
+      platform: state
+      entity_id: input_boolean._l1
+      to: "on"
+    action:
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase_m1
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase_map0
     mode: single
-  - alias: "Switch Inverter #2 to 3 Phase"
+  - alias: "Switch Inverter #2 to 3phase M1"
     trigger:
       platform: state
-      entity_id: input_boolean.inverter_2_3phase
+      entity_id: input_boolean.inverter_2_3phase_m1
       to: "on"
     action:
       - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_2_1phase
+        entity_id: input_boolean.inverter_2_1phase_l1
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase_map0
+  - alias: "Switch Inverter #2 to 3phase MAP0"
+    trigger:
+      platform: state
+      entity_id: input_boolean.inverter_2_3phase_map0
+      to: "on"
+    action:
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_1phase_l1
+      - action: input_boolean.turn_off
+        entity_id: input_boolean.inverter_2_3phase_m1
 # -------------
 # INPUT BOOLEAN
 # -------------
 input_boolean:
-  inverter_1_1phase:
-    name: "Inverter #1 1phase"
+  inverter_1_1phase_l1:
+    name: "Inverter #1 1phase L1"
+  inverter_1_3phase_m1:
+    name: "Inverter #1 3phase M1"
   inverter_1_3phase:
-    name: "Inverter #1 3phase"
-  inverter_2_1phase:
-    name: "Inverter #2 1phase"
+    name: "Inverter #1 3phase MAP0"
+  inverter_2_1phase_l1:
+    name: "Inverter #2 1phase L1"
+  inverter_2_3phase_m1:
+    name: "Inverter #2 3phase M1"
   inverter_2_3phase:
-    name: "Inverter #2 3phase"
+    name: "Inverter #2 3phase MAP0"
 # ------------
 # INPUT NUMBER
 # ------------
@@ -92,6 +124,11 @@ input_number:
     name: "Inverter #1 Operating Voltage M1"
     min: 140
     max: 980
+    step: 5
+  inverter_1_operating_volatge_map0:
+    name: "inverter #1 Operating Voltage MAP0"
+    min: 160
+    max: 1000
     step: 5
   inverter_1_overall_factor:
     name: "Inverter #1 Overall Factor"
@@ -109,6 +146,11 @@ input_number:
     name: "Inverter #2 Operating Voltage M1"
     min: 140
     max: 980
+    step: 5
+  inverter_2_operating_volatge_map0:
+    name: "inverter #1 Operating Voltage MAP0"
+    min: 160
+    max: 1000
     step: 5
   inverter_2_overall_factor:
     name: "Inverter #2 Overall Factor"
@@ -165,14 +207,14 @@ input_number:
     max: 999
     step: 1
     mode: box
-# ------------
+# ------------ 3 phase
 # INPUT SELECT
 # ------------
 input_select:
   # -----------------
   # Inverter #1 Setup
-  inverter_1_1phase_models:
-    name: "Inverter #1 1phase Models"
+  inverter_1_1phase_l1_models:
+    name: "Inverter #1 1phase L1 Models"
     options:
       - Select
       - SUN2000 2 KTL-L1
@@ -182,8 +224,8 @@ input_select:
       - SUN2000 4.6 KTL-L1
       - SUN2000 5 KTL-L1
       - SUN2000 6 KTL-L1
-  inverter_1_3phase_models:
-    name: "Inverter #1 3phase Models"
+  inverter_1_3phase_m1_models:
+    name: "Inverter #1 3phase M1 Models"
     options:
       - Select
       - SUN2000 3 KTL-M1
@@ -192,10 +234,19 @@ input_select:
       - SUN2000 6 KTL-M1
       - SUN2000 8 KTL-M1
       - SUN2000 10 KTL-M1
+  inverter_1_3phase_map0_models:
+    name: "Inverter #1 3phase MAP0 Models"
+    options:
+      - Select
+      - SUN2000 5 KTL-MAP0
+      - SUN2000 6 KTL-MAP0
+      - SUN2000 8 KTL-MAP0
+      - SUN2000 10 KTL-MAP0
+      - SUN2000 12 KTL-MAP0
   # -----------------
   # Inverter #2 Setup
-  inverter_2_1phase_models:
-    name: "Inverter #2 1phase Models"
+  inverter_2_1phase_l1_models:
+    name: "Inverter #2 1phase L1 Models"
     options:
       - Select
       - SUN2000 2 KTL-L1
@@ -205,8 +256,8 @@ input_select:
       - SUN2000 4.6 KTL-L1
       - SUN2000 5 KTL-L1
       - SUN2000 6 KTL-L1
-  inverter_2_3phase_models:
-    name: "Inverter #2 3phase Models"
+  inverter_2_3phase_m1_models:
+    name: "Inverter #2 3phase M1 Models"
     options:
       - Select
       - SUN2000 3 KTL-M1
@@ -215,6 +266,15 @@ input_select:
       - SUN2000 6 KTL-M1
       - SUN2000 8 KTL-M1
       - SUN2000 10 KTL-M1
+    inverter_2_3phase_map0_models:
+    name: "Inverter #2 3phase MAP0 Models"
+    options:
+      - Select
+      - SUN2000 5 KTL-MAP0
+      - SUN2000 6 KTL-MAP0
+      - SUN2000 8 KTL-MAP0
+      - SUN2000 10 KTL-MAP0
+      - SUN2000 12 KTL-MAP0
 # ----------
 # INPUT TEXT
 # ----------
@@ -259,35 +319,47 @@ template:
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
         state: >
-          {% if is_state('input_boolean.inverter_1_1phase','on') %}
-            {% if is_state('input_select.inverter_1_1phase_models','SUN2000 2 KTL-L1') %}
+          {% if is_state('input_select.inverter_1_model','1phase L1') %}
+            {% if is_state('input_select.inverter_1_1phase_l1_models','SUN2000 2 KTL-L1') %}
               {{ 2000 }}
-            {% elif is_state('input_select.inverter_1_1phase_models','SUN2000 3 KTL-L1') %}
+            {% elif is_state('input_select.inverter_1_1phase_l1_models','SUN2000 3 KTL-L1') %}
               {{ 3000 }}
-            {% elif is_state('input_select.inverter_1_1phase_models','SUN2000 3.68 KTL-L1') %}
+            {% elif is_state('input_select.inverter_1_1phase_l1_models','SUN2000 3.68 KTL-L1') %}
               {{ 3680 }}
-            {% elif is_state('input_select.inverter_1_1phase_models','SUN2000 4 KTL-L1') %}
+            {% elif is_state('input_select.inverter_1_1phase_l1_models','SUN2000 4 KTL-L1') %}
               {{ 4000 }}
-            {% elif is_state('input_select.inverter_1_1phase_models','SUN2000 4.6 KTL-L1') %}
+            {% elif is_state('input_select.inverter_1_1phase_l1_models','SUN2000 4.6 KTL-L1') %}
               {{ 4600 }}
-            {% elif is_state('input_select.inverter_1_1phase_models','SUN2000 5 KTL-L1') %}
+            {% elif is_state('input_select.inverter_1_1phase_l1_models','SUN2000 5 KTL-L1') %}
               {{ 5000 }}
-            {% elif is_state('input_select.inverter_1_1phase_models','SUN2000 6 KTL-L1') %}
+            {% elif is_state('input_select.inverter_1_1phase_l1_models','SUN2000 6 KTL-L1') %}
               {{ 6000 }}
             {% endif %}
-          {% elif is_state('input_boolean.inverter_1_3phase','on') %}
-            {% if is_state('input_select.inverter_1_3phase_models','SUN2000 3 KTL-M1') %}
+          {% elif is_state('input_select.inverter_1_model','3phase M1') %}
+            {% if is_state('input_select.inverter_1_3phase_m1_models','SUN2000 3 KTL-M1') %}
               {{ 3000 }}
-            {% elif is_state('input_select.inverter_1_3phase_models','SUN2000 4 KTL-M1') %}
+            {% elif is_state('input_select.inverter_1_3phase_m1_models','SUN2000 4 KTL-M1') %}
               {{ 4000 }}
-            {% elif is_state('input_select.inverter_1_3phase_models','SUN2000 5 KTL-M1') %}
+            {% elif is_state('input_select.inverter_1_3phase_m1_models','SUN2000 5 KTL-M1') %}
               {{ 5000 }}
-            {% elif is_state('input_select.inverter_1_3phase_models','SUN2000 6 KTL-M1') %}
+            {% elif is_state('input_select.inverter_1_3phase_m1_models','SUN2000 6 KTL-M1') %}
               {{ 6000 }}
-            {% elif is_state('input_select.inverter_1_3phase_models','SUN2000 8 KTL-M1') %}
+            {% elif is_state('input_select.inverter_1_3phase_m1_models','SUN2000 8 KTL-M1') %}
               {{ 8000 }}
-            {% elif is_state('input_select.inverter_1_3phase_models','SUN2000 10 KTL-M1') %}
+            {% elif is_state('input_select.inverter_1_3phase_m1_models','SUN2000 10 KTL-M1') %}
               {{ 10000 }}
+            {% endif %}
+          {% elif is_state('input_select.inverter_1_model','3phase MAP0') %}
+            {% elif is_state('input_select.inverter_1_3phase_map0_models','SUN2000 5 KTL-MAP0') %}
+              {{ 5000 }}
+            {% elif is_state('input_select.inverter_1_3phase_map0_models','SUN2000 6 KTL-MAP0') %}
+              {{ 6000 }}
+            {% elif is_state('input_select.inverter_1_3phase_map0_models','SUN2000 8 KTL-MAP0') %}
+              {{ 8000 }}
+            {% elif is_state('input_select.inverter_1_3phase_map0_models','SUN2000 10 KTL-MAP0') %}
+              {{ 10000 }}
+            {% elif is_state('input_select.inverter_1_3phase_map0_models','SUN2000 12 KTL-MAP0') %}
+              {{ 12000 }}
             {% endif %}
           {% else %}
             {{ 0 }}
@@ -296,35 +368,46 @@ template:
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
         state: >
-          {% if is_state('input_boolean.inverter_2_1phase','on') %}
-            {% if is_state('input_select.inverter_2_1phase_models','SUN2000 2 KTL-L1') %}
+          {% if is_state('input_select.inverter_2_model','1phase L1') %}
+            {% if is_state('input_select.inverter_2_1phase_l1_models','SUN2000 2 KTL-L1') %}
               {{ 2000 }}
-            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 3 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_l1_models','SUN2000 3 KTL-L1') %}
               {{ 3000 }}
-            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 3.68 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_l1_models','SUN2000 3.68 KTL-L1') %}
               {{ 3680 }}
-            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 4 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_l1_models','SUN2000 4 KTL-L1') %}
               {{ 4000 }}
-            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 4.6 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_l1_models','SUN2000 4.6 KTL-L1') %}
               {{ 4600 }}
-            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 5 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_l1_models','SUN2000 5 KTL-L1') %}
               {{ 5000 }}
-            {% elif is_state('input_select.inverter_2_1phase_models','SUN2000 6 KTL-L1') %}
+            {% elif is_state('input_select.inverter_2_1phase_l1_models','SUN2000 6 KTL-L1') %}
               {{ 6000 }}
             {% endif %}
-          {% elif is_state('input_boolean.inverter_2_3phase','on') %}
-            {% if is_state('input_select.inverter_2_3phase_models','SUN2000 3 KTL-M1') %}
+          {% elif is_state('input_select.inverter_2_model','3phase M1') %}
+            {% if is_state('input_select.inverter_2_3phase_m1_models','SUN2000 3 KTL-M1') %}
               {{ 3000 }}
-            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 4 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_m1_models','SUN2000 4 KTL-M1') %}
               {{ 4000 }}
-            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 5 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_m1_models','SUN2000 5 KTL-M1') %}
               {{ 5000 }}
-            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 6 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_m1_models','SUN2000 6 KTL-M1') %}
               {{ 6000 }}
-            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 8 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_m1_models','SUN2000 8 KTL-M1') %}
               {{ 8000 }}
-            {% elif is_state('input_select.inverter_2_3phase_models','SUN2000 10 KTL-M1') %}
+            {% elif is_state('input_select.inverter_2_3phase_m1_models','SUN2000 10 KTL-M1') %}
               {{ 10000 }}
+          {% elif is_state('input_select.inverter_2_model','3phase MAP0') %}
+            {% elif is_state('input_select.inverter_2_3phase_map0_models','SUN2000 5 KTL-MAP0') %}
+              {{ 5000 }}
+            {% elif is_state('input_select.inverter_2_3phase_map0_models','SUN2000 6 KTL-MAP0') %}
+              {{ 6000 }}
+            {% elif is_state('input_select.inverter_2_3phase_map0_models','SUN2000 8 KTL-MAP0') %}
+              {{ 8000 }}
+            {% elif is_state('input_select.inverter_2_3phase_map0_models','SUN2000 10 KTL-MAP0') %}
+              {{ 10000 }}
+            {% elif is_state('input_select.inverter_2_3phase_map0_models','SUN2000 12 KTL-MAP0') %}
+              {{ 12000 }}
             {% endif %}
           {% else %}
             {{ 0 }}
