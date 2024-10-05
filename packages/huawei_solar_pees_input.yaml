@@ -65,7 +65,7 @@ automation:
   - alias: "Switch Inverter #2 to 1phase L1"
     trigger:
       platform: state
-      entity_id: input_boolean._l1
+      entity_id: input_boolean._inverter_2_1phase_l1
       to: "on"
     action:
       - action: input_boolean.turn_off
@@ -211,6 +211,22 @@ input_number:
 # INPUT SELECT
 # ------------
 input_select:
+  # ---------------
+  # Inverter Models
+  inverter_1_models:
+    name: "Inverter #1 Models"
+    options:
+      - Select
+      - SUN2000 X KTL-L1 Models
+      - SUN2000 X KTL-M1 Models
+      - SUN2000 X KTL-MAP0 Models
+  inverter_2_models:
+    name: "Inverter #2 Models"
+    options:
+      - Select
+      - SUN2000 X KTL-L1 Models
+      - SUN2000 X KTL-M1 Models
+      - SUN2000 X KTL-MAP0 Models
   # -----------------
   # Inverter #1 Setup
   inverter_1_1phase_l1_models:
