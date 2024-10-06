@@ -5,7 +5,7 @@
 ## Release Note / v2.1.3
 Template trigger sensors corrected so they match "LEGACY SYNTAX".
 
-The files `huawei_solar_input.yaml` and `huawei_solar_input_card.yaml` has been renamed to match the name of the package. Input for the STAT package has been deleted (will be available in seperate input file for the STAT package). Download the input file for the STAT package if you use it. Consider renaming your PEES input files localy in order to keep your specific user input.
+The files `huawei_solar_input.yaml` and `huawei_solar_input_card.yaml` has been renamed to match the name of the package. Input for the STAT package has been deleted (will be available in separate input file for the STAT package). Download the input file for the STAT package if you use it. Consider renaming your PEES input files localy in order to keep your specific user input.
 
 ## Release Note / v2.1.2
 
