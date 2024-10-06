@@ -2,6 +2,11 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.1.3
+Template trigger sensors corrected so they match "LEGACY SYNTAX".
+
+The files `huawei_solar_input.yaml` and `huawei_solar_input_card.yaml` has been renamed to match the name of the package. Input for the STAT package has been deleted (will be available in seperate input file for the STAT package). Down load the input file for the STAT package is you use it. Consider renaming your PEES input files localy in order to keep your specific user input.
+
 ## Release Note / v2.1.2
 
 Economy sensors with "float(0)" would cause unintended jumps for the corresponding utility meter when HA reloaded hence "(0)" has been removed from the following sensors.
