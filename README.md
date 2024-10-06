@@ -68,7 +68,7 @@ homeassistant:
 ```
 
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
-* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml) and [*"huawei_solar_input.yaml"*](packages/huawei_solar_input.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below).
+* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml) and [*"huawei_solar_pees_input.yaml"*](packages/huawei_solar_pees_input.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_pees_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below).
 
 ![Install Package](pictures/install_package.jpg)
 
@@ -118,14 +118,14 @@ You may need to correct the currency to your local currency. The currency used i
 
 ## 4. Specific Input Settings (optional)
 
-The *"Huawei Solar PEES package"* now include the [huawei_solar_input.yaml](packages/huawei_solar_input.yaml) file, and as the name suggests, this file contain sensors to be used for user specific input.
+The *"Huawei Solar PEES package"* now include the [huawei_solar_pees_input.yaml](packages/huawei_solar_pees_input.yaml) file, and as the name suggests, this file contain sensors to be used for user specific input.
 
-You should not edit file *"huawei_solar_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) file. This file contain the code an "input card" for Lovelace / the Home Assistant Dashboards. Here is a step by step instruction on how to set up the "input card".
+You should not edit file *"huawei_solar_pees_input.yaml"* file. All user specific inputs are done via Lovelace / the GUI. The *"Huawei Solar PEES package"* also include the [huawei_solar_pees_input_card.md](packages/huawei_solar_pees_input_card.md) file. This file contain the code an "input card" for Lovelace / the Home Assistant Dashboards. Here is a step by step instruction on how to set up the "input card".
 
 * **Create a new dashboard** (optional) in Home Assistant e.g. named "Solar PV".
 * **Create a new view** (optional) in the new dashboard e.g. named "Input"
 * **Add a new "Manual" card** in the new "Input" view.
-* **Copy/paste the code** from the [huawei_solar_input_card.md](packages/huawei_solar_input_card.md) into the "Manual" card. Make sure to delete/overwrite the predefined text `type: ''` in the "Manual" card.
+* **Copy/paste the code** from the [huawei_solar_pees_input_card.md](packages/huawei_solar_pees_input_card.md) into the "Manual" card. Make sure to delete/overwrite the predefined text `type: ''` in the "Manual" card.
 * **Click "Done" and refresh your browser.**
 
 > :bulb: *You are now set up and able to adjust your user specific input settings!*
@@ -178,17 +178,17 @@ You need to provide two electricity price sensors as input - one which provides 
 
 #### Battery and Solar Panels
 
-The input file *"huawei_solar_input.yaml"* and the code for the Lovelace Input Card *"huawei_solar_input_card.md"* does includes other user specific settings used by other packages that I either provide or intend to release soon. Settings for those inputs will be described in the README for those projects. Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
+The input file *"huawei_solar_pees_input.yaml"* and the code for the Lovelace Input Card *"huawei_solar_pees_input_card.md"* does includes other user specific settings used by other packages that I either provide or intend to release soon. Settings for those inputs will be described in the README for those projects. Battery and Solar Panels will be used for my *"Huawei Solar STAT package"* which will include statistics sensors.
 
 #### Electricity Price for Energy Dashboard
 
 First of all the the *"Huawei Solar - PEES package"* will do a much better job tracking your savings than the Energy Dashboard, so I would of course hope you will help with development of an alternative to the Energy Dashboard using the custom sensors provided in this "package".
 
-As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors to calculate your savings from the consumption of energy neither directly from the solar PV installation nor from discharging your battery. The *"huawei_solar_input.yaml"* file include the `sensor.energi_data_service_negative` which can be used as a price sensor if you wish to set up either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption" to track your savings in the Energy Dashboard.
+As of February 2024 the Energy Dashboard in Home Assistant does not support adding price sensors to calculate your savings from the consumption of energy neither directly from the solar PV installation nor from discharging your battery. The *"huawei_solar_pees_input.yaml"* file include the `sensor.energi_data_service_negative` which can be used as a price sensor if you wish to set up either `sensor.energy_house_load_yield` and/or `sensor.energy_battery_discharge_house` as "Gas consumption" og "Water consumption" to track your savings in the Energy Dashboard.
 
 #### Tariffs
 
-If you have several tariffs and/or they change from time to time, you might find it beneficial to have a sensor with the calculation of the tariff for sale/export. In the *"huawei_solar_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
+If you have several tariffs and/or they change from time to time, you might find it beneficial to have a sensor with the calculation of the tariff for sale/export. In the *"huawei_solar_pees_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
 
 ## 5. Known "bugs"
 
