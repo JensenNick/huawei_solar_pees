@@ -9,14 +9,6 @@ codeowner: Nick Jensen<br>
 ```yaml
 type: vertical-stack
 cards:
-  - type: entities
-    entities:
-      - entity: input_boolean.inverter_1_1phase
-        name: 'Inverter #1 SUN2000 # KTL-L1 (1 phase)'
-      - entity: input_boolean.inverter_1_3phase
-        name: 'Inverter #1 SUN2000 # KTL-M1 (3 phase)'
-    title: 'Inverter #1'
-    show_header_toggle: false
   - type: conditional
     conditions:
       - condition: state
