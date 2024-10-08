@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v2.1.1
+# version: v2.1.3
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -491,8 +491,8 @@ template:
         state_class: total
         state: >
           {{ (
-          states('sensor.import_cost') | float(0) -
-          states('sensor.export_income') | float(0) 
+          states('sensor.import_cost') | float -
+          states('sensor.export_income') | float 
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.import_cost') or
@@ -503,9 +503,9 @@ template:
         state_class: total
         state: >
           {{ (
-          states('sensor.house_load_cost') | float(0) -
-          states('sensor.import_cost') | float(0) +
-          states('sensor.export_income') | float(0) 
+          states('sensor.house_load_cost') | float -
+          states('sensor.import_cost') | float +
+          states('sensor.export_income') | float 
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.house_load_cost') or
@@ -517,10 +517,10 @@ template:
         state_class: total
         state: >
           {{ (
-          states('sensor.battery_discharge_grid_sale') | float(0) +
-          states('sensor.battery_discharge_house_saving') | float(0) -
-          states('sensor.battery_charge_yield_sale') | float(0) -
-          states('sensor.battery_charge_grid_cost') | float(0) 
+          states('sensor.battery_discharge_grid_sale') | float +
+          states('sensor.battery_discharge_house_saving') | float -
+          states('sensor.battery_charge_yield_sale') | float -
+          states('sensor.battery_charge_grid_cost') | float 
           ) | round(5) }}
         availability: >
           {{ has_value('sensor.battery_discharge_grid_sale') or
@@ -533,9 +533,8 @@ template:
   ## -----------------------------------
   ## Huawei Solar PEES - Economy Sensors
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_battery_charge_grid_ps
+      - trigger: state
+        entity_id: sensor.energy_battery_charge_grid_ps
     sensor:
       - name: "Battery Charge Grid - Cost (tt)"
         unique_id: battery_charge_grid_cost_tt
@@ -564,9 +563,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_battery_charge_yield_ps
+      - trigger: state
+        entity_id: sensor.energy_battery_charge_yield_ps
     sensor:
       - name: "Battery Charge Yield - Sale (tt)"
         unique_id: battery_charge_yield_sale_tt
@@ -595,9 +593,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_battery_discharge_house_ps
+      - trigger: state
+        entity_id: sensor.energy_battery_discharge_house_ps
     sensor:
       - name: "Battery Discharge House - Saving (tt)"
         unique_id: battery_discharge_house_saving_tt
@@ -626,9 +623,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_battery_discharge_grid_ps
+      - trigger: state
+        entity_id: sensor.energy_battery_discharge_grid_ps
     sensor:
       - name: "Battery Discharge Grid - Sale (tt)"
         unique_id: battery_discharge_grid_sale_tt
@@ -657,9 +653,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_export_ps
+      - trigger: state
+        entity_id: sensor.energy_export_ps
     sensor:
       - name: "Export - Income (tt)"
         unique_id: export_income_tt
@@ -688,9 +683,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_import_ps
+      - trigger: state
+        entity_id: sensor.energy_import_ps
     sensor:
       - name: "Import - Cost (tt)"
         unique_id: import_cost_tt
@@ -719,9 +713,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_house_load_ps
+      - trigger: state
+        entity_id: sensor.energy_house_load_ps
     sensor:
       - name: "House Load - Cost (tt)"
         unique_id: house_load_cost_tt
@@ -750,9 +743,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_house_load_grid_ps
+      - trigger: state
+        entity_id: sensor.energy_house_load_grid_ps
     sensor:
       - name: "House Load Grid - Cost (tt)"
         unique_id: house_load_grid_cost_tt
@@ -781,9 +773,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_house_load_yield_ps
+      - trigger: state
+        entity_id: sensor.energy_house_load_yield_ps
     sensor:
       - name: "House Load Yield - Saving (tt)"
         unique_id: house_load_yield_saving_tt
@@ -812,9 +803,8 @@ template:
               {{ lastlast }}
             {% endif %}
   - trigger:
-      - platform: state
-        entity_id:
-          - sensor.energy_export_yield_ps
+      - trigger: state
+        entity_id: sensor.energy_export_yield_ps
     sensor:
       - name: "Export Yield - Sale (tt)"
         unique_id: export_yield_sale_tt
