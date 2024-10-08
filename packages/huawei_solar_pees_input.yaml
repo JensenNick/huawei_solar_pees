@@ -282,7 +282,7 @@ input_select:
       - SUN2000 6 KTL-M1
       - SUN2000 8 KTL-M1
       - SUN2000 10 KTL-M1
-    inverter_2_3phase_map0_models:
+  inverter_2_3phase_map0_models:
     name: "Inverter #2 3phase MAP0 Models"
     options:
       - Select
