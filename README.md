@@ -114,7 +114,7 @@ If you do not wish to use the default electricity price sensors from the *"Energ
 
 ### 3.4 Currency
 
-PEES will use the currency defined in your instance of Home Assistant.
+You may need to correct the currency to your local currency. The currency used in the provided custom sensors is DKK (Danish Krone) and this is the price pr. kWh. This is a correction which also has to be done in the *"huawei_solar_pees.yaml"* file as a global edit or search/replace. 
 
 ## 4. Specific Input Settings (optional)
 
