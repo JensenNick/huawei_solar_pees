@@ -65,7 +65,7 @@ automation:
   - alias: "Switch Inverter #2 to 1phase L1"
     trigger:
       platform: state
-      entity_id: input_boolean._inverter_2_1phase_l1
+      entity_id: input_boolean.inverter_2_1phase_l1
       to: "on"
     action:
       - action: input_boolean.turn_off
