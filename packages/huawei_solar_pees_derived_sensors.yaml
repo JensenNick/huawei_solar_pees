@@ -1,0 +1,121 @@
+template:
+##########################################################
+#
+#   Detects if there is a Huawei L0, L1, M1, MB0 or iStore
+#   1PH or 3PH inverter, and publishes its model number.
+#
+  - sensor:
+    - name: "Inverter 1 - Model"
+      unique_id: inverter_model
+      icon: phu:huawei-solar-inverter
+      state: >-
+        {{ device_attr("sensor.inverter_input_power", "model") | regex_findall_index('(SUN\d+-\d+KTL-[L|M|MB]\d+)|(IS-HYB-\d-\[1|3]PH)', 0) | first }}
+      availability: >-
+        {{  (states('sensor.inverter_input_power') not in [ 'unknown', 'unavailable', 'none' ] ) }}
+
+  - sensor:
+    - name: "Inverter 2 - Model"
+      unique_id: inverter_model_2
+      icon: phu:huawei-solar-inverter
+      state: >-
+        {{ device_attr("sensor.inverter_input_power_2", "model") | regex_findall_index('(SUN\d+-\d+KTL-[L|M|MB]\d+)|(IS-HYB-\d-\[1|3]PH)', 0) | first }}
+      availability: >-
+        {{  (states('sensor.inverter_input_power_2') not in [ 'unknown', 'unavailable', 'none' ] ) }}
+
+
+##########################################################
+#
+#   Detects if there is a Battery attached to either inverter
+#   and publishes the total number of batteries (stacks), up to 4.
+#
+
+  - sensor:
+    - name: "Battery 1 - Model"
+      unique_id: battery_model
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_1_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+
+
+  - sensor:
+    - name: "Battery 2 - Model"
+      unique_id: battery_model_2
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_2_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+
+
+  - sensor:
+    - name: "Battery 3 - Model"
+      unique_id: battery_model_3
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_3_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+
+
+  - sensor:
+    - name: "Battery 4 - Model"
+      unique_id: battery_model_4
+      icon: phu:solar-battery-15
+      state: >-
+        {% set device_model = device_attr('sensor.battery_4_state_of_capacity', 'model') %}
+        {% if device_model == none %}
+          Not Installed
+        {% else %}
+          {{ device_model }}
+        {% endif %}
+      
+
+##########################################################
+#
+#   Uses the 'Model' sensors above, to count the number of 
+#   battery stacks (not cells) installed in the site.
+#
+
+  - sensor:
+    - name: "Batteries - Installed"
+      unique_id: batteries_installed
+      icon: phu:solar-battery-15
+      state: >-
+        {% set battery_sensors = [
+          states('sensor.battery_model'),
+          states('sensor.battery_model_2'),
+          states('sensor.battery_model_3'),
+          states('sensor.battery_model_4')
+        ] %}
+        {% set installed_batteries = battery_sensors | reject('in', ['unknown', 'unavailable', 'none', 'Not Installed']) | list %}
+        {{ installed_batteries | count }}
+
+
+##########################################################
+#
+# Home Assistant Records Service.
+# excludes the follow sensors from being recorded:
+#
+
+recorder:
+  exclude:
+    entities:
+      - sensor.inverter_model
+      - sensor.inverter_model_2
+      - sensor.battery_model
+      - sensor.battery_model_2
+      - sensor.battery_model_3
+      - sensor.battery_model_4
+#      - sensor.batteries_installed
+#      - sensor.batteries_rated_capacity
