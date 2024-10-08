@@ -2,6 +2,11 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.1.4
+PEES has been updated so it will fetch the currency defined in Home Assistant. As of now only *"huawei_solar_pees.yaml"* has been updated.
+
+Automations in *"huawei_solar_pees_input.yaml"* has been updated so they match "LEGACY SYNTAX".
+
 ## Release Note / v2.1.3
 Template trigger sensors corrected so they match "LEGACY SYNTAX".
 
