@@ -9,18 +9,17 @@ codeowner: Nick Jensen<br>
 ```yaml
 type: vertical-stack
 cards:
+  - type: entities
+    entities:
+      - entity: sensor.inverter_1_model
   - type: conditional
     conditions:
       - condition: state
-        entity: input_boolean.inverter_1_1phase
-        state: 'on'
-      - condition: state
-        entity: input_boolean.inverter_1_3phase
-        state: 'off'
+        entity: binary_sensor.inverter_1_is_l1
+        state: "on"
     card:
       type: entities
       entities:
-        - entity: input_select.inverter_1_1phase_models
         - entity: input_number.inverter_1_operating_voltage_l1
           name: Operating voltage (360V)
         - entity: input_number.inverter_1_overall_factor
@@ -28,15 +27,11 @@ cards:
   - type: conditional
     conditions:
       - condition: state
-        entity: input_boolean.inverter_1_3phase
-        state: 'on'
-      - condition: state
-        entity: input_boolean.inverter_1_1phase
-        state: 'off'
+        entity: binary_sensor.inverter_1_is_m1
+        state: "on"
     card:
       type: entities
       entities:
-        - entity: input_select.inverter_1_3phase_models
         - entity: input_number.inverter_1_operating_voltage_m1
           name: Operating voltage (600V)
         - entity: input_number.inverter_1_overall_factor
@@ -45,42 +40,29 @@ cards:
     entities:
       - entity: sensor.inverter_pv_1_voltage
       - entity: sensor.inverter_pv_2_voltage
-  - type: entities
-    entities:
-      - entity: input_boolean.inverter_2_1phase
-        name: 'Inverter #2 SUN2000 # KTL-L1 (1 phase)'
-      - entity: input_boolean.inverter_2_3phase
-        name: 'Inverter #2 SUN2000 # KTL-M1 (3 phase)'
-    title: 'Inverter #2'
-    show_header_toggle: false
   - type: conditional
     conditions:
       - condition: state
-        entity: input_boolean.inverter_2_1phase
-        state: 'on'
-      - condition: state
-        entity: input_boolean.inverter_2_3phase
-        state: 'off'
+        entity: binary_sensor.inverter_2_is_l1
+        state: "on"
     card:
       type: entities
       entities:
-        - entity: input_select.inverter_2_1phase_models
         - entity: input_number.inverter_2_operating_voltage_l1
           name: Operating voltage (360V)
         - entity: input_number.inverter_2_overall_factor
           name: Overall factor (100%)
+  - type: entities
+    entities:
+      - entity: sensor.inverter_2_model
   - type: conditional
     conditions:
       - condition: state
-        entity: input_boolean.inverter_2_3phase
-        state: 'on'
-      - condition: state
-        entity: input_boolean.inverter_2_1phase
-        state: 'off'
+        entity: binary_sensor.inverter_2_is_m1
+        state: "on"
     card:
       type: entities
       entities:
-        - entity: input_select.inverter_2_3phase_models
         - entity: input_number.inverter_2_operating_voltage_m1
           name: Operating voltage (600V)
         - entity: input_number.inverter_2_overall_factor
@@ -95,29 +77,3 @@ cards:
       - entity: input_text.electricity_price_export
     title: Electricity Price
 ```
-### Input Card for the *"Huawei Solar STAT package"*
-
-```yaml
-type: vertical-stack
-cards:
-  - type: entities
-    entities:
-      - entity: input_number.battery_rated_capacity
-        name: Rated Capacity (kWh)
-      - entity: input_number.battery_efficiency_soc_trigger
-        name: SOC Trigger (50%)
-      - entity: input_number.battery_efficiency_start_value_charge
-        name: Start Value Charge (kWh)
-      - entity: input_number.battery_efficiency_start_value_discharge
-        name: Start Value Discharge (kWh)
-    title: Battery Efficiency
-  - type: entities
-    entities:
-      - entity: input_number.panels_rated_wp
-        name: Solar Panels Power (Wp)
-      - entity: input_number.panels_on_inverter_1
-        name: "Panels on inverter #1"
-      - entity: input_number.panels_on_inverter_2
-        name: "Panels on inverter #2"
-    title: Yield Statistics
-``` 

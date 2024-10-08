@@ -25,64 +25,6 @@
 # You still need to edit your input sensors in the huawei_solar_pees.yaml file if your
 # input sensors do not match the ones used by default.
 #
-# -----------
-# AUTOMATIONS
-# -----------
-automation:
-  ## ------------------------------
-  ## Switch Inverter Between Phases
-  - alias: "Switch Inverter #1 to 1phase L1"
-    triggers:
-      trigger: template
-      value_template: "{% if 'L1' in states('sensor.inverter_1_model') %} true {% endif %}"
-    actions:
-      - action: input_boolean.turn.on
-        entity_id: input_boolean.inverter_1_1phase_l1
-      - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_1_3phase_m1
-    mode: single
-  - alias: "Switch Inverter #1 to 3phase M1"
-    triggers:
-      trigger: template
-      value_template: "{% if 'M1' in states('sensor.inverter_1_model') %} true {% endif %}"
-    actions:
-      - action: input_boolean.turn.on
-        entity_id: input_boolean.inverter_1_3phase_m1
-      - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_1_1phase_l1
-    mode: single
-  - alias: "Switch Inverter #2 to 1phase L1"
-    triggers:
-      trigger: template
-      value_template: "{% if 'L1' in states('sensor.inverter_2_model') %} true {% endif %}"
-    actions:
-      - action: input_boolean.turn.on
-        entity_id: input_boolean.inverter_2_1phase_l1
-      - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_2_3phase_m1
-    mode: single
-  - alias: "Switch Inverter #2 to 3phase M1"
-    triggers:
-      trigger: template
-      value_template: "{% if 'M1' in states('sensor.inverter_2_model') %} true {% endif %}"
-    actions:
-      - action: input_boolean.turn.on
-        entity_id: input_boolean.inverter_2_3phase_m1
-      - action: input_boolean.turn_off
-        entity_id: input_boolean.inverter_2_1phase_l1
-    mode: single
-# -------------
-# INPUT BOOLEAN
-# -------------
-input_boolean:
-  inverter_1_1phase_l1:
-    name: "Inverter #1 1phase L1"
-  inverter_1_3phase_m1:
-    name: "Inverter #1 3phase M1"
-  inverter_2_1phase_l1:
-    name: "Inverter #2 1phase L1"
-  inverter_2_3phase_m1:
-    name: "Inverter #2 3phase M1"
 # ------------
 # INPUT NUMBER
 # ------------
@@ -135,6 +77,25 @@ input_text:
 # TEMPLATE SENSOR
 # ---------------
 template:
+  - binary_sensor:
+      ## --------------
+      ## Inverter model
+      - name: "Inverter 1 is L1"
+        unique_id: inverter_1_is_l1
+        state: >
+          {{ 'L1' in states('sensor.inverter_1_model') }}
+      - name: "Inverter 1 is M1"
+        unique_id: inverter_1_is_m1
+        state: >
+          {{ 'M1' in states('sensor.inverter_1_model') }}
+      - name: "Inverter 2 is L1"
+        unique_id: inverter_2_is_l1
+        state: >
+          {{ 'L1' in states('sensor.inverter_1_model') }}
+      - name: "Inverter 2 is M1"
+        unique_id: inverter_2_is_m1
+        state: >
+          {{ 'M1' in states('sensor.inverter_1_model') }}
   - sensor:
       ## --------------------------------------
       ## Electricity Price for Energy Dashboard
@@ -171,7 +132,7 @@ template:
         unique_id: inverter_2_model
         state: >-
           {{ device_attr("sensor.inverter_input_power_2","model") | regex_findall_index('(SUN\d+-\d+KTL-[L|M|MB]\d+)|(IS-HYB-\d-\[1|3]PH)', 0) | first }}
-        availability: >-
+        availability: >
           {{ states('sensor.inverter_input_power_2') not in ['unknown','unavailable','none'] }}
       ## --------------------
       ## Inverter Rated Power
@@ -198,8 +159,8 @@ template:
           {% if '10KTL' in states('sensor.inverter_1_model') %}
             {{ 10000 }}
           {% endif %}
-        availability: >-
-          {{ states('sensor.inverter_input_power') not in ['unknown','unavailable','none'] }}
+        availability: >
+          {{ states('sensor.inverter_1_model') not in ['unknown','unavailable','none'] }}
       - name: "Inverter #2 Rated Power"
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
@@ -223,5 +184,5 @@ template:
           {% if '10KTL' in states('sensor.inverter_2_model') %}
             {{ 10000 }}
           {% endif %}
-        availability: >-
-          {{ states('sensor.inverter_input_power') not in ['unknown','unavailable','none'] }}
+        availability: >
+          {{ states('sensor.inverter_2_model') not in ['unknown','unavailable','none'] }}
