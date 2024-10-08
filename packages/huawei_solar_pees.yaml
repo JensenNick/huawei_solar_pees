@@ -1,8 +1,8 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v2.1.2
-# branch: main
+# version: 
+# branch: alpha-018
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -19,6 +19,8 @@
 # Make sure the naming of your power input sensors is correct.
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
 # - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
+# - 'sensor.inverter_rated_power' (from the Huawei Solar integration)
+# - 'sensor.inverter_rated_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
 # - 'sensor.batteries_charge_discharge_power' (from the Huawei Solar integration)
 #

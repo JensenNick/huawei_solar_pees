@@ -101,13 +101,13 @@ input_boolean:
     name: "Inverter #1 1phase L1"
   inverter_1_3phase_m1:
     name: "Inverter #1 3phase M1"
-  inverter_1_3phase:
+  inverter_1_3phase_map0:
     name: "Inverter #1 3phase MAP0"
   inverter_2_1phase_l1:
     name: "Inverter #2 1phase L1"
   inverter_2_3phase_m1:
     name: "Inverter #2 3phase M1"
-  inverter_2_3phase:
+  inverter_2_3phase_map0:
     name: "Inverter #2 3phase MAP0"
 # ------------
 # INPUT NUMBER
