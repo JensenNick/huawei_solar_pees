@@ -25,6 +25,12 @@
 # You still need to edit your input sensors in the huawei_solar_pees.yaml file if your
 # input sensors do not match the ones used by default.
 #
+# -------------
+# INPUT BOOLEAN
+# -------------
+input_boolean:
+  efficiency_corrected_power_input:
+    name: "Efficiency Corrected Power Input"
 # ------------
 # INPUT NUMBER
 # ------------

@@ -10,6 +10,9 @@ codeowner: Nick Jensen<br>
 type: vertical-stack
 cards:
   - type: entities
+    enteties:
+      - entity: input_boolean.efficiency_corrected_power_input
+  - type: entities
     entities:
       - entity: sensor.inverter_1_model
     title: "Inverter #1"
