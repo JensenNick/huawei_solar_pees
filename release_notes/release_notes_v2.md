@@ -2,6 +2,9 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.1.4
+It seems that the error message about the "LEGACY SYNTAX" was a bug. Template trigger sensors revered back to previous state.
+
 ## Release Note / v2.1.3
 Template trigger sensors corrected so they match "LEGACY SYNTAX".
 
