@@ -142,17 +142,22 @@ Since the *"Huawei Solar integration*"* and / or *"Huawei"* does not provide us 
 
 > *Efficiency corrected input power graphs - yield from each inverter and the total power yield.*
 
-Here is a short description of how to set up and adjust your efficiency corrected power input sensor.
+Here is a short description of how to set up and adjust your efficiency corrected power input sensor. It is assumed that you have created an input card from the *"huawei_solar_pees_input_card.md"* file.
+
+* **Toggle the "Efficiency Corrected Power Input" swith "ON"**. The cards with sliders for adjusting the settings will apeare together with information about your PV voltages.
+
+  ![Input Card Inverter](pictures/input_card_efficiency_correction_toggle.jpg)
 
 * The slider for the **"Operating voltage" is used to adjust the efficiency** of the inverter. The rated voltage of your inverter, represents the voltage at which your inverter has the highest efficiency. For the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters, the rated voltage is 600 V. For the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters the rated voltage is 360 V.<br>
 You can use the slider to adjust the operating voltage within the operating range of your inverter. Any adjustmens made that deviates from the rated voltage will decrease the efficincy, but with slightly different profiles. The profiles used match the efficiency curves in the datasheet from Huawei. There is a linear interpoleration between the known values.<br>
 You can use the "History" information in the FusionSolar app to set your approximate voltage. With more than one string you will have to estimate an average. The "goal" is not to set it "correct" voltage, because there is not one "correct" value. The "goal" is to set the operating voltage to a value, which will give you the most accurate energy output.<br>
 
+  ![Input Card Inverter](pictures/input_card_inverter.jpg)
+
 * The slider for the **"Overall factor"** is a bit more straight forward. This slider will, as the name suggests, **increase or decrase the overall efficiency** of the efficiency corrected power input sensor. This is very powerfull and therefor the range of the slider is limited and the increments are small. Set to 100% the slider has no effect.
 
 To simplify the differense between the two slides without getting to technical, think of the overall factor as a *"parrallel adjustment"* (up and down) of the efficiency curve, whereas the operating voltage is "adjusting the *"profile of the curve"* with some reduction of efficiency".
 
-![Input Card Inverter](pictures/input_card_inverter.jpg)
 
 ![Efficiency Graphs](pictures/efficiency_graphs.jpg)
 
