@@ -165,7 +165,7 @@ template:
           {% elif '8KTL' in states('sensor.inverter_1_model') %}
             {{ 8000 }}
           {% elif '10KTL' in states('sensor.inverter_1_model') %}
-            {{ 10000 }}el
+            {{ 10000 }}
           {% endif %}
         availability: >
           {{ states('sensor.inverter_1_model') not in ['unknown','unavailable','none'] }}
