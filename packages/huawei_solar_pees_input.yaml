@@ -78,8 +78,8 @@ input_text:
 # ---------------
 template:
   - binary_sensor:
-      ## --------------
-      ## Inverter model
+      ## -------------------
+      ## Inverter 1 is model
       - name: "Inverter 1 is L1"
         unique_id: inverter_1_is_l1
         state: >
@@ -88,14 +88,16 @@ template:
         unique_id: inverter_1_is_m1
         state: >
           {{ 'M1' in states('sensor.inverter_1_model') }}
+      ## -------------------
+      ## Inverter 2 is model
       - name: "Inverter 2 is L1"
         unique_id: inverter_2_is_l1
         state: >
-          {{ 'L1' in states('sensor.inverter_1_model') }}
+          {{ 'L1' in states('sensor.inverter_2_model') }}
       - name: "Inverter 2 is M1"
         unique_id: inverter_2_is_m1
         state: >
-          {{ 'M1' in states('sensor.inverter_1_model') }}
+          {{ 'M1' in states('sensor.inverter_2_model') }}
   - sensor:
       ## --------------------------------------
       ## Electricity Price for Energy Dashboard
