@@ -134,27 +134,30 @@ You should not edit file *"huawei_solar_pees_input.yaml"* file. All user specifi
 
 The default custom power input sensors do not take the inverter efficiency into account, which may result in a too high yield and other inaccuracies (house load is calculated on basis of the yield). The *"Huawei Solar integration"* does provide the `sensor.input_power_with_efficiency_loss` which takes the inverter efficiency into account. I have not tested this sensor, but my assessment is that it may cause inaccuracies and/or errors due to the step-by-step adjustment of the efficiency.
 
-Therefore and as an option I have created two custom sensors - one for the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters and one for the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei. You activate the "efficiency corrected power input sensor" in the "input card".
+Therefore and as an option I have included custom sensors which prowide you with a efficiency corrected power input. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei. You activate the "efficiency corrected power input sensor" in the "input card". The *"Huawei Solar PEES package"* will identify your inverter automatically and set the rated power accordingly. You need to adjust the voltage and the overall factor of your inverter manually.
+
+Since the *"Huawei Solar integration*"* and / or *"Huawei"* does not provide us with the inverter input power pr. mppt it is not possible to use the provided information about string voltages. Therefore the voltage is a manual input.
 
 ![Efficiency Corrected Power Input Sensors](pictures/efficiency_corrected_power_input_sensors.jpg)
 
 > *Efficiency corrected input power graphs - yield from each inverter and the total power yield.*
 
-Here is a short description of how to set up and adjust your efficiency corrected power input sensor.
+Here is a short description of how to set up and adjust your efficiency corrected power input sensor. It is assumed that you have created an input card from the *"huawei_solar_pees_input_card.md"* file.
 
-* **Toggle the on/off switch** to "on" to activate the "efficiency corrected power input sensor". Be sure to chose the toggle switch for the type of inverter that you have (single or three phase).<br>
+* **Toggle the "Efficiency Corrected Power Input" swith "ON"**. The cards with sliders for adjusting the settings will apeare together with information about your PV voltages.
 
-* In the card that appear below, **chose the model of your inverter** in the drop down menu.<br>
+  ![Input Card Inverter](pictures/input_card_efficiency_correction_toggle.jpg)
 
 * The slider for the **"Operating voltage" is used to adjust the efficiency** of the inverter. The rated voltage of your inverter, represents the voltage at which your inverter has the highest efficiency. For the Huawei SUN2000 3/4/5/6/8/10KTL-M1 (three phase) inverters, the rated voltage is 600 V. For the Huawei SUN2000 2/3/3.68/4/4.6/5/6KTL-L1 (single phase) inverters the rated voltage is 360 V.<br>
 You can use the slider to adjust the operating voltage within the operating range of your inverter. Any adjustmens made that deviates from the rated voltage will decrease the efficincy, but with slightly different profiles. The profiles used match the efficiency curves in the datasheet from Huawei. There is a linear interpoleration between the known values.<br>
 You can use the "History" information in the FusionSolar app to set your approximate voltage. With more than one string you will have to estimate an average. The "goal" is not to set it "correct" voltage, because there is not one "correct" value. The "goal" is to set the operating voltage to a value, which will give you the most accurate energy output.<br>
 
+  ![Input Card Inverter](pictures/input_card_inverter.jpg)
+
 * The slider for the **"Overall factor"** is a bit more straight forward. This slider will, as the name suggests, **increase or decrase the overall efficiency** of the efficiency corrected power input sensor. This is very powerfull and therefor the range of the slider is limited and the increments are small. Set to 100% the slider has no effect.
 
 To simplify the differense between the two slides without getting to technical, think of the overall factor as a *"parrallel adjustment"* (up and down) of the efficiency curve, whereas the operating voltage is "adjusting the *"profile of the curve"* with some reduction of efficiency".
 
-![Input Card Inverter](pictures/input_card_inverter.jpg)
 
 ![Efficiency Graphs](pictures/efficiency_graphs.jpg)
 
@@ -192,7 +195,13 @@ If you have several tariffs and/or they change from time to time, you might find
 
 ## 5. Known "bugs"
 
-None at the moment.
+#### Inverter model
+I have no documentation about the output of the sensor which is deriving the data about inverter model for the models mentioned below, hence the efficiency calculation may not work. It falls back to giving the result without the efficiency correction, so this is not easily detected.
+
+* Huawei SUN2000 3.68 KTL L1
+* Huawei SUN2000 4.6 KTL L1
+
+As of now it is assumed that the derived names will be formatted as *"SUN2000-3-68KTL-L1"* and *"SUN2000-4-6KTL-L1"* respectively. If you have one of these inverter models please help to identify the naming scheme for these two models.
 
 ## 6. Thanks to
 
