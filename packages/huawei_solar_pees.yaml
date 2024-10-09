@@ -238,8 +238,6 @@ template:
           {% else %}
             {{ states('sensor.inverter_input_power') | float(0) }}
           {% endif %}
-        availability: >-
-          {{ states('sensor.inverter_1_model') not in ['unknown','unavailable','none'] }}
       - name: "Power Inverter #2 Input"
         unique_id: power_inverter_2_input
         unit_of_measurement: W
@@ -291,8 +289,6 @@ template:
           {% else %}
             {{ states('sensor.inverter_input_power_2') | float(0) }}
           {% endif %}
-        availability: >-
-          {{ states('sensor.inverter_2_model') not in ['unknown','unavailable','none'] }}
       - name: "Power Inverter Input Total"
         unique_id: power_inverter_input_total
         unit_of_measurement: W
