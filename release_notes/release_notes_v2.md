@@ -2,7 +2,7 @@
 
 **Power, Energy and Economy Sensors**
 
-## Release Note / v2.2.0
+## Release Note / v2.2.1
 
 #### Add derived sensor
 
