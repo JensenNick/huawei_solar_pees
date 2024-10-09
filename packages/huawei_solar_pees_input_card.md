@@ -10,8 +10,9 @@ codeowner: Nick Jensen<br>
 type: vertical-stack
 cards:
   - type: entities
-    enteties:
+    entities:
       - entity: input_boolean.efficiency_corrected_power_input
+    title: Efficiency Correction
   - type: entities
     entities:
       - entity: sensor.inverter_1_model
@@ -19,27 +20,35 @@ cards:
   - type: conditional
     conditions:
       - condition: state
-        entity: binary_sensor.inverter_1_is_l1
+        entity: input_boolean.efficiency_corrected_power_input
         state: "on"
     card:
-      type: entities
-      entities:
-        - entity: input_number.inverter_1_operating_voltage_l1
-        - entity: input_number.inverter_1_overall_factor
-  - type: conditional
-    conditions:
-      - condition: state
-        entity: binary_sensor.inverter_1_is_m1
-        state: "on"
-    card:
-      type: entities
-      entities:
-        - entity: input_number.inverter_1_operating_voltage_m1
-        - entity: input_number.inverter_1_overall_factor
-  - type: entities
-    entities:
-      - entity: sensor.inverter_pv_1_voltage
-      - entity: sensor.inverter_pv_2_voltage
+      type: vertical-stack
+      cards:
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_1_is_l1
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_1_operating_voltage_l1
+              - entity: input_number.inverter_1_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_1_is_m1
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_1_operating_voltage_m1
+              - entity: input_number.inverter_1_overall_factor
+        - type: entities
+          entities:
+            - entity: sensor.inverter_pv_1_voltage
+            - entity: sensor.inverter_pv_2_voltage
   - type: entities
     entities:
       - entity: sensor.inverter_2_model
@@ -47,27 +56,35 @@ cards:
   - type: conditional
     conditions:
       - condition: state
-        entity: binary_sensor.inverter_2_is_l1
+        entity: input_boolean.efficiency_corrected_power_input
         state: "on"
     card:
-      type: entities
-      entities:
-        - entity: input_number.inverter_2_operating_voltage_l1
-        - entity: input_number.inverter_2_overall_factor
-  - type: conditional
-    conditions:
-      - condition: state
-        entity: binary_sensor.inverter_2_is_m1
-        state: "on"
-    card:
-      type: entities
-      entities:
-        - entity: input_number.inverter_2_operating_voltage_m1
-        - entity: input_number.inverter_2_overall_factor
-  - type: entities
-    entities:
-      - entity: sensor.inverter_pv_1_voltage_2
-      - entity: sensor.inverter_pv_2_voltage_2
+      type: vertical-stack
+      cards:
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_2_is_l1
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_2_operating_voltage_l1
+              - entity: input_number.inverter_2_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_2_is_m1
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_2_operating_voltage_m1
+              - entity: input_number.inverter_2_overall_factor
+        - type: entities
+          entities:
+            - entity: sensor.inverter_pv_1_voltage_2
+            - entity: sensor.inverter_pv_2_voltage_2
   - type: entities
     entities:
       - entity: input_text.electricity_price_import
