@@ -1,7 +1,7 @@
 # ---------------------------------------------
 # HUAWEI SOLAR PEES INPUT - User Specific Input
 # ---------------------------------------------
-# version: v1.0.6
+# version: 
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -142,22 +142,22 @@ template:
         state: >
           {% if '2KTL' in states('sensor.inverter_1_model') %}
             {{ 2000 }}
-          {% if '3KTL' in states('sensor.inverter_1_model') %}
+          {% elif '3KTL' in states('sensor.inverter_1_model') %}
             {{ 3000 }}
-          {% if '3-68KTL' in states('sensor.inverter_1_model') %}
+          {% elif '3-68KTL' in states('sensor.inverter_1_model') %}
             {{ 3680 }}
-          {% if '4KTL' in states('sensor.inverter_1_model') %}
+          {% elif '4KTL' in states('sensor.inverter_1_model') %}
             {{ 4000 }}
-          {% if '4-6KTL' in states('sensor.inverter_1_model') %}
+          {% elif '4-6KTL' in states('sensor.inverter_1_model') %}
             {{ 4600 }}
-          {% if '5KTL' in states('sensor.inverter_1_model') %}
+          {% elif '5KTL' in states('sensor.inverter_1_model') %}
             {{ 5000 }}
-          {% if '6KTL' in states('sensor.inverter_1_model') %}
+          {% elif '6KTL' in states('sensor.inverter_1_model') %}
             {{ 6000 }}
-          {% if '8KTL' in states('sensor.inverter_1_model') %}
+          {% elif '8KTL' in states('sensor.inverter_1_model') %}
             {{ 8000 }}
-          {% if '10KTL' in states('sensor.inverter_1_model') %}
-            {{ 10000 }}
+          {% elif '10KTL' in states('sensor.inverter_1_model') %}
+            {{ 10000 }}el
           {% endif %}
         availability: >
           {{ states('sensor.inverter_1_model') not in ['unknown','unavailable','none'] }}
@@ -167,21 +167,21 @@ template:
         state: >
           {% if '2KTL' in states('sensor.inverter_2_model') %}
             {{ 2000 }}
-          {% if '3KTL' in states('sensor.inverter_2_model') %}
+          {% elif '3KTL' in states('sensor.inverter_2_model') %}
             {{ 3000 }}
-          {% if '3-68KTL' in states('sensor.inverter_2_model') %}
+          {% elif '3-68KTL' in states('sensor.inverter_2_model') %}
             {{ 3680 }}
-          {% if '4KTL' in states('sensor.inverter_2_model') %}
+          {% elif '4KTL' in states('sensor.inverter_2_model') %}
             {{ 4000 }}
-          {% if '4-6KTL' in states('sensor.inverter_2_model') %}
+          {% elif '4-6KTL' in states('sensor.inverter_2_model') %}
             {{ 4600 }}
-          {% if '5KTL' in states('sensor.inverter_2_model') %}
+          {% elif '5KTL' in states('sensor.inverter_2_model') %}
             {{ 5000 }}
-          {% if '6KTL' in states('sensor.inverter_2_model') %}
+          {% elif '6KTL' in states('sensor.inverter_2_model') %}
             {{ 6000 }}
-          {% if '8KTL' in states('sensor.inverter_2_model') %}
+          {% elif '8KTL' in states('sensor.inverter_2_model') %}
             {{ 8000 }}
-          {% if '10KTL' in states('sensor.inverter_2_model') %}
+          {% elif '10KTL' in states('sensor.inverter_2_model') %}
             {{ 10000 }}
           {% endif %}
         availability: >
