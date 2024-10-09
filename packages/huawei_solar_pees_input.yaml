@@ -115,56 +115,6 @@ input_number:
     min: 98
     max: 102
     step: 0.2
-  ## ------------------
-  ## Battery Efficiency
-  battery_rated_capacity:
-    name: "Battery Rated Capacity (in kWh)"
-    min: 5
-    max: 30
-    step: 5
-  battery_efficiency_soc_triggers:
-    name: "Battery Efficiency SOC Trigger (Recomended Set 50%)"
-    min: 0
-    max: 100
-    step: 5
-  battery_efficiency_start_value_charge:
-    name: "Battery Efficiency Start Value Charge (in kW)"
-    min: 0
-    max: 120000
-    step: 0.01
-    mode: box
-  battery_efficiency_start_value_discharge:
-    name: "Battery Efficiency Start Value Disharge (in kW)"
-    min: 0
-    max: 120000
-    step: 0.01
-    mode: box
-  ## Battery Charge Power
-  battery_charge_power:
-    name: "Battery Charge Power"
-    min: 0
-    max: 5
-    step: 0.01
-  ## ------------
-  ## Solar Panels
-  panels_on_inverter_1:
-    name: "Panels on Inverter #1"
-    min: 0
-    max: 50
-    step: 1
-    mode: box
-  panels_on_inverter_2:
-    name: "Panels on Inverter #2"
-    min: 0
-    max: 50
-    step: 1
-    mode: box
-  panels_rated_wp:
-    name: "Panels Rated Wp"
-    min: 100
-    max: 999
-    step: 1
-    mode: box
 # ------------
 # INPUT SELECT
 # ------------
