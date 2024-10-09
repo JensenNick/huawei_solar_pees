@@ -2,6 +2,42 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.2.1
+
+#### Add derived sensor
+
+With this release PEES will automatically fetch inverter model and set the rated power accordingly. You need to update all files, *"huawei_solar_pees.yaml"* to v2.2.1, *"huawei_solar_pees_input.yaml"* to v2.0.1 and your Lovelace card with input from *"huawei_solar_pees_input_card.yaml"* v2.0.1.
+
+If you have the *"Huawei Solar STAT package"* running you need to import/update the *"huawei_solar_stat_input"* file.
+
+In *"huawei_solar_pees_input.yaml"* the following sensors / entities have been moved to the *"Huawei Solar STAT package"*.
+* `input_number.battery_rated_capacity`
+* `input_number.battery_efficiency_soc_triggers`
+* `input_number.battery_efficiency_start_value_charge`
+* `input_number.battery_efficiency_start_value_discharge`
+* `input_number.battery_charge_power`
+* `input_number.panels_on_inverter_1`
+* `input_number.panels_on_inverter_2`
+* `input_number.panels_rated_wp`
+
+In *"huawei_solar_pees_input.yaml"* the following sensors / entities have been discontinued.
+* `automation.switch_inverter_1_to_1phase`
+* `automation.switch_inverter_1_to_3phase`
+* `automation.switch_inverter_2_to_1phase`
+* `automation.switch_inverter_2_to_3phase`
+* `input_boolean.inverter_1_1phase`
+* `input_boolean.inverter_1_3phase`
+* `input_boolean.inverter_2_1phase`
+* `input_boolean.inverter_2_3phase`
+* `input_select.inverter_1_1phase_models`
+* `input_select.inverter_1_3phase_models`
+* `input_select.inverter_2_1phase_models`
+* `input_select.inverter_2_3phase_models`
+
+#### Template trigger sensors
+
+I have got confirmation that the template trigger sensors need an update, so they have now been revised to match "LEGACY SYNTAX".
+
 ## Release Note / v2.1.4
 It seems that the error message about the "LEGACY SYNTAX" was a bug. Template trigger sensors revered back to previous state.
 
