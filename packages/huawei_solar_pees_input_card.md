@@ -1,6 +1,6 @@
 ## Huawei Solar PEES INPUT CARD - Input Card for Lovelace
-version: <br>
-branch: <br>
+version: v2.0.1 <br>
+branch: main<br>
 domain: https://github.com/JensenNick/huawei_solar_pees<br>
 codeowner: Nick Jensen<br>
 
