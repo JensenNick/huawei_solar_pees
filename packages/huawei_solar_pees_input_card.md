@@ -12,6 +12,7 @@ cards:
   - type: entities
     entities:
       - entity: sensor.inverter_1_model
+    title: "Inverter #1"
   - type: conditional
     conditions:
       - condition: state
@@ -21,9 +22,7 @@ cards:
       type: entities
       entities:
         - entity: input_number.inverter_1_operating_voltage_l1
-          name: Operating voltage (360V)
         - entity: input_number.inverter_1_overall_factor
-          name: Overall factor (100%)
   - type: conditional
     conditions:
       - condition: state
@@ -33,13 +32,15 @@ cards:
       type: entities
       entities:
         - entity: input_number.inverter_1_operating_voltage_m1
-          name: Operating voltage (600V)
         - entity: input_number.inverter_1_overall_factor
-          name: Overall factor (100%)
   - type: entities
     entities:
       - entity: sensor.inverter_pv_1_voltage
       - entity: sensor.inverter_pv_2_voltage
+  - type: entities
+    entities:
+      - entity: sensor.inverter_2_model
+    title: "Inverter #2"
   - type: conditional
     conditions:
       - condition: state
@@ -49,12 +50,7 @@ cards:
       type: entities
       entities:
         - entity: input_number.inverter_2_operating_voltage_l1
-          name: Operating voltage (360V)
         - entity: input_number.inverter_2_overall_factor
-          name: Overall factor (100%)
-  - type: entities
-    entities:
-      - entity: sensor.inverter_2_model
   - type: conditional
     conditions:
       - condition: state
@@ -64,9 +60,7 @@ cards:
       type: entities
       entities:
         - entity: input_number.inverter_2_operating_voltage_m1
-          name: Operating voltage (600V)
         - entity: input_number.inverter_2_overall_factor
-          name: Overall factor (100%)
   - type: entities
     entities:
       - entity: sensor.inverter_pv_1_voltage_2
