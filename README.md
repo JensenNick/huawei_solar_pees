@@ -203,6 +203,9 @@ I have no documentation about the output of the sensor which is deriving the dat
 
 As of now it is assumed that the derived names will be formatted as *"SUN2000-3-68KTL-L1"* and *"SUN2000-4-6KTL-L1"* respectively. If you have one of these inverter models please help to identify the naming scheme for these two models.
 
+#### Utility Meters "jumping"
+See this report (https://github.com/JensenNick/huawei_solar_pees/issues/66)
+
 ## 6. Thanks to
 
 **A huge thanks to;**
