@@ -148,23 +148,23 @@ template:
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
         state: >
-          {% if '2KTL' or '2000' in states('sensor.inverter_1_model') %}
+          {% if '2KTL' in states('sensor.inverter_1_model') %}
             {{ 2000 }}
-          {% elif '3KTL' or '3000' in states('sensor.inverter_1_model') %}
+          {% elif '3KTL' in states('sensor.inverter_1_model') %}
             {{ 3000 }}
-          {% elif '3-68KTL' or '3680' in states('sensor.inverter_1_model') %}
+          {% elif '3-68KTL' in states('sensor.inverter_1_model') %}
             {{ 3680 }}
-          {% elif '4KTL' or '4000' in states('sensor.inverter_1_model') %}
+          {% elif '4KTL' in states('sensor.inverter_1_model') %}
             {{ 4000 }}
-          {% elif '4-6KTL' or '4600' in states('sensor.inverter_1_model') %}
+          {% elif '4-6KTL' in states('sensor.inverter_1_model') %}
             {{ 4600 }}
           {% elif '5KTL' or '5000' in states('sensor.inverter_1_model') %}
             {{ 5000 }}
           {% elif '6KTL' or '6000' in states('sensor.inverter_1_model') %}
             {{ 6000 }}
-          {% elif '8KTL' or '8000' in states('sensor.inverter_1_model') %}
+          {% elif '8KTL' in states('sensor.inverter_1_model') %}
             {{ 8000 }}
-          {% elif '10KTL' or '10000' in states('sensor.inverter_1_model') %}
+          {% elif '10KTL' in states('sensor.inverter_1_model') %}
             {{ 10000 }}
           {% endif %}
         availability: >
@@ -173,23 +173,23 @@ template:
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
         state: >
-          {% if '2KTL' or '2000' in states('sensor.inverter_2_model') %}
+          {% if '2KTL' in states('sensor.inverter_2_model') %}
             {{ 2000 }}
-          {% elif '3KTL' or '3000' in states('sensor.inverter_2_model') %}
+          {% elif '3KTL' in states('sensor.inverter_2_model') %}
             {{ 3000 }}
-          {% elif '3-68KTL' or '3680' in states('sensor.inverter_2_model') %}
+          {% elif '3-68KTL' in states('sensor.inverter_2_model') %}
             {{ 3680 }}
-          {% elif '4KTL' or '4000' in states('sensor.inverter_2_model') %}
+          {% elif '4KTL' in states('sensor.inverter_2_model') %}
             {{ 4000 }}
-          {% elif '4-6KTL' or '4600' in states('sensor.inverter_2_model') %}
+          {% elif '4-6KTL' in states('sensor.inverter_2_model') %}
             {{ 4600 }}
           {% elif '5KTL' or '5000' in states('sensor.inverter_2_model') %}
             {{ 5000 }}
           {% elif '6KTL' or '6000' in states('sensor.inverter_2_model') %}
             {{ 6000 }}
-          {% elif '8KTL' or '8000' in states('sensor.inverter_2_model') %}
+          {% elif '8KTL' in states('sensor.inverter_2_model') %}
             {{ 8000 }}
-          {% elif '10KTL' or '10000' in states('sensor.inverter_2_model') %}
+          {% elif '10KTL' in states('sensor.inverter_2_model') %}
             {{ 10000 }}
           {% endif %}
         availability: >
