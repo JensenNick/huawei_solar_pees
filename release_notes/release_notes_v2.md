@@ -2,7 +2,8 @@
 
 **Power, Energy and Economy Sensors**
 
-## Release Note / v2.2.2
+## Release Note / v2.2.2 and v/2.2.3
+Error in *"huawei_solar_pees_input file"* corrected in release v/2.2.3. Syntax used for regex_search corrected.
 
 #### Limited support for LC0, MAP0, MB0 and iStore products
 With this release comes limited support for Huawei inverter models LC0, MAP0 and MB0 and for the corresponding iStore products (the Australian distributor of Huawei). Limited support because I do not have sufficient information about the efficiency of these models (the efficiency graphs). For now, the efficiency calculations are done on basis of the f(x) function used for L1 and M1 respectively.
