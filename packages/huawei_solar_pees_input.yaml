@@ -201,6 +201,7 @@ template:
       - name: "Inverter #1 Rated Power"
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
+        state: >
           {% if states('sensor.inverter_1_model') | regex_search('-2K|-2000') %}
             {{ 2000 }}
           {% elif states('sensor.inverter_1_model') | regex_search('-3K|-3000') %}
