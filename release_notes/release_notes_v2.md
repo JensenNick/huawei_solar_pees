@@ -5,7 +5,7 @@
 ## Release Note / v2.2.2
 
 #### Limited support for LC0, MAP0, MB0 and iStore products
-With this release comes a limited support Huawei inverter models LC0, MAP0 and MB0 and for the corresponding iStore products (the Australian distributor of Huawei). Limited support because I do not have sufficient information about the efficiency of these models (the efficiency graphs). For now, the efficiency calculations are done on basis of the f(x) function used for L1 and M1 respectively.
+With this release comes limited support for Huawei inverter models LC0, MAP0 and MB0 and for the corresponding iStore products (the Australian distributor of Huawei). Limited support because I do not have sufficient information about the efficiency of these models (the efficiency graphs). For now, the efficiency calculations are done on basis of the f(x) function used for L1 and M1 respectively.
 
 With this release also the input file and the input card has been revised.
 
