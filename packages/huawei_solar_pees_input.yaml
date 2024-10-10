@@ -148,49 +148,72 @@ template:
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
         state: >
-          {% if '2KTL' in states('sensor.inverter_1_model') %}
+          {% set inverter_model = states('sensor.inverter_1_model') %}
+          {% if '2KTL' in inverter_model or '2000' in inverter_model %}
             {{ 2000 }}
-          {% elif '3KTL' in states('sensor.inverter_1_model') %}
+          {% elif '3KTL' in inverter_model or '3000' in inverter_model %}
             {{ 3000 }}
-          {% elif '3-68KTL' in states('sensor.inverter_1_model') %}
+          {% elif '3-68KTL' in inverter_model or '3680' in inverter_model %}
             {{ 3680 }}
-          {% elif '4KTL' in states('sensor.inverter_1_model') %}
+          {% elif '4KTL' in inverter_model or '4000' in inverter_model %}
             {{ 4000 }}
-          {% elif '4-6KTL' in states('sensor.inverter_1_model') %}
+          {% elif '4-6KTL' in inverter_model or '4600' in inverter_model %}
             {{ 4600 }}
-          {% elif '5KTL' in states('sensor.inverter_1_model') %}
+          {% elif '5KTL' in inverter_model or '5000' in inverter_model %}
             {{ 5000 }}
-          {% elif '6KTL' in states('sensor.inverter_1_model') %}
+          {% elif '6KTL' in inverter_model or '6000' in inverter_model %}
             {{ 6000 }}
-          {% elif '8KTL' in states('sensor.inverter_1_model') %}
+          {% elif '8KTL' in inverter_model or '8K' in inverter_model or '8000' in inverter_model %}
             {{ 8000 }}
-          {% elif '10KTL' in states('sensor.inverter_1_model') %}
+          {% elif '10KTL' in inverter_model or '10000' in inverter_model %}
             {{ 10000 }}
+          {% elif '12K' in inverter_model or '12000' in inverter_model %}
+            {{ 12000 }}
+          {% elif '15K' in inverter_model or '15000' in inverter_model %}
+            {{ 15000 }}
+          {% elif '17K' in inverter_model or '17000' in inverter_model %}
+            {{ 17000 }}
+          {% elif '20K' in inverter_model or '20000' in inverter_model %}
+            {{ 20000 }}
+          {% elif '25K' in inverter_model or '25000' in inverter_model %}
+            {{ 25000 }}
           {% endif %}
         availability: >
           {{ states('sensor.inverter_1_model') not in ['unknown','unavailable','none'] }}
+
       - name: "Inverter #2 Rated Power"
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
         state: >
-          {% if '2KTL' in states('sensor.inverter_2_model') %}
+          {% set inverter_model = states('sensor.inverter_2_model') %}
+          {% if '2KTL' in inverter_model or '2000' in inverter_model %}
             {{ 2000 }}
-          {% elif '3KTL' in states('sensor.inverter_2_model') %}
+          {% elif '3KTL' in inverter_model or '3000' in inverter_model %}
             {{ 3000 }}
-          {% elif '3-68KTL' in states('sensor.inverter_2_model') %}
+          {% elif '3-68KTL' in inverter_model or '3680' in inverter_model %}
             {{ 3680 }}
-          {% elif '4KTL' in states('sensor.inverter_2_model') %}
+          {% elif '4KTL' in inverter_model or '4000' in inverter_model %}
             {{ 4000 }}
-          {% elif '4-6KTL' in states('sensor.inverter_2_model') %}
+          {% elif '4-6KTL' in inverter_model or '4600' in inverter_model %}
             {{ 4600 }}
-          {% elif '5KTL' in states('sensor.inverter_2_model') %}
+          {% elif '5KTL' in inverter_model or '5000' in inverter_model %}
             {{ 5000 }}
-          {% elif '6KTL' in states('sensor.inverter_2_model') %}
+          {% elif '6KTL' in inverter_model or '6000' in inverter_model %}
             {{ 6000 }}
-          {% elif '8KTL' in states('sensor.inverter_2_model') %}
+          {% elif '8KTL' in inverter_model or '8K' in inverter_model or '8000' in inverter_model %}
             {{ 8000 }}
-          {% elif '10KTL' in states('sensor.inverter_2_model') %}
-            {{ 10000 }}
+          {% elif '10KTL' in inverter_model or '10K' in inverter_model or '8000' in inverter_model %}
+            {{ 8000 }}
+          {% elif '12K' in inverter_model or '12000' in inverter_model %}
+            {{ 12000 }}
+          {% elif '15K' in inverter_model or '15000' in inverter_model %}
+            {{ 15000 }}
+          {% elif '17K' in inverter_model or '17000' in inverter_model %}
+            {{ 17000 }}
+          {% elif '20K' in inverter_model or '20000' in inverter_model %}
+            {{ 20000 }}
+          {% elif '25K' in inverter_model or '25000' in inverter_model %}
+            {{ 25000 }}
           {% endif %}
         availability: >
           {{ states('sensor.inverter_2_model') not in ['unknown','unavailable','none'] }}
