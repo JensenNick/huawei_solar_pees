@@ -134,7 +134,7 @@ You should not edit file *"huawei_solar_pees_input.yaml"* file. All user specifi
 
 The default custom power input sensors do not take the inverter efficiency into account, which may result in a too high yield and other inaccuracies (house load is calculated on basis of the yield). The *"Huawei Solar integration"* does provide the `sensor.input_power_with_efficiency_loss` which takes the inverter efficiency into account. I have not tested this sensor, but my assessment is that it may cause inaccuracies and/or errors due to the step-by-step adjustment of the efficiency.
 
-> :exclamation: The *"Huawei Solar PEES package"* include efficiency calculations for the Huawei SUN2000 L1 and M1 models. The package will work with other inverter models, but on basis of the efficiency for these two models.
+> :exclamation: The *"Huawei Solar PEES package"* include efficiency calculations for the Huawei SUN2000 L1 and M1 models. The package will work with other inverter models, but efficiency calculations will be done on basis of the efficiency calculations set up for these two models.
 
 Therefore and as an option I have included custom sensors which prowide you with a efficiency corrected power input. The sensors are basically created as f(x) functions based on the efficiency graphs shown in the data sheets provided by Huawei. You activate the "efficiency corrected power input sensor" in the "input card". The *"Huawei Solar PEES package"* will identify your inverter automatically and set the rated power accordingly. You need to adjust the voltage and the overall factor of your inverter manually.
 
