@@ -69,7 +69,7 @@ input_number:
     step: 0.2
   ## --------------------
   ## Inverter #2 Settings
-    inverter_2_operating_voltage_l1:
+  inverter_2_operating_voltage_l1:
     name: "Inverter #2 Operating Voltage L1" # Rated input voltage 360V
     min: 40
     max: 560
