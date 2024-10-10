@@ -1,8 +1,8 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: 
-# branch: alpha-022_support-for-istore
+# version: v2.2.2
+# branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -436,7 +436,7 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float(0) }}
+          {{ states('sensor.energy_yield_1') | float }}
         availability: >
           {{ has_value('sensor.energy_yield_1') }}
       - name: "Energy Yield #2 (ts)"
@@ -445,19 +445,21 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_2') | float(0) }}
-        availability: >
-          {{ has_value('sensor.energy_yield_2') }}
+          {% if has_value('sensor.energy_yield_2') %}
+            {{ states('sensor.energy_yield_2') | float }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
       - name: "Energy Yield Total (ts)"
         unique_id: energy_yield_total_ts
         unit_of_measurement: kWh
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float(0) +
-          states('sensor.energy_yield_2') | float(0) }}
+          {{ states('sensor.energy_yield_1') | float +
+          states('sensor.energy_yield_2') | float }}
         availability: >
-          {{ has_value('sensor.energy_yield_1') or
+          {{ has_value('sensor.energy_yield_1') and
           has_value('sensor.energy_yield_2') }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
@@ -842,62 +844,77 @@ utility_meter:
     source: sensor.energy_battery_charge_ps
     name: "Energy Battery Charge"
     unique_id: energy_battery_charge
+    periodically_resetting: false
   energy_battery_charge_grid:
     source: sensor.energy_battery_charge_grid_ps
     name: "Energy Battery Charge Grid"
     unique_id: energy_battery_charge_grid
+    periodically_resetting: false
   energy_battery_charge_yield:
     source: sensor.energy_battery_charge_yield_ps
     name: "Energy Battery Charge Yield"
     unique_id: energy_battery_charge_yield
+    periodically_resetting: false
   energy_battery_discharge:
     source: sensor.energy_battery_discharge_ps
     name: "Energy Battery Discharge"
     unique_id: energy_battery_discharge
+    periodically_resetting: false
   energy_battery_discharge_grid:
     source: sensor.energy_battery_discharge_grid_ps
     name: "Energy Battery Discharge Grid"
     unique_id: energy_battery_discharge_grid
+    periodically_resetting: false
   energy_battery_discharge_house:
     source: sensor.energy_battery_discharge_house_ps
     name: "Energy Battery Discharge House"
     unique_id: energy_battery_discharge_house
+    periodically_resetting: false
   energy_import:
     source: sensor.energy_import_ps
     name: "Energy Import"
     unique_id: energy_import
+    periodically_resetting: false
   energy_export:
     source: sensor.energy_export_ps
     name: "Energy Export"
     unique_id: energy_export
+    periodically_resetting: false
   energy_export_yield:
     source: sensor.energy_export_yield_ps
     name: "Energy Export Yield"
     unique_id: energy_export_yield
+    periodically_resetting: false
   energy_house_load:
     source: sensor.energy_house_load_ps
     name: "Energy House Load"
     unique_id: energy_house_load
+    periodically_resetting: false
   energy_house_load_grid:
     source: sensor.energy_house_load_grid_ps
     name: "Energy House Load Grid"
     unique_id: energy_house_load_grid
+    periodically_resetting: false
   energy_house_load_yield:
     source: sensor.energy_house_load_yield_ps
     name: "Energy House Load Yield"
     unique_id: energy_house_load_yield
+    periodically_resetting: false
   energy_yield_1:
     source: sensor.energy_yield_1_ps
     name: "Energy Yield #1"
     unique_id: energy_yield_1
+    periodically_resetting: false
   energy_yield_2:
     source: sensor.energy_yield_2_ps
     name: "Energy Yield #2"
     unique_id: energy_yield_2
+    periodically_resetting: false
   energy_yield_total:
     source: sensor.energy_yield_total_ts
     name: "Energy Yield Total"
     unique_id: energy_yield_total
+    periodically_resetting: false
   ## ------------------------------------------
   ## Huawei Solar PEES - Economy Utility Meters
   battery_charge_grid_cost:
