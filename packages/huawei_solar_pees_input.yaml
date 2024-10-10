@@ -1,7 +1,7 @@
 # ---------------------------------------------
 # HUAWEI SOLAR PEES INPUT - User Specific Input
 # ---------------------------------------------
-# version: v2.1.1
+# version: v2.1.2
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -119,45 +119,45 @@ template:
       - name: "Inverter 1 is L1"
         unique_id: inverter_1_is_l1
         state: >
-          {{ states('sensor.inverter_1_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
+          {{ states('sensor.inverter_1_model') | regex_search('L1|5000-1PH|6000-1PH') }}
       - name: "Inverter 1 is LC0"
         unique_id: inverter_1_is_lc0
         state: >
-          {{ states('sensor.inverter_1_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
+          {{ states('sensor.inverter_1_model') | regex_search('0|8000-1PH|10000-1PH') }}
       - name: "Inverter 1 is M1"
         unique_id: inverter_1_is_m1
         state: >
-          {{ states('sensor.inverter_1_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
+          {{ states('sensor.inverter_1_model') | regex_search('M1|5000-3PH|6000-3PH') }}
       - name: "Inverter 1 is MAP0"
         unique_id: inverter_1_is_map0
         state: >
-          {{ states('sensor.inverter_1_model') | regex_search('-MAP0') }}
+          {{ states('sensor.inverter_1_model') | regex_search('MAP0') }}
       - name: "Inverter 1 is MB0"
         unique_id: inverter_1_is_mb0
         state: >
-          {{ states('sensor.inverter_1_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
+          {{ states('sensor.inverter_1_model') | regex_search('MB0|10000-3PH|12000-3PH|15000-3PH|17000-3PH|20000-3PH|25000-3PH') }}
       ## -------------------
       ## Inverter 2 is model
       - name: "Inverter 2 is L1"
         unique_id: inverter_2_is_l1
         state: >
-          {{ states('sensor.inverter_2_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
+          {{ states('sensor.inverter_2_model') | regex_search('L1|5000-1PH|6000-1PH') }}
       - name: "Inverter 2 is LC0"
         unique_id: inverter_2_is_lc0
         state: >
-          {{ states('sensor.inverter_2_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
+          {{ states('sensor.inverter_2_model') | regex_search('LC0|8000-1PH|10000-1PH') }}
       - name: "Inverter 2 is M1"
         unique_id: inverter_2_is_m1
         state: >
-          {{ states('sensor.inverter_2_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
+          {{ states('sensor.inverter_2_model') | regex_search('M1|5000-3PH|6000-3PH') }}
       - name: "Inverter 1 is MAP0"
         unique_id: inverter_1_is_map0
         state: >
-          {{ states('sensor.inverter_2_model') | regex_search('-MAP0') }}
+          {{ states('sensor.inverter_2_model') | regex_search('MAP0') }}
       - name: "Inverter 1 is MB0"
         unique_id: inverter_1_is_mb0
         state: >
-          {{ states('sensor.inverter_2_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
+          {{ states('sensor.inverter_2_model') | regex_search('MB0|10000-3PH|12000-3PH|15000-3PH|17000-3PH|20000-3PH|25000-3PH') }}
   - sensor:
       ## --------------------------------------
       ## Electricity Price for Energy Dashboard
@@ -187,13 +187,13 @@ template:
       - name: "Inverter #1 Model"
         unique_id: inverter_1_model
         state: >-
-          {{ device_attr("sensor.inverter_input_power","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(-L|-LC|-M|-MB|-MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
+          {{ device_attr("sensor.inverter_input_power","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >-
           {{ states('sensor.inverter_input_power') not in ['unknown','unavailable','none'] }}
       - name: "Inverter #2 Model"
         unique_id: inverter_2_model
         state: >-
-          {{ device_attr("sensor.inverter_input_power_2","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(-L|-LC|-M|-MB|-MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
+          {{ device_attr("sensor.inverter_input_power_2","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >
           {{ states('sensor.inverter_input_power_2') not in ['unknown','unavailable','none'] }}
       ## --------------------
@@ -202,33 +202,33 @@ template:
         unique_id: inverter_1_rated_power
         unit_of_measurement: W
         state: >
-          {% if states('sensor.inverter_1_model') | regex_search('-2K|-2000') %}
+          {% if states('sensor.inverter_1_model') | regex_search('2K') %}
             {{ 2000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-3K|-3000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('3K|') %}
             {{ 3000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-3-68K|-3680') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('3-68K|') %}
             {{ 3680 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-4K|-4000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('4K|') %}
             {{ 4000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-4-6K|-4600') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('4-6K|') %}
             {{ 4600 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-5K|-5000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('5K|5000') %}
             {{ 5000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-6K|-6000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('6K|6000') %}
             {{ 6000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-8K|-8000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('8K|8000') %}
             {{ 8000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-10K|-10000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('10K|10000') %}
             {{ 10000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-12K|-12000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('12K|12000') %}
             {{ 12000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-15K|-15000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('15K|15000') %}
             {{ 15000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-17K|-17000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('17K|17000') %}
             {{ 17000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-20K|-20000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('20K|20000') %}
             {{ 20000 }}
-          {% elif states('sensor.inverter_1_model') | regex_search('-25K|-25000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('25K|25000') %}
             {{ 25000 }}
           {% endif %}
         availability: >
@@ -237,33 +237,33 @@ template:
         unique_id: inverter_2_rated_power
         unit_of_measurement: W
         state: >
-          {% if states('sensor.inverter_2_model') | regex_search('-2K|-2000') %}
+          {% if states('sensor.inverter_2_model') | regex_search('-2K') %}
             {{ 2000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-3K|-3000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('3K|') %}
             {{ 3000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-3-68K|-3680') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('3-68K|') %}
             {{ 3680 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-4K|-4000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('4K|') %}
             {{ 4000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-4-6K|-4600') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('4-6K|') %}
             {{ 4600 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-5K|-5000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('5K|5000') %}
             {{ 5000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-6K|-6000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('6K|6000') %}
             {{ 6000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-8K|-8000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('8K|8000') %}
             {{ 8000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-10K|-10000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('10K|10000') %}
             {{ 10000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-12K|-12000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('12K|12000') %}
             {{ 12000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-15K|-15000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('15K|15000') %}
             {{ 15000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-17K|-17000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('17K|17000') %}
             {{ 17000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-20K|-20000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('20K|20000') %}
             {{ 20000 }}
-          {% elif states('sensor.inverter_2_model') | regex_search('-25K|-25000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('25K|25000') %}
             {{ 25000 }}
           {% endif %}
         availability: >
