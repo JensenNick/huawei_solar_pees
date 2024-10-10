@@ -38,6 +38,16 @@ cards:
         - type: conditional
           conditions:
             - condition: state
+              entity: binary_sensor.inverter_1_is_lc0
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_1_operating_voltage_lc0
+              - entity: input_number.inverter_1_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
               entity: binary_sensor.inverter_1_is_m1
               state: "on"
           card:
@@ -45,11 +55,31 @@ cards:
             entities:
               - entity: input_number.inverter_1_operating_voltage_m1
               - entity: input_number.inverter_1_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_1_is_map0
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_1_operating_voltage_map0
+              - entity: input_number.inverter_1_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_1_is_mb0
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_1_operating_voltage_mb0
+              - entity: input_number.inverter_1_overall_factor
         - type: entities
           entities:
             - entity: sensor.inverter_pv_1_voltage
             - entity: sensor.inverter_pv_2_voltage
-  - type: entities
+- type: entities
     entities:
       - entity: sensor.inverter_2_model
     title: "Inverter #2"
@@ -74,6 +104,16 @@ cards:
         - type: conditional
           conditions:
             - condition: state
+              entity: binary_sensor.inverter_2_is_lc0
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_2_operating_voltage_lc0
+              - entity: input_number.inverter_2_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
               entity: binary_sensor.inverter_2_is_m1
               state: "on"
           card:
@@ -81,7 +121,26 @@ cards:
             entities:
               - entity: input_number.inverter_2_operating_voltage_m1
               - entity: input_number.inverter_2_overall_factor
-        - type: entities
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_2_is_map0
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_2_operating_voltage_map0
+              - entity: input_number.inverter_2_overall_factor
+        - type: conditional
+          conditions:
+            - condition: state
+              entity: binary_sensor.inverter_2_is_mb0
+              state: "on"
+          card:
+            type: entities
+            entities:
+              - entity: input_number.inverter_2_operating_voltage_mb0
+              - entity: input_number.inverter_2_overall_factor
           entities:
             - entity: sensor.inverter_pv_1_voltage_2
             - entity: sensor.inverter_pv_2_voltage_2
