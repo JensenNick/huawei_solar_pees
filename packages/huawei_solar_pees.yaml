@@ -1856,37 +1856,31 @@ utility_meter:
     name: "Hourly Yield Total - Energy"
     unique_id: hourly_yield_total_energy
     cycle: hourly
-    periodically_resetting: false
   daily_yield_total_energy:
     source: sensor.energy_yield_total_ts
     name: "Daily Yield Total - Energy"
     unique_id: daily_yield_total_energy
     cycle: daily
-    periodically_resetting: false
   weekly_yield_total_energy:
     source: sensor.energy_yield_total_ts
     name: "Weekly Yield Total - Energy"
     unique_id: weekly_yield_total_energy
     cycle: weekly
-    periodically_resetting: false
   monthly_yield_total_energy:
     source: sensor.energy_yield_total_ts
     name: "Monthly Yield Total - Energy"
     unique_id: monthly_yield_total_energy
     cycle: monthly
-    periodically_resetting: false
   quarterly_yield_total_energy:
     source: sensor.energy_yield_total_ts
     name: "Quarterly Yield Total - Energy"
     unique_id: quarterly_yield_total_energy
     cycle: quarterly
-    periodically_resetting: false
   yearly_yield_total_energy:
     source: sensor.energy_yield_total_ts
     name: "Yearly Yield Total - Energy"
     unique_id: yearly_yield_total_energy
     cycle: yearly
-    periodically_resetting: false
   ### Yield #1
   #### Energy
   hourly_yield_1_energy:
