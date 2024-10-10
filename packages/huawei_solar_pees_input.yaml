@@ -43,7 +43,7 @@ input_number:
     max: 560
     step: 5
   inverter_1_operating_voltage_lc0:
-    name: "Inverter #1 Operating Voltage L1" # Rated input voltage 360V
+    name: "Inverter #1 Operating Voltage LC0" # Rated input voltage 360V
     min: 90
     max: 560
     step: 5
@@ -75,7 +75,7 @@ input_number:
     max: 560
     step: 5
   inverter_2_operating_voltage_lc0:
-    name: "Inverter #2 Operating Voltage L1" # Rated input voltage 360V
+    name: "Inverter #2 Operating Voltage LC0" # Rated input voltage 360V
     min: 90
     max: 560
     step: 5

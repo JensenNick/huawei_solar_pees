@@ -79,7 +79,7 @@ cards:
           entities:
             - entity: sensor.inverter_pv_1_voltage
             - entity: sensor.inverter_pv_2_voltage
-- type: entities
+  - type: entities
     entities:
       - entity: sensor.inverter_2_model
     title: "Inverter #2"
@@ -141,6 +141,7 @@ cards:
             entities:
               - entity: input_number.inverter_2_operating_voltage_mb0
               - entity: input_number.inverter_2_overall_factor
+        - type: entities
           entities:
             - entity: sensor.inverter_pv_1_voltage_2
             - entity: sensor.inverter_pv_2_voltage_2
