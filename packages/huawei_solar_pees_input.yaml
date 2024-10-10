@@ -145,14 +145,14 @@ template:
       - name: "Inverter #1 Model"
         unique_id: inverter_1_model
         state: >-
-          {{ device_attr("sensor.inverter_input_power","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[13]PH)', 0) | first }}
+          {{ device_attr("sensor.inverter_input_power","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >-
           {{ states('sensor.inverter_input_power') not in ['unknown','unavailable','none'] }}
 
       - name: "Inverter #2 Model"
         unique_id: inverter_2_model
         state: >-
-          {{ device_attr("sensor.inverter_input_power_2","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[13]PH)', 0) | first }}
+          {{ device_attr("sensor.inverter_input_power_2","model") | regex_findall_index('(SUN\d+-\d+(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >
           {{ states('sensor.inverter_input_power_2') not in ['unknown','unavailable','none'] }}
 
