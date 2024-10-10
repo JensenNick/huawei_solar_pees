@@ -12,7 +12,6 @@ With this release also the input file and the input card has been revised.
 #### Fix for jumping utility meters
 Minor corrections has been done to the Energy Yield Sensors and the Energy Utility Meters have been provided with `periodically_resetting: false`.
 
-
 ## Release Note / v2.2.1
 
 #### Add derived sensor
