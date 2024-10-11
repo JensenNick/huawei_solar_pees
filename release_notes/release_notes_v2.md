@@ -2,7 +2,7 @@
 
 **Power, Energy and Economy Sensors**
 
-## Release Note / v2.2.3 and v2.2.4
+## Release Note / v2.2.3, v2.2.4 and v2.2.5
 
 Minor refinements and bugfixes.
 
