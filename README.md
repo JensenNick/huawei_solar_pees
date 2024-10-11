@@ -218,6 +218,6 @@ See this report (https://github.com/JensenNick/huawei_solar_pees/issues/66)
 
 * **KennethLavrsen** for providing the full input for the triggered template sensors used to convert the Riemann Sum into actual economical figures.
 
-* **All contributors** and a special thank's to **Krabbee** and **JacobsenKim**.
+* **All contributors** and a special thank's to **Roving-Ronin**, **Krabbee** and **JacobsenKim**.
 
 **Again, Thank You to all of You!**
