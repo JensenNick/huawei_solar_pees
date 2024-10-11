@@ -436,19 +436,21 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float }}
-        availability: >
-          {{ has_value('sensor.energy_yield_1') }}
+          {% if states('sensor.energy_yield_1') != 'unknown' and states('sensor.energy_yield_1') != 'unavailable' %}
+            {{ states('sensor.energy_yield_1') | float }}
+          {% else %}
+            {{ states(this.sensor.energy_yield_1_ts) | float(0) }}
+          {% endif %}
       - name: "Energy Yield #2 (ts)"
         unique_id: energy_yield_2_ts
         unit_of_measurement: kWh
         device_class: energy
         state_class: total_increasing
         state: >
-          {% if has_value('sensor.energy_yield_2') %}
+          {% if states('sensor.energy_yield_2') != 'unknown' and states('sensor.energy_yield_2') != 'unavailable' %}
             {{ states('sensor.energy_yield_2') | float }}
           {% else %}
-            {{ 0 }}
+            {{ states(this.sensor.energy_yield_2_ts) | float(0) }}
           {% endif %}
       - name: "Energy Yield Total (ts)"
         unique_id: energy_yield_total_ts
@@ -456,11 +458,8 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >
-          {{ states('sensor.energy_yield_1') | float +
-          states('sensor.energy_yield_2') | float }}
-        availability: >
-          {{ has_value('sensor.energy_yield_1') and
-          has_value('sensor.energy_yield_2') }}
+          {{ states('sensor.energy_yield_1') | float(0) +
+          states('sensor.energy_yield_2') | float(0) }}
       ## ------------------------------
       ## Huawei Solar PEES - Economy
       - name: "Economy - Result wo PV (ts)"
