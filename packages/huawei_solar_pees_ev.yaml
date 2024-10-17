@@ -212,3 +212,49 @@ template:
           {% else %}
             {{ 0 }}
           {% endif %}
+# --------------
+# UTILITY METERS
+# --------------
+utility_meter:
+  ## -----------------------------------------
+  ## Huawei Solar PEES EV - Energy Utility Meters
+  energy_home_load:
+    source: sensor.energy_home_load_ps
+    name: "Energy Home Load"
+    unique_id: energy_home_load
+    periodically_resetting: false
+  energy_ev_load:
+    source: sensor.energy_ev_load_ps
+    name: "Energy EV Load"
+    unique_id: energy_ev_load
+    periodically_resetting: false
+  energy_home_yield:
+    source: sensor.energy_home_yield_ps
+    name: "Energy Home Yield"
+    unique_id: energy_home_yield
+    periodically_resetting: false
+  energy_ev_yield:
+    source: sensor.energy_ev_yield_ps
+    name: "Energy EV Yield"
+    unique_id: energy_ev_yield
+    periodically_resetting: false
+  energy_home_battery:
+    source: sensor.energy_home_battery_ps
+    name: "Energy Home Battery"
+    unique_id: energy_home_battery
+    periodically_resetting: false
+  energy_ev_battery:
+    source: sensor.energy_ev_battery_ps
+    name: "Energy EV Battery"
+    unique_id: energy_ev_battery
+    periodically_resetting: false
+  energy_home_grid:
+    source: sensor.energy_home_grid_ps
+    name: "Energy Home Grid"
+    unique_id: energy_home_grid
+    periodically_resetting: false
+  energy_ev_grid:
+    source: sensor.energy_ev_grid_ps
+    name: "Energy EV Grid"
+    unique_id: energy_ev_grid
+    periodically_resetting: false
