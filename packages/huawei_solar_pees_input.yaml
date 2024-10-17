@@ -31,8 +31,8 @@
 input_boolean:
   efficiency_corrected_power_input:
     name: "Efficiency Corrected Power Input"
-  ev_charger_include:
-    name: "EV Charger Include"
+  include_ev_charger:
+    name: "Include EV Charger"
 # ------------
 # INPUT NUMBER
 # ------------
@@ -84,7 +84,7 @@ input_text:
   electricity_price_ev_charging:
     name: "Electricity Price Reduced (Energi Data Service - Reduced by Default)"
   power_ev_charger:
-    name: "Power EV Charger"
+    name: "Power EV Charger (No Default Sensor)"
 # ---------------
 # TEMPLATE SENSOR
 # ---------------
