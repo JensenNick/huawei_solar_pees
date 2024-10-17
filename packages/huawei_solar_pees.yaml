@@ -835,7 +835,7 @@ template:
               {{ lastlast }}
             {% endif %}
 # --------------
-# UTILITY METERS periodically
+# UTILITY METERS
 # --------------
 utility_meter:
   ## -----------------------------------------
