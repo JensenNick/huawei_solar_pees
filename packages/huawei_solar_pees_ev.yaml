@@ -139,7 +139,7 @@ template:
           is_state('input_text.power_ev_charger','unavailable') or
           is_state('input_text.power_ev_charger','unknown') %}
             {{ 0 }}
-          {% elif %}
+          {% else %}
             {{ states('sensor.power_house_load') | float(0) -
             states('sensor.power_home_load') | float(0) }}
           {% endif %}
