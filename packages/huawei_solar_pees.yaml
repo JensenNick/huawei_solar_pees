@@ -40,8 +40,8 @@
 # SENSORS
 # -------
 sensor:
-  ## ----------------------------------
-  ## Huawei Solar PEES - Energy Sensors
+  ## --------------
+  ## Energy Sensors
   - platform: integration
     source: sensor.power_battery_charge
     name: "Energy Battery Charge (ps)"
@@ -185,8 +185,8 @@ template:
           {% else %}
             {{ states ( states('input_text.electricity_price_export')) | float(0) }}
           {% endif %}
-      ## ---------------------------------
-      ## Huawei Solar PEES - Power Sensors
+      ## -------------
+      ## Power Sensors
       - name: "Power Inverter #1 Input"
         unique_id: power_inverter_1_input
         unit_of_measurement: W
@@ -461,8 +461,8 @@ template:
         availability: >
           {{ has_value('sensor.energy_yield_1') and
           has_value('sensor.energy_yield_2') }}
-      ## ------------------------------
-      ## Huawei Solar PEES - Economy
+      ## ---------------
+      ## Economy Sensors
       - name: "Economy - Result wo PV (ts)"
         unique_id: economy_result_wo_pv_ts
         unit_of_measurement: DKK
@@ -532,8 +532,8 @@ template:
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
-  ## -----------------------------------
-  ## Huawei Solar PEES - Economy Sensors
+  ## ---------------
+  ## Economy Sensors
   - trigger:
       - trigger: state
         entity_id: sensor.energy_battery_charge_grid_ps
@@ -838,8 +838,8 @@ template:
 # UTILITY METERS
 # --------------
 utility_meter:
-  ## -----------------------------------------
-  ## Huawei Solar PEES - Energy Utility Meters
+  ## ---------------------
+  ## Energy Utility Meters
   energy_battery_charge:
     source: sensor.energy_battery_charge_ps
     name: "Energy Battery Charge"
@@ -915,8 +915,8 @@ utility_meter:
     name: "Energy Yield Total"
     unique_id: energy_yield_total
     periodically_resetting: false
-  ## ------------------------------------------
-  ## Huawei Solar PEES - Economy Utility Meters
+  ## ----------------------
+  ## Economy Utility Meters
   battery_charge_grid_cost:
     source: sensor.battery_charge_grid_cost_tt
     name: "Battery Charge Grid - Cost"
@@ -967,8 +967,8 @@ utility_meter:
     name: "Export Yield - Sale"
     unique_id: export_yield_sale
     delta_values: true
-  ## ---------------------------------------------
-  ## Huawei Solar PEES - Economy Utility Meters
+  ## ----------------------
+  ## Economy Utility Meters
   ### Economy - Result without PV
   economy_result_wo_pv:
     source: sensor.economy_result_wo_pv_ts
@@ -1167,8 +1167,8 @@ utility_meter:
     unique_id: yearly_economy_nri_battery
     cycle: yearly
     net_consumption: true
-  ## -------------------------------------------
-  ## Huawei Solar PEES - Optional Utility Meters
+  ## -----------------------
+  ## Optional Utility Meters
   ### Battery Charge
   #### Energy
   hourly_battery_charge_energy:

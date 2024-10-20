@@ -83,6 +83,8 @@ input_text:
     name: "Electricity Price Export (Energi Data Service - Sale by Default)"
   electricity_price_ev_charging:
     name: "Electricity Price Reduced (Energi Data Service - Reduced by Default)"
+  ## -------------------
+  ## Input Power Sensors
   power_ev_charger:
     name: "Power EV Charger (No Default Sensor)"
 # ---------------

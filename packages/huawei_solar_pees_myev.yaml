@@ -1,0 +1,676 @@
+# -----------------------------------------
+# HUAWEI SOLAR PEES MYEV - Electrical Veichle
+# -----------------------------------------
+# version:
+# branch: alpha-026_incorporate-ev-charging
+# domain: https://github.com/JensenNick/huawei_solar_pees
+# codeowner: Nick Jensen
+#
+# This is the optional "Huawei Solar PEES MYEV package" which will provide you with
+# power,energy and economy sensors related to your EV (electric vehicle) use case.
+# This package can only be used along with the "Huawei Solar PEES package" and the
+# code for the Lovelace card. 
+#
+# The sensors for "house" load and consumption are now split into "home" and "ev". 
+# With the option to differentiate the 
+#
+# You need to provide the sensor from your EV charger integration which provides
+# you with the charging power in W. You need to provide your choice of electricity 
+# price sensor to be used for the economical calculations related to your EV. 
+#
+# I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace Input
+# card. This will make it possible for you to enter your specific sensor as a text
+# input in the Lovelace card.
+#
+# The currency used is DKK by default. If you use another currency you need to change
+# this in this file. I advice you not make any other changes.
+#
+# Restart Home Assistant and refresh your browser.
+#
+# -------
+# SENSORS
+# -------
+sensor:
+  ## --------------
+  ## Energy Sensors
+  - platform: integration
+    source: sensor.power_home_load
+    name: "Energy Home Load (ps)"
+    unique_id: energy_home_load_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_ev_load
+    name: "Energy EV Load (ps)"
+    unique_id: energy_ev_load_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_home_load_yield
+    name: "Energy Home Load Yield (ps)"
+    unique_id: energy_home_load_yield_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_ev_load_yield
+    name: "Energy EV Load Yield (ps)"
+    unique_id: energy_ev_load_yield_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_battery_discharge_home
+    name: "Energy Battery Discharge Home (ps)"
+    unique_id: energy_battery_discharge_home_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_battery_discharge_ev
+    name: "Energy Battery Discharge EV (ps)"
+    unique_id: energy_battery_discharge_ev_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_home_load_grid
+    name: "Energy Home Load Grid (ps)"
+    unique_id: energy_home_load_grid_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.power_ev_load_grid
+    name: "Energy EV Load Grid (ps)"
+    unique_id: energy_ev_load_grid_ps
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+# ----------------
+# TEMPLATE SENSORS
+# ----------------
+template:
+  - sensor:
+      ## ------------------
+      ## Electricity Prices
+      - name: "Electricity Price EV Charging"
+        unique_id: electricity_price_ev_charging
+        unit_of_measurement: DKK
+        state_class: measurement
+        state: >
+          {% if is_state('input_text.electricity_ev_charging','') or
+          is_state('input_text.electricity_price_ev_charging','unavailable') or
+          is_state('input_text.electricity_price_ev_charging','unknown') %}
+            {{ states('sensor.energi_data_service_reduced') | float(0) }}
+          {% else %}
+            {{ states(states('input_text.electricity_price_ev_charging')) | float(0) }}
+          {% endif %}
+      ## -------------
+      ## Power Sensors
+      - name: "Power Home Load"
+        unique_id: power_home_load
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if is_state('input_text.power_ev_charger','') or
+          is_state('input_text.power_ev_charger','unavailable') or
+          is_state('input_text.power_ev_charger','unknown') %}
+            {{ states('sensor.power_house_load') | float(0) }}
+          {% elif states('sensor.power_house_load') | float(0) >
+          states(states('input_text.power_ev_charger')) | float(0) %}
+            {{ states('sensor.power_house_load') | float(0) -
+            states(states('input_text.power_ev_charger')) | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "Power EV Load"
+        unique_id: power_ev_load
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if is_state('input_text.power_ev_charger','') or
+          is_state('input_text.power_ev_charger','unavailable') or
+          is_state('input_text.power_ev_charger','unknown') %}
+            {{ 0 }}
+          {% else %}
+            {{ states('sensor.power_house_load') | float(0) -
+            states('sensor.power_home_load') | float(0) }}
+          {% endif %}
+      - name: "Power Home Load Yield"
+        unique_id: power_home_load_yield
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.power_house_load_yield') | float(0) >=
+          states('sensor.power_home_load') | float(0) %}
+            {{ states('sensor.power_home_load') | float(0) }}
+          {% else %}
+            {{ states('sensor.power_house_load_yield') | float(0) }}
+          {% endif %}
+      - name: "Power EV Load Yield"
+        unique_id: power_ev_load_yield
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.power_house_load_yield') | float(0) >=
+          states('sensor.power_home_load') | float(0) %}
+            {{ states('sensor.power_house_load_yield') | float(0) -
+            states('sensor.power_home_load') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "Power Battery"
+        unique_id: power_battery_discharge_home
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.power_battery_discharge_house') | float(0) >=
+          states('sensor.power_home_load') | float(0) %}
+            {{ states('sensor.power_home_load') | float(0) }}
+          {% else %}
+            {{ states('sensor.power_battery_discharge_house') | float(0) }}
+          {% endif %}
+      - name: "Power Battery Discharge EV"
+        unique_id: power_battery_discharge_ev
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.power_battery_discharge_house') | float(0) >=
+          states('sensor.power_home_load') | float(0) %}
+            {{ states('sensor.power_battery_discharge_house') | float(0) -
+            states('sensor.power_home_load') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "Power Home Load Grid"
+        unique_id: power_home_load_grid
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.power_house_load_grid') | float(0) >=
+          states('sensor.power_home_load') | float(0) %}
+            {{ states('sensor.power_home_load') | float(0) }}
+          {% else %}
+            {{ states('sensor.power_house_load_grid') | float(0) }}
+          {% endif %}
+      - name: "Power EV Load Grid"
+        unique_id: power_ev_load_grid
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.power_house_load_grid') | float(0) >=
+          states('sensor.power_home_load') | float(0) %}
+            {{ states('sensor.power_house_load_grid') | float(0) -
+            states('sensor.power_home_load') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      ## ---------------
+      ## Economy Sensors
+# Battery Charge is missing!
+      - name: "Economy - Result Home w PV (ts)"
+        unique_id: economy_result_home_w_pv_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.home_load_grid_cost_tt') | float(0) +
+          states('sensor.home_load_yield_sale_tt') | float(0) -
+          states('sensor.home_load_yield_saving_tt') | float(0) -
+          states('sensor.battery_discharge_home_saving_tt') | float(0) }}
+      - name: "Economy - NRI Home (ts)"
+        unique_id: economy_nri_home_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.economy_result_home_wo_pv_tt') | float(0) -
+          states('sensor.economy_result_home_w_pv_ts') | float(0) }}
+      - name: "Economy - Result EV w PV (ts)"
+        unique_id: economy_result_ev_w_pv_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.ev_load_grid_cost_tt') | float(0) +
+          states('sensor.ev_load_yield_sale_tt') | float(0) -
+          states('sensor.ev_load_yield_saving_tt') | float(0) -
+          states('sensor.battery_discharge_ev_saving_tt') | float(0) }}
+      - name: "Economy - NRI EV (ts)"
+        unique_id: economy_nri_ev_ts
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.economy_result_ev_wo_pv_tt') | float(0) -
+          states('sensor.economy_result_ev_w_pv_ts') | float(0) }}
+  # ------------------------
+  # TEMPLATE TRIGGER SENSORS
+  # ------------------------
+  ## ---------------
+  ## Economy Sensors
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_home_load_ps
+    sensor:
+      - name: "Economy - Result Home wo PV (tt)"
+        unique_id: economy_result_home_wo_pv_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.energy_home_load_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_home_load_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_ev_load_ps
+    sensor:
+      - name: "Economy - Result EV wo PV (tt)"
+        unique_id: economy_result_ev_wo_pv_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_ev_charging') | float(0) %}
+          {% set meter = states('sensor.energy_ev_load_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_ev_load_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_home_load_yield_ps
+    sensor:
+      - name: "Home Load Yield - Saving (tt)"
+        unique_id: home_load_yield_saving_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.energy_home_load_yield_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_home_load_yield_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_home_load_yield_ps
+    sensor:
+      - name: "Home Load Yield - Sale (tt)"
+        unique_id: home_load_yield_sale_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_export') | float(0) %}
+          {% set meter = states('sensor.energy_home_load_yield_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_home_load_yield_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_ev_load_yield_ps
+    sensor:
+      - name: "EV Load Yield - Saving (tt)"
+        unique_id: ev_load_yield_saving_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_ev_charging') | float(0) %}
+          {% set meter = states('sensor.energy_ev_load_yield_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_ev_load_yield_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_ev_load_yield_ps
+    sensor:
+      - name: "EV Load Yield - Sale (tt)"
+        unique_id: ev_load_yield_sale_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_export') | float(0) %}
+          {% set meter = states('sensor.energy_ev_load_yield_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_ev_load_yield_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_battery_discharge_home_ps
+    sensor:
+      - name: "Battery Discharge Home - Saving (tt)"
+        unique_id: battery_discharge_home_saving_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.energy_battery_discharge_home_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_battery_discharge_home_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_battery_discharge_ev_ps
+    sensor:
+      - name: "Battery Discharge EV - Saving (tt)"
+        unique_id: battery_discharge_ev_saving_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.energy_battery_discharge_ev_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_battery_discharge_ev_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_home_load_grid_ps
+    sensor:
+      - name: "Home Load Grid - Cost (tt)"
+        unique_id: home_load_grid_cost_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.energy_home_load_grid_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_home_load_grid_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.energy_ev_load_grid_ps
+    sensor:
+      - name: "EV Load Grid - Cost (tt)"
+        unique_id: ev_load_grid_cost_tt
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.electricity_price_ev_charging') | float(0) %}
+          {% set meter = states('sensor.energy_ev_load_grid_ps') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.energy_ev_load_grid_ps') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+# --------------
+# UTILITY METERS
+# --------------
+utility_meter:
+  ## ---------------------
+  ## Energy Utility Meters
+  energy_home_load:
+    source: sensor.energy_home_load_ps
+    name: "Energy Home Load"
+    unique_id: energy_home_load
+    periodically_resetting: false
+  energy_ev_load:
+    source: sensor.energy_ev_load_ps
+    name: "Energy EV Load"
+    unique_id: energy_ev_load
+    periodically_resetting: false
+  energy_home_yield:
+    source: sensor.energy_home_load_yield_ps
+    name: "Energy Home Yield"
+    unique_id: energy_home_yield
+    periodically_resetting: false
+  energy_ev_yield:
+    source: sensor.energy_ev_load_yield_ps
+    name: "Energy EV Yield"
+    unique_id: energy_ev_yield
+    periodically_resetting: false
+  energy_home_battery:
+    source: sensor.energy_battery_discharge_home_ps
+    name: "Energy Home Battery"
+    unique_id: energy_home_battery
+    periodically_resetting: false
+  energy_ev_battery:
+    source: sensor.energy_battery_discharge_ev_ps
+    name: "Energy EV Battery"
+    unique_id: energy_ev_battery
+    periodically_resetting: false
+  energy_home_grid:
+    source: sensor.energy_home_load_grid_ps
+    name: "Energy Home Grid"
+    unique_id: energy_home_grid
+    periodically_resetting: false
+  energy_ev_grid:
+    source: sensor.energy_ev_load_grid_ps
+    name: "Energy EV Grid"
+    unique_id: energy_ev_grid
+    periodically_resetting: false
+  ## -------------------------------------
+  ## Economy Utility Meters - Result & NRI 
+  economy_result_home_w_pv:
+    source: sensor.economy_result_home_w_pv_ts
+    name: "Economy - Result Home w PV"
+    unique_id: economy_result_home_w_pv
+  economy_nri_home:
+    source: sensor.economy_nri_home_ts
+    name: "Economy - NRI Home"
+    unique_id: economy_nri_home
+    net_consumption: true
+  economy_result_ev_w_pv:
+    source: sensor.economy_result_ev_w_pv_ts
+    name: "Economy - Result EV w PV"
+    unique_id: economy_result_ev_w_pv
+  economy_nri_ev:
+    source: sensor.economy_nri_ev_ts
+    name: "Economy - Result NRI EV"
+    unique_id: economy_nri_ev
+    net_consumption: true
+  ## ----------------------
+  ## Economy Utility Meters
+  economy_result_home_wo_pv:
+    source: sensor.economy_result_home_wo_pv_tt
+    name: "Economy - Result Home wo PV"
+    unique_id: economy_result_home_wo_pv
+    delta_values: true
+  economy_result_ev_wo_pv:
+    source: sensor.economy_result_ev_wo_pv_tt
+    name: "Economy - Result EV wo PV"
+    unique_id: economy_result_ev_wo_pv
+    delta_values: true
+  home_load_yield_saving:
+    source: sensor.home_load_yield_saving_tt
+    name: "Home Load Yield - Saving"
+    unique_id: home_load_yield_saving
+    delta_values: true
+  home_load_yield_sale:
+    source: sensor.home_load_yield_sale_tt
+    name: "Home Load Yield - Sale"
+    unique_id: home_load_yield_sale
+    delta_values: true
+  ev_load_yield_saving:
+    source: sensor.ev_load_yield_saving_tt
+    name: "EV Load Yield - Saving"
+    unique_id: ev_load_yield_saving
+    delta_values: true
+  ev_load_yield_sale:
+    source: sensor.ev_load_yield_sale_tt
+    name: "EV Load Yield - Sale"
+    unique_id: ev_load_yield_sale
+    delta_values: true
+  battery_discharge_home_saving:
+    source: sensor.battery_discharge_home_saving_tt
+    name: "Battery Discharge Home - Saving"
+    unique_id: battery_discharge_home_saving
+    delta_values: true
+  battery_discharge_ev_saving:
+    source: sensor.battery_discharge_ev_saving_tt
+    name: "Battery Discharge EV - Saving"
+    unique_id: battery_discharge_ev_saving
+    delta_values: true
+  home_load_grid_cost:
+    source: sensor.home_load_grid_cost_tt
+    name: "Home Load Grid - Cost"
+    unique_id: home_load_grid_cost
+    delta_values: true
+  ev_load_grid_cost:
+    source: sensor.ev_load_grid_cost_tt
+    name: "EV Load Grid - Cost"
+    unique_id: ev_load_grid_cost
+    delta_values: true
