@@ -33,7 +33,8 @@ The provided custom sensors are based on a setup with two inverters and one batt
 
 The custom sensors in the *"Huawei Solar PEES package"* are all based on only three types of power sensors provided by the *"Huawei Solar integration by wlcrs"* - this makes these custom sensors robust and the margin for error is minimized. You also need sensors to provide you with current electrical prices. I use the *"Energi Data Service integration by MTrab"*. These two custom integrations needs to be installed in Home Assistant before you start. Both of the integrations can be installed via HACS.
 
-- **Huawei Solar** integration by wlcrs <https://github.com/wlcrs/huawei_solar>
+- **Huawei Solar** integration by wlcrs <https://github.com/wlcrs/huawei_solar> 
+> :exclamation: **You need to run version 1.5.0a1 beta or later in order for the package to fetch your inverter model etc. automatically.** :exclamation:
 - **Energi Data Service** integration by MTrab (or similar integration e.g. Nordpool, to fetch the current electricity price incl. VAT and tariffs) <https://github.com/MTrab/energidataservice>
 
 You also need an editor in Home Assistant to be able to edit your configuration.yaml file. I use Studio Code Server (Visual Studio Code) as an Add-on in Home Assistant.
