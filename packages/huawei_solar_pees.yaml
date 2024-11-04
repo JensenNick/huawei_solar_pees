@@ -1,13 +1,14 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v2.2.5
+# version: v2.2.6
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
 # This is a complete package file with the sensors included in the "Huawei Solar
 # PEES package". For "installation" follow the steps below.
+#
 # Create a root folder named "packages".
 # Import this file to the "packages-folder".
 # Ad the following lines to your configuration.yaml file (remove the hashtag "#"
@@ -195,8 +196,8 @@ template:
         state: >
           {% if is_state('input_boolean.efficiency_corrected_power_input','on') and
           states('sensor.inverter_1_model') | regex_search('-L1|-LC0|-1PH') %}
-            {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
+            {% set inverter_rating = states('sensor.inverter_1_rated_power') | float %}
+            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.inverter_1_operating_voltage_l1') | float(0) %}
             {% set input_power = states('sensor.inverter_input_power') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
@@ -214,11 +215,11 @@ template:
             {% else %}
               {% set voltage_factor = 0 %}
             {% endif %}
-              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | int }}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | round(0) }}
           {% elif is_state('input_boolean.efficiency_corrected_power_input','on') and
           states('sensor.inverter_1_model') | regex_search('-M1|-MAP0|-MB0|-3PH') %}
-            {% set inverter_rating = states('sensor.inverter_1_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float(0) / 100 %}
+            {% set inverter_rating = states('sensor.inverter_1_rated_power') | float %}
+            {% set overall_factor = states('input_number.inverter_1_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.inverter_1_operating_voltage_m1') | float(0) %}
             {% set input_power = states('sensor.inverter_input_power') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
@@ -236,7 +237,7 @@ template:
             {% else %}
               {% set voltage_factor = 0 %}
             {% endif %}
-              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | round(0) }}
           {% else %}
             {{ states('sensor.inverter_input_power') | float(0) }}
           {% endif %}
@@ -248,8 +249,8 @@ template:
         state: >
           {% if is_state('input_boolean.efficiency_corrected_power_input','on') and
           states('sensor.inverter_2_model') | regex_search('-L1|-LC0|-1PH') %}
-            {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
+            {% set inverter_rating = states('sensor.inverter_2_rated_power') | float %}
+            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_l1') | float(0) %}
             {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
@@ -267,11 +268,11 @@ template:
             {% else %}
               {% set voltage_factor = 0 %}
             {% endif %}
-              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | int }}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | round(0) }}
           {% elif is_state('input_boolean.efficiency_corrected_power_input','on') and
           states('sensor.inverter_2_model') | regex_search('-M1|-MAP0|-MB0|-3PH') %}
-            {% set inverter_rating = states('sensor.inverter_2_rated_power') | float(0) %}
-            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float(0) / 100 %}
+            {% set inverter_rating = states('sensor.inverter_2_rated_power') | float %}
+            {% set overall_factor = states('input_number.inverter_2_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.inverter_2_operating_voltage_m1') | float(0) %}
             {% set input_power = states('sensor.inverter_input_power_2') | float(0) %}
             {% set load_factor = ( input_power / inverter_rating * 100 ) | float(0) %}
@@ -289,7 +290,7 @@ template:
             {% else %}
               {% set voltage_factor = 0 %}
             {% endif %}
-              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | int }}
+              {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100) | float(0) ) | round(0) }}
           {% else %}
             {{ states('sensor.inverter_input_power_2') | float(0) }}
           {% endif %}
