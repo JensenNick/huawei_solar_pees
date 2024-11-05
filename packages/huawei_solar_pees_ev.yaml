@@ -1,0 +1,675 @@
+# -----------------------------------------
+# HUAWEI SOLAR PEES EV - Electrical Veichle
+# -----------------------------------------
+# version:
+# branch: alpha-028
+# domain: https://github.com/JensenNick/huawei_solar_pees
+# codeowner: Nick Jensen
+#
+# This is the optional "Huawei Solar PEES MYEV package" which will provide you with
+# power,energy and economy sensors related to your EV (electric vehicle) use case.
+# This package can only be used along with the "Huawei Solar PEES package" and the
+# code for the Lovelace card. 
+#
+# The sensors for "house" load and consumption are now split into "home" and "ev". 
+# With the option to differentiate the 
+#
+# You need to provide the sensor from your EV charger integration which provides
+# you with the charging power in W. You need to provide your choice of electricity 
+# price sensor to be used for the economical calculations related to your EV. 
+#
+# I recomend you "install" the "Huawei Solar PEES Input" file and the Lovelace Input
+# card. This will make it possible for you to enter your specific sensor as a text
+# input in the Lovelace card.
+#
+# The currency used is DKK by default. If you use another currency you need to change
+# this in this file. I advice you not make any other changes.
+#
+# Restart Home Assistant and refresh your browser.
+#
+# -------
+# SENSORS
+# -------
+sensor:
+  ## --------------
+  ## Energy Sensors
+  - platform: integration
+    source: sensor.pees_power_home_load
+    name: "PEES Energy Home Load"
+    unique_id: pees_energy_home_load
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_ev_load
+    name: "PEES Energy EV Load"
+    unique_id: pees_energy_ev_load
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_home_load_yield
+    name: "PEES Energy Home Load Yield"
+    unique_id: pees_energy_home_load_yield
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_ev_load_yield
+    name: "PEES Energy EV Load Yield"
+    unique_id: pees_energy_ev_load_yield
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_battery_discharge_home
+    name: "PEES Energy Battery Discharge Home"
+    unique_id: pees_energy_battery_discharge_home
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_battery_discharge_ev
+    name: "PEES Energy Battery Discharge EV"
+    unique_id: pees_energy_battery_discharge_ev
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_home_load_grid
+    name: "PEES Energy Home Load Grid"
+    unique_id: pees_energy_home_load_grid
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+  - platform: integration
+    source: sensor.pees_power_ev_load_grid
+    name: "PEES Energy EV Load Grid"
+    unique_id: pees_energy_ev_load_grid
+    round: 6
+    unit_prefix: k
+    unit_time: h
+    method: left
+# ----------------
+# TEMPLATE SENSORS
+# ----------------
+template:
+  - sensor:
+      ## ------------------
+      ## Electricity Prices
+      - name: "PEES Electricity Price EV Charging"
+        unique_id: pees_electricity_price_ev_charging
+        unit_of_measurement: DKK
+        state_class: measurement
+        state: >
+          {% if is_state('input_text.pees_electricity_ev_charging','') or
+          is_state('input_text.pees_electricity_price_ev_charging','unavailable') or
+          is_state('input_text.pees_electricity_price_ev_charging','unknown') %}
+            {{ states('sensor.energi_data_service_reduced') | float(0) }}
+          {% else %}
+            {{ states(states('input_text.pees_electricity_price_ev_charging')) | float(0) }}
+          {% endif %}
+      ## -------------
+      ## Power Sensors
+      - name: "PEES Power Home Load"
+        unique_id: pees_power_home_load
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if is_state('input_text.pees_power_ev_charger','') or
+          is_state('input_text.pees_power_ev_charger','unavailable') or
+          is_state('input_text.pees_power_ev_charger','unknown') %}
+            {{ states('sensor.pees_power_house_load') | float(0) }}
+          {% elif states('sensor.pees_power_house_load') | float(0) >
+          states(states('input_text.pees_power_ev_charger')) | float(0) %}
+            {{ states('sensor.pees_power_house_load') | float(0) -
+            states(states('input_text.pees_power_ev_charger')) | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "PEES Power EV Load"
+        unique_id: pees_power_ev_load
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if is_state('input_text.pees_power_ev_charger','') or
+          is_state('input_text.pees_power_ev_charger','unavailable') or
+          is_state('input_text.pees_power_ev_charger','unknown') %}
+            {{ 0 }}
+          {% else %}
+            {{ states('sensor.pees_power_house_load') | float(0) -
+            states('sensor.pees_power_home_load') | float(0) }}
+          {% endif %}
+      - name: "PEES Power Home Load Yield"
+        unique_id: pees_power_home_load_yield
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.pees_power_house_load_yield') | float(0) >=
+          states('sensor.pees_power_home_load') | float(0) %}
+            {{ states('sensor.pees_power_home_load') | float(0) }}
+          {% else %}
+            {{ states('sensor.pees_power_house_load_yield') | float(0) }}
+          {% endif %}
+      - name: "PEES Power EV Load Yield"
+        unique_id: pees_power_ev_load_yield
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.pees_power_house_load_yield') | float(0) >=
+          states('sensor.pees_power_home_load') | float(0) %}
+            {{ states('sensor.pees_power_house_load_yield') | float(0) -
+            states('sensor.pees_power_home_load') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "PEES Power Battery"
+        unique_id: pees_power_battery_discharge_home
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.pees_power_battery_discharge_house') | float(0) >=
+          states('sensor.pees_power_home_load') | float(0) %}
+            {{ states('sensor.pees_power_home_load') | float(0) }}
+          {% else %}
+            {{ states('sensor.pees_power_battery_discharge_house') | float(0) }}
+          {% endif %}
+      - name: "PEES Power Battery Discharge EV"
+        unique_id: pees_power_battery_discharge_ev
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.pees_power_battery_discharge_house') | float(0) >=
+          states('sensor.pees_power_home_load') | float(0) %}
+            {{ states('sensor.pees_power_battery_discharge_house') | float(0) -
+            states('sensor.pees_power_home_load') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      - name: "PEES Power Home Load Grid"
+        unique_id: pees_power_home_load_grid
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.pees_power_house_load_grid') | float(0) >=
+          states('sensor.pees_power_home_load') | float(0) %}
+            {{ states('sensor.pees_power_home_load') | float(0) }}
+          {% else %}
+            {{ states('sensor.pees_power_house_load_grid') | float(0) }}
+          {% endif %}
+      - name: "PEES Power EV Load Grid"
+        unique_id: pees_power_ev_load_grid
+        unit_of_measurement: W
+        state_class: measurement
+        state: >
+          {% if states('sensor.pees_power_house_load_grid') | float(0) >=
+          states('sensor.pees_power_home_load') | float(0) %}
+            {{ states('sensor.pees_power_house_load_grid') | float(0) -
+            states('sensor.pees_power_home_load') | float(0) }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+      ## ---------------
+      ## Economy Sensors
+      - name: "PEES Economy - Result Home w PV"
+        unique_id: pees_economy_result_home_w_pv
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.pees_home_load_grid_cost') | float(0) +
+          states('sensor.pees_home_load_yield_sale') | float(0) -
+          states('sensor.pees_home_load_yield_saving') | float(0) -
+          states('sensor.pees_battery_discharge_home_saving') | float(0) }}
+      - name: "PEES Economy - NRI Home"
+        unique_id: pees_economy_nri_home
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.pees_economy_result_home_wo_pv') | float(0) -
+          states('sensor.pees_economy_result_home_w_pv') | float(0) }}
+      - name: "PEES Economy - Result EV w PV"
+        unique_id: pees_economy_result_ev_w_pv
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.pees_ev_load_grid_cost') | float(0) +
+          states('sensor.pees_ev_load_yield_sale') | float(0) -
+          states('sensor.pees_ev_load_yield_saving') | float(0) -
+          states('sensor.pees_battery_discharge_ev_saving') | float(0) }}
+      - name: "PEES Economy - NRI EV"
+        unique_id: pees_economy_nri_ev
+        unit_of_measurement: DKK
+        state_class: total
+        state: >
+          {{ states('sensor.pees_economy_result_ev_wo_pv') | float(0) -
+          states('sensor.pees_economy_result_ev_w_pv') | float(0) }}
+  # ------------------------
+  # TEMPLATE TRIGGER SENSORS
+  # ------------------------
+  ## ---------------
+  ## Economy Sensors
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_home_load
+    sensor:
+      - name: "PEES Economy - Result Home wo PV"
+        unique_id: pees_economy_result_home_wo_pv
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.pees_energy_home_load') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_home_load') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_ev_load
+    sensor:
+      - name: "PEES Economy - Result EV wo PV"
+        unique_id: pees_economy_result_ev_wo_pv
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_ev_charging') | float(0) %}
+          {% set meter = states('sensor.pees_energy_ev_load') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_ev_load') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_home_load_yield
+    sensor:
+      - name: "PEES Home Load Yield - Saving"
+        unique_id: pees_home_load_yield_saving
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.pees_energy_home_load_yield') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_home_load_yield') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_home_load_yield
+    sensor:
+      - name: "PEES Home Load Yield - Sale"
+        unique_id: pees_home_load_yield_sale
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_export') | float(0) %}
+          {% set meter = states('sensor.pees_energy_home_load_yield') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_home_load_yield') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_ev_load_yield
+    sensor:
+      - name: "PEES EV Load Yield - Saving"
+        unique_id: pees_ev_load_yield_saving
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_ev_charging') | float(0) %}
+          {% set meter = states('sensor.pees_energy_ev_load_yield') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_ev_load_yield') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_ev_load_yield
+    sensor:
+      - name: "PEES EV Load Yield - Sale"
+        unique_id: pees_ev_load_yield_sale
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_export') | float(0) %}
+          {% set meter = states('sensor.pees_energy_ev_load_yield') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_ev_load_yield') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_battery_discharge_home
+    sensor:
+      - name: "PEES Battery Discharge Home - Saving"
+        unique_id: pees_battery_discharge_home_saving
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.pees_energy_battery_discharge_home') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_battery_discharge_home') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_battery_discharge_ev
+    sensor:
+      - name: "PEES Battery Discharge EV - Saving"
+        unique_id: pees_battery_discharge_ev_saving
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.pees_energy_battery_discharge_ev') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_battery_discharge_ev') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_home_load_grid
+    sensor:
+      - name: "PEES Home Load Grid - Cost"
+        unique_id: pees_home_load_grid_cost
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
+          {% set meter = states('sensor.pees_energy_home_load_grid') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_home_load_grid') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+  - trigger:
+      - trigger: state
+        entity_id: sensor.pees_energy_ev_load_grid
+    sensor:
+      - name: "PEES EV Load Grid - Cost"
+        unique_id: pees_ev_load_grid_cost
+        unit_of_measurement: DKK
+        device_class: monetary
+        state: >
+          {% set price = states('sensor.pees_electricity_price_ev_charging') | float(0) %}
+          {% set meter = states('sensor.pees_energy_ev_load_grid') | float(0) %}
+          {% if meter > 0 and this.attributes.last is defined %}
+            {% set delta = meter - this.attributes.last | float(0) %}
+          {% else %}
+            {% set delta = 0 %}
+          {% endif %}
+          {{ price * delta }}
+        attributes:
+          last: >
+            {% if this.attributes.last is defined %}
+              {% set lastlast = this.attributes.last | float(0) %}
+            {% else %}
+              {% set lastlast = 0 %}
+            {% endif %}
+            {% set meter = states('sensor.pees_energy_ev_load_grid') | float(0) %}
+            {% if meter > 0 %}
+              {{ meter }}
+            {% else %}
+              {{ lastlast }}
+            {% endif %}
+# --------------
+# UTILITY METERS
+# --------------
+utility_meter:
+  ## ---------------------
+  ## Energy Utility Meters
+  pees_total_energy_home_load:
+    source: sensor.pees_energy_home_load
+    name: "PEES Energy Home Load"
+    unique_id: pees_energy_home_load
+    periodically_resetting: false
+  pees_total_energy_ev_load:
+    source: sensor.pees_energy_ev_load
+    name: "PEES Energy EV Load"
+    unique_id: pees_energy_ev_load
+    periodically_resetting: false
+  pees_total_energy_home_yield:
+    source: sensor.pees_energy_home_load_yield
+    name: "PEES Energy Home Yield"
+    unique_id: pees_energy_home_yield
+    periodically_resetting: false
+  pees_total_energy_ev_yield:
+    source: sensor.pees_energy_ev_load_yield
+    name: "PEES Energy EV Yield"
+    unique_id: pees_energy_ev_yield
+    periodically_resetting: false
+  pees_total_energy_home_battery:
+    source: sensor.pees_energy_battery_discharge_home
+    name: "PEES Energy Home Battery"
+    unique_id: pees_energy_home_battery
+    periodically_resetting: false
+  pees_total_energy_ev_battery:
+    source: sensor.pees_energy_battery_discharge_ev
+    name: "PEES Energy EV Battery"
+    unique_id: pees_energy_ev_battery
+    periodically_resetting: false
+  pees_total_energy_home_grid:
+    source: sensor.pees_energy_home_load_grid
+    name: "PEES Energy Home Grid"
+    unique_id: pees_energy_home_grid
+    periodically_resetting: false
+  pees_total_energy_ev_grid:
+    source: sensor.pees_energy_ev_load_grid
+    name: "PEES Energy EV Grid"
+    unique_id: pees_energy_ev_grid
+    periodically_resetting: false
+  ## -------------------------------------
+  ## Economy Utility Meters - Result & NRI 
+  pees_total_economy_result_home_w_pv:
+    source: sensor.pees_economy_result_home_w_pv
+    name: "PEES Economy - Result Home w PV"
+    unique_id: pees_economy_result_home_w_pv
+  pees_total_economy_nri_home:
+    source: sensor.pees_economy_nri_home
+    name: "PEES Economy - NRI Home"
+    unique_id: pees_economy_nri_home
+    net_consumption: true
+  pees_total_economy_result_ev_w_pv:
+    source: sensor.pees_economy_result_ev_w_pv
+    name: "PEES Economy - Result EV w PV"
+    unique_id: pees_economy_result_ev_w_pv
+  pees_total_economy_nri_ev:
+    source: sensor.pees_economy_nri_ev
+    name: "PEES Economy - Result NRI EV"
+    unique_id: pees_economy_nri_ev
+    net_consumption: true
+  ## ----------------------
+  ## Economy Utility Meters
+  pees_total_economy_result_home_wo_pv:
+    source: sensor.pees_economy_result_home_wo_pv
+    name: "PEES Economy - Result Home wo PV"
+    unique_id: pees_economy_result_home_wo_pv
+    delta_values: true
+  pees_total_economy_result_ev_wo_pv:
+    source: sensor.pees_economy_result_ev_wo_pv
+    name: "PEES Economy - Result EV wo PV"
+    unique_id: pees_economy_result_ev_wo_pv
+    delta_values: true
+  pees_total_home_load_yield_saving:
+    source: sensor.pees_home_load_yield_saving
+    name: "PEES Home Load Yield - Saving"
+    unique_id: pees_home_load_yield_saving
+    delta_values: true
+  pees_total_home_load_yield_sale:
+    source: sensor.pees_home_load_yield_sale
+    name: "PEES Home Load Yield - Sale"
+    unique_id: pees_home_load_yield_sale
+    delta_values: true
+  pees_total_ev_load_yield_saving:
+    source: sensor.pees_ev_load_yield_saving
+    name: "PEES EV Load Yield - Saving"
+    unique_id: pees_ev_load_yield_saving
+    delta_values: true
+  pees_total_ev_load_yield_sale:
+    source: sensor.pees_ev_load_yield_sale
+    name: "PEES EV Load Yield - Sale"
+    unique_id: pees_ev_load_yield_sale
+    delta_values: true
+  pees_total_battery_discharge_home_saving:
+    source: sensor.pees_battery_discharge_home_saving
+    name: "PEES Battery Discharge Home - Saving"
+    unique_id: pees_battery_discharge_home_saving
+    delta_values: true
+  pees_total_battery_discharge_ev_saving:
+    source: sensor.pees_battery_discharge_ev_saving
+    name: "PEES Battery Discharge EV - Saving"
+    unique_id: pees_battery_discharge_ev_saving
+    delta_values: true
+  pees_total_home_load_grid_cost:
+    source: sensor.pees_home_load_grid_cost
+    name: "PEES Home Load Grid - Cost"
+    unique_id: pees_home_load_grid_cost
+    delta_values: true
+  pees_total_ev_load_grid_cost:
+    source: sensor.pees_ev_load_grid_cost
+    name: "PEES EV Load Grid - Cost"
+    unique_id: pees_ev_load_grid_cost
+    delta_values: true
