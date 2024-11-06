@@ -972,198 +972,198 @@ utility_meter:
   ## Economy Utility Meters
   ### Economy - Result without PV
   pees_total_economy_result_wo_pv:
-    source: sensor.economy_result_wo_pv
+    source: sensor.pees_economy_result_wo_pv
     name: "PEES Economy - Result wo PV"
     unique_id: pees_economy_result_wo_pv
   pees_hourly_economy_result_wo_pv:
-    source: sensor.economy_result_wo_pv
+    source: sensor.pees_economy_result_wo_pv
     name: "PEES Hourly Economy - Result wo PV"
     unique_id: pees_hourly_economy_result_wo_pv
     cycle: hourly
   pees_daily_economy_result_wo_pv:
-    source: sensor.economy_result_wo_pv
+    source: sensor.pees_economy_result_wo_pv
     name: "PEES Daily Economy - Result wo PV"
     unique_id: pees_daily_economy_result_wo_pv
     cycle: daily
   pees_monthly_economy_result_wo_pv:
-    source: sensor.economy_result_wo_pv
+    source: sensor.pees_economy_result_wo_pv
     name: "PEES Monthly Economy - Result wo PV"
     unique_id: pees_monthly_economy_result_wo_pv
     cycle: monthly
   pees_quarterly_economy_result_wo_pv:
-    source: sensor.economy_result_wo_pv
+    source: sensor.pees_economy_result_wo_pv
     name: "PEES Quarterly Economy - Result wo PV"
     unique_id: pees_quarterly_economy_result_wo_pv
     cycle: quarterly
   pees_yearly_economy_result_wo_pv:
-    source: sensor.economy_result_wo_pv
+    source: sensor.pees_economy_result_wo_pv
     name: "PEES Yearly Economy - Result wo PV"
     unique_id: pees_yearly_economy_result_wo_pv
     cycle: yearly
   ### Economy - Result with PV
   pees_total_economy_result_w_pv:
-    source: sensor.economy_result_w_pv
+    source: sensor.pees_economy_result_w_pv
     name: "PEES Economy - Result w PV"
     unique_id: pees_economy_result_w_pv
     net_consumption: true
   pees_hourly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv
+    source: sensor.pees_economy_result_w_pv
     name: "PEES Hourly Economy - Result w PV"
     unique_id: pees_hourly_economy_result_w_pv
     cycle: hourly
     net_consumption: true
   pees_daily_economy_result_w_pv:
-    source: sensor.economy_result_w_pv
+    source: sensor.pees_economy_result_w_pv
     name: "PEES Daily Economy - Result w PV"
     unique_id: pees_daily_economy_result_w_pv
     cycle: daily
     net_consumption: true
   pees_monthly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv
+    source: sensor.pees_economy_result_w_pv
     name: "PEES Monthly Economy - Result w PV"
     unique_id: pees_monthly_economy_result_w_pv
     cycle: monthly
     net_consumption: true
   pees_quarterly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv
+    source: sensor.pees_economy_result_w_pv
     name: "PEES Quarterly Economy - Result w PV"
     unique_id: pees_quarterly_economy_result_w_pv
     cycle: quarterly
     net_consumption: true
   pees_yearly_economy_result_w_pv:
-    source: sensor.economy_result_w_pv
+    source: sensor.pees_economy_result_w_pv
     name: "PEES Yearly Economy - Result w PV"
     unique_id: pees_yearly_economy_result_w_pv
     cycle: yearly
     net_consumption: true
   ### Economy - Expenses
   pees_total_economy_expenses_w_pv:
-    source: sensor.economy_expenses_w_pv
+    source: sensor.pees_economy_expenses_w_pv
     name: "PEES Total Economy - Expenses w PV"
     unique_id: pees_economy_expenses_w_pv
   pees_hourly_economy_expenses_w_pv:
-    source: sensor.economy_expenses_w_pv
+    source: sensor.pees_economy_expenses_w_pv
     name: "PEES Hourly Economy - Expenses w PV"
     unique_id: pees_hourly_economy_expenses_w_pv
     cycle: hourly
   pees_daily_economy_expenses_w_pv:
-    source: sensor.economy_expenses_w_pv
+    source: sensor.pees_economy_expenses_w_pv
     name: "PEES Daily Economy - Expenses w PV"
     unique_id: pees_daily_economy_expenses_w_pv
     cycle: daily
   pees_monthly_economy_expenses_w_pv:
-    source: sensor.economy_expenses_w_pv
+    source: sensor.pees_economy_expenses_w_pv
     name: "PEES Monthly Economy - Expenses w PV"
     unique_id: pees_monthly_economy_expenses_w_pv
     cycle: monthly
   pees_quarterly_economy_expenses_w_pv:
-    source: sensor.economy_expenses_w_pv
+    source: sensor.pees_economy_expenses_w_pv
     name: "PEES Quarterly Economy - Expenses w PV"
     unique_id: pees_quarterly_economy_expenses_w_pv
     cycle: quarterly
   pees_yearly_economy_expenses_w_pv:
-    source: sensor.economy_expenses_w_pv
+    source: sensor.pees_economy_expenses_w_pv
     name: "PEES Yearly Economy - Expenses w PV"
     unique_id: pees_yearly_economy_expenses_w_pv
     cycle: yearly
   ### Economy - Income
   pees_total_economy_income_w_pv:
-    source: sensor.economy_income_w_pv
+    source: sensor.pees_economy_income_w_pv
     name: "PEES Total Economy - Income w PV"
     unique_id: pees_economy_income_w_pv
   pees_hourly_economy_income_w_pv:
-    source: sensor.economy_income_w_pv
+    source: sensor.pees_economy_income_w_pv
     name: "PEES Hourly Economy - Income w PV"
     unique_id: pees_hourly_economy_income_w_pv
     cycle: hourly
   pees_daily_economy_income_w_pv:
-    source: sensor.economy_income_w_pv
+    source: sensor.pees_economy_income_w_pv
     name: "PEES Daily Economy - Income w PV"
     unique_id: pees_daily_economy_income_w_pv
     cycle: daily
   pees_monthly_economy_income_w_pv:
-    source: sensor.economy_income_w_pv
+    source: sensor.pees_economy_income_w_pv
     name: "PEES Monthly Economy - Income w PV"
     unique_id: pees_monthly_economy_income_w_pv
     cycle: monthly
   pees_quarterly_economy_income_w_pv:
-    source: sensor.economy_income_w_pv
+    source: sensor.pees_economy_income_w_pv
     name: "PEES Quarterly Economy - Income w PV"
     unique_id: pees_quarterly_economy_income_w_pv
     cycle: quarterly
   pees_yearly_economy_income_w_pv:
-    source: sensor.economy_income_w_pv
+    source: sensor.pees_economy_income_w_pv
     name: "PEES Yearly Economy - Income w PV"
     unique_id: pees_yearly_economy_income_w_pv
     cycle: yearly
   ### Economy - Net Return on Investment PV
   pees_total_economy_nri_pv:
-    source: sensor.economy_nri_pv
+    source: sensor.pees_economy_nri_pv
     name: "PEES Total Economy - NRI PV"
     unique_id: pees_economy_nri_pv
     net_consumption: true
   pees_hourly_economy_nri_pv:
-    source: sensor.economy_nri_pv
+    source: sensor.pees_economy_nri_pv
     name: "PEES Hourly Economy - NRI PV"
     unique_id: pees_hourly_economy_nri_pv
     cycle: hourly
     net_consumption: true
   pees_daily_economy_nri_pv:
-    source: sensor.economy_nri_pv
+    source: sensor.pees_economy_nri_pv
     name: "PEES Daily Economy - NRI PV"
     unique_id: pees_daily_economy_nri_pv
     cycle: daily
     net_consumption: true
   pees_monthly_economy_nri_pv:
-    source: sensor.economy_nri_pv
+    source: sensor.pees_economy_nri_pv
     name: "PEES Monthly Economy - NRI PV"
     unique_id: pees_monthly_economy_nri_pv
     cycle: monthly
     net_consumption: true
   pees_quarterly_economy_nri_pv:
-    source: sensor.economy_nri_pv
+    source: sensor.pees_economy_nri_pv
     name: "PEES Quarterly Economy - NRI PV"
     unique_id: pees_quarterly_economy_nri_pv
     cycle: quarterly
     net_consumption: true
   pees_yearly_economy_nri_pv:
-    source: sensor.economy_nri_pv
+    source: sensor.pees_economy_nri_pv
     name: "PEES Yearly Economy - NRI PV"
     unique_id: pees_yearly_economy_nri_pv
     cycle: yearly
     net_consumption: true
   ### Economy - Net Return on Investment Battery
   pees_total_economy_nri_battery:
-    source: sensor.economy_nri_battery
+    source: sensor.pees_economy_nri_battery
     name: "PEES Total Economy - NRI Battery"
     unique_id: pees_economy_nri_battery
     net_consumption: true
   pees_hourly_economy_nri_battery:
-    source: sensor.economy_nri_battery
+    source: sensor.pees_economy_nri_battery
     name: "PEES Hourly Economy - NRI Battery"
     unique_id: pees_hourly_economy_nri_battery
     cycle: hourly
     net_consumption: true
   pees_daily_economy_nri_battery:
-    source: sensor.economy_nri_battery
+    source: sensor.pees_economy_nri_battery
     name: "PEES Daily Economy - NRI Battery"
     unique_id: pees_daily_economy_nri_battery
     cycle: daily
     net_consumption: true
   pees_monthly_economy_nri_battery:
-    source: sensor.economy_nri_battery
+    source: sensor.pees_economy_nri_battery
     name: "PEES Monthly Economy - NRI Battery"
     unique_id: pees_monthly_economy_nri_battery
     cycle: monthly
     net_consumption: true
   pees_quarterly_economy_nri_battery:
-    source: sensor.economy_nri_battery
+    source: sensor.pees_economy_nri_battery
     name: "PEES Quarterly Economy - NRI Battery"
     unique_id: pees_quarterly_economy_nri_battery
     cycle: quarterly
     net_consumption: true
   pees_yearly_economy_nri_battery:
-    source: sensor.economy_nri_battery
+    source: sensor.pees_economy_nri_battery
     name: "PEES Yearly Economy - NRI Battery"
     unique_id: pees_yearly_economy_nri_battery
     cycle: yearly
