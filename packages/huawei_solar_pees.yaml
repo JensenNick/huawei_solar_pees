@@ -843,129 +843,129 @@ utility_meter:
   ## Energy Utility Meters
   pees_total_energy_battery_charge:
     source: sensor.pees_energy_battery_charge
-    name: "PEES Energy Battery Charge"
+    name: "PEES Total Energy Battery Charge"
     unique_id: pees_total_energy_battery_charge
     periodically_resetting: false
   pees_total_energy_battery_charge_grid:
     source: sensor.pees_energy_battery_charge_grid
-    name: "PEES Energy Battery Charge Grid"
+    name: "PEES Total Energy Battery Charge Grid"
     unique_id: pees_total_energy_battery_charge_grid
     periodically_resetting: false
   pees_total_energy_battery_charge_yield:
     source: sensor.pees_energy_battery_charge_yield
-    name: "PEES Energy Battery Charge Yield"
+    name: "PEES Total Energy Battery Charge Yield"
     unique_id: pees_total_energy_battery_charge_yield
     periodically_resetting: false
   pees_total_energy_battery_discharge:
     source: sensor.pees_energy_battery_discharge
-    name: "PEES Energy Battery Discharge"
+    name: "PEES Total Energy Battery Discharge"
     unique_id: pees_total_energy_battery_discharge
     periodically_resetting: false
   pees_total_energy_battery_discharge_grid:
     source: sensor.pees_energy_battery_discharge_grid
-    name: "PEES Energy Battery Discharge Grid"
+    name: "PEES Total Energy Battery Discharge Grid"
     unique_id: pees_total_energy_battery_discharge_grid
     periodically_resetting: false
   pees_total_energy_battery_discharge_house:
     source: sensor.pees_energy_battery_discharge_house
-    name: "PEES Energy Battery Discharge House"
+    name: "PEES Total Energy Battery Discharge House"
     unique_id: pees_total_energy_battery_discharge_house
     periodically_resetting: false
   pees_total_energy_import:
     source: sensor.pees_energy_import
-    name: "PEES Energy Import"
+    name: "PEES Total Energy Import"
     unique_id: pees_total_energy_import
     periodically_resetting: false
   pees_total_energy_export:
     source: sensor.pees_energy_export
-    name: "PEES Energy Export"
+    name: "PEES Total Energy Export"
     unique_id: pees_total_energy_export
     periodically_resetting: false
   pees_total_energy_export_yield:
     source: sensor.pees_energy_export_yield
-    name: "PEES Energy Export Yield"
+    name: "PEES Total Energy Export Yield"
     unique_id: pees_total_energy_export_yield
     periodically_resetting: false
   pees_total_energy_house_load:
     source: sensor.pees_energy_house_load
-    name: "PEES Energy House Load"
+    name: "PEES Total Energy House Load"
     unique_id: pees_total_energy_house_load
     periodically_resetting: false
   pees_total_energy_house_load_grid:
     source: sensor.pees_energy_house_load_grid
-    name: "PEES Energy House Load Grid"
+    name: "PEES Total Energy House Load Grid"
     unique_id: pees_total_energy_house_load_grid
     periodically_resetting: false
   pees_total_energy_house_load_yield:
     source: sensor.pees_energy_house_load_yield
-    name: "PEES Energy House Load Yield"
+    name: "PEES Total Energy House Load Yield"
     unique_id: pees_total_energy_house_load_yield
     periodically_resetting: false
   pees_total_energy_yield_1:
     source: sensor.pees_energy_yield_1
-    name: "PEES Energy Yield #1"
+    name: "PEES Total Energy Yield #1"
     unique_id: pees_total_energy_yield_1
     periodically_resetting: false
   pees_total_energy_yield_2:
     source: sensor.pees_energy_yield_2
-    name: "PEES Energy Yield #2"
+    name: "PEES Total Energy Yield #2"
     unique_id: pees_total_energy_yield_2
     periodically_resetting: false
   pees_total_energy_yield_total:
     source: sensor.pees_energy_yield_total
-    name: "PEES Energy Yield Total"
+    name: "PEES Total Energy Yield Total"
     unique_id: pees_total_energy_yield_total
     periodically_resetting: false
   ## ----------------------
   ## Economy Utility Meters
   pees_total_battery_charge_grid_cost:
     source: sensor.pees_battery_charge_grid_cost
-    name: "PEES Battery Charge Grid - Cost"
+    name: "PEES Total Battery Charge Grid - Cost"
     unique_id: pees_total_battery_charge_grid_cost
     delta_values: true
   pees_total_battery_charge_yield_sale:
     source: sensor.pees_battery_charge_yield_sale
-    name: "PEES Battery Charge Yield - Sale"
+    name: "PEES Total Battery Charge Yield - Sale"
     unique_id: pees_total_battery_charge_yield_sale
     delta_values: true
   pees_total_battery_discharge_house_saving:
     source: sensor.pees_battery_discharge_house_saving
-    name: "PEES Battery Discharge House - Saving"
+    name: "PEES Total Battery Discharge House - Saving"
     unique_id: pees_total_battery_discharge_house_saving
     delta_values: true
   pees_total_battery_discharge_grid_sale:
     source: sensor.pees_battery_discharge_grid_sale
-    name: "PEES Battery Discharge Grid - Sale"
+    name: "PEES Total Battery Discharge Grid - Sale"
     unique_id: pees_total_battery_discharge_grid_sale
     delta_values: true
   pees_total_export_income:
     source: sensor.pees_export_income
-    name: "PEES Export - Income"
+    name: "PEES Total Export - Income"
     unique_id: pees_total_export_income
     delta_values: true
   pees_total_import_cost:
     source: sensor.pees_import_cost
-    name: "PEES Import - Cost"
+    name: "PEES Total Import - Cost"
     unique_id: pees_total_import_cost
     delta_values: true
   pees_total_house_load_cost:
     source: sensor.pees_house_load_cost
-    name: "PEES House Load - Cost"
+    name: "PEES Total House Load - Cost"
     unique_id: pees_total_house_load_cost
     delta_values: true
   pees_total_house_load_grid_cost:
     source: sensor.pees_house_load_grid_cost
-    name: "PEES House Load Grid - Cost"
+    name: "PEES Total House Load Grid - Cost"
     unique_id: pees_total_house_load_grid_cost
     delta_values: true
   pees_total_house_load_yield_saving:
     source: sensor.pees_house_load_yield_saving
-    name: "PEES House Load Yield - Saving"
+    name: "PEES Total House Load Yield - Saving"
     unique_id: pees_total_house_load_yield_saving
     delta_values: true
   pees_total_export_yield_sale:
     source: sensor.pees_export_yield_sale
-    name: "PEES Export Yield - Sale"
+    name: "PEES Total Export Yield - Sale"
     unique_id: pees_total_export_yield_sale
     delta_values: true
   ## ----------------------
