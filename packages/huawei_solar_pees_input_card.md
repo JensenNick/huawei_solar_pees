@@ -175,7 +175,7 @@ cards:
     cards:
       - type: entities
         entities:
-          - entity: sensor.pees_power_inverter_input_total
+          - entity: sensor.pees_total_power_inverter_input
             icon: mdi:solar-power-variant-outline
           - entity: sensor.power_meter_active_power
             icon: mdi:counter
@@ -184,7 +184,7 @@ cards:
         title: Power
       - type: entities
         entities:
-          - entity: sensor.pees_power_inverter_input_total
+          - entity: sensor.pees_total_power_inverter_input
             icon: mdi:solar-power-variant-outline
           - entity: sensor.pees_power_inverter_1_input
             icon: mdi:solar-power-variant-outline
@@ -246,46 +246,46 @@ cards:
       - type: entities
         title: Energy
         entities:
-          - entity: sensor.pees_energy_yield_total
+          - entity: sensor.pees_total_energy_yield
             icon: mdi:solar-power-variant-outline
-          - entity: sensor.pees_energy_import
+          - entity: sensor.pees_total_energy_import
             icon: mdi:home-import-outline
-          - entity: sensor.pees_energy_export_yield
+          - entity: sensor.pees_total_energy_export_yield
             icon: mdi:home-export-outline
       - type: entities
         title: "- Yield"
         entities:
-          - entity: sensor.pees_energy_yield_total
+          - entity: sensor.pees_total_energy_yield
             icon: mdi:solar-power-variant-outline
-          - entity: sensor.pees_energy_yield_1
+          - entity: sensor.pees_total_energy_yield_1
             icon: mdi:solar-power-variant-outline
-          - entity: sensor.pees_energy_yield_2
+          - entity: sensor.pees_total_energy_yield_2
             icon: mdi:solar-power-variant-outline
       - type: entities
         title: "- House"
         entities:
-          - entity: sensor.pees_energy_house_load
+          - entity: sensor.pees_total_energy_house_load
             icon: mdi:home-lightning-bolt-outline
-          - entity: sensor.pees_energy_house_load_grid
+          - entity: sensor.pees_total_energy_house_load_grid
             icon: mdi:home-import-outline
-          - entity: sensor.pees_energy_house_load_yield
+          - entity: sensor.pees_total_energy_house_load_yield
             icon: mdi:solar-power-variant-outline
-          - entity: sensor.pees_energy_battery_discharge_house
+          - entity: sensor.pees_total_energy_battery_discharge_house
             icon: mdi:home-battery-outline
       - type: entities
         title: "- Battery"
         entities:
-          - entity: sensor.pees_energy_battery_charge
+          - entity: sensor.pees_total_energy_battery_charge
             icon: mdi:battery-charging-low
-          - entity: sensor.pees_energy_battery_discharge
+          - entity: sensor.pees_total_energy_battery_discharge
             icon: mdi:battery-charging-high
-          - entity: sensor.pees_energy_battery_charge_grid
+          - entity: sensor.pees_total_energy_battery_charge_grid
             icon: mdi:battery-charging-low
-          - entity: sensor.pees_energy_battery_charge_yield
+          - entity: sensor.pees_total_energy_battery_charge_yield
             icon: mdi:battery-charging-medium
-          - entity: sensor.pees_energy_battery_discharge_grid
+          - entity: sensor.pees_total_energy_battery_discharge_grid
             icon: mdi:battery-charging-high
-          - entity: sensor.pees_energy_battery_discharge_house
+          - entity: sensor.pees_total_energy_battery_discharge_house
             icon: mdi:battery-charging-high
 columns: 1
 ```
@@ -298,7 +298,7 @@ type: grid
 cards:
   - type: entities
     entities:
-      - entity: sensor.pees_energy_yield_total
+      - entity: sensor.pees_total_energy_yield
         type: custom:multiple-entity-row
         icon: mdi:solar-power-variant-outline
         name: Yield
@@ -306,16 +306,16 @@ cards:
         secondary_info: false
         format: precision2
         entities:
-          - entity: sensor.pees_energy_house_load_yield
+          - entity: sensor.pees_total_energy_house_load_yield
             name: House
             format: precision2
-          - entity: sensor.pees_energy_battery_charge_yield
+          - entity: sensor.pees_total_energy_battery_charge_yield
             name: Battery
             format: precision2
-          - entity: sensor.pees_energy_export
+          - entity: sensor.pees_total_energy_export
             name: Export
             format: precision2
-      - entity: sensor.pees_energy_house_load
+      - entity: sensor.pees_total_energy_house_load
         type: custom:multiple-entity-row
         icon: mdi:home-lightning-bolt-outline
         name: Consumption
@@ -323,20 +323,20 @@ cards:
         secondary_info: false
         format: precision2
         entities:
-          - entity: sensor.pees_energy_house_load_yield
+          - entity: sensor.pees_total_energy_house_load_yield
             name: Yield
             format: precision2
-          - entity: sensor.pees_energy_battery_discharge_house
+          - entity: sensor.pees_total_energy_battery_discharge_house
             name: Battery
             format: precision2
-          - entity: sensor.pees_energy_house_load_grid
+          - entity: sensor.pees_total_energy_house_load_grid
             name: Import
             format: precision2
     state_color: true
     title: Yield & Consumption
   - type: entities
     entities:
-      - entity: sensor.pees_energy_battery_charge
+      - entity: sensor.pees_total_energy_battery_charge
         type: custom:multiple-entity-row
         icon: mdi:battery-charging-medium
         name: Battery
@@ -344,49 +344,49 @@ cards:
         secondary_info: false
         format: precision2
         entities:
-          - entity: sensor.pees_energy_battery_discharge
+          - entity: sensor.pees_total_energy_battery_discharge
             name: Discharge
             format: precision2
-          - entity: sensor.pees_energy_battery_charge_yield
+          - entity: sensor.pees_total_energy_battery_charge_yield
             name: Yield
             format: precision2
-          - entity: sensor.pees_energy_battery_charge_grid
+          - entity: sensor.pees_total_energy_battery_charge_grid
             name: Import
             format: precision2
     state_color: true
   - type: entities
     entities:
-      - entity: sensor.pees_economy_result_w_pv
+      - entity: sensor.pees_total_economy_result_w_pv
         type: custom:multiple-entity-row
         name: Economy w PV
         secondary_info: false
         state_header: Cost w PV
         format: precision2
         entities:
-          - entity: sensor.pees_economy_expenses_w_pv
+          - entity: sensor.pees_total_economy_expenses_w_pv
             name: Import
             format: precision2
-          - entity: sensor.pees_economy_income_w_pv
+          - entity: sensor.pees_total_economy_income_w_pv
             name: Export
             format: precision2
-      - entity: sensor.pees_economy_result_wo_pv
+      - entity: sensor.pees_total_economy_result_wo_pv
         type: custom:multiple-entity-row
         name: Economy wo PV
         secondary_info: false
         state_header: Cost wo PV
         format: precision2
         entities:
-          - entity: sensor.pees_energy_house_load
+          - entity: sensor.pees_total_energy_house_load
             name: Consumption
             format: precision2
-      - entity: sensor.pees_economy_nri_pv
+      - entity: sensor.pees_total_economy_nri_pv
         type: custom:multiple-entity-row
         name: Net Return
         secondary_info: false
         state_header: NRI Total
         format: precision2
         entities:
-          - entity: sensor.pees_economy_nri_battery
+          - entity: sensor.pees_total_economy_nri_battery
             name: NRI Battery
             format: precision2
     state_color: true
