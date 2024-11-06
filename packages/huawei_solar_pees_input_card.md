@@ -298,7 +298,7 @@ type: grid
 cards:
   - type: entities
     entities:
-      - entity: sensor.pees_total_energy_yield
+      - entity: sensor.pees_total_energy_yield_total
         type: custom:multiple-entity-row
         icon: mdi:solar-power-variant-outline
         name: Yield
@@ -356,20 +356,20 @@ cards:
     state_color: true
   - type: entities
     entities:
-      - entity: sensor.pees_total_economy_result_w_pv
+      - entity: sensor.pees_economy_result_w_pv
         type: custom:multiple-entity-row
         name: Economy w PV
         secondary_info: false
         state_header: Cost w PV
         format: precision2
         entities:
-          - entity: sensor.pees_total_economy_expenses_w_pv
+          - entity: sensor.pees_economy_expenses_w_pv
             name: Import
             format: precision2
-          - entity: sensor.pees_total_economy_income_w_pv
+          - entity: sensor.pees_economy_income_w_pv
             name: Export
             format: precision2
-      - entity: sensor.pees_total_economy_result_wo_pv
+      - entity: sensor.pees_economy_result_wo_pv
         type: custom:multiple-entity-row
         name: Economy wo PV
         secondary_info: false
