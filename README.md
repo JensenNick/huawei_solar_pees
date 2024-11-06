@@ -102,9 +102,9 @@ If you for some reason do not wish to use the default names you need to edit the
 
 ```yaml
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
-# - 'sensor.power_inverter_2_input' (from the Huawei Solar integration)
+# - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
-# - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
+# - 'sensor.batteries_charge_discharge_power' (from the Huawei Solar integration)
  ```
 
 ### 3.3 Electricity Price
