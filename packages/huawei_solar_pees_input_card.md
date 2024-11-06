@@ -246,7 +246,7 @@ cards:
       - type: entities
         title: Energy
         entities:
-          - entity: sensor.pees_total_energy_yield
+          - entity: sensor.pees_total_energy_yield_total
             icon: mdi:solar-power-variant-outline
           - entity: sensor.pees_total_energy_import
             icon: mdi:home-import-outline
@@ -255,7 +255,7 @@ cards:
       - type: entities
         title: "- Yield"
         entities:
-          - entity: sensor.pees_total_energy_yield
+          - entity: sensor.pees_total_energy_yield_total
             icon: mdi:solar-power-variant-outline
           - entity: sensor.pees_total_energy_yield_1
             icon: mdi:solar-power-variant-outline
