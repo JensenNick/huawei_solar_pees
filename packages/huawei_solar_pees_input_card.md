@@ -79,8 +79,8 @@ cards:
               - entity: input_number.pees_inverter_1_overall_factor
         - type: entities
           entities:
-            - entity: sensor.pees_inverter_pv_1_voltage
-            - entity: sensor.pees_inverter_pv_2_voltage
+            - entity: sensor.inverter_pv_1_voltage
+            - entity: sensor.inverter_pv_2_voltage
   - type: entities
     entities:
       - entity: sensor.pees_inverter_2_model
@@ -145,8 +145,8 @@ cards:
               - entity: input_number.pees_inverter_2_overall_factor
         - type: entities
           entities:
-            - entity: sensor.pees_inverter_pv_1_voltage_2
-            - entity: sensor.pees_inverter_pv_2_voltage_2
+            - entity: sensor.inverter_pv_1_voltage_2
+            - entity: sensor.inverter_pv_2_voltage_2
   - type: entities
     entities:
       - entity: input_text.pees_electricity_price_import
@@ -175,7 +175,7 @@ cards:
     cards:
       - type: entities
         entities:
-          - entity: sensor.pees_total_power_inverter_input
+          - entity: sensor.pees_power_inverter_input_total
             icon: mdi:solar-power-variant-outline
           - entity: sensor.power_meter_active_power
             icon: mdi:counter
@@ -184,7 +184,7 @@ cards:
         title: Power
       - type: entities
         entities:
-          - entity: sensor.pees_total_power_inverter_input
+          - entity: sensor.pees_power_inverter_input_total
             icon: mdi:solar-power-variant-outline
           - entity: sensor.pees_power_inverter_1_input
             icon: mdi:solar-power-variant-outline
