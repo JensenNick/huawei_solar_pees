@@ -170,7 +170,7 @@ template:
           {% else %}
             {{ 0 }}
           {% endif %}
-      - name: "PEES Power Battery"
+      - name: "PEES Power Battery Discharge Home"
         unique_id: pees_power_battery_discharge_home
         unit_of_measurement: W
         state_class: measurement
