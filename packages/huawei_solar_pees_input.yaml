@@ -1,8 +1,8 @@
 # ---------------------------------------------
 # HUAWEI SOLAR PEES INPUT - User Specific Input
 # ---------------------------------------------
-# version: 
-# branch: alpha-028
+# version: v2.1.5
+# branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
 #
@@ -29,75 +29,73 @@
 # INPUT BOOLEAN
 # -------------
 input_boolean:
-  pees_efficiency_corrected_power_input:
-    name: "PEES Efficiency Corrected Power Input"
-  pees_include_ev_charger:
-    name: "PEES Include EV Charger"
+  efficiency_corrected_power_input:
+    name: "Efficiency Corrected Power Input"
 # ------------
 # INPUT NUMBER
 # ------------
 input_number:
   ## --------------------
   ## Inverter #1 Settings
-  pees_inverter_1_operating_voltage_l1:
-    name: "PEES Inverter #1 Operating Voltage L1" # Rated input voltage 360V
+  inverter_1_operating_voltage_l1:
+    name: "Inverter #1 Operating Voltage L1" # Rated input voltage 360V
     min: 40
     max: 560
     step: 5
-  pees_inverter_1_operating_voltage_lc0:
-    name: "PEES Inverter #1 Operating Voltage LC0" # Rated input voltage 360V
+  inverter_1_operating_voltage_lc0:
+    name: "Inverter #1 Operating Voltage LC0" # Rated input voltage 360V
     min: 90
     max: 560
     step: 5
-  pees_inverter_1_operating_voltage_m1:
-    name: "PEES Inverter #1 Operating Voltage M1" # Rated input voltage 600V
+  inverter_1_operating_voltage_m1:
+    name: "Inverter #1 Operating Voltage M1" # Rated input voltage 600V
     min: 140
     max: 980
     step: 5
-  pees_inverter_1_operating_voltage_map0:
-    name: "PEES Inverter #1 Operating Voltage MAP0" # Rated input voltage 600V
+  inverter_1_operating_voltage_map0:
+    name: "Inverter #1 Operating Voltage MAP0" # Rated input voltage 600V
     min: 160
     max: 1000
     step: 5
-  pees_inverter_1_operating_voltage_mb0:
-    name: "PEES Inverter #1 Operating Voltage MB0" # Rated input voltage 600V
+  inverter_1_operating_voltage_mb0:
+    name: "Inverter #1 Operating Voltage MB0" # Rated input voltage 600V
     min: 200
     max: 1000
     step: 5
-  pees_inverter_1_overall_factor:
-    name: "PEES Inverter #1 Overall Factor"
+  inverter_1_overall_factor:
+    name: "Inverter #1 Overall Factor"
     min: 98
     max: 102
     step: 0.2
   ## --------------------
   ## Inverter #2 Settings
-  pees_inverter_2_operating_voltage_l1:
-    name: "PEES Inverter #2 Operating Voltage L1" # Rated input voltage 360V
+  inverter_2_operating_voltage_l1:
+    name: "Inverter #2 Operating Voltage L1" # Rated input voltage 360V
     min: 40
     max: 560
     step: 5
-  pees_inverter_2_operating_voltage_lc0:
-    name: "PEES Inverter #2 Operating Voltage LC0" # Rated input voltage 360V
+  inverter_2_operating_voltage_lc0:
+    name: "Inverter #2 Operating Voltage LC0" # Rated input voltage 360V
     min: 90
     max: 560
     step: 5
-  pees_inverter_2_operating_voltage_m1:
-    name: "PEES Inverter #2 Operating Voltage M1" # Rated input voltage 600V
+  inverter_2_operating_voltage_m1:
+    name: "Inverter #2 Operating Voltage M1" # Rated input voltage 600V
     min: 140
     max: 980
     step: 5
-  pees_inverter_2_operating_voltage_map0:
-    name: "PEES Inverter #2 Operating Voltage MAP0" # Rated input voltage 600V
+  inverter_2_operating_voltage_map0:
+    name: "Inverter #2 Operating Voltage MAP0" # Rated input voltage 600V
     min: 160
     max: 1000
     step: 5
-  pees_inverter_2_operating_voltage_mb0:
-    name: "PEES Inverter #2 Operating Voltage MB0" # Rated input voltage 600V
+  inverter_2_operating_voltage_mb0:
+    name: "Inverter #2 Operating Voltage MB0" # Rated input voltage 600V
     min: 200
     max: 1000
     step: 5
-  pees_inverter_2_overall_factor:
-    name: "PEES Inverter #2 Overall Factor"
+  inverter_2_overall_factor:
+    name: "Inverter #2 Overall Factor"
     min: 98
     max: 102
     step: 0.2
@@ -107,16 +105,10 @@ input_number:
 input_text:
   ## ------------------
   ## Electricity Prices
-  pees_electricity_price_import:
-    name: "PEES Electricity Price Import (Energi Data Service by Default)"
-  pees_electricity_price_export:
-    name: "PEES Electricity Price Export (Energi Data Service - Sale by Default)"
-  pees_electricity_price_ev_charging:
-    name: "PEES Electricity Price Reduced (Energi Data Service - Reduced by Default)"
-  ## -------------------
-  ## Input Power Sensors
-  pees_power_ev_charger:
-    name: "PEES Power EV Charger (No Default Sensor)"
+  electricity_price_import:
+    name: "Electricity Price Import (Energi Data Service by Default)"
+  electricity_price_export:
+    name: "Electricity Price Export (Energi Data Service - Sale by Default)"
 # ---------------
 # TEMPLATE SENSOR
 # ---------------
@@ -124,132 +116,155 @@ template:
   - binary_sensor:
       ## -------------------
       ## Inverter 1 is model
-      - name: "PEES Inverter 1 is L1"
-        unique_id: pees_inverter_1_is_l1
+      - name: "Inverter 1 is L1"
+        unique_id: inverter_1_is_l1
         state: >
-          {{ states('sensor.pees_inverter_1_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
-      - name: "PEES Inverter 1 is LC0"
-        unique_id: pees_inverter_1_is_lc0
+          {{ states('sensor.inverter_1_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
+      - name: "Inverter 1 is LC0"
+        unique_id: inverter_1_is_lc0
         state: >
-          {{ states('sensor.pees_inverter_1_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
-      - name: "PEES Inverter 1 is M1"
-        unique_id: pees_inverter_1_is_m1
+          {{ states('sensor.inverter_1_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
+      - name: "Inverter 1 is M1"
+        unique_id: inverter_1_is_m1
         state: >
-          {{ states('sensor.pees_inverter_1_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
-      - name: "PEES Inverter 1 is MAP0"
-        unique_id: pees_inverter_1_is_map0
+          {{ states('sensor.inverter_1_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
+      - name: "Inverter 1 is MAP0"
+        unique_id: inverter_1_is_map0
         state: >
-          {{ states('sensor.pees_inverter_1_model') | regex_search('-MAP0') }}
-      - name: "PEES Inverter 1 is MB0"
-        unique_id: pees_inverter_1_is_mb0
+          {{ states('sensor.inverter_1_model') | regex_search('-MAP0') }}
+      - name: "Inverter 1 is MB0"
+        unique_id: inverter_1_is_mb0
         state: >
-          {{ states('sensor.pees_inverter_1_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
+          {{ states('sensor.inverter_1_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
       ## -------------------
       ## Inverter 2 is model
-      - name: "PEES Inverter 2 is L1"
-        unique_id: pees_inverter_2_is_l1
+      - name: "Inverter 2 is L1"
+        unique_id: inverter_2_is_l1
         state: >
-          {{ states('sensor.pees_inverter_2_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
-      - name: "PEES Inverter 2 is LC0"
-        unique_id: pees_inverter_2_is_lc0
+          {{ states('sensor.inverter_2_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
+      - name: "Inverter 2 is LC0"
+        unique_id: inverter_2_is_lc0
         state: >
-          {{ states('sensor.pees_inverter_2_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
-      - name: "PEES Inverter 2 is M1"
-        unique_id: pees_inverter_2_is_m1
+          {{ states('sensor.inverter_2_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
+      - name: "Inverter 2 is M1"
+        unique_id: inverter_2_is_m1
         state: >
-          {{ states('sensor.pees_inverter_2_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
-      - name: "PEES Inverter 1 is MAP0"
-        unique_id: pees_inverter_1_is_map0
+          {{ states('sensor.inverter_2_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
+      - name: "Inverter 1 is MAP0"
+        unique_id: inverter_1_is_map0
         state: >
-          {{ states('sensor.pees_inverter_2_model') | regex_search('-MAP0') }}
-      - name: "PEES Inverter 1 is MB0"
-        unique_id: pees_inverter_1_is_mb0
+          {{ states('sensor.inverter_2_model') | regex_search('-MAP0') }}
+      - name: "Inverter 1 is MB0"
+        unique_id: inverter_1_is_mb0
         state: >
-          {{ states('sensor.pees_inverter_2_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
+          {{ states('sensor.inverter_2_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
   - sensor:
+      ## --------------------------------------
+      ## Electricity Price for Energy Dashboard
+      - name: "Energi Data Service - Negative"
+        unique_id: energi_data_service_negative
+        unit_of_measurement: DKK/kWh
+        state: >
+          {{ states('sensor.energi_data_service') | float(0) * (-1) }}
+      ## ----------------------------
+      ## Tariff on Electricity Export
+      - name: "Tariff Export"
+        unique_id: tariff_export
+        unit_of_measurement: DKK/kWh
+        state: >
+          {% set energinet_indfoedningstarif = 0.3 %}
+          {% set energinet_balancetarif = 0.24 %}
+          {% set konstant_indfoedningstarif = 0.5 %}
+          {% set jyskenergi_balancetarif = 2.5 %}
+            {{ (
+            energinet_indfoedningstarif + 
+            energinet_balancetarif + 
+            konstant_indfoedningstarif + 
+            jyskenergi_balancetarif 
+            ) / 100 }}
       ## --------------
       ## Inverter Model
-      - name: "PEES Inverter #1 Model"
-        unique_id: pees_inverter_1_model
+      - name: "Inverter #1 Model"
+        unique_id: inverter_1_model
         state: >-
-          {{ device_attr('sensor.inverter_input_power','model') | regex_findall_index('(SUN\d+-\d+\.?\d*(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
+          {{ device_attr("sensor.inverter_input_power","model") | regex_findall_index('(SUN\d+-\d+\.?\d*(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >-
           {{ states('sensor.inverter_input_power') not in ['unknown','unavailable','none'] }}
-      - name: "PEES Inverter #2 Model"
-        unique_id: pees_inverter_2_model
+      - name: "Inverter #2 Model"
+        unique_id: inverter_2_model
         state: >-
-          {{ device_attr('sensor.inverter_input_power_2','model') | regex_findall_index('(SUN\d+-\d+\.?\d*(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
+          {{ device_attr("sensor.inverter_input_power_2","model") | regex_findall_index('(SUN\d+-\d+\.?\d*(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >
           {{ states('sensor.inverter_input_power_2') not in ['unknown','unavailable','none'] }}
       ## --------------------
       ## Inverter Rated Power
-      - name: "PEES Inverter #1 Rated Power"
-        unique_id: pees_inverter_1_rated_power
+      - name: "Inverter #1 Rated Power"
+        unique_id: inverter_1_rated_power
         unit_of_measurement: W
         state: >
-          {% if states('sensor.pees_inverter_1_model') | regex_search('-2K|-2000') %}
+          {% if states('sensor.inverter_1_model') | regex_search('-2K|-2000') %}
             {{ 2000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-3K|-3000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-3K|-3000') %}
             {{ 3000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-3.68K|-3680') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-3.68K|-3680') %}
             {{ 3680 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-4K|-4000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-4K|-4000') %}
             {{ 4000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-4.6K|-4600') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-4.6K|-4600') %}
             {{ 4600 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-5K|-5000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-5K|-5000') %}
             {{ 5000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-6K|-6000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-6K|-6000') %}
             {{ 6000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-8K|-8000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-8K|-8000') %}
             {{ 8000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-10K|-10000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-10K|-10000') %}
             {{ 10000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-12K|-12000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-12K|-12000') %}
             {{ 12000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-15K|-15000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-15K|-15000') %}
             {{ 15000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-17K|-17000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-17K|-17000') %}
             {{ 17000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-20K|-20000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-20K|-20000') %}
             {{ 20000 }}
-          {% elif states('sensor.pees_inverter_1_model') | regex_search('-25K|-25000') %}
+          {% elif states('sensor.inverter_1_model') | regex_search('-25K|-25000') %}
             {{ 25000 }}
           {% endif %}
         availability: >
-          {{ states('sensor.pees_inverter_1_model') not in ['unknown','unavailable','none'] }}
-      - name: "PEES Inverter #2 Rated Power"
-        unique_id: pees_inverter_2_rated_power
+          {{ states('sensor.inverter_1_model') not in ['unknown','unavailable','none'] }}
+      - name: "Inverter #2 Rated Power"
+        unique_id: inverter_2_rated_power
         unit_of_measurement: W
         state: >
-          {% if states('sensor.pees_inverter_2_model') | regex_search('-2K|-2000') %}
+          {% if states('sensor.inverter_2_model') | regex_search('-2K|-2000') %}
             {{ 2000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-3K|-3000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-3K|-3000') %}
             {{ 3000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-3.68K|-3680') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-3.68K|-3680') %}
             {{ 3680 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-4K|-4000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-4K|-4000') %}
             {{ 4000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-4.6K|-4600') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-4.6K|-4600') %}
             {{ 4600 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-5K|-5000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-5K|-5000') %}
             {{ 5000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-6K|-6000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-6K|-6000') %}
             {{ 6000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-8K|-8000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-8K|-8000') %}
             {{ 8000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-10K|-10000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-10K|-10000') %}
             {{ 10000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-12K|-12000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-12K|-12000') %}
             {{ 12000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-15K|-15000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-15K|-15000') %}
             {{ 15000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-17K|-17000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-17K|-17000') %}
             {{ 17000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-20K|-20000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-20K|-20000') %}
             {{ 20000 }}
-          {% elif states('sensor.pees_inverter_2_model') | regex_search('-25K|-25000') %}
+          {% elif states('sensor.inverter_2_model') | regex_search('-25K|-25000') %}
             {{ 25000 }}
           {% endif %}
         availability: >
-          {{ states('sensor.pees_inverter_2_model') not in ['unknown','unavailable','none'] }}
+          {{ states('sensor.inverter_2_model') not in ['unknown','unavailable','none'] }}
