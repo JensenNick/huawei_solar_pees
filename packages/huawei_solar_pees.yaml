@@ -172,7 +172,7 @@ template:
           is_state('input_text.pees_electricity_price_import','unknown') %}
             {{ states('sensor.energi_data_service') | float(0) }}
           {% else %}
-            {{ states ( states('input_text.pees_electricity_price_import')) | float(0) }}
+            {{ states(states('input_text.pees_electricity_price_import')) | float(0) }}
           {% endif %}
       - name: "PEES Electricity Price Export"
         unique_id: pees_electricity_price_export
@@ -184,7 +184,7 @@ template:
           is_state('input_text.pees_electricity_price_export','unknown') %}
             {{ states('sensor.energi_data_service_sale') | float(0) }}
           {% else %}
-            {{ states ( states('input_text.pees_electricity_price_export')) | float(0) }}
+            {{ states(states('input_text.pees_electricity_price_export')) | float(0) }}
           {% endif %}
       ## -------------
       ## Power Sensors
