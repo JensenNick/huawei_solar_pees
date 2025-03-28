@@ -69,7 +69,7 @@ homeassistant:
 ```
 
 * **Create a directory/folder** named `packages` in the `CONFIG` directory/folder (the main directory/folder).
-* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml), [*"huawei_solar_pees_input.yaml"*](packages/huawei_solar_pees_input.yaml) and optionally [*"huawei_solar_pees_ev.yaml"*](packages/huawei_solar_pees_ev.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_pees_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below).
+* **Copy/paste the package files** [*"huawei_solar_pees.yaml"*](packages/huawei_solar_pees.yaml) and [*"huawei_solar_pees_input.yaml"*](packages/huawei_solar_pees_input.yaml) into your `packages` directory/folder.<br> The *"huawei_solar_pees_input.yaml"* file is necessarry although you do not wish to provide your own electricity price sensor or take advantage of the efficiency corrected input power sensor (see below).
 
 ![Install Package](pictures/install_package.jpg)
 
@@ -102,9 +102,9 @@ If you for some reason do not wish to use the default names you need to edit the
 
 ```yaml
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
-# - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
+# - 'sensor.power_inverter_2_input' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
-# - 'sensor.batteries_charge_discharge_power' (from the Huawei Solar integration)
+# - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
  ```
 
 ### 3.3 Electricity Price
@@ -197,6 +197,14 @@ As of February 2024 the Energy Dashboard in Home Assistant does not support addi
 If you have several tariffs and/or they change from time to time, you might find it beneficial to have a sensor with the calculation of the tariff for sale/export. In the *"huawei_solar_pees_input.yaml"* you will find the `sensor.tariff_export` which you can use for this.
 
 ## 5. Known "bugs"
+
+#### Inverter model
+I have no documentation about the output of the sensor which is deriving the data about inverter model for the models mentioned below, hence the efficiency calculation may not work. It falls back to giving the result without the efficiency correction, so this is not easily detected.
+
+* Huawei SUN2000 3.68 KTL L1
+* Huawei SUN2000 4.6 KTL L1
+
+As of now it is assumed that the derived names will be formatted as *"SUN2000-3-68KTL-L1"* and *"SUN2000-4-6KTL-L1"* respectively. If you have one of these inverter models please help to identify the naming scheme for these two models.
 
 #### Utility Meters "jumping"
 See this report (https://github.com/JensenNick/huawei_solar_pees/issues/66)
