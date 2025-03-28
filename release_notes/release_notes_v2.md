@@ -2,6 +2,9 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v3.0.1
+
+
 ## Release Note / v2.2.6
 
 Update of the huawei_solar_pees_input.yaml file (version v2.1.5) to automatically fetch the inverter models SUN2000 3.68KTL-L1 and SUN2000 4.6KTL-L1.
