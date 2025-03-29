@@ -447,61 +447,61 @@ template:
       ## Economy Sensors
 ## ---------------
 ## Economy Sensors
-- name: "PEES Economy - Result wo PV"
-  unique_id: pees_economy_result_wo_pv
-  unit_of_measurement: DKK
-  state_class: total_increasing
-  state: >-
-    {% set house_load_cost = states('sensor.pees_house_load_cost') | float if is_number(states('sensor.pees_house_load_cost')) else 0 %}
-      {{ house_load_cost | round(5) }}
-- name: "PEES Economy - Expenses w PV"
-  unique_id: pees_economy_expenses_w_pv
-  unit_of_measurement: DKK
-  state_class: total_increasing
-  state: >-
-    {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
-      {{ import_cost | round(5) }}
-- name: "PEES Economy - Income w PV"
-  unique_id: pees_economy_income_w_pv
-  unit_of_measurement: DKK
-  state_class: total_increasing
-  state: >-
-    {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
-      {{ export_income | round(5) }}
-- name: "PEES Economy - Result w PV"
-  unique_id: pees_economy_result_w_pv
-  unit_of_measurement: DKK
-  state_class: total
-  state: >-
-    {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
-    {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
-      {{ (
+  - name: "PEES Economy - Result wo PV"
+    unique_id: pees_economy_result_wo_pv
+    unit_of_measurement: DKK
+    state_class: total_increasing
+    state: >-
+      {% set house_load_cost = states('sensor.pees_house_load_cost') | float if is_number(states('sensor.pees_house_load_cost')) else 0 %}
+        {{ house_load_cost | round(5) }}
+  - name: "PEES Economy - Expenses w PV"
+    unique_id: pees_economy_expenses_w_pv
+    unit_of_measurement: DKK
+    state_class: total_increasing
+    state: >-
+      {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
+        {{ import_cost | round(5) }}
+  - name: "PEES Economy - Income w PV"
+    unique_id: pees_economy_income_w_pv
+    unit_of_measurement: DKK
+    state_class: total_increasing
+    state: >-
+      {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
+        {{ export_income | round(5) }}
+  - name: "PEES Economy - Result w PV"
+    unique_id: pees_economy_result_w_pv
+    unit_of_measurement: DKK
+    state_class: total
+    state: >-
+      {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
+      {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
+        {{ (
         import_cost - 
         export_income
         ) | round(5) }}
-- name: "PEES Economy - NRI PV"
-  unique_id: pees_economy_nri_pv
-  unit_of_measurement: DKK
-  state_class: total
-  state: >-
-    {% set house_load_cost = states('sensor.pees_house_load_cost') | float if is_number(states('sensor.pees_house_load_cost')) else 0 %}
-    {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
-    {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
-      {{ (
+  - name: "PEES Economy - NRI PV"
+    unique_id: pees_economy_nri_pv
+    unit_of_measurement: DKK
+    state_class: total
+    state: >-
+      {% set house_load_cost = states('sensor.pees_house_load_cost') | float if is_number(states('sensor.pees_house_load_cost')) else 0 %}
+      {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
+      {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
+        {{ (
         house_load_cost -
         import_cost +
         export_income
         ) | round(5) }}
-- name: "PEES Economy - NRI Battery"
-  unique_id: pees_economy_nri_battery
-  unit_of_measurement: DKK
-  state_class: total
-  state: >-
-    {% set battery_discharge_grid_sale = states('sensor.pees_battery_discharge_grid_sale') | float if is_number(states('sensor.pees_battery_discharge_grid_sale')) else 0 %}
-    {% set battery_discharge_house_saving = states('sensor.pees_battery_discharge_house_saving') | float if is_number(states('sensor.pees_battery_discharge_house_saving')) else 0 %}
-    {% set battery_charge_yield_sale = states('sensor.pees_battery_charge_yield_sale') | float if is_number(states('sensor.pees_battery_charge_yield_sale')) else 0 %}
-    {% set battery_charge_grid_cost = states('sensor.pees_battery_charge_grid_cost') | float if is_number(states('sensor.pees_battery_charge_grid_cost')) else 0 %}
-      {{ (
+  - name: "PEES Economy - NRI Battery"
+    unique_id: pees_economy_nri_battery
+    unit_of_measurement: DKK
+    state_class: total
+    state: >-
+      {% set battery_discharge_grid_sale = states('sensor.pees_battery_discharge_grid_sale') | float if is_number(states('sensor.pees_battery_discharge_grid_sale')) else 0 %}
+      {% set battery_discharge_house_saving = states('sensor.pees_battery_discharge_house_saving') | float if is_number(states('sensor.pees_battery_discharge_house_saving')) else 0 %}
+      {% set battery_charge_yield_sale = states('sensor.pees_battery_charge_yield_sale') | float if is_number(states('sensor.pees_battery_charge_yield_sale')) else 0 %}
+      {% set battery_charge_grid_cost = states('sensor.pees_battery_charge_grid_cost') | float if is_number(states('sensor.pees_battery_charge_grid_cost')) else 0 %}
+        {{ (
         battery_discharge_grid_sale +
         battery_discharge_house_saving -
         battery_charge_yield_sale -
