@@ -530,7 +530,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -560,7 +560,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -590,7 +590,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -620,7 +620,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -650,7 +650,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -680,7 +680,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -710,7 +710,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -740,7 +740,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -770,7 +770,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
@@ -800,7 +800,7 @@ template:
           {% endif %}
             {{ price * delta }}
         attributes:
-          last: >
+          last: >-
             {% if this.attributes.last is defined %}
               {% set lastlast = this.attributes.last | float(0) %}
             {% else %}
