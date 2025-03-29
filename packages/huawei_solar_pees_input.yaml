@@ -126,58 +126,58 @@ template:
       ## Inverter 1 is model
       - name: "PEES Inverter 1 is L1"
         unique_id: pees_inverter_1_is_l1
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_1_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
       - name: "PEES Inverter 1 is LC0"
         unique_id: pees_inverter_1_is_lc0
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_1_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
       - name: "PEES Inverter 1 is M1"
         unique_id: pees_inverter_1_is_m1
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_1_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
       - name: "PEES Inverter 1 is MAP0"
         unique_id: pees_inverter_1_is_map0
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_1_model') | regex_search('-MAP0') }}
       - name: "PEES Inverter 1 is MB0"
         unique_id: pees_inverter_1_is_mb0
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_1_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
       ## -------------------
       ## Inverter 2 is model
       - name: "PEES Inverter 2 is L1"
         unique_id: pees_inverter_2_is_l1
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_2_model') | regex_search('-L1|-5000-1PH|-6000-1PH') }}
       - name: "PEES Inverter 2 is LC0"
         unique_id: pees_inverter_2_is_lc0
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_2_model') | regex_search('-LC0|-8000-1PH|-10000-1PH') }}
       - name: "PEES Inverter 2 is M1"
         unique_id: pees_inverter_2_is_m1
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_2_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
       - name: "PEES Inverter 1 is MAP0"
         unique_id: pees_inverter_1_is_map0
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_2_model') | regex_search('-MAP0') }}
       - name: "PEES Inverter 1 is MB0"
         unique_id: pees_inverter_1_is_mb0
-        state: >
+        state: >-
           {{ states('sensor.pees_inverter_2_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
   - sensor:
       ## --------------
       ## Inverter Model
       - name: "PEES Inverter #1 Model"
         unique_id: pees_inverter_1_model
-        state: >-
+        state: >--
           {{ device_attr('sensor.inverter_input_power','model') | regex_findall_index('(SUN\d+-\d+\.?\d*(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >-
           {{ states('sensor.inverter_input_power') not in ['unknown','unavailable','none'] }}
       - name: "PEES Inverter #2 Model"
         unique_id: pees_inverter_2_model
-        state: >-
+        state: >--
           {{ device_attr('sensor.inverter_input_power_2','model') | regex_findall_index('(SUN\d+-\d+\.?\d*(KTL|K)-(L|LC|M|MB|MAP)\d)|(IS-HYB-\d+-[1|3]PH)', 0) | first }}
         availability: >
           {{ states('sensor.inverter_input_power_2') not in ['unknown','unavailable','none'] }}
@@ -186,7 +186,7 @@ template:
       - name: "PEES Inverter #1 Rated Power"
         unique_id: pees_inverter_1_rated_power
         unit_of_measurement: W
-        state: >
+        state: >-
           {% if states('sensor.pees_inverter_1_model') | regex_search('-2K|-2000') %}
             {{ 2000 }}
           {% elif states('sensor.pees_inverter_1_model') | regex_search('-3K|-3000') %}
@@ -221,7 +221,7 @@ template:
       - name: "PEES Inverter #2 Rated Power"
         unique_id: pees_inverter_2_rated_power
         unit_of_measurement: W
-        state: >
+        state: >-
           {% if states('sensor.pees_inverter_2_model') | regex_search('-2K|-2000') %}
             {{ 2000 }}
           {% elif states('sensor.pees_inverter_2_model') | regex_search('-3K|-3000') %}
