@@ -437,12 +437,11 @@ template:
         device_class: energy
         state_class: total_increasing
         state: >-
-          {% set energy_yield_1 = states('sensor.pees_energy_yield_1') | float if is_number(states('sensor.pees_energy_yield_1')) else 0 %}
-          {% set energy_yield_2 = states('sensor.pees_energy_yield_2') | float if is_number(states('sensor.pees_energy_yield_2')) else 0 %}
-            {{ ( 
-            energy_yield_1 + 
-            energy_yield_2
-            ) | float(5) }}
+          {{ states('sensor.pees_energy_yield_1') | float +
+          states('sensor.pees_energy_yield_2') | float }}
+        availability: >
+          {{ has_value('sensor.pees_energy_yield_1') and
+          has_value('sensor.pees_energy_yield_2') }}
       ## ---------------
       ## Economy Sensors
 ## ---------------
@@ -452,61 +451,67 @@ template:
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >-
-          {% set house_load_cost = states('sensor.pees_house_load_cost') | float if is_number(states('sensor.pees_house_load_cost')) else 0 %}
-            {{ house_load_cost | round(5) }}
+          {{ states('sensor.pees_house_load_cost') | float(0) | round(5) }}
+        availability: >
+          {{ has_value('sensor.pees_house_load_cost') }}
       - name: "PEES Economy - Expenses w PV"
         unique_id: pees_economy_expenses_w_pv
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >-
-          {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
-            {{ import_cost | round(5) }}
+          {{ states('sensor.pees_import_cost') | float(0) | round(5) }}
+        availability: >
+          {{ has_value('sensor.pees_import_cost') }}
       - name: "PEES Economy - Income w PV"
         unique_id: pees_economy_income_w_pv
         unit_of_measurement: DKK
         state_class: total_increasing
         state: >-
-          {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
-            {{ export_income | round(5) }}
+          {{ states('sensor.pees_export_income') | float(0) | round(5) }}
+        availability: >
+          {{ has_value('sensor.pees_export_income') }}
       - name: "PEES Economy - Result w PV"
         unique_id: pees_economy_result_w_pv
         unit_of_measurement: DKK
         state_class: total
         state: >-
-          {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
-          {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
-            {{ (
-            import_cost - 
-            export_income
-            ) | round(5) }}
+          {{ (
+          states('sensor.pees_import_cost') | float -
+          states('sensor.pees_export_income') | float 
+          ) | round(5) }}
+        availability: >
+          {{ has_value('sensor.pees_import_cost') or
+          has_value('sensor.pees_export_income') }}
       - name: "PEES Economy - NRI PV"
         unique_id: pees_economy_nri_pv
         unit_of_measurement: DKK
         state_class: total
         state: >-
-          {% set house_load_cost = states('sensor.pees_house_load_cost') | float if is_number(states('sensor.pees_house_load_cost')) else 0 %}
-          {% set import_cost = states('sensor.pees_import_cost') | float if is_number(states('sensor.pees_import_cost')) else 0 %}
-          {% set export_income = states('sensor.pees_export_income') | float if is_number(states('sensor.pees_export_income')) else 0 %}
-            {{ (
-            house_load_cost -
-            import_cost +
-            export_income
-            ) | round(5) }}
+          {{ (
+          states('sensor.pees_house_load_cost') | float -
+          states('sensor.pees_import_cost') | float +
+          states('sensor.pees_export_income') | float 
+          ) | round(5) }}
+        availability: >
+          {{ has_value('sensor.pees_house_load_cost') or
+          has_value('sensor.pees_import_cost') or
+          has_value('sensor.pees_export_income') }}
       - name: "PEES Economy - NRI Battery"
         unique_id: pees_economy_nri_battery
         unit_of_measurement: DKK
         state_class: total
         state: >-
-          {% set battery_discharge_grid_sale = states('sensor.pees_battery_discharge_grid_sale') | float if is_number(states('sensor.pees_battery_discharge_grid_sale')) else 0 %}
-          {% set battery_discharge_house_saving = states('sensor.pees_battery_discharge_house_saving') | float if is_number(states('sensor.pees_battery_discharge_house_saving')) else 0 %}
-          {% set battery_charge_yield_sale = states('sensor.pees_battery_charge_yield_sale') | float if is_number(states('sensor.pees_battery_charge_yield_sale')) else 0 %}
-          {% set battery_charge_grid_cost = states('sensor.pees_battery_charge_grid_cost') | float if is_number(states('sensor.pees_battery_charge_grid_cost')) else 0 %}
-            {{ (
-            battery_discharge_grid_sale +
-            battery_discharge_house_saving -
-            battery_charge_yield_sale -
-            battery_charge_grid_cost
-            ) | round(5) }}
+          {{ (
+          states('sensor.pees_battery_discharge_grid_sale') | float +
+          states('sensor.pees_battery_discharge_house_saving') | float -
+          states('sensor.pees_battery_charge_yield_sale') | float -
+          states('sensor.pees_battery_charge_grid_cost') | float 
+          ) | round(5) }}
+        availability: >
+          {{ has_value('sensor.pees_battery_discharge_grid_sale') or
+          has_value('sensor.pees_battery_discharge_house_saving') or
+          has_value('sensor.pees_battery_charge_yield_sale') or
+          has_value('sensor.pees_battery_charge_grid_cost') }}
   # ------------------------
   # TEMPLATE TRIGGER SENSORS
   # ------------------------
