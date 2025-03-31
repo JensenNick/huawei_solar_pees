@@ -955,7 +955,7 @@ utility_meter:
   ### Economy - Result without PV
   pees_total_economy_result_wo_pv:
     source: sensor.pees_economy_result_wo_pv
-    name: "PEES Economy - Result wo PV"
+    name: "PEES Total Economy - Result wo PV"
     unique_id: pees_total_economy_result_wo_pv
   pees_hourly_economy_result_wo_pv:
     source: sensor.pees_economy_result_wo_pv
@@ -985,7 +985,7 @@ utility_meter:
   ### Economy - Result with PV
   pees_total_economy_result_w_pv:
     source: sensor.pees_economy_result_w_pv
-    name: "PEES Economy - Result w PV"
+    name: "PEES Total Economy - Result w PV"
     unique_id: pees_total_economy_result_w_pv
     net_consumption: true
   pees_hourly_economy_result_w_pv:
