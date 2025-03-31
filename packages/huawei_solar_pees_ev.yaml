@@ -580,112 +580,112 @@ utility_meter:
   pees_total_energy_home_load:
     source: sensor.pees_energy_home_load
     name: "PEES Total Energy Home Load"
-    unique_id: pees_energy_home_load
+    unique_id: pees_total_energy_home_load
     periodically_resetting: false
   pees_total_energy_ev_load:
     source: sensor.pees_energy_ev_load
     name: "PEES Total Energy EV Load"
-    unique_id: pees_energy_ev_load
+    unique_id: pees_total_energy_ev_load
     periodically_resetting: false
   pees_total_energy_home_yield:
     source: sensor.pees_energy_home_load_yield
     name: "PEES Total Energy Home Yield"
-    unique_id: pees_energy_home_yield
+    unique_id: pees_total_energy_home_yield
     periodically_resetting: false
   pees_total_energy_ev_yield:
     source: sensor.pees_energy_ev_load_yield
     name: "PEES Total Energy EV Yield"
-    unique_id: pees_energy_ev_yield
+    unique_id: pees_total_energy_ev_yield
     periodically_resetting: false
   pees_total_energy_home_battery:
     source: sensor.pees_energy_battery_discharge_home
     name: "PEES Total Energy Home Battery"
-    unique_id: pees_energy_home_battery
+    unique_id: pees_total_energy_home_battery
     periodically_resetting: false
   pees_total_energy_ev_battery:
     source: sensor.pees_energy_battery_discharge_ev
     name: "PEES Total Energy EV Battery"
-    unique_id: pees_energy_ev_battery
+    unique_id: pees_total_energy_ev_battery
     periodically_resetting: false
   pees_total_energy_home_grid:
     source: sensor.pees_energy_home_load_grid
     name: "PEES Total Energy Home Grid"
-    unique_id: pees_energy_home_grid
+    unique_id: pees_total_energy_home_grid
     periodically_resetting: false
   pees_total_energy_ev_grid:
     source: sensor.pees_energy_ev_load_grid
     name: "PEES Total Energy EV Grid"
-    unique_id: pees_energy_ev_grid
+    unique_id: pees_total_energy_ev_grid
     periodically_resetting: false
   ## ------------------------------------- nri
   ## Economy Utility Meters - Result & NRI 
   pees_total_economy_result_home_w_pv:
     source: sensor.pees_economy_result_home_w_pv
     name: "PEES Total Economy - Result Home w PV"
-    unique_id: pees_economy_result_home_w_pv
+    unique_id: pees_total_economy_result_home_w_pv
   pees_total_economy_nri_home:
     source: sensor.pees_economy_nri_home
     name: "PEES Total Economy - NRI Home"
-    unique_id: pees_economy_nri_home
+    unique_id: pees_total_economy_nri_home
     net_consumption: true
   pees_total_economy_result_ev_w_pv:
     source: sensor.pees_economy_result_ev_w_pv
     name: "PEES Total Economy - Result EV w PV"
-    unique_id: pees_economy_result_ev_w_pv
+    unique_id: pees_total_economy_result_ev_w_pv
   pees_total_economy_nri_ev:
     source: sensor.pees_economy_nri_ev
     name: "PEES Total Economy - NRI EV"
-    unique_id: pees_economy_nri_ev
+    unique_id: pees_total_economy_nri_ev
     net_consumption: true
   ## ----------------------
   ## Economy Utility Meters
   pees_total_economy_result_home_wo_pv:
     source: sensor.pees_economy_result_home_wo_pv
     name: "PEES Total Economy - Result Home wo PV"
-    unique_id: pees_economy_result_home_wo_pv
+    unique_id: pees_total_economy_result_home_wo_pv
     delta_values: true
   pees_total_economy_result_ev_wo_pv:
     source: sensor.pees_economy_result_ev_wo_pv
     name: "PEES Total Economy - Result EV wo PV"
-    unique_id: pees_economy_result_ev_wo_pv
+    unique_id: pees_total_economy_result_ev_wo_pv
     delta_values: true
   pees_total_home_load_yield_saving:
     source: sensor.pees_home_load_yield_saving
     name: "PEES Total Home Load Yield - Saving"
-    unique_id: pees_home_load_yield_saving
+    unique_id: pees_total_home_load_yield_saving
     delta_values: true
   pees_total_home_load_yield_sale:
     source: sensor.pees_home_load_yield_sale
     name: "PEES Total Home Load Yield - Sale"
-    unique_id: pees_home_load_yield_sale
+    unique_id: pees_total_home_load_yield_sale
     delta_values: true
   pees_total_ev_load_yield_saving:
     source: sensor.pees_ev_load_yield_saving
     name: "PEES Total EV Load Yield - Saving"
-    unique_id: pees_ev_load_yield_saving
+    unique_id: pees_total_ev_load_yield_saving
     delta_values: true
   pees_total_ev_load_yield_sale:
     source: sensor.pees_ev_load_yield_sale
     name: "PEES Total EV Load Yield - Sale"
-    unique_id: pees_ev_load_yield_sale
+    unique_id: pees_total_ev_load_yield_sale
     delta_values: true
   pees_total_battery_discharge_home_saving:
     source: sensor.pees_battery_discharge_home_saving
     name: "PEES Total Battery Discharge Home - Saving"
-    unique_id: pees_battery_discharge_home_saving
+    unique_id: pees_total_battery_discharge_home_saving
     delta_values: true
   pees_total_battery_discharge_ev_saving:
     source: sensor.pees_battery_discharge_ev_saving
     name: "PEES Total Battery Discharge EV - Saving"
-    unique_id: pees_battery_discharge_ev_saving
+    unique_id: pees_total_battery_discharge_ev_saving
     delta_values: true
   pees_total_home_load_grid_cost:
     source: sensor.pees_home_load_grid_cost
     name: "PEES Total Home Load Grid - Cost"
-    unique_id: pees_home_load_grid_cost
+    unique_id: pees_total_home_load_grid_cost
     delta_values: true
   pees_total_ev_load_grid_cost:
     source: sensor.pees_ev_load_grid_cost
     name: "PEES Total EV Load Grid - Cost"
-    unique_id: pees_ev_load_grid_cost
+    unique_id: pees_total_ev_load_grid_cost
     delta_values: true
