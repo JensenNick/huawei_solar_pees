@@ -109,7 +109,7 @@ template:
         unit_of_measurement: DKK
         state_class: measurement
         state: >-
-          {% if is_state('input_text.pees_electricity_ev_charging','') or
+          {% if is_state('input_text.pees_electricity_price_ev_charging','') or
           is_state('input_text.pees_electricity_price_ev_charging','unavailable') or
           is_state('input_text.pees_electricity_price_ev_charging','unknown') %}
             {{ states('sensor.energi_data_service_reduced') | float(0) }}
