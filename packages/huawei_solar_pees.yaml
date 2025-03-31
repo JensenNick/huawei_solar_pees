@@ -817,3 +817,1128 @@ template:
             {% else %}
               {{ lastlast }}
             {% endif %}
+# -----------------------------------
+#  HUAWEI SOLAR PEES - UTILITY METERS
+# -----------------------------------
+utility_meter:
+  ## ---------------------
+  ## Energy Utility Meters
+  pees_total_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Total Energy Battery Charge"
+    unique_id: pees_total_energy_battery_charge
+    periodically_resetting: false
+  pees_total_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Total Energy Battery Charge Grid"
+    unique_id: pees_total_energy_battery_charge_grid
+    periodically_resetting: false
+  pees_total_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Total Energy Battery Charge Yield"
+    unique_id: pees_total_energy_battery_charge_yield
+    periodically_resetting: false
+  pees_total_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Total Energy Battery Discharge"
+    unique_id: pees_total_energy_battery_discharge
+    periodically_resetting: false
+  pees_total_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Total Energy Battery Discharge Grid"
+    unique_id: pees_total_energy_battery_discharge_grid
+    periodically_resetting: false
+  pees_total_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Total Energy Battery Discharge House"
+    unique_id: pees_total_energy_battery_discharge_house
+    periodically_resetting: false
+  pees_total_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Total Energy Import"
+    unique_id: pees_total_energy_import
+    periodically_resetting: false
+  pees_total_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Total Energy Export"
+    unique_id: pees_total_energy_export
+    periodically_resetting: false
+  pees_total_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Total Energy Export Yield"
+    unique_id: pees_total_energy_export_yield
+    periodically_resetting: false
+  pees_total_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Total Energy House Load"
+    unique_id: pees_total_energy_house_load
+    periodically_resetting: false
+  pees_total_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Total Energy House Load Grid"
+    unique_id: pees_total_energy_house_load_grid
+    periodically_resetting: false
+  pees_total_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Total Energy House Load Yield"
+    unique_id: pees_total_energy_house_load_yield
+    periodically_resetting: false
+  pees_total_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Total Energy Yield #1"
+    unique_id: pees_total_energy_yield_1
+    periodically_resetting: false
+  pees_total_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Total Energy Yield #2"
+    unique_id: pees_total_energy_yield_2
+    periodically_resetting: false
+  pees_total_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Total Energy Yield Total"
+    unique_id: pees_total_energy_yield_total
+    periodically_resetting: false
+  ## ----------------------
+  ## Economy Utility Meters
+  pees_total_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Total Battery Charge Grid - Cost"
+    unique_id: pees_total_battery_charge_grid_cost
+    delta_values: true
+  pees_total_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Total Battery Charge Yield - Sale"
+    unique_id: pees_total_battery_charge_yield_sale
+    delta_values: true
+  pees_total_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Total Battery Discharge House - Saving"
+    unique_id: pees_total_battery_discharge_house_saving
+    delta_values: true
+  pees_total_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Total Battery Discharge Grid - Sale"
+    unique_id: pees_total_battery_discharge_grid_sale
+    delta_values: true
+  pees_total_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Total Export - Income"
+    unique_id: pees_total_export_income
+    delta_values: true
+  pees_total_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Total Import - Cost"
+    unique_id: pees_total_import_cost
+    delta_values: true
+  pees_total_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Total House Load - Cost"
+    unique_id: pees_total_house_load_cost
+    delta_values: true
+  pees_total_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Total House Load Grid - Cost"
+    unique_id: pees_total_house_load_grid_cost
+    delta_values: true
+  pees_total_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Total House Load Yield - Saving"
+    unique_id: pees_total_house_load_yield_saving
+    delta_values: true
+  pees_total_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Total Export Yield - Sale"
+    unique_id: pees_total_export_yield_sale
+    delta_values: true
+  ## ----------------------
+  ## Economy Utility Meters
+  ### Economy - Result without PV
+  pees_total_economy_result_wo_pv:
+    source: sensor.pees_economy_result_wo_pv
+    name: "PEES Economy - Result wo PV"
+    unique_id: pees_total_economy_result_wo_pv
+  pees_hourly_economy_result_wo_pv:
+    source: sensor.pees_economy_result_wo_pv
+    name: "PEES Hourly Economy - Result wo PV"
+    unique_id: pees_hourly_economy_result_wo_pv
+    cycle: hourly
+  pees_daily_economy_result_wo_pv:
+    source: sensor.pees_economy_result_wo_pv
+    name: "PEES Daily Economy - Result wo PV"
+    unique_id: pees_daily_economy_result_wo_pv
+    cycle: daily
+  pees_monthly_economy_result_wo_pv:
+    source: sensor.pees_economy_result_wo_pv
+    name: "PEES Monthly Economy - Result wo PV"
+    unique_id: pees_monthly_economy_result_wo_pv
+    cycle: monthly
+  pees_quarterly_economy_result_wo_pv:
+    source: sensor.pees_economy_result_wo_pv
+    name: "PEES Quarterly Economy - Result wo PV"
+    unique_id: pees_quarterly_economy_result_wo_pv
+    cycle: quarterly
+  pees_yearly_economy_result_wo_pv:
+    source: sensor.pees_economy_result_wo_pv
+    name: "PEES Yearly Economy - Result wo PV"
+    unique_id: pees_yearly_economy_result_wo_pv
+    cycle: yearly
+  ### Economy - Result with PV
+  pees_total_economy_result_w_pv:
+    source: sensor.pees_economy_result_w_pv
+    name: "PEES Economy - Result w PV"
+    unique_id: pees_total_economy_result_w_pv
+    net_consumption: true
+  pees_hourly_economy_result_w_pv:
+    source: sensor.pees_economy_result_w_pv
+    name: "PEES Hourly Economy - Result w PV"
+    unique_id: pees_hourly_economy_result_w_pv
+    cycle: hourly
+    net_consumption: true
+  pees_daily_economy_result_w_pv:
+    source: sensor.pees_economy_result_w_pv
+    name: "PEES Daily Economy - Result w PV"
+    unique_id: pees_daily_economy_result_w_pv
+    cycle: daily
+    net_consumption: true
+  pees_monthly_economy_result_w_pv:
+    source: sensor.pees_economy_result_w_pv
+    name: "PEES Monthly Economy - Result w PV"
+    unique_id: pees_monthly_economy_result_w_pv
+    cycle: monthly
+    net_consumption: true
+  pees_quarterly_economy_result_w_pv:
+    source: sensor.pees_economy_result_w_pv
+    name: "PEES Quarterly Economy - Result w PV"
+    unique_id: pees_quarterly_economy_result_w_pv
+    cycle: quarterly
+    net_consumption: true
+  pees_yearly_economy_result_w_pv:
+    source: sensor.pees_economy_result_w_pv
+    name: "PEES Yearly Economy - Result w PV"
+    unique_id: pees_yearly_economy_result_w_pv
+    cycle: yearly
+    net_consumption: true
+  ### Economy - Expenses
+  pees_total_economy_expenses_w_pv:
+    source: sensor.pees_economy_expenses_w_pv
+    name: "PEES Total Economy - Expenses w PV"
+    unique_id: pees_total_economy_expenses_w_pv
+  pees_hourly_economy_expenses_w_pv:
+    source: sensor.pees_economy_expenses_w_pv
+    name: "PEES Hourly Economy - Expenses w PV"
+    unique_id: pees_hourly_economy_expenses_w_pv
+    cycle: hourly
+  pees_daily_economy_expenses_w_pv:
+    source: sensor.pees_economy_expenses_w_pv
+    name: "PEES Daily Economy - Expenses w PV"
+    unique_id: pees_daily_economy_expenses_w_pv
+    cycle: daily
+  pees_monthly_economy_expenses_w_pv:
+    source: sensor.pees_economy_expenses_w_pv
+    name: "PEES Monthly Economy - Expenses w PV"
+    unique_id: pees_monthly_economy_expenses_w_pv
+    cycle: monthly
+  pees_quarterly_economy_expenses_w_pv:
+    source: sensor.pees_economy_expenses_w_pv
+    name: "PEES Quarterly Economy - Expenses w PV"
+    unique_id: pees_quarterly_economy_expenses_w_pv
+    cycle: quarterly
+  pees_yearly_economy_expenses_w_pv:
+    source: sensor.pees_economy_expenses_w_pv
+    name: "PEES Yearly Economy - Expenses w PV"
+    unique_id: pees_yearly_economy_expenses_w_pv
+    cycle: yearly
+  ### Economy - Income
+  pees_total_economy_income_w_pv:
+    source: sensor.pees_economy_income_w_pv
+    name: "PEES Total Economy - Income w PV"
+    unique_id: pees_total_economy_income_w_pv
+  pees_hourly_economy_income_w_pv:
+    source: sensor.pees_economy_income_w_pv
+    name: "PEES Hourly Economy - Income w PV"
+    unique_id: pees_hourly_economy_income_w_pv
+    cycle: hourly
+  pees_daily_economy_income_w_pv:
+    source: sensor.pees_economy_income_w_pv
+    name: "PEES Daily Economy - Income w PV"
+    unique_id: pees_daily_economy_income_w_pv
+    cycle: daily
+  pees_monthly_economy_income_w_pv:
+    source: sensor.pees_economy_income_w_pv
+    name: "PEES Monthly Economy - Income w PV"
+    unique_id: pees_monthly_economy_income_w_pv
+    cycle: monthly
+  pees_quarterly_economy_income_w_pv:
+    source: sensor.pees_economy_income_w_pv
+    name: "PEES Quarterly Economy - Income w PV"
+    unique_id: pees_quarterly_economy_income_w_pv
+    cycle: quarterly
+  pees_yearly_economy_income_w_pv:
+    source: sensor.pees_economy_income_w_pv
+    name: "PEES Yearly Economy - Income w PV"
+    unique_id: pees_yearly_economy_income_w_pv
+    cycle: yearly
+  ### Economy - Net Return on Investment PV
+  pees_total_economy_nri_pv:
+    source: sensor.pees_economy_nri_pv
+    name: "PEES Total Economy - NRI PV"
+    unique_id: pees_total_economy_nri_pv
+    net_consumption: true
+  pees_hourly_economy_nri_pv:
+    source: sensor.pees_economy_nri_pv
+    name: "PEES Hourly Economy - NRI PV"
+    unique_id: pees_hourly_economy_nri_pv
+    cycle: hourly
+    net_consumption: true
+  pees_daily_economy_nri_pv:
+    source: sensor.pees_economy_nri_pv
+    name: "PEES Daily Economy - NRI PV"
+    unique_id: pees_daily_economy_nri_pv
+    cycle: daily
+    net_consumption: true
+  pees_monthly_economy_nri_pv:
+    source: sensor.pees_economy_nri_pv
+    name: "PEES Monthly Economy - NRI PV"
+    unique_id: pees_monthly_economy_nri_pv
+    cycle: monthly
+    net_consumption: true
+  pees_quarterly_economy_nri_pv:
+    source: sensor.pees_economy_nri_pv
+    name: "PEES Quarterly Economy - NRI PV"
+    unique_id: pees_quarterly_economy_nri_pv
+    cycle: quarterly
+    net_consumption: true
+  pees_yearly_economy_nri_pv:
+    source: sensor.pees_economy_nri_pv
+    name: "PEES Yearly Economy - NRI PV"
+    unique_id: pees_yearly_economy_nri_pv
+    cycle: yearly
+    net_consumption: true
+  ### Economy - Net Return on Investment Battery
+  pees_total_economy_nri_battery:
+    source: sensor.pees_economy_nri_battery
+    name: "PEES Total Economy - NRI Battery"
+    unique_id: pees_total_economy_nri_battery
+    net_consumption: true
+  pees_hourly_economy_nri_battery:
+    source: sensor.pees_economy_nri_battery
+    name: "PEES Hourly Economy - NRI Battery"
+    unique_id: pees_hourly_economy_nri_battery
+    cycle: hourly
+    net_consumption: true
+  pees_daily_economy_nri_battery:
+    source: sensor.pees_economy_nri_battery
+    name: "PEES Daily Economy - NRI Battery"
+    unique_id: pees_daily_economy_nri_battery
+    cycle: daily
+    net_consumption: true
+  pees_monthly_economy_nri_battery:
+    source: sensor.pees_economy_nri_battery
+    name: "PEES Monthly Economy - NRI Battery"
+    unique_id: pees_monthly_economy_nri_battery
+    cycle: monthly
+    net_consumption: true
+  pees_quarterly_economy_nri_battery:
+    source: sensor.pees_economy_nri_battery
+    name: "PEES Quarterly Economy - NRI Battery"
+    unique_id: pees_quarterly_economy_nri_battery
+    cycle: quarterly
+    net_consumption: true
+  pees_yearly_economy_nri_battery:
+    source: sensor.pees_economy_nri_battery
+    name: "PEES Yearly Economy - NRI Battery"
+    unique_id: pees_yearly_economy_nri_battery
+    cycle: yearly
+    net_consumption: true
+  ## -----------------------
+  ## Optional Utility Meters
+  ### Battery Charge
+  #### Energy
+  pees_hourly_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Hourly Energy Battery Charge"
+    unique_id: pees_hourly_energy_battery_charge
+    cycle: hourly
+  pees_daily_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Daily Energy Battery Charge"
+    unique_id: pees_daily_energy_battery_charge
+    cycle: daily
+  pees_weekly_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Weekly Energy Battery Charge"
+    unique_id: pees_weekly_energy_battery_charge
+    cycle: weekly
+  pees_monthly_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Monthly Energy Battery Charge"
+    unique_id: pees_monthly_energy_battery_charge
+    cycle: monthly
+  pees_quarterly_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Quarterly Energy Battery Charge"
+    unique_id: pees_quarterly_energy_battery_charge
+    cycle: quarterly
+  pees_yearly_energy_battery_charge:
+    source: sensor.pees_energy_battery_charge
+    name: "PEES Yearly Energy Battery Charge"
+    unique_id: pees_yearly_energy_battery_charge
+    cycle: yearly
+  ### Battery Charge Grid
+  #### Energy
+  pees_hourly_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Energy Hourly Battery Charge Grid"
+    unique_id: pees_hourly_energy_battery_charge_grid
+    cycle: hourly
+  pees_daily_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Energy Daily Battery Charge Grid"
+    unique_id: pees_daily_energy_battery_charge_grid
+    cycle: daily
+  pees_weekly_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Energy Weekly Battery Charge Grid"
+    unique_id: pees_weekly_energy_battery_charge_grid
+    cycle: weekly
+  pees_monthly_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Energy Monthly Battery Charge Grid"
+    unique_id: pees_monthly_energy_battery_charge_grid
+    cycle: monthly
+  pees_quarterly_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Energy Quarterly Battery Charge Grid"
+    unique_id: pees_quarterly_energy_battery_charge_grid
+    cycle: quarterly
+  pees_yearly_energy_battery_charge_grid:
+    source: sensor.pees_energy_battery_charge_grid
+    name: "PEES Energy Yearly Battery Charge Grid"
+    unique_id: pees_yearly_energy_battery_charge_grid
+    cycle: yearly
+  #### Cost
+  pees_hourly_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Hourly Battery Charge Grid - Cost"
+    unique_id: pees_hourly_battery_charge_grid_cost
+    cycle: hourly
+  pees_daily_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Daily Battery Charge Grid - Cost"
+    unique_id: pees_daily_battery_charge_grid_cost
+    cycle: daily
+  pees_weekly_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Weekly Battery Charge Grid - Cost"
+    unique_id: pees_weekly_battery_charge_grid_cost
+    cycle: weekly
+  pees_monthly_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Monthly Battery Charge Grid - Cost"
+    unique_id: pees_monthly_battery_charge_grid_cost
+    cycle: monthly
+  pees_quarterly_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Quarterly Battery Charge Grid - Cost"
+    unique_id: pees_quarterly_battery_charge_grid_cost
+    cycle: quarterly
+  pees_yearly_battery_charge_grid_cost:
+    source: sensor.pees_battery_charge_grid_cost
+    name: "PEES Yearly Battery Charge Grid - Cost"
+    unique_id: pees_yearly_battery_charge_grid_cost
+    cycle: yearly
+  ### Battery Charge Yield
+  #### Energy
+  pees_hourly_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Hourly Energy Battery Charge Yield"
+    unique_id: pees_hourly_energy_battery_charge_yield
+    cycle: hourly
+  pees_daily_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Daily Energy Battery Charge Yield"
+    unique_id: pees_daily_energy_battery_charge_yield
+    cycle: daily
+  pees_weekly_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Weekly Energy Battery Charge Yield"
+    unique_id: pees_weekly_energy_battery_charge_yield
+    cycle: weekly
+  pees_monthly_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Monthly Energy Battery Charge Yield"
+    unique_id: pees_monthly_energy_battery_charge_yield
+    cycle: monthly
+  pees_quarterly_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Quarterly Energy Battery Charge Yield"
+    unique_id: pees_quarterly_energy_battery_charge_yield
+    cycle: quarterly
+  pees_yearly_energy_battery_charge_yield:
+    source: sensor.pees_energy_battery_charge_yield
+    name: "PEES Yearly Energy Battery Charge Yield"
+    unique_id: pees_yearly_energy_battery_charge_yield
+    cycle: yearly
+  #### Sale
+  pees_hourly_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Hourly Battery Charge Yield - Sale"
+    unique_id: pees_hourly_battery_charge_yield_sale
+    cycle: hourly
+  pees_daily_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Daily Battery Charge Yield - Sale"
+    unique_id: pees_daily_battery_charge_yield_sale
+    cycle: daily
+  pees_weekly_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Weekly Battery Charge Yield - Sale"
+    unique_id: pees_weekly_battery_charge_yield_sale
+    cycle: weekly
+  pees_monthly_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Monthly Battery Charge Yield - Sale"
+    unique_id: pees_monthly_battery_charge_yield_sale
+    cycle: monthly
+  pees_quarterly_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Quarterly Battery Charge Yield - Sale"
+    unique_id: pees_quarterly_battery_charge_yield_sale
+    cycle: quarterly
+  pees_yearly_battery_charge_yield_sale:
+    source: sensor.pees_battery_charge_yield_sale
+    name: "PEES Yearly Battery Charge Yield - Sale"
+    unique_id: pees_yearly_battery_charge_yield_sale
+    cycle: yearly
+  ### Battery Discharge
+  #### Energy
+  pees_hourly_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Hourly Energy Battery Discharge"
+    unique_id: pees_hourly_energy_battery_discharge
+    cycle: hourly
+  pees_daily_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Daily Energy Battery Discharge"
+    unique_id: pees_daily_energy_battery_discharge
+    cycle: daily
+  pees_weekly_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Weekly Energy Battery Discharge"
+    unique_id: pees_weekly_energy_battery_discharge
+    cycle: weekly
+  pees_monthly_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Monthly Energy Battery Discharge"
+    unique_id: pees_monthly_energy_battery_discharge
+    cycle: monthly
+  pees_quarterly_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Quarterly Energy Battery Discharge"
+    unique_id: pees_quarterly_energy_battery_discharge
+    cycle: quarterly
+  pees_yearly_energy_battery_discharge:
+    source: sensor.pees_energy_battery_discharge
+    name: "PEES Yearly Energy Battery Discharge"
+    unique_id: pees_yearly_energy_battery_discharge
+    cycle: yearly
+  ### Battery Discharge Grid
+  #### Energy
+  pees_hourly_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Hourly Energy Battery Discharge Grid"
+    unique_id: pees_hourly_energy_battery_discharge_grid
+    cycle: hourly
+  pees_daily_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Daily Energy Battery Discharge Grid"
+    unique_id: pees_daily_energy_battery_discharge_grid
+    cycle: daily
+  pees_weekly_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Weekly Energy Battery Discharge Grid"
+    unique_id: pees_weekly_energy_battery_discharge_grid
+    cycle: weekly
+  pees_monthly_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Monthly Energy Battery Discharge Grid"
+    unique_id: pees_monthly_energy_battery_discharge_grid
+    cycle: monthly
+  pees_quarterly_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Quarterly Energy Battery Discharge Grid"
+    unique_id: pees_quarterly_energy_battery_discharge_grid
+    cycle: quarterly
+  pees_yearly_energy_battery_discharge_grid:
+    source: sensor.pees_energy_battery_discharge_grid
+    name: "PEES Yearly Energy Battery Discharge Grid"
+    unique_id: pees_yearly_energy_battery_discharge_grid
+    cycle: yearly
+  #### Sale
+  pees_hourly_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Hourly Battery Discharge Grid - Sale"
+    unique_id: pees_hourly_battery_discharge_grid_sale
+    cycle: hourly
+  pees_daily_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Daily Battery Discharge Grid - Sale"
+    unique_id: pees_daily_battery_discharge_grid_sale
+    cycle: daily
+  pees_weekly_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Weekly Battery Discharge Grid - Sale"
+    unique_id: pees_weekly_battery_discharge_grid_sale
+    cycle: weekly
+  pees_monthly_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Monthly Battery Discharge Grid - Sale"
+    unique_id: pees_monthly_battery_discharge_grid_sale
+    cycle: monthly
+  pees_quarterly_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Quarterly Battery Discharge Grid - Sale"
+    unique_id: pees_quarterly_battery_discharge_grid_sale
+    cycle: quarterly
+  pees_yearly_battery_discharge_grid_sale:
+    source: sensor.pees_battery_discharge_grid_sale
+    name: "PEES Yearly Battery Discharge Grid - Sale"
+    unique_id: pees_yearly_battery_discharge_grid_sale
+    cycle: yearly
+  ### Battery Discharge House
+  #### Energy
+  pees_hourly_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Hourly Energy Battery Discharge House"
+    unique_id: pees_hourly_energy_battery_discharge_house
+    cycle: hourly
+  pees_daily_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Daily Energy Battery Discharge House"
+    unique_id: pees_daily_energy_battery_discharge_house
+    cycle: daily
+  pees_weekly_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Weekly Energy Battery Discharge House"
+    unique_id: pees_weekly_energy_battery_discharge_house
+    cycle: weekly
+  pees_monthly_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Monthly Energy Battery Discharge House"
+    unique_id: pees_monthly_energy_battery_discharge_house
+    cycle: monthly
+  pees_quarterly_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Quarterly Energy Battery Discharge House"
+    unique_id: pees_quarterly_energy_battery_discharge_house
+    cycle: quarterly
+  pees_yearly_energy_battery_discharge_house:
+    source: sensor.pees_energy_battery_discharge_house
+    name: "PEES Yearly Energy Battery Discharge House"
+    unique_id: pees_yearly_energy_battery_discharge_house
+    cycle: yearly
+  #### Saving
+  pees_hourly_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Hourly Battery Discharge House - Saving"
+    unique_id: pees_hourly_battery_discharge_house_saving
+    cycle: hourly
+  pees_daily_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Daily Battery Discharge House - Saving"
+    unique_id: pees_daily_battery_discharge_house_saving
+    cycle: daily
+  pees_weekly_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Weekly Battery Discharge House - Saving"
+    unique_id: pees_weekly_battery_discharge_house_saving
+    cycle: weekly
+  pees_monthly_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Monthly Battery Discharge House - Saving"
+    unique_id: pees_monthly_battery_discharge_house_saving
+    cycle: monthly
+  pees_quarterly_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Quarterly Battery Discharge House - Saving"
+    unique_id: pees_quarterly_battery_discharge_house_saving
+    cycle: quarterly
+  pees_yearly_battery_discharge_house_saving:
+    source: sensor.pees_battery_discharge_house_saving
+    name: "PEES Yearly Battery Discharge House - Saving"
+    unique_id: pees_yearly_battery_discharge_house_saving
+    cycle: yearly
+  ### Export
+  #### Energy
+  pees_hourly_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Hourly Energy Export"
+    unique_id: pees_hourly_energy_export
+    cycle: hourly
+  pees_daily_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Daily Energy Export"
+    unique_id: pees_daily_energy_export
+    cycle: daily
+  pees_weekly_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Weekly Energy Export"
+    unique_id: pees_weekly_energy_export
+    cycle: weekly
+  pees_monthly_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Monthly Energy Export"
+    unique_id: pees_monthly_energy_export
+    cycle: monthly
+  pees_quarterly_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Quarterly Energy Export"
+    unique_id: pees_quarterly_energy_export
+    cycle: quarterly
+  pees_yearly_energy_export:
+    source: sensor.pees_energy_export
+    name: "PEES Yearly Energy Export"
+    unique_id: pees_yearly_energy_export
+    cycle: yearly
+  #### Income
+  pees_hourly_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Hourly Export - Income"
+    unique_id: pees_hourly_export_income
+    cycle: hourly
+  pees_daily_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Daily Export - Income"
+    unique_id: pees_daily_export_income
+    cycle: daily
+  pees_weekly_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Weekly Export - Income"
+    unique_id: pees_weekly_export_income
+    cycle: weekly
+  pees_monthly_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Monthly Export - Income"
+    unique_id: pees_monthly_export_income
+    cycle: monthly
+  pees_quarterly_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Quarterly Export - Income"
+    unique_id: pees_quarterly_export_income
+    cycle: quarterly
+  pees_yearly_export_income:
+    source: sensor.pees_export_income
+    name: "PEES Yearly Export - Income"
+    unique_id: pees_yearly_export_income
+    cycle: yearly
+  ### House Load
+  #### Energy
+  pees_hourly_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Hourly Energy House Load"
+    unique_id: pees_hourly_energy_house_load
+    cycle: hourly
+  pees_daily_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Daily Energy House Load"
+    unique_id: pees_daily_energy_house_load
+    cycle: daily
+  pees_weekly_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Weekly Energy House Load"
+    unique_id: pees_weekly_energy_house_load
+    cycle: weekly
+  pees_monthly_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Monthly Energy House Load"
+    unique_id: pees_monthly_energy_house_load
+    cycle: monthly
+  pees_quarterly_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Quarterly Energy House Load"
+    unique_id: pees_quarterly_energy_house_load
+    cycle: quarterly
+  pees_yearly_energy_house_load:
+    source: sensor.pees_energy_house_load
+    name: "PEES Yearly Energy House Load"
+    unique_id: pees_yearly_energy_house_load
+    cycle: yearly
+  #### Cost
+  pees_hourly_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Hourly House Load - Cost"
+    unique_id: pees_hourly_house_load_cost
+    cycle: hourly
+  pees_daily_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Daily House Load - Cost"
+    unique_id: pees_daily_house_load_cost
+    cycle: daily
+  pees_weekly_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Weekly House Load - Cost"
+    unique_id: pees_weekly_house_load_cost
+    cycle: weekly
+  pees_monthly_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Monthly House Load - Cost"
+    unique_id: pees_monthly_house_load_cost
+    cycle: monthly
+  pees_quarterly_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Quarterly House Load - Cost"
+    unique_id: pees_quarterly_house_load_cost
+    cycle: quarterly
+  pees_yearly_house_load_cost:
+    source: sensor.pees_house_load_cost
+    name: "PEES Yearly House Load - Cost"
+    unique_id: pees_yearly_house_load_cost
+    cycle: yearly
+  ### House Load Grid
+  #### Energy
+  pees_hourly_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Hourly Energy House Load Grid"
+    unique_id: pees_hourly_energy_house_load_grid
+    cycle: hourly
+  pees_daily_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Daily Energy House Load Grid"
+    unique_id: pees_daily_energy_house_load_grid
+    cycle: daily
+  pees_weekly_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Weekly Energy House Load Grid"
+    unique_id: pees_weekly_energy_house_load_grid
+    cycle: weekly
+  pees_monthly_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Monthly Energy House Load Grid"
+    unique_id: pees_monthly_energy_house_load_grid
+    cycle: monthly
+  pees_quarterly_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Quarterly Energy House Load Grid"
+    unique_id: pees_quarterly_energy_house_load_grid
+    cycle: quarterly
+  pees_yearly_energy_house_load_grid:
+    source: sensor.pees_energy_house_load_grid
+    name: "PEES Yearly Energy House Load Grid"
+    unique_id: pees_yearly_energy_house_load_grid
+    cycle: yearly
+  #### Cost
+  pees_hourly_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Hourly House Load Grid - Cost"
+    unique_id: pees_hourly_house_load_grid_cost
+    cycle: hourly
+  pees_daily_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Daily House Load Grid - Cost"
+    unique_id: pees_daily_house_load_grid_cost
+    cycle: daily
+  pees_weekly_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Weekly House Load Grid - Cost"
+    unique_id: pees_weekly_house_load_grid_cost
+    cycle: weekly
+  pees_monthly_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Monthly House Load Grid - Cost"
+    unique_id: pees_monthly_house_load_grid_cost
+    cycle: monthly
+  pees_quarterly_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Quarterly House Load Grid - Cost"
+    unique_id: pees_quarterly_house_load_grid_cost
+    cycle: quarterly
+  pees_yearly_house_load_grid_cost:
+    source: sensor.pees_house_load_grid_cost
+    name: "PEES Yearly House Load Grid - Cost"
+    unique_id: pees_yearly_house_load_grid_cost
+    cycle: yearly
+  ### House Load Yield
+  #### Energy
+  pees_hourly_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Hourly Energy House Load Yield"
+    unique_id: pees_hourly_energy_house_load_yield
+    cycle: hourly
+  pees_daily_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Daily Energy House Load Yield"
+    unique_id: pees_daily_energy_house_load_yield
+    cycle: daily
+  pees_weekly_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Weekly Energy House Load Yield"
+    unique_id: pees_weekly_energy_house_load_yield
+    cycle: weekly
+  pees_monthly_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Monthly Energy House Load Yield"
+    unique_id: pees_monthly_energy_house_load_yield
+    cycle: monthly
+  pees_quarterly_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Quarterly Energy House Load Yield"
+    unique_id: pees_quarterly_energy_house_load_yield
+    cycle: quarterly
+  pees_yearly_energy_house_load_yield:
+    source: sensor.pees_energy_house_load_yield
+    name: "PEES Yearly Energy House Load Yield"
+    unique_id: pees_yearly_energy_house_load_yield
+    cycle: yearly
+  #### Saving
+  pees_hourly_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Hourly House Load Yield - Saving"
+    unique_id: pees_hourly_house_load_yield_saving
+    cycle: hourly
+  pees_daily_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Daily House Load Yield - Saving"
+    unique_id: pees_daily_house_load_yield_saving
+    cycle: daily
+  pees_weekly_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Weekly House Load Yield - Saving"
+    unique_id: pees_weekly_house_load_yield_saving
+    cycle: weekly
+  pees_monthly_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Monthly House Load Yield - Saving"
+    unique_id: pees_monthly_house_load_yield_saving
+    cycle: monthly
+  pees_quarterly_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Quarterly House Load Yield - Saving"
+    unique_id: pees_quarterly_house_load_yield_saving
+    cycle: quarterly
+  pees_yearly_house_load_yield_saving:
+    source: sensor.pees_house_load_yield_saving
+    name: "PEES Yearly House Load Yield - Saving"
+    unique_id: pees_yearly_house_load_yield_saving
+    cycle: yearly
+  ### Import
+  #### Energy
+  pees_hourly_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Hourly Energy Import"
+    unique_id: pees_hourly_energy_import
+    cycle: hourly
+  pees_daily_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Daily Energy Import"
+    unique_id: pees_daily_energy_import
+    cycle: daily
+  pees_weekly_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Weekly Energy Import"
+    unique_id: pees_weekly_energy_import
+    cycle: weekly
+  pees_monthly_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Monthly Energy Import"
+    unique_id: pees_monthly_energy_import
+    cycle: monthly
+  pees_quarterly_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Quarterly Energy Import"
+    unique_id: pees_quarterly_energy_import
+    cycle: quarterly
+  pees_yearly_energy_import:
+    source: sensor.pees_energy_import
+    name: "PEES Yearly Energy Import"
+    unique_id: pees_yearly_energy_import
+    cycle: yearly
+  #### Cost
+  pees_hourly_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Hourly Import - Cost"
+    unique_id: pees_hourly_import_cost
+    cycle: hourly
+  pees_daily_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Daily Import - Cost"
+    unique_id: pees_daily_import_cost
+    cycle: daily
+  pees_weekly_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Weekly Import - Cost"
+    unique_id: pees_weekly_import_cost
+    cycle: weekly
+  pees_monthly_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Monthly Import - Cost"
+    unique_id: pees_monthly_import_cost
+    cycle: monthly
+  pees_quarterly_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Quarterly Import - Cost"
+    unique_id: pees_quarterly_import_cost
+    cycle: quarterly
+  pees_yearly_import_cost:
+    source: sensor.pees_import_cost
+    name: "PEES Yearly Import - Cost"
+    unique_id: pees_yearly_import_cost
+    cycle: yearly
+  ### Export Yield
+  #### Energy
+  pees_hourly_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Hourly Energy Export Yield"
+    unique_id: pees_hourly_energy_export_yield
+    cycle: hourly
+  pees_daily_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Daily Energy Export Yield"
+    unique_id: pees_daily_energy_export_yield
+    cycle: daily
+  pees_weekly_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Weekly Energy Export Yield"
+    unique_id: pees_weekly_energy_export_yield
+    cycle: weekly
+  pees_monthly_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Monthly Energy Export Yield"
+    unique_id: pees_monthly_energy_export_yield
+    cycle: monthly
+  pees_quarterly_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Quarterly Energy Export Yield"
+    unique_id: pees_quarterly_energy_export_yield
+    cycle: quarterly
+  pees_yearly_energy_export_yield:
+    source: sensor.pees_energy_export_yield
+    name: "PEES Yearly Energy Export Yield"
+    unique_id: pees_yearly_energy_export_yield
+    cycle: yearly
+  #### Sale
+  pees_hourly_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Hourly Export Yield - Sale"
+    unique_id: pees_hourly_export_yield_sale
+    cycle: hourly
+  pees_daily_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Daily Export Yield - Sale"
+    unique_id: pees_daily_export_yield_sale
+    cycle: daily
+  pees_weekly_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Weekly Export Yield - Sale"
+    unique_id: pees_weekly_export_yield_sale
+    cycle: weekly
+  pees_monthly_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Monthly Export Yield - Sale"
+    unique_id: pees_monthly_export_yield_sale
+    cycle: monthly
+  pees_quarterly_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Quarterly Export Yield - Sale"
+    unique_id: pees_quarterly_export_yield_sale
+    cycle: quarterly
+  pees_yearly_export_yield_sale:
+    source: sensor.pees_export_yield_sale
+    name: "PEES Yearly Export Yield - Sale"
+    unique_id: pees_yearly_export_yield_sale
+    cycle: yearly
+  ### Yield Total
+  #### Energy
+  pees_hourly_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Hourly Energy Yield Total"
+    unique_id: pees_hourly_energy_yield_total
+    cycle: hourly
+  pees_daily_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Daily Energy Yield Total"
+    unique_id: pees_daily_energy_yield_total
+    cycle: daily
+  pees_weekly_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Weekly Energy Yield Total"
+    unique_id: pees_weekly_energy_yield_total
+    cycle: weekly
+  pees_monthly_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Monthly Energy Yield Total"
+    unique_id: pees_monthly_energy_yield_total
+    cycle: monthly
+  pees_quarterly_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Quarterly Energy Yield Total"
+    unique_id: pees_quarterly_energy_yield_total
+    cycle: quarterly
+  pees_yearly_energy_yield_total:
+    source: sensor.pees_energy_yield_total
+    name: "PEES Yearly Energy Yield Total"
+    unique_id: pees_yearly_energy_yield_total
+    cycle: yearly
+  ### Yield #1
+  #### Energy
+  pees_hourly_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Hourly Energy Yield 1"
+    unique_id: pees_hourly_energy_yield_1
+    cycle: hourly
+  pees_daily_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Daily Energy Yield 1"
+    unique_id: pees_daily_energy_yield_1
+    cycle: daily
+  pees_weekly_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Weekly Energy Yield 1"
+    unique_id: pees_weekly_energy_yield_1
+    cycle: weekly
+  pees_monthly_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Monthly Energy Yield 1"
+    unique_id: pees_monthly_energy_yield_1
+    cycle: monthly
+  pees_quarterly_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Quarterly Energy Yield 1"
+    unique_id: pees_quarterly_energy_yield_1
+    cycle: quarterly
+  pees_yearly_energy_yield_1:
+    source: sensor.pees_energy_yield_1
+    name: "PEES Yearly Energy Yield 1"
+    unique_id: pees_yearly_energy_yield_1
+    cycle: yearly
+  ### Yield #2
+  #### Energy
+  pees_hourly_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Hourly Energy Yield 2"
+    unique_id: pees_hourly_energy_yield_2
+    cycle: hourly
+  pees_daily_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Daily Energy Yield 2"
+    unique_id: pees_daily_energy_yield_2
+    cycle: daily
+  pees_weekly_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Weekly Energy Yield 2"
+    unique_id: pees_weekly_energy_yield_2
+    cycle: weekly
+  pees_monthly_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Monthly Energy Yield 2"
+    unique_id: pees_monthly_energy_yield_2
+    cycle: monthly
+  pees_quarterly_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Quarterly Energy Yield 2"
+    unique_id: pees_quarterly_energy_yield_2
+    cycle: quarterly
+  pees_yearly_energy_yield_2:
+    source: sensor.pees_energy_yield_2
+    name: "PEES Yearly Energy Yield 2"
+    unique_id: pees_yearly_energy_yield_2
+    cycle: yearly
