@@ -17,7 +17,7 @@ cards:
     show_header_toggle: false
   - type: entities
     entities:
-      - entity: sensor.pees_inverter_1_model
+      - entity: sensor.inverter_1_model
     title: "Inverter #1"
   - type: conditional
     conditions:
@@ -83,7 +83,7 @@ cards:
             - entity: sensor.inverter_pv_2_voltage
   - type: entities
     entities:
-      - entity: sensor.pees_inverter_2_model
+      - entity: sensor.inverter_2_model
     title: "Inverter #2"
   - type: conditional
     conditions:

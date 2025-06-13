@@ -17,11 +17,13 @@
 # homeassistant:
 #   packages: !include_dir_named packages
 #
-# Make sure the naming of your power input sensors is correct.
-# - 'sensor.inverter_input_power' (from the Huawei Solar integration)
-# - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
-# - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
-# - 'sensor.batteries_charge_discharge_power' (from the Huawei Solar integration)
+# Make sure the naming of your input sensors (from the Huawei Solar integration) is correct.
+# - 'sensor.inverter_input_power'
+# - 'sensor.inverter_input_power_2'
+# - 'sensor.power_meter_active_power'
+# - 'sensor.batteries_charge_discharge_power'
+# - 'sensor.inverter_1_model'
+# - 'sensor.inverter_2_model'
 #
 # The "Huawei Solar PEES package" will use the electricity price sensors from the
 # "Energi Data Service integration" by MTrab as default.
@@ -195,7 +197,7 @@ template:
         state_class: measurement
         state: >-
           {% if is_state('input_boolean.pees_efficiency_corrected_power_input','on') and
-          states('sensor.pees_inverter_1_model') | regex_search('-L1|-LC0|-1PH') %}
+          states('sensor.inverter_1_model') | regex_search('-L1|-LC0|-1PH') %}
             {% set inverter_rating = states('sensor.pees_inverter_1_rated_power') | float %}
             {% set overall_factor = states('input_number.pees_inverter_1_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.pees_inverter_1_operating_voltage_l1') | float(0) %}
@@ -217,7 +219,7 @@ template:
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | round(0) }}
           {% elif is_state('input_boolean.pees_efficiency_corrected_power_input','on') and
-          states('sensor.pees_inverter_1_model') | regex_search('-M1|-MAP0|-MB0|-3PH') %}
+          states('sensor.inverter_1_model') | regex_search('-M1|-MAP0|-MB0|-3PH') %}
             {% set inverter_rating = states('sensor.pees_inverter_1_rated_power') | float %}
             {% set overall_factor = states('input_number.pees_inverter_1_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.pees_inverter_1_operating_voltage_m1') | float(0) %}
@@ -248,7 +250,7 @@ template:
         state_class: measurement
         state: >-
           {% if is_state('input_boolean.pees_efficiency_corrected_power_input','on') and
-          states('sensor.pees_inverter_2_model') | regex_search('-L1|-LC0|-1PH') %}
+          states('sensor.inverter_2_model') | regex_search('-L1|-LC0|-1PH') %}
             {% set inverter_rating = states('sensor.pees_inverter_2_rated_power') | float %}
             {% set overall_factor = states('input_number.pees_inverter_2_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.pees_inverter_2_operating_voltage_l1') | float(0) %}
@@ -270,7 +272,7 @@ template:
             {% endif %}
               {{ (( overall_factor * input_power * (efficiency + voltage_factor) / 100 ) | float(0) ) | round(0) }}
           {% elif is_state('input_boolean.pees_efficiency_corrected_power_input','on') and
-          states('sensor.pees_inverter_2_model') | regex_search('-M1|-MAP0|-MB0|-3PH') %}
+          states('sensor.inverter_2_model') | regex_search('-M1|-MAP0|-MB0|-3PH') %}
             {% set inverter_rating = states('sensor.pees_inverter_2_rated_power') | float %}
             {% set overall_factor = states('input_number.pees_inverter_2_overall_factor') | float / 100 %}
             {% set operating_voltage = states('input_number.pees_inverter_2_operating_voltage_m1') | float(0) %}
