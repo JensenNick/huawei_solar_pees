@@ -451,7 +451,7 @@ template:
       - name: "PEES Economy - Result wo PV"
         unique_id: pees_economy_result_wo_pv
         unit_of_measurement: DKK
-        state_class: total_increasing
+        state_class: total
         state: >-
           {{ states('sensor.pees_house_load_cost') | float(0) | round(5) }}
         availability: >
@@ -459,7 +459,7 @@ template:
       - name: "PEES Economy - Expenses w PV"
         unique_id: pees_economy_expenses_w_pv
         unit_of_measurement: DKK
-        state_class: total_increasing
+        state_class: total
         state: >-
           {{ states('sensor.pees_import_cost') | float(0) | round(5) }}
         availability: >
@@ -467,7 +467,7 @@ template:
       - name: "PEES Economy - Income w PV"
         unique_id: pees_economy_income_w_pv
         unit_of_measurement: DKK
-        state_class: total_increasing
+        state_class: total
         state: >-
           {{ states('sensor.pees_export_income') | float(0) | round(5) }}
         availability: >
