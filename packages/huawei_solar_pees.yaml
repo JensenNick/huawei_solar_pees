@@ -243,6 +243,9 @@ template:
           {% else %}
             {{ states('sensor.inverter_input_power') | float(0) }}
           {% endif %}
+        availability: >
+          {{ has_value('sensor.inverter_1_model') and
+          has_value('sensor.inverter_input_power') }}
       - name: "PEES Power Inverter #2 Input"
         unique_id: pees_power_inverter_2_input
         unit_of_measurement: W
@@ -296,6 +299,9 @@ template:
           {% else %}
             {{ states('sensor.inverter_input_power_2') | float(0) }}
           {% endif %}
+        availability: >
+          {{ has_value('sensor.inverter_2_model') and
+          has_value('sensor.inverter_input_power_2') }}
       - name: "PEES Power Inverter Input Total"
         unique_id: pees_power_inverter_input_total
         unit_of_measurement: W
