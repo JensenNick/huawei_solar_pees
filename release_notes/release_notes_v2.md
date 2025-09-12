@@ -2,8 +2,10 @@
 
 **Power, Energy and Economy Sensors**
 
-## Release Note / v3.0.1
+## Release Note / v2.2.7
 
+Pull requests implemented:<br>
+- #94 "update inverter name sensors to avoid duplicates" by ermitovski 
 
 ## Release Note / v2.2.6
 
