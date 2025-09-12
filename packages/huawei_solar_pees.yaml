@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v2.2.7
+# version: v2.2.8
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -543,6 +543,7 @@ template:
         unique_id: battery_charge_grid_cost_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_grid_ps') | float(0) %}
@@ -573,6 +574,7 @@ template:
         unique_id: battery_charge_yield_sale_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_charge_yield_ps') | float(0) %}
@@ -603,6 +605,7 @@ template:
         unique_id: battery_discharge_house_saving_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_house_ps') | float(0) %}
@@ -633,6 +636,7 @@ template:
         unique_id: battery_discharge_grid_sale_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_battery_discharge_grid_ps') | float(0) %}
@@ -663,6 +667,7 @@ template:
         unique_id: export_income_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_export_ps') | float(0) %}
@@ -693,6 +698,7 @@ template:
         unique_id: import_cost_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_import_ps') | float(0) %}
@@ -723,6 +729,7 @@ template:
         unique_id: house_load_cost_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_ps') | float(0) %}
@@ -753,6 +760,7 @@ template:
         unique_id: house_load_grid_cost_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_grid_ps') | float(0) %}
@@ -783,6 +791,7 @@ template:
         unique_id: house_load_yield_saving_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
           {% set meter = states('sensor.energy_house_load_yield_ps') | float(0) %}
@@ -813,6 +822,7 @@ template:
         unique_id: export_yield_sale_tt
         unit_of_measurement: DKK
         device_class: monetary
+        state_class: total
         state: >
           {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
           {% set meter = states('sensor.energy_export_yield_ps') | float(0) %}
