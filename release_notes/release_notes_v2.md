@@ -4,7 +4,7 @@
 
 ## Release Note / v2.2.8
 
-Home Assistant would report the error *"<sensor> is using state class 'total_increasing' which is impossible considering device class ('monetary') it is using; expected None or one of 'total'"* - which seems to be a bug within HA, since none of the sensors or the source sensors has defined state_class to be total_increasing. This update sets the state_class to total for the template trigger sensors in quiestion, to try to mitigate the error report.
+Home Assistant would report the error *"<sensor> is using state class 'total_increasing' which is impossible considering device class ('monetary') it is using; expected None or one of 'total'"* - which seems to be a bug within HA, since none of the sensors or the source sensors has defined state_class to be total_increasing. This update sets the state_class to total for the template trigger sensors in question, to try to mitigate the error report.
 
 ## Release Note / v2.2.7
 
