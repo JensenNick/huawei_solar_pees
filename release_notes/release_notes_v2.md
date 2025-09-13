@@ -2,6 +2,12 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.3.0
+
+The Huawei Solar PEES package now supports EMMA as well. As of now the only imput from EMMA is the `sensor.emma_power`. I'd like to get more stats on the energy sensors provided before I decide to use them or not.
+
+Another attemt to solve the issue mentioned in Release Note / v2.2.7 and v2.2.8 has been made.
+
 ## Release Note / v2.2.8
 
 Home Assistant would report the error *"<sensor> is using state class 'total_increasing' which is impossible considering device class ('monetary') it is using; expected None or one of 'total'"* - which seems to be a bug within HA, since none of the sensors or the source sensors has defined state_class to be total_increasing. This update sets the state_class to total for the template trigger sensors in question, to try to mitigate the error report.
