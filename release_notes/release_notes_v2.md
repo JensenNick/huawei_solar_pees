@@ -2,6 +2,10 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.3.1
+
+Correcting error in the implementation of EMMA.
+
 ## Release Note / v2.3.0
 
 The Huawei Solar PEES package now supports EMMA as well. As of now the only imput from EMMA is the `sensor.emma_power`. I'd like to get more stats on the energy sensors provided before I decide to use them or not.

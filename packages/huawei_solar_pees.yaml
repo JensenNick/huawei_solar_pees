@@ -1,7 +1,7 @@
 # -----------------------------------------------------
 # HUAWEI SOLAR PEES - Power, Energy and Economy Sensors
 # -----------------------------------------------------
-# version: v2.3.0
+# version: v2.3.1
 # branch: main
 # domain: https://github.com/JensenNick/huawei_solar_pees
 # codeowner: Nick Jensen
@@ -18,10 +18,11 @@
 #   packages: !include_dir_named packages
 #
 # Make sure the naming of your power input sensors is correct.
-# - 'sensor.inverter_input_power' (from the Huawei Solar integration)
-# - 'sensor.inverter_input_power_2' (from the Huawei Solar integration)
-# - 'sensor.batteries_charge_discharge_power' (from the Huawei Solar integration)
-# - 'sensor.power_meter_active_power' or 'sensor.emma_power' (from the Huawei Solar integration)
+# - 'sensor.inverter_input_power'
+# - 'sensor.inverter_input_power_2'
+# - 'sensor.batteries_charge_discharge_power'
+# - 'sensor.power_meter_active_power' or 'sensor.emma_power'
+# - 'sensor.emma_pv_output_power' (optionally if using EMMA)
 #
 # The "Huawei Solar PEES package" will use the electricity price sensors from the
 # "Energi Data Service integration" by MTrab as default.
