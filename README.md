@@ -104,7 +104,7 @@ If you for some reason do not wish to use the default names you need to edit the
 # - 'sensor.inverter_input_power' (from the Huawei Solar integration)
 # - 'sensor.power_inverter_2_input' (from the Huawei Solar integration)
 # - 'sensor.power_meter_active_power' (from the Huawei Solar integration)
-# - 'sensor.battery_charge_discharge_power' (from the Huawei Solar integration)
+# - 'sensor.power_meter_active_power' or 'sensor.emma_power' (from the Huawei Solar integration)
  ```
 
 ### 3.3 Electricity Price
@@ -198,16 +198,7 @@ If you have several tariffs and/or they change from time to time, you might find
 
 ## 5. Known "bugs"
 
-#### Inverter model
-I have no documentation about the output of the sensor which is deriving the data about inverter model for the models mentioned below, hence the efficiency calculation may not work. It falls back to giving the result without the efficiency correction, so this is not easily detected.
-
-* Huawei SUN2000 3.68 KTL L1
-* Huawei SUN2000 4.6 KTL L1
-
-As of now it is assumed that the derived names will be formatted as *"SUN2000-3-68KTL-L1"* and *"SUN2000-4-6KTL-L1"* respectively. If you have one of these inverter models please help to identify the naming scheme for these two models.
-
-#### Utility Meters "jumping"
-See this report (https://github.com/JensenNick/huawei_solar_pees/issues/66)
+No known issues at the moment.
 
 ## 6. Thanks to
 
@@ -222,3 +213,4 @@ See this report (https://github.com/JensenNick/huawei_solar_pees/issues/66)
 * **All contributors** and a special thank's to **Roving-Ronin**, **Krabbee** and **JacobsenKim**.
 
 **Again, Thank You to all of You!**
+
