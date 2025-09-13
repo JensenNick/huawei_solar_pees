@@ -158,13 +158,13 @@ template:
         unique_id: pees_inverter_2_is_m1
         state: >-
           {{ states('sensor.inverter_2_model') | regex_search('-M1|-5000-3PH|-6000-3PH') }}
-      - name: "PEES Inverter 1 is MAP0"
-        unique_id: pees_inverter_1_is_map0
-        state: >-
+      - name: "Inverter 2 is MAP0"
+        unique_id: inverter_2_is_map0
+        state: >
           {{ states('sensor.inverter_2_model') | regex_search('-MAP0') }}
-      - name: "PEES Inverter 1 is MB0"
-        unique_id: pees_inverter_1_is_mb0
-        state: >-
+      - name: "Inverter 2 is MB0"
+        unique_id: inverter_2_is_mb0
+        state: >
           {{ states('sensor.inverter_2_model') | regex_search('-MB0|-10000-3PH|-12000-3PH|-15000-3PH|-17000-3PH|-20000-3PH|-25000-3PH') }}
   - sensor:
       ## --------------

@@ -533,9 +533,10 @@ template:
         unique_id: pees_battery_charge_grid_cost
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
-          {% set meter = states('sensor.pees_energy_battery_charge_grid') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
+          {% set meter = states('sensor.energy_battery_charge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -563,9 +564,10 @@ template:
         unique_id: pees_battery_charge_yield_sale
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_export') | float(0) %}
-          {% set meter = states('sensor.pees_energy_battery_charge_yield') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
+          {% set meter = states('sensor.energy_battery_charge_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -593,9 +595,10 @@ template:
         unique_id: pees_battery_discharge_house_saving
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
-          {% set meter = states('sensor.pees_energy_battery_discharge_house') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
+          {% set meter = states('sensor.energy_battery_discharge_house_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -623,9 +626,10 @@ template:
         unique_id: pees_battery_discharge_grid_sale
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_export') | float(0) %}
-          {% set meter = states('sensor.pees_energy_battery_discharge_grid') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
+          {% set meter = states('sensor.energy_battery_discharge_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -653,9 +657,10 @@ template:
         unique_id: pees_export_income
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_export') | float(0) %}
-          {% set meter = states('sensor.pees_energy_export') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
+          {% set meter = states('sensor.energy_export_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -683,9 +688,10 @@ template:
         unique_id: pees_import_cost
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
-          {% set meter = states('sensor.pees_energy_import') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
+          {% set meter = states('sensor.energy_import_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -713,9 +719,10 @@ template:
         unique_id: pees_house_load_cost
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
-          {% set meter = states('sensor.pees_energy_house_load') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
+          {% set meter = states('sensor.energy_house_load_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -743,9 +750,10 @@ template:
         unique_id: pees_house_load_grid_cost
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
-          {% set meter = states('sensor.pees_energy_house_load_grid') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
+          {% set meter = states('sensor.energy_house_load_grid_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -773,9 +781,10 @@ template:
         unique_id: pees_house_load_yield_saving
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_import') | float(0) %}
-          {% set meter = states('sensor.pees_energy_house_load_yield') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_import_ts') | float(0) %}
+          {% set meter = states('sensor.energy_house_load_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
@@ -803,9 +812,10 @@ template:
         unique_id: pees_export_yield_sale
         unit_of_measurement: DKK
         device_class: monetary
-        state: >-
-          {% set price = states('sensor.pees_electricity_price_export') | float(0) %}
-          {% set meter = states('sensor.pees_energy_export_yield') | float(0) %}
+        state_class: total
+        state: >
+          {% set price = states('sensor.electricity_price_export_ts') | float(0) %}
+          {% set meter = states('sensor.energy_export_yield_ps') | float(0) %}
           {% if meter > 0 and this.attributes.last is defined %}
             {% set delta = meter - this.attributes.last | float(0) %}
           {% else %}
