@@ -323,20 +323,20 @@ template:
         device_class: power
         state_class: measurement
         state: >
-          {{ (
-          states('sensor.power_meter_active_power') | float(0)
-          , 0 ) | min | abs }}
+          {% if has_value('sensor.emma_power') %}
+            {{ ( states('sensor.emma_power') | float(0), 0 ) | min | abs }}
+          {% else %}
+            {{ ( states('sensor.power_meter_active_power') | float(0), 0 ) | min | abs }}
+          {% endif %}
       - name: "Power Battery Charge"
         unique_id: power_battery_charge
         unit_of_measurement: W
         device_class: power
         state_class: measurement
         state: >
-          {% if has_value('sensor.emma_power') %}
-            {{ ( states('sensor.emma_power') | float(0), 0 ) | min | abs }}
-          {% else %}
-            {{ ( states('sensor.power_meter_active_power') | float(0), 0 ) | min | abs }}
-          {% endif %}
+          {{ (
+          states('sensor.batteries_charge_discharge_power') | float(0)
+          , 0 ) | max }}
       - name: "Power Battery Discharge"
         unique_id: power_battery_discharge
         unit_of_measurement: W
