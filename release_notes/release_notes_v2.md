@@ -2,6 +2,10 @@
 
 **Power, Energy and Economy Sensors**
 
+## Release Note / v2.3.3
+
+Correcting error in the implementation of EMMA.
+
 ## Release Note / v2.3.2
 
 Correcting error in the implementation of EMMA.
