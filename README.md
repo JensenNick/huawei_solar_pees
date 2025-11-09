@@ -198,7 +198,7 @@ If you have several tariffs and/or they change from time to time, you might find
 
 ## 5. Known "bugs"
 
-No known issues at the moment.
+HA will report this issue (see https://github.com/JensenNick/huawei_solar_pees/issues/93) although the sensors used are not using state_class: `total_increasing`.
 
 ## 6. Thanks to
 
@@ -213,4 +213,5 @@ No known issues at the moment.
 * **All contributors** and a special thank's to **Roving-Ronin**, **Krabbee** and **JacobsenKim**.
 
 **Again, Thank You to all of You!**
+
 
